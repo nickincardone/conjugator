@@ -1,0 +1,73 @@
+html, body {
+  margin: 0;
+  height: 100%;
+  background-color: #c8f1f5;;
+}
+
+#root {
+  height: 100%;
+}
+
+.nji-main {
+  height: 100%;
+}
+
+.center-grid {
+  height: 100%;
+  justify-content: center;
+}
+
+.nji-main-card {
+  font-family: 'Sen', 'Open Sans', sans-serif;
+  min-height: 600px;
+
+  .MuiCardContent-root {
+    min-height: 560px;
+
+    .nji-main-top {
+      h1 {
+        font-size: 7em;
+        margin-top: 20px;
+      }
+      h4 {
+        color: #949494;
+        font-size: 1.5em;
+      }
+    }
+
+    .nji-main-chips {
+      margin-top: 20px;
+    }
+
+    .nji-main-bottom {
+      .MuiInputLabel-root {
+        transform: translateX(-50%);
+        left: 50%;
+        &.Mui-focused {
+          color: #949494;
+        }
+      }
+
+      .MuiInput-underline.Mui-focused:after {
+        transform: scaleX(0);
+      }
+
+      input {
+        font-size: 2em;
+        text-align: center;
+      }
+
+      .MuiGrid-direction-xs-column {
+        min-height: 560px;
+      }
+
+      .MuiGrid-grid-xs-8 {
+        flex-grow: 2;
+      }
+
+      .MuiGrid-grid-xs-4 {
+        flex-grow: 1;
+      }
+    }
+  }
+}
