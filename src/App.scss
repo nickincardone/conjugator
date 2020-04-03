@@ -17,6 +17,17 @@ html, body {
   justify-content: center;
 }
 
+.MuiDialog-root .MuiDialog-paper {
+  padding: 20px;
+  text-align: center;
+  h4 {
+    margin-bottom: 20px;
+  }
+  span {
+    margin-top: 20px;
+  }
+}
+
 .nji-main-card {
   font-family: 'Sen', 'Open Sans', sans-serif;
   min-height: 600px;

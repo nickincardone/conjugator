@@ -87,7 +87,7 @@ class App extends React.Component {
         }));
         return;
       }
-      if (this.questions[this.state.currentQuestion].answer !== this.state.value) {
+      if (this.realAnswer() !== this.state.value) {
         this.setState({ open: true });
       } else {
         this.setState((oldState, props) => ({
@@ -99,6 +99,10 @@ class App extends React.Component {
     }
   };
 
+  realAnswer() {
+    return this.questions[this.state.currentQuestion].answer.replace('|', '').replace('|', '');
+  }
+
   render() {
     return (
       <Container maxWidth="md" className="nji-main" onKeyDown={this._handleKeyDown}>
@@ -109,7 +113,7 @@ class App extends React.Component {
                 <SimpleDialog
                   open={this.state.open} handleClose={this.handleClose}
                   answer={this.state.value}
-                  correctAnswer={this.questions[this.state.currentQuestion].answer}/>
+                  correctAnswer={this.realAnswer()}/>
                 <div className="nji-main-top">
                   <LinearProgress
                     variant="determinate"
