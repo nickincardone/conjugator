@@ -15,6 +15,7 @@ import SimpleDialog from './components/SimpleDialog';
 import LinearProgress from '@material-ui/core/LinearProgress';
 
 class App extends React.Component {
+  numberOfQuestions = 25;
   constructor(props) {
     super(props);
     this.state = {
@@ -30,11 +31,17 @@ class App extends React.Component {
     return properties.reduce((prev, curr) => prev && prev[curr], obj)
   }
 
+  getAnswer(currentVerbType, currentPronoun, conjugations) {
+    if (currentVerbType === 'participle' || currentVerbType === 'gerund') {
+      return conjugations[currentVerbType];
+    }
+    return this.resolve(currentVerbType + '.' + currentPronoun, conjugations);
+  }
+
   createQuestions = () => {
-    const numberOfQuestions = 5;
     const questionArray = [];
     const pronouns = ['yo', 'tu', 'el', 'nosotros', 'vosotros', 'ellos'];
-    for (let i = 0; i < numberOfQuestions; i++) {
+    for (let i = 0; i < this.numberOfQuestions; i++) {
       const currentVerb = verbs[Math.floor(Math.random() * verbs.length)];
       const currentVerbType = verbTypes[Math.floor(Math.random() * verbTypes.length)];
       const currentPronoun = pronouns[Math.floor(Math.random() * pronouns.length)];
@@ -45,7 +52,7 @@ class App extends React.Component {
         "person": currentPronoun,
         "type1": verbTypeList[0],
         "type2": verbTypeList.length === 2 ? verbTypeList[1] : null,
-        "answer": this.resolve(currentVerbType + '.' + currentPronoun, currentVerb.conjugations)
+        "answer": this.getAnswer(currentVerbType, currentPronoun, currentVerb.conjugations)
       };
       questionArray.push(currentVerbObject)
     }
@@ -107,7 +114,7 @@ class App extends React.Component {
                   <LinearProgress
                     variant="determinate"
                     color="secondary"
-                    value={(this.state.currentQuestion/5.0) * 100}
+                    value={(this.state.currentQuestion/this.numberOfQuestions) * 100}
                   />
                   <Box
                     display={'flex'}
