@@ -1,7 +1,7 @@
 const conjugationVerbs = [
     {
         "verb": "ver",
-        "definition": "To see",
+        "definition": "to see",
         "conjugations": {
             "participle": "visto",
             "gerund": "viendo",

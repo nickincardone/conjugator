@@ -1,5 +1,4 @@
 import React from 'react';
-import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 import './App.scss';
 import Container from "@material-ui/core/Container";
 import Card from "@material-ui/core/Card";
@@ -12,19 +11,22 @@ import Chip from "@material-ui/core/Chip";
 import verbs from './data/conjugationVerbs';
 import verbTypes from './data/verbTypes';
 import { Hidden } from '@material-ui/core';
+import SimpleDialog from './components/SimpleDialog';
+import LinearProgress from '@material-ui/core/LinearProgress';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       value: '',
-      currentQuestion: 0
+      currentQuestion: 0,
+      open: false,
     };
     this.createQuestions();
   }
 
   resolve(path, obj) {
-    var properties = Array.isArray(path) ? path : path.split('.')
+    const properties = Array.isArray(path) ? path : path.split('.');
     return properties.reduce((prev, curr) => prev && prev[curr], obj)
   }
 
@@ -39,7 +41,7 @@ class App extends React.Component {
       const verbTypeList = currentVerbType.split('.');
       const currentVerbObject = {
         "verb": currentVerb.verb,
-        "definition": currentVerb.verb,
+        "definition": currentVerb.definition,
         "person": currentPronoun,
         "type1": verbTypeList[0],
         "type2": verbTypeList.length === 2 ? verbTypeList[1] : null,
@@ -50,21 +52,11 @@ class App extends React.Component {
     this.questions = questionArray;
   };
 
-  palette = {
-    palette: {
-      primary: { main: '#ffffff', contrastText: '#212121' },
-      secondary: { main: '#80CBC4' }
-    }
-  };
-  themeName = 'White Monte Carlo Little Penguin';
-  theme = createMuiTheme(this.palette, this.themeName);
-
   handleChange = (event) => {
     this.setState({ value: event.target.value });
   };
 
-  handleSubmit = (event) => {
-    event.preventDefault();
+  handleClose = () => {
     if (this.state.currentQuestion + 1 === this.questions.length) {
       return;
     }
@@ -72,65 +64,95 @@ class App extends React.Component {
       currentQuestion: oldState.currentQuestion + 1,
       value: ""
     }));
+    this.setState({ open: false });
+  };
 
+  _handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      if (this.state.open) {
+        this.setState({ open: false });
+        if (this.state.currentQuestion + 1 === this.questions.length) {
+          return;
+        }
+        this.setState((oldState, props) => ({
+          currentQuestion: oldState.currentQuestion + 1,
+          value: ""
+        }));
+        return;
+      }
+      if (this.questions[this.state.currentQuestion].answer !== this.state.value) {
+        this.setState({ open: true });
+      } else {
+        this.setState((oldState, props) => ({
+          currentQuestion: oldState.currentQuestion + 1,
+          value: ""
+        }));
+      }
+
+    }
   };
 
   render() {
     return (
-      <MuiThemeProvider theme={this.theme}>
-        <Container maxWidth="md" className="nji-main">
-          <Grid container className="center-grid" direction="column">
-            <Grid item>
-              <Card className="nji-main-card">
-                <CardContent>
-                  <div className="nji-main-top">
-                    <Box
-                      display={'flex'}
-                      flexDirection={'column'}
-                      alignItems={'center'}
-                      justifyContent={'center'}
-                      minHeight={360}
-                      color={'common.black'}
-                      textAlign={'center'}
-                    >
-                      <Typography
-                        variant="h1">{this.questions[this.state.currentQuestion].verb}</Typography>
-                      <Typography
-                        variant="h4">{this.questions[this.state.currentQuestion].definition}</Typography>
-                      <div className="nji-main-chips">
-                        <Chip label={this.questions[this.state.currentQuestion].type1}/>
-                        <Hidden xsUp={this.questions[this.state.currentQuestion].type2 === null}>
-                          <Chip label={this.questions[this.state.currentQuestion].type2} />
-                        </Hidden>
-                      </div>
-                    </Box>
-                  </div>
-                  <div className="nji-main-bottom">
-                    <Box
-                      display={'flex'}
-                      flexDirection={'column'}
-                      alignItems={'center'}
-                      justifyContent={'center'}
-                      color={'common.black'}
-                      textAlign={'center'}
-                    >
-                      <Typography variant="h1">
-                        <form onSubmit={this.handleSubmit}>
-                          <TextField id="standard-basic"
-                                     label={this.questions[this.state.currentQuestion].person}
-                                     onChange={this.handleChange} value={this.state.value}
-                                     autoFocus={true} autoComplete='off'/>
-                          {/*<div contentEditable="true">{this.state.value}</div>*/}
-                        </form>
-                      </Typography>
-                    </Box>
-                  </div>
-                </CardContent>
-              </Card>
-            </Grid>
+      <Container maxWidth="md" className="nji-main" onKeyDown={this._handleKeyDown}>
+        <Grid container className="center-grid" direction="column">
+          <Grid item>
+            <Card className="nji-main-card">
+              <CardContent>
+                <SimpleDialog
+                  open={this.state.open} handleClose={this.handleClose}
+                  answer={this.state.value}
+                  correctAnswer={this.questions[this.state.currentQuestion].answer}/>
+                <div className="nji-main-top">
+                  <LinearProgress
+                    variant="determinate"
+                    color="secondary"
+                    value={(this.state.currentQuestion/5.0) * 100}
+                  />
+                  <Box
+                    display={'flex'}
+                    flexDirection={'column'}
+                    alignItems={'center'}
+                    justifyContent={'center'}
+                    minHeight={360}
+                    color={'common.black'}
+                    textAlign={'center'}
+                  >
+                    <Typography
+                      variant="h1">{this.questions[this.state.currentQuestion].verb}</Typography>
+                    <Typography
+                      variant="h4">{this.questions[this.state.currentQuestion].definition}</Typography>
+                    <div className="nji-main-chips">
+                      <Chip label={this.questions[this.state.currentQuestion].type1}/>
+                      <Hidden xsUp={this.questions[this.state.currentQuestion].type2 === null}>
+                        <Chip label={this.questions[this.state.currentQuestion].type2}/>
+                      </Hidden>
+                    </div>
+                  </Box>
+                </div>
+                <div className="nji-main-bottom">
+                  <Box
+                    display={'flex'}
+                    flexDirection={'column'}
+                    alignItems={'center'}
+                    justifyContent={'center'}
+                    color={'common.black'}
+                    textAlign={'center'}
+                  >
+                    <Typography variant="h1">
+                      <TextField id="standard-basic"
+                                 label={this.questions[this.state.currentQuestion].person}
+                                 onChange={this.handleChange} value={this.state.value}
+                                 autoFocus={true} autoComplete='off'/>
+                      {/*<div contentEditable="true">{this.state.value}</div>*/}
+                    </Typography>
+                  </Box>
+                </div>
+              </CardContent>
+            </Card>
           </Grid>
-        </Container>
-      </MuiThemeProvider>
+        </Grid>
+      </Container>
     );
   }
 }
