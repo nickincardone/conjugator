@@ -4,15 +4,11 @@ import Container from "@material-ui/core/Container";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
-import TextField from "@material-ui/core/TextField";
-import Box from "@material-ui/core/Box";
-import Chip from "@material-ui/core/Chip";
 import verbs from './data/conjugationVerbs';
 import haber from './data/haber';
 import verbTypes from './data/verbTypes';
-import { Hidden } from '@material-ui/core';
 import SimpleDialog from './components/SimpleDialog';
+import ConjugationCard from './components/cards/ConjugationCard/ConjugationCard';
 import LinearProgress from '@material-ui/core/LinearProgress';
 
 class App extends React.Component {
@@ -38,7 +34,8 @@ class App extends React.Component {
       return conjugations[currentVerbType];
     }
     if (currentVerbType.includes('perfect')) {
-      return this.resolve(currentVerbType.substring(8,) + '.' + currentPronoun, haber) + ' ' + conjugations['participle'];
+      return this.resolve(currentVerbType.substring(8,) + '.' + currentPronoun,
+        haber) + ' ' + conjugations['participle'];
     }
     return this.resolve(currentVerbType + '.' + currentPronoun, conjugations);
   }
@@ -49,8 +46,11 @@ class App extends React.Component {
     for (let i = 0; i < this.numberOfQuestions; i++) {
       const currentVerb = verbs[Math.floor(Math.random() * verbs.length)];
       const currentVerbType = verbTypes[Math.floor(Math.random() * verbTypes.length)];
-      const currentPronoun = pronouns[Math.floor(Math.random() * pronouns.length)];
+      let currentPronoun = pronouns[Math.floor(Math.random() * pronouns.length)];
       const verbTypeList = currentVerbType.split('.');
+      if (currentVerbType === 'participle' || currentVerbType === 'gerund') {
+        currentPronoun = '';
+      }
       const currentVerbObject = {
         "verb": currentVerb.verb,
         "definition": currentVerb.definition,
@@ -115,57 +115,18 @@ class App extends React.Component {
           <Grid item>
             <Card className="nji-main-card">
               <CardContent>
+                <LinearProgress
+                  variant="determinate"
+                  color="secondary"
+                  value={(this.state.currentQuestion / this.numberOfQuestions) * 100} />
                 <SimpleDialog
                   open={this.state.open} handleClose={this.handleClose}
                   answer={this.state.value}
-                  correctAnswer={this.realAnswer()}/>
-                <div className="nji-main-top">
-                  <LinearProgress
-                    variant="determinate"
-                    color="secondary"
-                    value={(this.state.currentQuestion / this.numberOfQuestions) * 100}
-                  />
-                  <Box
-                    display={'flex'}
-                    flexDirection={'column'}
-                    alignItems={'center'}
-                    justifyContent={'center'}
-                    minHeight={360}
-                    color={'common.black'}
-                    textAlign={'center'}
-                  >
-                    <Typography
-                      variant="h1">{this.questions[this.state.currentQuestion].verb}</Typography>
-                    <Typography
-                      variant="h4">{this.questions[this.state.currentQuestion].definition}</Typography>
-                    <div className="nji-main-chips">
-                      <Chip label={this.questions[this.state.currentQuestion].type1}/>
-                      <Hidden xsUp={this.questions[this.state.currentQuestion].type2 === undefined}>
-                        <Chip label={this.questions[this.state.currentQuestion].type2}/>
-                      </Hidden>
-                      <Hidden xsUp={this.questions[this.state.currentQuestion].type3 === undefined}>
-                        <Chip label={this.questions[this.state.currentQuestion].type3}/>
-                      </Hidden>
-                    </div>
-                  </Box>
-                </div>
-                <div className="nji-main-bottom">
-                  <Box
-                    display={'flex'}
-                    flexDirection={'column'}
-                    alignItems={'center'}
-                    justifyContent={'center'}
-                    color={'common.black'}
-                    textAlign={'center'}
-                  >
-                    <Typography variant="h1">
-                      <TextField id="standard-basic"
-                                 label={this.questions[this.state.currentQuestion].person}
-                                 onChange={this.handleChange} value={this.state.value}
-                                 autoFocus={true} autoComplete='off'/>
-                    </Typography>
-                  </Box>
-                </div>
+                  correctAnswer={this.realAnswer()} />
+                <ConjugationCard
+                  question={this.questions[this.state.currentQuestion]}
+                  value={this.state.value}
+                  handleChange={this.handleChange}/>
               </CardContent>
             </Card>
           </Grid>
