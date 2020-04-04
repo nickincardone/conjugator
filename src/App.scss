@@ -17,28 +17,19 @@ html, body {
   justify-content: center;
 }
 
-.MuiDialog-root .MuiDialog-paper {
-  padding: 20px;
-  text-align: center;
-  h4 {
-    margin-bottom: 20px;
-  }
-  span {
-    margin-top: 20px;
-  }
-}
-
 .nji-main-card {
   font-family: 'Sen', 'Open Sans', sans-serif;
   min-height: 600px;
 
   .MuiCardContent-root {
     min-height: 560px;
+
     .MuiLinearProgress-root {
       background-color: #e0e0e0;
       border-radius: 5px;
       height: 10px;
-      box-shadow: 1px 1px 3px 0px rgba(0,0,0,0.33);
+      box-shadow: 1px 1px 3px 0px rgba(0, 0, 0, 0.33);
+
       .MuiLinearProgress-colorSecondary, .MuiLinearProgress-barColorSecondary {
         background-color: #00ca00;
       }
@@ -49,6 +40,7 @@ html, body {
         font-size: 7em;
         margin-top: 20px;
       }
+
       h4 {
         color: #949494;
         font-size: 1.5em;
@@ -63,6 +55,7 @@ html, body {
       .MuiInputLabel-root {
         transform: translateX(-50%);
         left: 50%;
+
         &.Mui-focused {
           color: #949494;
         }

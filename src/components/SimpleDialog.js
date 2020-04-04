@@ -1,6 +1,7 @@
 import Dialog from '@material-ui/core/Dialog';
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
+import './SimpleDialog.scss';
 
 function simpleDialog(props) {
 

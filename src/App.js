@@ -16,6 +16,7 @@ import LinearProgress from '@material-ui/core/LinearProgress';
 
 class App extends React.Component {
   numberOfQuestions = 25;
+
   constructor(props) {
     super(props);
     this.state = {
@@ -28,7 +29,7 @@ class App extends React.Component {
 
   resolve(path, obj) {
     const properties = Array.isArray(path) ? path : path.split('.');
-    return properties.reduce((prev, curr) => prev && prev[curr], obj)
+    return properties.reduce((prev, curr) => prev && prev[curr], obj);
   }
 
   getAnswer(currentVerbType, currentPronoun, conjugations) {
@@ -54,7 +55,7 @@ class App extends React.Component {
         "type2": verbTypeList.length === 2 ? verbTypeList[1] : null,
         "answer": this.getAnswer(currentVerbType, currentPronoun, currentVerb.conjugations)
       };
-      questionArray.push(currentVerbObject)
+      questionArray.push(currentVerbObject);
     }
     this.questions = questionArray;
   };
@@ -95,7 +96,6 @@ class App extends React.Component {
           value: ""
         }));
       }
-
     }
   };
 
@@ -118,7 +118,7 @@ class App extends React.Component {
                   <LinearProgress
                     variant="determinate"
                     color="secondary"
-                    value={(this.state.currentQuestion/this.numberOfQuestions) * 100}
+                    value={(this.state.currentQuestion / this.numberOfQuestions) * 100}
                   />
                   <Box
                     display={'flex'}
@@ -155,7 +155,6 @@ class App extends React.Component {
                                  label={this.questions[this.state.currentQuestion].person}
                                  onChange={this.handleChange} value={this.state.value}
                                  autoFocus={true} autoComplete='off'/>
-                      {/*<div contentEditable="true">{this.state.value}</div>*/}
                     </Typography>
                   </Box>
                 </div>
