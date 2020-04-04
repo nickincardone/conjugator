@@ -11346,7 +11346,7 @@ const conjugationVerbs = [
     }
   }, {
     "verb": "describir", "definition": "to describe", "conjugations": {
-      "participle": "descri|t|o,descri<span",
+      "participle": "descri|t|o",
       "gerund": "describiendo",
       "indicative": {
         "present": {
@@ -13699,12 +13699,12 @@ const conjugationVerbs = [
       "gerund": "|i|rguiendo",
       "indicative": {
         "present": {
-          "yo": "|yerg|o,<span class='conj-irregular'>irg</span>o",
-          "tu": "|y|ergues,<span class='conj-irregular'>i</span>rgues",
-          "el": "|y|ergue,<span class='conj-irregular'>i</span>rgue",
+          "yo": "|yerg|o,|irg|o",
+          "tu": "|y|ergues,|i|rgues",
+          "el": "|y|ergue,|i|rgue",
           "nosotros": "erguimos",
           "vosotros": "erguís",
-          "ellos": "|y|erguen,<span class='conj-irregular'>i</span>rguen"
+          "ellos": "|y|erguen,|i|rguen"
         },
         "preterite": {
           "yo": "erguí",
@@ -13741,12 +13741,12 @@ const conjugationVerbs = [
       },
       "subjunctive": {
         "present": {
-          "yo": "|yerg|a,<span class='conj-irregular'>irg</span>a",
-          "tu": "|yerg|as,<span class='conj-irregular'>irg</span>as",
-          "el": "|yerg|a,<span class='conj-irregular'>irg</span>a",
+          "yo": "|yerg|a,|irg|a",
+          "tu": "|yerg|as,|irg|as",
+          "el": "|yerg|a,|irg|a",
           "nosotros": "|irg|amos",
           "vosotros": "|irg|áis",
-          "ellos": "|yerg|an,<span class='conj-irregular'>irg</span>an"
+          "ellos": "|yerg|an,|irg|an"
         },
         "imperfect": {
           "yo": "|i|rguiera",
@@ -13938,7 +13938,7 @@ const conjugationVerbs = [
     }
   }, {
     "verb": "escribir", "definition": "to write", "conjugations": {
-      "participle": "escri|t|o,escri<span",
+      "participle": "escri|t|o",
       "gerund": "escribiendo",
       "indicative": {
         "present": {
@@ -15639,7 +15639,7 @@ const conjugationVerbs = [
     }
   }, {
     "verb": "freír", "definition": "to fry", "conjugations": {
-      "participle": "fr|it|o,fre<span",
+      "participle": "fr|it|o",
       "gerund": "fr|i|endo",
       "indicative": {
         "present": {
@@ -16618,7 +16618,7 @@ const conjugationVerbs = [
         "present": {
           "yo": "h|e|",
           "tu": "ha|s|",
-          "el": "ha|,|ha<span class='conj-irregular'>y</span>",
+          "el": "ha|,|ha|y|",
           "nosotros": "h|e|mos",
           "vosotros": "habéis",
           "ellos": "ha|n|"
@@ -17989,7 +17989,7 @@ const conjugationVerbs = [
     }
   }, {
     "verb": "inscribir", "definition": "to engrave,to enroll", "conjugations": {
-      "participle": "inscri|t|o,inscri<span",
+      "participle": "inscri|t|o",
       "gerund": "inscribiendo",
       "indicative": {
         "present": {
@@ -24011,20 +24011,20 @@ const conjugationVerbs = [
           "ellos": "predecían"
         },
         "conditional": {
-          "yo": "pred|ir|ía,predec<span class='conj-irregular'>ir</span>ía",
-          "tu": "pred|ir|ías,predec<span class='conj-irregular'>ir</span>ías",
-          "el": "pred|ir|ía,predec<span class='conj-irregular'>ir</span>ía",
-          "nosotros": "pred|ir|íamos,predec<span class='conj-irregular'>ir</span>íamos",
-          "vosotros": "pred|ir|íais,predec<span class='conj-irregular'>ir</span>íais",
-          "ellos": "pred|ir|ían,predec<span class='conj-irregular'>ir</span>ían"
+          "yo": "pred|ir|ía,predec|ir|ía",
+          "tu": "pred|ir|ías,predec|ir|ías",
+          "el": "pred|ir|ía,predec|ir|ía",
+          "nosotros": "pred|ir|íamos,predec|ir|íamos",
+          "vosotros": "pred|ir|íais,predec|ir|íais",
+          "ellos": "pred|ir|ían,predec|ir|ían"
         },
         "future": {
-          "yo": "pred|ir|é,predec<span class='conj-irregular'>ir</span>é",
-          "tu": "pred|ir|ás,predec<span class='conj-irregular'>ir</span>ás",
-          "el": "pred|ir|á,predec<span class='conj-irregular'>ir</span>á",
-          "nosotros": "pred|ir|emos,predec<span class='conj-irregular'>ir</span>emos",
-          "vosotros": "pred|ir|éis,predec<span class='conj-irregular'>ir</span>éis",
-          "ellos": "pred|ir|án,predec<span class='conj-irregular'>ir</span>án"
+          "yo": "pred|ir|é,predec|ir|é",
+          "tu": "pred|ir|ás,predec|ir|ás",
+          "el": "pred|ir|á,predec|ir|á",
+          "nosotros": "pred|ir|emos,predec|ir|emos",
+          "vosotros": "pred|ir|éis,predec|ir|éis",
+          "ellos": "pred|ir|án,predec|ir|án"
         }
       },
       "subjunctive": {
@@ -25284,7 +25284,7 @@ const conjugationVerbs = [
       "gerund": "ra|y|endo",
       "indicative": {
         "present": {
-          "yo": "ra|ig|o,ra<span class='conj-irregular'>y</span>o",
+          "yo": "ra|ig|o,ra|y|o",
           "tu": "raes",
           "el": "rae",
           "nosotros": "raemos",
@@ -25326,12 +25326,12 @@ const conjugationVerbs = [
       },
       "subjunctive": {
         "present": {
-          "yo": "ra|ig|a,ra<span class='conj-irregular'>y</span>a",
-          "tu": "ra|ig|as,ra<span class='conj-irregular'>y</span>as",
-          "el": "ra|ig|a,ra<span class='conj-irregular'>y</span>a",
-          "nosotros": "ra|ig|amos,ra<span class='conj-irregular'>y</span>amos",
-          "vosotros": "ra|ig|áis,ra<span class='conj-irregular'>y</span>áis",
-          "ellos": "ra|ig|an,ra<span class='conj-irregular'>y</span>an"
+          "yo": "ra|ig|a,ra|y|a",
+          "tu": "ra|ig|as,ra|y|as",
+          "el": "ra|ig|a,ra|y|a",
+          "nosotros": "ra|ig|amos,ra|y|amos",
+          "vosotros": "ra|ig|áis,ra|y|áis",
+          "ellos": "ra|ig|an,ra|y|an"
         },
         "imperfect": {
           "yo": "ra|y|era",
@@ -29735,7 +29735,7 @@ const conjugationVerbs = [
     }
   }, {
     "verb": "subscribir", "definition": "to sign,to subscribe to", "conjugations": {
-      "participle": "suscri|t|o,suscri<span",
+      "participle": "suscri|t|o",
       "gerund": "suscribiendo",
       "indicative": {
         "present": {
@@ -33303,7 +33303,7 @@ const conjugationVerbs = [
       "gerund": "yaciendo",
       "indicative": {
         "present": {
-          "yo": "ya|z|co,ya<span class='conj-irregular'>g</span>o,yazgo",
+          "yo": "ya|z|co,ya|g|o,yazgo",
           "tu": "yaces",
           "el": "yace",
           "nosotros": "yacemos",
@@ -33345,12 +33345,12 @@ const conjugationVerbs = [
       },
       "subjunctive": {
         "present": {
-          "yo": "ya|z|ca,ya<span class='conj-irregular'>g</span>a,yazga",
-          "tu": "ya|z|cas,ya<span class='conj-irregular'>g</span>as,yazgas",
-          "el": "ya|z|ca,ya<span class='conj-irregular'>zg</span>a",
-          "nosotros": "ya|z|camos,ya<span class='conj-irregular'>zg</span>amos",
-          "vosotros": "ya|z|cáis,ya<span class='conj-irregular'>zg</span>áis,yagáis",
-          "ellos": "ya|z|can,ya<span class='conj-irregular'>zg</span>an,yagan"
+          "yo": "ya|z|ca,ya|g|a,yazga",
+          "tu": "ya|z|cas,ya|g|as,yazgas",
+          "el": "ya|z|ca,ya|zg|a",
+          "nosotros": "ya|z|camos,ya|zg|amos",
+          "vosotros": "ya|z|cáis,ya|zg|áis,yagáis",
+          "ellos": "ya|z|can,ya|zg|an,yagan"
         },
         "imperfect": {
           "yo": "yaciera",
@@ -47802,7 +47802,7 @@ const conjugationVerbs = [
     }
   }, {
     "verb": "poseer", "definition": "to have", "conjugations": {
-      "participle": "pose|í|do,pose<span",
+      "participle": "pose|í|do",
       "gerund": "pose|y|endo",
       "indicative": {
         "present": {

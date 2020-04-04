@@ -9,6 +9,7 @@ import TextField from "@material-ui/core/TextField";
 import Box from "@material-ui/core/Box";
 import Chip from "@material-ui/core/Chip";
 import verbs from './data/conjugationVerbs';
+import haber from './data/haber';
 import verbTypes from './data/verbTypes';
 import { Hidden } from '@material-ui/core';
 import SimpleDialog from './components/SimpleDialog';
@@ -36,6 +37,9 @@ class App extends React.Component {
     if (currentVerbType === 'participle' || currentVerbType === 'gerund') {
       return conjugations[currentVerbType];
     }
+    if (currentVerbType.includes('perfect')) {
+      return this.resolve(currentVerbType.substring(8,) + '.' + currentPronoun, haber) + ' ' + conjugations['participle'];
+    }
     return this.resolve(currentVerbType + '.' + currentPronoun, conjugations);
   }
 
@@ -52,7 +56,8 @@ class App extends React.Component {
         "definition": currentVerb.definition,
         "person": currentPronoun,
         "type1": verbTypeList[0],
-        "type2": verbTypeList.length === 2 ? verbTypeList[1] : null,
+        "type2": verbTypeList[1],
+        "type3": verbTypeList[2],
         "answer": this.getAnswer(currentVerbType, currentPronoun, currentVerb.conjugations)
       };
       questionArray.push(currentVerbObject);
@@ -135,8 +140,11 @@ class App extends React.Component {
                       variant="h4">{this.questions[this.state.currentQuestion].definition}</Typography>
                     <div className="nji-main-chips">
                       <Chip label={this.questions[this.state.currentQuestion].type1}/>
-                      <Hidden xsUp={this.questions[this.state.currentQuestion].type2 === null}>
+                      <Hidden xsUp={this.questions[this.state.currentQuestion].type2 === undefined}>
                         <Chip label={this.questions[this.state.currentQuestion].type2}/>
+                      </Hidden>
+                      <Hidden xsUp={this.questions[this.state.currentQuestion].type3 === undefined}>
+                        <Chip label={this.questions[this.state.currentQuestion].type3}/>
                       </Hidden>
                     </div>
                   </Box>
