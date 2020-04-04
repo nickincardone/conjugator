@@ -3,20 +3,20 @@ const haber = {
   "gerund": "habiendo",
   "indicative": {
     "present": {
-      "yo": "h|e|",
-      "tu": "ha|s|",
-      "el": "ha|,|ha|y|",
-      "nosotros": "h|e|mos",
+      "yo": "he",
+      "tu": "has",
+      "el": "ha",
+      "nosotros": "hemos",
       "vosotros": "habéis",
-      "ellos": "ha|n|"
+      "ellos": "han"
     },
     "preterite": {
-      "yo": "h|ube|",
-      "tu": "h|u|biste",
-      "el": "h|ubo|",
-      "nosotros": "h|u|bimos",
-      "vosotros": "h|u|bisteis",
-      "ellos": "h|u|bieron"
+      "yo": "hube",
+      "tu": "hubiste",
+      "el": "hubo",
+      "nosotros": "hubimos",
+      "vosotros": "hubisteis",
+      "ellos": "hubieron"
     },
     "imperfect": {
       "yo": "había",
@@ -27,54 +27,54 @@ const haber = {
       "ellos": "habían"
     },
     "conditional": {
-      "yo": "hab|r|ía",
-      "tu": "hab|r|ías",
-      "el": "hab|r|ía",
-      "nosotros": "hab|r|íamos",
-      "vosotros": "hab|r|íais",
-      "ellos": "hab|r|ían"
+      "yo": "habría",
+      "tu": "habrías",
+      "el": "habría",
+      "nosotros": "habríamos",
+      "vosotros": "habríais",
+      "ellos": "habrían"
     },
     "future": {
-      "yo": "hab|r|é",
-      "tu": "hab|r|ás",
-      "el": "hab|r|á",
-      "nosotros": "hab|r|emos",
-      "vosotros": "hab|r|éis",
-      "ellos": "hab|r|án"
+      "yo": "habré",
+      "tu": "habrás",
+      "el": "habrá",
+      "nosotros": "habremos",
+      "vosotros": "habréis",
+      "ellos": "habrán"
     }
   },
   "subjunctive": {
     "present": {
-      "yo": "ha|y|a",
-      "tu": "ha|y|as",
-      "el": "ha|y|a",
-      "nosotros": "ha|y|amos",
-      "vosotros": "ha|y|áis",
-      "ellos": "ha|y|an"
+      "yo": "haya",
+      "tu": "hayas",
+      "el": "haya",
+      "nosotros": "hayamos",
+      "vosotros": "hayáis",
+      "ellos": "hayan"
     },
     "imperfect": {
-      "yo": "h|u|biera",
-      "tu": "h|u|bieras",
-      "el": "h|u|biera",
-      "nosotros": "h|u|biéramos",
-      "vosotros": "h|u|bierais",
-      "ellos": "h|u|bieran"
+      "yo": "hubiera",
+      "tu": "hubieras",
+      "el": "hubiera",
+      "nosotros": "hubiéramos",
+      "vosotros": "hubierais",
+      "ellos": "hubieran"
     },
     "imperfect2": {
-      "yo": "h|u|biese",
-      "tu": "h|u|bieses",
-      "el": "h|u|biese",
-      "nosotros": "h|u|biésemos",
-      "vosotros": "h|u|bieseis",
-      "ellos": "h|u|biesen"
+      "yo": "hubiese",
+      "tu": "hubieses",
+      "el": "hubiese",
+      "nosotros": "hubiésemos",
+      "vosotros": "hubieseis",
+      "ellos": "hubiesen"
     },
     "future": {
-      "yo": "h|u|biere",
-      "tu": "h|u|bieres",
-      "el": "h|u|biere",
-      "nosotros": "h|u|biéremos",
-      "vosotros": "h|u|biereis",
-      "ellos": "h|u|bieren"
+      "yo": "hubiere",
+      "tu": "hubieres",
+      "el": "hubiere",
+      "nosotros": "hubiéremos",
+      "vosotros": "hubiereis",
+      "ellos": "hubieren"
     }
   }
 };

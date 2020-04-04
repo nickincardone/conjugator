@@ -7,10 +7,6 @@ import TextField from '@material-ui/core/TextField';
 
 class ConjugationCard extends React.Component {
 
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <React.Fragment>
