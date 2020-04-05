@@ -34,6 +34,11 @@ html, body {
         background-color: #00ca00;
       }
     }
+    .nji-card-mc {
+      .MuiCard-root {
+        min-height: 100%;
+      }
+    }
 
     .nji-main-top {
       h1 {
@@ -44,6 +49,11 @@ html, body {
       h4 {
         color: #949494;
         font-size: 1.5em;
+      }
+      @media (max-width: 600px) {
+        h1 {
+          font-size: 3em;
+        }
       }
     }
 

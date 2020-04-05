@@ -11,6 +11,10 @@ import SimpleDialog from './components/SimpleDialog';
 import ConjugationCard from './components/cards/ConjugationCard/ConjugationCard';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import MultipleChoiceCard from './components/cards/ConjugationCard/MultipleChoiceCard';
+import { Hidden } from '@material-ui/core';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+import Box from '@material-ui/core/Box';
 
 class App extends React.Component {
   numberOfQuestions = 25;
@@ -21,6 +25,8 @@ class App extends React.Component {
       value: '',
       currentQuestion: 0,
       open: false,
+      showStart: true,
+      isMobile: false
     };
     this.createQuestions();
   }
@@ -43,7 +49,10 @@ class App extends React.Component {
 
   createQuestions = () => {
     const questionArray = [];
-    const questionTypes = [1,2];
+    let questionTypes = [1, 2];
+    if (this.state.isMobile) {
+      questionTypes = [1]
+    }
     const pronouns = ['yo', 'tu', 'el', 'nosotros', 'vosotros', 'ellos'];
     for (let i = 0; i < this.numberOfQuestions; i++) {
       const currentVerb = verbs[Math.floor(Math.random() * verbs.length)];
@@ -86,7 +95,9 @@ class App extends React.Component {
     return this.shuffle(choiceArray);
   };
 
-  filterAnswer = (answer) => {return answer.replace(/\|/g, '')};
+  filterAnswer = (answer) => {
+    return answer.replace(/\|/g, '')
+  };
 
   shuffle(array) {
     let currentIndex = array.length, temporaryValue, randomIndex;
@@ -172,6 +183,13 @@ class App extends React.Component {
     )
   }
 
+  start = (isMobile) => {
+    this.setState({isMobile: isMobile}, () => {
+      this.createQuestions();
+      this.setState({showStart: false});
+    });
+  };
+
   render() {
     return (
       <Container maxWidth="md" className="nji-main" onKeyDown={this._handleKeyDown}>
@@ -179,15 +197,41 @@ class App extends React.Component {
           <Grid item>
             <Card className="nji-main-card">
               <CardContent>
-                <LinearProgress
-                  variant="determinate"
-                  color="secondary"
-                  value={(this.state.currentQuestion / this.numberOfQuestions) * 100} />
-                <SimpleDialog
-                  open={this.state.open} handleClose={this.handleClose}
-                  answer={this.state.value}
-                  correctAnswer={this.realAnswer()} />
-                {this.getQuestion(this.questions[this.state.currentQuestion].questionType)}
+                <Hidden xsUp={!this.state.showStart}>
+                  <Box
+                    display={'flex'}
+                    flexDirection={'column'}
+                    alignItems={'center'}
+                    justifyContent={'center'}
+                    minHeight={360}
+                    color={'common.black'}
+                    textAlign={'center'}
+                    style={{'padding-top': '50px'}}
+                  >
+                    Hello, welcome to Conjugator {this.state.showStart}<br/>
+                    <Hidden smUp>
+                      <Button variant="contained" color="primary" onClick={() => {this.start(true)}} style={{'margin-top': '50px'}}>
+                        start
+                      </Button>
+                    </Hidden>
+                    <Hidden xsDown>
+                      <Button variant="contained" color="primary" onClick={() => {this.start(false)}} style={{'margin-top': '50px'}}>
+                        start
+                      </Button>
+                    </Hidden>
+                  </Box>
+                </Hidden>
+                <Hidden xsUp={this.state.showStart}>
+                  <LinearProgress
+                    variant="determinate"
+                    color="secondary"
+                    value={(this.state.currentQuestion / this.numberOfQuestions) * 100}/>
+                  <SimpleDialog
+                    open={this.state.open} handleClose={this.handleClose}
+                    answer={this.state.value}
+                    correctAnswer={this.realAnswer()}/>
+                  {this.getQuestion(this.questions[this.state.currentQuestion].questionType)}
+                </Hidden>
               </CardContent>
             </Card>
           </Grid>

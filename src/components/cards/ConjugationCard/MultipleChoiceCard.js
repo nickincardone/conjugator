@@ -60,7 +60,7 @@ class MultipleChoiceCard extends React.Component {
           >
             <Typography
               variant="subtitle1">{this.props.question.person}</Typography>
-            <Grid container spacing="1">
+            <Grid container spacing="1" className="nji-card-mc">
               {this.props.question.choices.map((answer, index) => {
                 return (
                   <Grid item xs="6" key={index}>
