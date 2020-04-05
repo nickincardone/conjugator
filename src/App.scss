@@ -20,9 +20,15 @@ html, body {
 .nji-main-card {
   font-family: 'Sen', 'Open Sans', sans-serif;
   min-height: 600px;
+  @media (max-width: 600px) {
+    min-height: 500px;
+  }
 
   .MuiCardContent-root {
     min-height: 560px;
+    @media (max-width: 600px) {
+      min-height: 500px;
+    }
 
     .MuiLinearProgress-root {
       background-color: #e0e0e0;
@@ -51,6 +57,9 @@ html, body {
         font-size: 1.5em;
       }
       @media (max-width: 600px) {
+        .MuiBox-root {
+          min-height: 300px;
+        }
         h1 {
           font-size: 3em;
         }
@@ -90,6 +99,9 @@ html, body {
 
       .MuiGrid-direction-xs-column {
         min-height: 560px;
+        @media (max-width: 600px) {
+          min-height: 500px;
+        }
       }
 
       .MuiGrid-grid-xs-8 {
