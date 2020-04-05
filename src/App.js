@@ -7,12 +7,12 @@ import Grid from "@material-ui/core/Grid";
 import verbs from './data/conjugationVerbs';
 import haber from './data/haber';
 import verbTypes from './data/verbTypes';
+import verbTypeNicknames from './data/verbTypeNicknames';
 import SimpleDialog from './components/SimpleDialog';
 import ConjugationCard from './components/cards/ConjugationCard/ConjugationCard';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import MultipleChoiceCard from './components/cards/ConjugationCard/MultipleChoiceCard';
 import { Hidden } from '@material-ui/core';
-import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Box from '@material-ui/core/Box';
 
@@ -60,7 +60,7 @@ class App extends React.Component {
       const currentQuestionType = questionTypes[Math.floor(Math.random() * questionTypes.length)];
       let currentPronoun = pronouns[Math.floor(Math.random() * pronouns.length)];
       const choices = this.getChoices(currentVerbType, currentPronoun, currentVerb.conjugations);
-      const verbTypeList = currentVerbType.split('.');
+      const verbTypeList = verbTypeNicknames[currentVerbType].split('.');
       if (currentVerbType === 'participle' || currentVerbType === 'gerund') {
         currentPronoun = '';
       }

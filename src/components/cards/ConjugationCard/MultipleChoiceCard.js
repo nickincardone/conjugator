@@ -39,12 +39,12 @@ class MultipleChoiceCard extends React.Component {
             <Typography
               variant="h4">{this.props.question.definition}</Typography>
             <div className="nji-main-chips">
-              <Chip label={this.props.question.type1}/>
+              <Chip className={this.props.question.type1} label={this.props.question.type1}/>
               <Hidden xsUp={this.props.question.type2 === undefined}>
-                <Chip label={this.props.question.type2}/>
+                <Chip className={this.props.question.type2} label={this.props.question.type2}/>
               </Hidden>
               <Hidden xsUp={this.props.question.type3 === undefined}>
-                <Chip label={this.props.question.type3}/>
+                <Chip className={this.props.question.type3} label={this.props.question.type3}/>
               </Hidden>
             </div>
           </Box>

@@ -68,6 +68,40 @@ html, body {
 
     .nji-main-chips {
       margin-top: 20px;
+      .MuiChip-root {
+        margin-right: 2px;
+      }
+      .present {
+
+      }
+      .preterite {
+        background-color: #FFDB8B;
+        color: white;
+      }
+      .imperfect {
+        background-color: #7557B6;
+        color: white;
+      }
+      .conditional {
+        background-color: #FFC28B;
+        color: white;
+      }
+      .future {
+        background-color: #7557B6;
+        color: white;
+      }
+      .subjunctive {
+        background-color: #7C90D0;
+        color: white;
+      }
+      .perfect {
+        background-color: #6DBEC6;
+        color: white;
+      }
+      .pluperfect {
+        background-color: #c8f1f5;
+        color: white;
+      }
     }
 
     .nji-main-bottom {
