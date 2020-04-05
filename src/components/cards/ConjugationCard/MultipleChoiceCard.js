@@ -10,6 +10,7 @@ import CardContent from '@material-ui/core/CardContent';
 class MultipleChoiceCard extends React.Component {
 
   constructor(props) {
+    console.log(props);
     super(props);
   }
 
@@ -35,9 +36,9 @@ class MultipleChoiceCard extends React.Component {
             textAlign={'center'}
           >
             <Typography
-              variant="h1">{this.props.question.verb}</Typography>
+              variant="h1">{this.props.question.top1}</Typography>
             <Typography
-              variant="h4">{this.props.question.definition}</Typography>
+              variant="h4">{this.props.question.top2}</Typography>
             <div className="nji-main-chips">
               <Chip className={this.props.question.type1} label={this.props.question.type1}/>
               <Hidden xsUp={this.props.question.type2 === undefined}>
@@ -59,7 +60,7 @@ class MultipleChoiceCard extends React.Component {
             textAlign={'center'}
           >
             <Typography
-              variant="subtitle1">{this.props.question.person}</Typography>
+              variant="subtitle1">{this.props.question.top3}</Typography>
             <Grid container spacing="1" className="nji-card-mc">
               {this.props.question.choices.map((answer, index) => {
                 return (

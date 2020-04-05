@@ -21,9 +21,9 @@ class ConjugationCard extends React.Component {
             textAlign={'center'}
           >
             <Typography
-              variant="h1">{this.props.question.verb}</Typography>
+              variant="h1">{this.props.question.top1}</Typography>
             <Typography
-              variant="h4">{this.props.question.definition}</Typography>
+              variant="h4">{this.props.question.top2}</Typography>
             <div className="nji-main-chips">
               <Chip className={this.props.question.type1} label={this.props.question.type1}/>
               <Hidden xsUp={this.props.question.type2 === undefined}>
@@ -46,7 +46,7 @@ class ConjugationCard extends React.Component {
           >
             <Typography variant="h1">
               <TextField id="standard-basic"
-                         label={this.props.question.person}
+                         label={this.props.question.top3}
                          onChange={this.props.handleChange} value={this.props.value}
                          autoFocus={true} autoComplete='off'/>
             </Typography>
