@@ -57,34 +57,37 @@ class App extends React.Component {
       const currentVerb = verbs[Math.floor(Math.random() * verbs.length)];
       const currentVerbType = verbTypes[Math.floor(Math.random() * verbTypes.length)];
       const currentQuestionType = questionTypes[Math.floor(Math.random() * questionTypes.length)];
-      let currentPronoun = pronouns[Math.floor(Math.random() * pronouns.length)];
-      let choices = this.getConjugationChoices(currentVerbType,
-        currentPronoun,
-        currentVerb.conjugations);
-      let verbTypeList = verbTypeNicknames[currentVerbType].split('.');
+      const verbTypeList = verbTypeNicknames[currentVerbType].split('.');
+      const currentPronoun = pronouns[Math.floor(Math.random() * pronouns.length)];
+
+
+      let currentQuestionObject;
+      if (currentQuestionType === 3 || currentQuestionType === 4) {
+        currentQuestionObject = {
+          "questionType": currentQuestionType,
+          "top1": currentVerb.definition,
+          "top2": '',
+          "top3": '',
+          "type1": 'defintion',
+          "type2": undefined,
+          "type3": undefined,
+          "answer": currentVerb.verb,
+          "choices": this.getDefinitionChoices(currentVerb.verb)
+        };
+      } else {
+        currentQuestionObject = {
+          "questionType": currentQuestionType,
+          "top1": currentVerb.verb,
+          "top2": currentVerb.definition,
+          "top3": currentPronoun,
+          "type1": verbTypeList[0],
+          "type2": verbTypeList[1],
+          "type3": verbTypeList[2],
+          "answer": this.getAnswer(currentVerbType, currentPronoun, currentVerb.conjugations),
+          "choices": this.getConjugationChoices(currentVerbType, currentPronoun, currentVerb.conjugations)
+        };
+      }
       if (currentVerbType === 'participle' || currentVerbType === 'gerund') {
-        currentPronoun = '';
-      }
-      let currentAnswer = this.getAnswer(currentVerbType, currentPronoun, currentVerb.conjugations);
-      if (currentQuestionType > 2) {
-        currentAnswer = currentVerb.verb;
-        choices = this.getDefinitionChoices(currentVerb.verb);
-        verbTypeList = ['defintion'];
-      }
-      const currentQuestionObject = {
-        "questionType": currentQuestionType,
-        "top1": currentVerb.verb,
-        "top2": currentVerb.definition,
-        "top3": currentPronoun,
-        "type1": verbTypeList[0],
-        "type2": verbTypeList[1],
-        "type3": verbTypeList[2],
-        "answer": currentAnswer,
-        "choices": choices
-      };
-      if (currentQuestionType > 2) {
-        currentQuestionObject.top1 = currentVerb.definition;
-        currentQuestionObject.top2 = '';
         currentQuestionObject.top3 = '';
       }
       questionArray.push(currentQuestionObject);
@@ -106,6 +109,7 @@ class App extends React.Component {
   getConjugationChoices = (currentVerbType, currentPronoun, conjugations) => {
     const choiceArray = [];
     const correctAnswer = this.getAnswer(currentVerbType, currentPronoun, conjugations);
+    console.log(correctAnswer);
     choiceArray.push(this.filterAnswer(correctAnswer));
     while (choiceArray.length < 4) {
       const randomType = verbTypes[Math.floor(Math.random() * verbTypes.length)];
