@@ -3,16 +3,47 @@ import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import Chip from '@material-ui/core/Chip';
 import { Hidden } from '@material-ui/core';
+import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 
-class MultipleChoiceCard extends React.Component {
+class QuestionCard extends React.Component {
 
-  constructor(props) {
-    console.log(props);
-    super(props);
-  }
+  renderAnswerOption = () => {
+    if (this.props.isMC) {
+      return (
+        <React.Fragment>
+          <Typography
+            variant="subtitle1">{this.props.question.top3}</Typography>
+          <Grid container spacing="1" className="nji-card-mc">
+            {this.props.question.choices.map((answer, index) => {
+              return (
+                <Grid item xs="6" key={index}>
+                  <Card onClick={() => {
+                    this.handleClick(answer)
+                  }}>
+                    <CardContent>
+                      {answer}
+                    </CardContent>
+                  </Card>
+                </Grid>
+              )
+            })}
+          </Grid>
+        </React.Fragment>
+      )
+    } else {
+      return (
+        <Typography variant="h1">
+          <TextField id="standard-basic"
+                     label={this.props.question.top3}
+                     onChange={this.props.handleChange} value={this.props.value}
+                     autoFocus={true} autoComplete='off'/>
+        </Typography>
+      )
+    }
+  };
 
   handleClick = (val) => {
     this.props.handleSubmit(val);
@@ -20,7 +51,7 @@ class MultipleChoiceCard extends React.Component {
 
   realAnswer(answer) {
     return answer.replace('|', '').replace('|', '');
-  }
+  };
 
   render() {
     return (
@@ -40,7 +71,9 @@ class MultipleChoiceCard extends React.Component {
             <Typography
               variant="h4">{this.props.question.top2}</Typography>
             <div className="nji-main-chips">
-              <Chip className={this.props.question.type1} label={this.props.question.type1}/>
+              <Hidden xsUp={this.props.question.type1 === undefined}>
+                <Chip className={this.props.question.type1} label={this.props.question.type1}/>
+              </Hidden>
               <Hidden xsUp={this.props.question.type2 === undefined}>
                 <Chip className={this.props.question.type2} label={this.props.question.type2}/>
               </Hidden>
@@ -59,21 +92,7 @@ class MultipleChoiceCard extends React.Component {
             color={'common.black'}
             textAlign={'center'}
           >
-            <Typography
-              variant="subtitle1">{this.props.question.top3}</Typography>
-            <Grid container spacing="1" className="nji-card-mc">
-              {this.props.question.choices.map((answer, index) => {
-                return (
-                  <Grid item xs="6" key={index}>
-                  <Card onClick={() => {this.handleClick(answer)}}>
-                    <CardContent>
-                      {answer}
-                    </CardContent>
-                  </Card>
-                </Grid>
-                )
-              })}
-            </Grid>
+            {this.renderAnswerOption()}
           </Box>
         </div>
       </React.Fragment>
@@ -81,5 +100,5 @@ class MultipleChoiceCard extends React.Component {
   }
 }
 
-export default MultipleChoiceCard;
+export default QuestionCard;
 

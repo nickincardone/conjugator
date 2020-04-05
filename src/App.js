@@ -9,12 +9,11 @@ import haber from './data/haber';
 import verbTypes from './data/verbTypes';
 import verbTypeNicknames from './data/verbTypeNicknames';
 import SimpleDialog from './components/SimpleDialog';
-import ConjugationCard from './components/cards/ConjugationCard/ConjugationCard';
 import LinearProgress from '@material-ui/core/LinearProgress';
-import MultipleChoiceCard from './components/cards/ConjugationCard/MultipleChoiceCard';
 import { Hidden } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import Box from '@material-ui/core/Box';
+import QuestionCard from './components/cards/QuestionCard';
 
 class App extends React.Component {
   numberOfQuestions = 25;
@@ -49,9 +48,9 @@ class App extends React.Component {
 
   createQuestions = () => {
     const questionArray = [];
-    let questionTypes = [1,2,3,4];
+    let questionTypes = [1, 2, 3, 4];
     if (this.state.isMobile) {
-      questionTypes = [1]
+      questionTypes = [1, 3]
     }
     const pronouns = ['yo', 'tu', 'el', 'nosotros', 'vosotros', 'ellos'];
     for (let i = 0; i < this.numberOfQuestions; i++) {
@@ -59,7 +58,9 @@ class App extends React.Component {
       const currentVerbType = verbTypes[Math.floor(Math.random() * verbTypes.length)];
       const currentQuestionType = questionTypes[Math.floor(Math.random() * questionTypes.length)];
       let currentPronoun = pronouns[Math.floor(Math.random() * pronouns.length)];
-      let choices = this.getConjugationChoices(currentVerbType, currentPronoun, currentVerb.conjugations);
+      let choices = this.getConjugationChoices(currentVerbType,
+        currentPronoun,
+        currentVerb.conjugations);
       let verbTypeList = verbTypeNicknames[currentVerbType].split('.');
       if (currentVerbType === 'participle' || currentVerbType === 'gerund') {
         currentPronoun = '';
@@ -67,7 +68,6 @@ class App extends React.Component {
       let currentAnswer = this.getAnswer(currentVerbType, currentPronoun, currentVerb.conjugations);
       if (currentQuestionType > 2) {
         currentAnswer = currentVerb.verb;
-        console.log(currentAnswer);
         choices = this.getDefinitionChoices(currentVerb.verb);
         verbTypeList = ['defintion'];
       }
@@ -101,7 +101,7 @@ class App extends React.Component {
       }
     }
     return this.shuffle(choiceArray);
-};
+  };
 
   getConjugationChoices = (currentVerbType, currentPronoun, conjugations) => {
     const choiceArray = [];
@@ -191,24 +191,21 @@ class App extends React.Component {
   }
 
   getQuestion(questionType) {
-    if (questionType % 2 === 1) {
-      return (<MultipleChoiceCard
-        question={this.questions[this.state.currentQuestion]}
-        value={this.state.value}
-        handleSubmit={this.handleSubmit}/>)
-    }
+    const isMC = questionType % 2 === 1;
     return (
-      <ConjugationCard
+      <QuestionCard
+        isMC={isMC}
         question={this.questions[this.state.currentQuestion]}
         value={this.state.value}
+        handleSubmit={this.handleSubmit}
         handleChange={this.handleChange}/>
     )
   }
 
   start = (isMobile) => {
-    this.setState({isMobile: isMobile}, () => {
+    this.setState({ isMobile: isMobile }, () => {
       this.createQuestions();
-      this.setState({showStart: false});
+      this.setState({ showStart: false });
     });
   };
 
@@ -228,16 +225,20 @@ class App extends React.Component {
                     minHeight={360}
                     color={'common.black'}
                     textAlign={'center'}
-                    style={{'paddingTop': '50px'}}
+                    style={{ 'paddingTop': '50px' }}
                   >
                     Hello, welcome to Conjugator {this.state.showStart}<br/>
                     <Hidden smUp>
-                      <Button variant="contained" color="primary" onClick={() => {this.start(true)}} style={{'marginTop': '50px'}}>
+                      <Button variant="contained" color="primary" onClick={() => {
+                        this.start(true)
+                      }} style={{ 'marginTop': '50px' }}>
                         start
                       </Button>
                     </Hidden>
                     <Hidden xsDown>
-                      <Button variant="contained" color="primary" onClick={() => {this.start(false)}} style={{'marginTop': '50px'}}>
+                      <Button variant="contained" color="primary" onClick={() => {
+                        this.start(false)
+                      }} style={{ 'marginTop': '50px' }}>
                         start
                       </Button>
                     </Hidden>
