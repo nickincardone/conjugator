@@ -14,18 +14,30 @@ import { Hidden } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import Box from '@material-ui/core/Box';
 import QuestionCard from './components/cards/QuestionCard';
+import FormControl from '@material-ui/core/FormControl';
+import FormLabel from '@material-ui/core/FormLabel';
+import FormGroup from '@material-ui/core/FormGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
+import Typography from '@material-ui/core/Typography';
+import Slider from '@material-ui/core/Slider';
 
 class App extends React.Component {
-  numberOfQuestions = 25;
+  incorrectAnswers = 0;
 
   constructor(props) {
     super(props);
     this.state = {
       value: '',
       currentQuestion: 0,
+      numberOfQuestions: 5,
       open: false,
       showStart: true,
-      isMobile: false
+      isMobile: false,
+      questionType1: true,
+      questionType2: true,
+      questionType3: true,
+      questionType4: true,
     };
     this.createQuestions();
   }
@@ -46,20 +58,26 @@ class App extends React.Component {
     return this.resolve(currentVerbType + '.' + currentPronoun, conjugations);
   }
 
+  getQuestionTypes() {
+    const questionTypes = [];
+    if (this.state.questionType1) questionTypes.push(1);
+    if (this.state.questionType2 && !this.state.isMobile) questionTypes.push(2);
+    if (this.state.questionType3) questionTypes.push(3);
+    if (this.state.questionType4 && !this.state.isMobile) questionTypes.push(4);
+    return questionTypes;
+  }
+
   createQuestions = () => {
+    this.incorrectAnswers = 0;
     const questionArray = [];
-    let questionTypes = [1, 2, 3, 4];
-    if (this.state.isMobile) {
-      questionTypes = [1, 3]
-    }
+    let questionTypes = this.getQuestionTypes();
     const pronouns = ['yo', 'tu', 'el', 'nosotros', 'vosotros', 'ellos'];
-    for (let i = 0; i < this.numberOfQuestions; i++) {
+    for (let i = 0; i < this.state.numberOfQuestions; i++) {
       const currentVerb = verbs[Math.floor(Math.random() * verbs.length)];
       const currentVerbType = verbTypes[Math.floor(Math.random() * verbTypes.length)];
       const currentQuestionType = questionTypes[Math.floor(Math.random() * questionTypes.length)];
       const verbTypeList = verbTypeNicknames[currentVerbType].split('.');
       const currentPronoun = pronouns[Math.floor(Math.random() * pronouns.length)];
-
 
       let currentQuestionObject;
       if (currentQuestionType === 3 || currentQuestionType === 4) {
@@ -84,7 +102,9 @@ class App extends React.Component {
           "type2": verbTypeList[1],
           "type3": verbTypeList[2],
           "answer": this.getAnswer(currentVerbType, currentPronoun, currentVerb.conjugations),
-          "choices": this.getConjugationChoices(currentVerbType, currentPronoun, currentVerb.conjugations)
+          "choices": this.getConjugationChoices(currentVerbType,
+            currentPronoun,
+            currentVerb.conjugations)
         };
       }
       if (currentVerbType === 'participle' || currentVerbType === 'gerund') {
@@ -109,7 +129,6 @@ class App extends React.Component {
   getConjugationChoices = (currentVerbType, currentPronoun, conjugations) => {
     const choiceArray = [];
     const correctAnswer = this.getAnswer(currentVerbType, currentPronoun, conjugations);
-    console.log(correctAnswer);
     choiceArray.push(this.filterAnswer(correctAnswer));
     while (choiceArray.length < 4) {
       const randomType = verbTypes[Math.floor(Math.random() * verbTypes.length)];
@@ -127,15 +146,11 @@ class App extends React.Component {
 
   shuffle(array) {
     let currentIndex = array.length, temporaryValue, randomIndex;
-
-    // While there remain elements to shuffle...
     while (0 !== currentIndex) {
 
-      // Pick a remaining element...
       randomIndex = Math.floor(Math.random() * currentIndex);
       currentIndex -= 1;
 
-      // And swap it with the current element.
       temporaryValue = array[currentIndex];
       array[currentIndex] = array[randomIndex];
       array[randomIndex] = temporaryValue;
@@ -150,6 +165,7 @@ class App extends React.Component {
 
   handleClose = () => {
     if (this.state.currentQuestion + 1 === this.questions.length) {
+      this.setState({ showStart: true });
       return;
     }
     this.setState((oldState, props) => ({
@@ -164,6 +180,8 @@ class App extends React.Component {
       if (this.state.open) {
         this.setState({ open: false });
         if (this.state.currentQuestion + 1 === this.questions.length) {
+          this.setState({ showStart: true });
+          return;
         }
         this.setState((oldState, props) => ({
           currentQuestion: oldState.currentQuestion + 1,
@@ -178,7 +196,12 @@ class App extends React.Component {
   processQuestion = () => {
     if (this.realAnswer() !== this.state.value) {
       this.setState({ open: true });
+      this.incorrectAnswers = this.incorrectAnswers + 1;
     } else {
+      if (this.state.currentQuestion + 1 === this.questions.length) {
+        this.setState({ showStart: true });
+        return;
+      }
       this.setState((oldState, props) => ({
         currentQuestion: oldState.currentQuestion + 1,
         value: ""
@@ -209,8 +232,16 @@ class App extends React.Component {
   start = (isMobile) => {
     this.setState({ isMobile: isMobile }, () => {
       this.createQuestions();
-      this.setState({ showStart: false });
+      this.setState({ showStart: false, currentQuestion: 0 });
     });
+  };
+
+  checkboxChange = (event) => {
+    this.setState({ [event.target.name]: event.target.checked });
+  };
+
+  sliderChange = (event, newValue) => {
+    this.setState({ numberOfQuestions: newValue });
   };
 
   render() {
@@ -231,7 +262,52 @@ class App extends React.Component {
                     textAlign={'center'}
                     style={{ 'paddingTop': '50px' }}
                   >
-                    Hello, welcome to Conjugator {this.state.showStart}<br/>
+                    Hello, welcome to Conjugator<br/>
+                    <FormControl component="fieldset"
+                                 style={{ 'marginTop': '50px', 'marginBottom': '20px' }}>
+                      <FormLabel component="legend">Question Types</FormLabel>
+                      <FormGroup>
+                        <FormControlLabel
+                          control={<Checkbox name="questionType3" checked={this.state.questionType3}
+                                             onChange={this.checkboxChange}/>}
+                          label="Definition (Multiple Choice)"
+                        />
+                        <Hidden mdDown>
+                          <FormControlLabel
+                            control={<Checkbox name="questionType4"
+                                               checked={this.state.questionType4}
+                                               onChange={this.checkboxChange}/>}
+                            label="Definition (Written)"
+                          />
+                        </Hidden>
+                        <FormControlLabel
+                          control={<Checkbox name="questionType1" checked={this.state.questionType1}
+                                             onChange={this.checkboxChange}/>}
+                          label="Conjugations (Multiple Choice)"
+                        />
+                        <Hidden mdDown>
+                          <FormControlLabel
+                            control={<Checkbox name="questionType2"
+                                               checked={this.state.questionType2}
+                                               onChange={this.checkboxChange}/>}
+                            label="Conjugations (Written)"
+                          />
+                        </Hidden>
+                      </FormGroup>
+                    </FormControl>
+                    <Typography id="discrete-slider-custom" gutterBottom>
+                      Number of Questions
+                    </Typography>
+                    <Slider
+                      defaultValue={this.state.numberOfQuestions}
+                      min={0}
+                      max={100}
+                      aria-labelledby="discrete-slider-custom"
+                      step={5}
+                      valueLabelDisplay="auto"
+                      style={{ "maxWidth": "200px" }}
+                      onChange={this.sliderChange}
+                    />
                     <Hidden smUp>
                       <Button variant="contained" color="primary" onClick={() => {
                         this.start(true)
@@ -252,9 +328,10 @@ class App extends React.Component {
                   <LinearProgress
                     variant="determinate"
                     color="secondary"
-                    value={(this.state.currentQuestion / this.numberOfQuestions) * 100}/>
+                    value={(this.state.currentQuestion / this.state.numberOfQuestions) * 100}/>
                   <SimpleDialog
-                    open={this.state.open} handleClose={this.handleClose}
+                    open={this.state.open}
+                    handleClose={this.handleClose}
                     answer={this.state.value}
                     correctAnswer={this.realAnswer()}/>
                   {this.getQuestion(this.questions[this.state.currentQuestion].questionType)}
