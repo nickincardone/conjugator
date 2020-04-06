@@ -104,6 +104,20 @@ html, body {
       }
     }
 
+    .nji-correct .MuiTouchRipple-rippleVisible {
+      background-color: green;
+      animation-duration: 250ms;
+    }
+
+    .nji-incorrect .MuiTouchRipple-rippleVisible {
+      background-color: red;
+      animation-duration: 250ms;
+    }
+
+    .MuiTouchRipple-childLeaving {
+      animation-duration: 50ms;
+    }
+
     .nji-main-bottom {
       .MuiInputLabel-root {
         transform: translateX(-50%);
@@ -112,6 +126,10 @@ html, body {
         &.Mui-focused {
           color: #949494;
         }
+      }
+
+      .MuiButtonBase-root {
+        display: block;
       }
 
       .MuiCardContent-root {

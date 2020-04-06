@@ -23658,7 +23658,7 @@ const conjugationVerbs = [
       }
     }
   }, {
-    "verb": "placer", "definition": "", "conjugations": {
+    "verb": "placer", "definition": "to please", "conjugations": {
       "participle": "placido",
       "gerund": "placiendo",
       "indicative": {
@@ -30625,7 +30625,7 @@ const conjugationVerbs = [
       }
     }
   }, {
-    "verb": "telegrafiar", "definition": "", "conjugations": {
+    "verb": "telegrafiar", "definition": "to telegraph", "conjugations": {
       "participle": "telegrafiado",
       "gerund": "telegrafiando",
       "indicative": {
@@ -34433,7 +34433,7 @@ const conjugationVerbs = [
       }
     }
   }, {
-    "verb": "carraspear", "definition": "to clear one&#x27;s throat", "conjugations": {
+    "verb": "carraspear", "definition": "to clear one's throat", "conjugations": {
       "participle": "carraspeado",
       "gerund": "carraspeando",
       "indicative": {
@@ -34595,7 +34595,7 @@ const conjugationVerbs = [
       }
     }
   }, {
-    "verb": "desenganchar", "definition": "", "conjugations": {
+    "verb": "desenganchar", "definition": "to uncouple, to unhitch", "conjugations": {
       "participle": "desenganchado",
       "gerund": "desenganchando",
       "indicative": {
@@ -37918,87 +37918,6 @@ const conjugationVerbs = [
       }
     }
   }, {
-    "verb": "descabellar", "definition": "", "conjugations": {
-      "participle": "descabellado",
-      "gerund": "descabellando",
-      "indicative": {
-        "present": {
-          "yo": "descabello",
-          "tu": "descabellas",
-          "el": "descabella",
-          "nosotros": "descabellamos",
-          "vosotros": "descabelláis",
-          "ellos": "descabellan"
-        },
-        "preterite": {
-          "yo": "descabellé",
-          "tu": "descabellaste",
-          "el": "descabelló",
-          "nosotros": "descabellamos",
-          "vosotros": "descabellasteis",
-          "ellos": "descabellaron"
-        },
-        "imperfect": {
-          "yo": "descabellaba",
-          "tu": "descabellabas",
-          "el": "descabellaba",
-          "nosotros": "descabellábamos",
-          "vosotros": "descabellabais",
-          "ellos": "descabellaban"
-        },
-        "conditional": {
-          "yo": "descabellaría",
-          "tu": "descabellarías",
-          "el": "descabellaría",
-          "nosotros": "descabellaríamos",
-          "vosotros": "descabellaríais",
-          "ellos": "descabellarían"
-        },
-        "future": {
-          "yo": "descabellaré",
-          "tu": "descabellarás",
-          "el": "descabellará",
-          "nosotros": "descabellaremos",
-          "vosotros": "descabellaréis",
-          "ellos": "descabellarán"
-        }
-      },
-      "subjunctive": {
-        "present": {
-          "yo": "descabelle",
-          "tu": "descabelles",
-          "el": "descabelle",
-          "nosotros": "descabellemos",
-          "vosotros": "descabelléis",
-          "ellos": "descabellen"
-        },
-        "imperfect": {
-          "yo": "descabellara",
-          "tu": "descabellaras",
-          "el": "descabellara",
-          "nosotros": "descabelláramos",
-          "vosotros": "descabellarais",
-          "ellos": "descabellaran"
-        },
-        "imperfect2": {
-          "yo": "descabellase",
-          "tu": "descabellases",
-          "el": "descabellase",
-          "nosotros": "descabellásemos",
-          "vosotros": "descabellaseis",
-          "ellos": "descabellasen"
-        },
-        "future": {
-          "yo": "descabellare",
-          "tu": "descabellares",
-          "el": "descabellare",
-          "nosotros": "descabelláremos",
-          "vosotros": "descabellareis",
-          "ellos": "descabellaren"
-        }
-      }
-    }
-  }, {
     "verb": "desaparecer", "definition": "to disappear", "conjugations": {
       "participle": "desaparecido",
       "gerund": "desapareciendo",
@@ -38161,7 +38080,7 @@ const conjugationVerbs = [
       }
     }
   }, {
-    "verb": "garbear", "definition": "", "conjugations": {
+    "verb": "garbear", "definition": "to pinch, to swipe", "conjugations": {
       "participle": "garbeado",
       "gerund": "garbeando",
       "indicative": {
@@ -38890,7 +38809,7 @@ const conjugationVerbs = [
       }
     }
   }, {
-    "verb": "amanecer", "definition": "", "conjugations": {
+    "verb": "amanecer", "definition": "to dawn, to get light", "conjugations": {
       "participle": "amanecido",
       "gerund": "amaneciendo",
       "indicative": {
@@ -39052,7 +38971,7 @@ const conjugationVerbs = [
       }
     }
   }, {
-    "verb": "anochecer", "definition": "", "conjugations": {
+    "verb": "anochecer", "definition": "to get dark", "conjugations": {
       "participle": "anochecido",
       "gerund": "anocheciendo",
       "indicative": {
@@ -51365,7 +51284,7 @@ const conjugationVerbs = [
       }
     }
   }, {
-    "verb": "zapatear", "definition": "to stamp one&#x27;s feet,to stamp", "conjugations": {
+    "verb": "zapatear", "definition": "to stamp one's feet,to stamp", "conjugations": {
       "participle": "zapateado",
       "gerund": "zapateando",
       "indicative": {
@@ -52580,7 +52499,7 @@ const conjugationVerbs = [
       }
     }
   }, {
-    "verb": "acachetear", "definition": "", "conjugations": {
+    "verb": "acachetear", "definition": "to slap, to punch", "conjugations": {
       "participle": "acacheteado",
       "gerund": "acacheteando",
       "indicative": {
@@ -55335,87 +55254,6 @@ const conjugationVerbs = [
       }
     }
   }, {
-    "verb": "agilitar", "definition": "", "conjugations": {
-      "participle": "agilitado",
-      "gerund": "agilitando",
-      "indicative": {
-        "present": {
-          "yo": "agilito",
-          "tu": "agilitas",
-          "el": "agilita",
-          "nosotros": "agilitamos",
-          "vosotros": "agilitáis",
-          "ellos": "agilitan"
-        },
-        "preterite": {
-          "yo": "agilité",
-          "tu": "agilitaste",
-          "el": "agilitó",
-          "nosotros": "agilitamos",
-          "vosotros": "agilitasteis",
-          "ellos": "agilitaron"
-        },
-        "imperfect": {
-          "yo": "agilitaba",
-          "tu": "agilitabas",
-          "el": "agilitaba",
-          "nosotros": "agilitábamos",
-          "vosotros": "agilitabais",
-          "ellos": "agilitaban"
-        },
-        "conditional": {
-          "yo": "agilitaría",
-          "tu": "agilitarías",
-          "el": "agilitaría",
-          "nosotros": "agilitaríamos",
-          "vosotros": "agilitaríais",
-          "ellos": "agilitarían"
-        },
-        "future": {
-          "yo": "agilitaré",
-          "tu": "agilitarás",
-          "el": "agilitará",
-          "nosotros": "agilitaremos",
-          "vosotros": "agilitaréis",
-          "ellos": "agilitarán"
-        }
-      },
-      "subjunctive": {
-        "present": {
-          "yo": "agilite",
-          "tu": "agilites",
-          "el": "agilite",
-          "nosotros": "agilitemos",
-          "vosotros": "agilitéis",
-          "ellos": "agiliten"
-        },
-        "imperfect": {
-          "yo": "agilitara",
-          "tu": "agilitaras",
-          "el": "agilitara",
-          "nosotros": "agilitáramos",
-          "vosotros": "agilitarais",
-          "ellos": "agilitaran"
-        },
-        "imperfect2": {
-          "yo": "agilitase",
-          "tu": "agilitases",
-          "el": "agilitase",
-          "nosotros": "agilitásemos",
-          "vosotros": "agilitaseis",
-          "ellos": "agilitasen"
-        },
-        "future": {
-          "yo": "agilitare",
-          "tu": "agilitares",
-          "el": "agilitare",
-          "nosotros": "agilitáremos",
-          "vosotros": "agilitareis",
-          "ellos": "agilitaren"
-        }
-      }
-    }
-  }, {
     "verb": "agobiar", "definition": "to overwhelm", "conjugations": {
       "participle": "agobiado",
       "gerund": "agobiando",
@@ -57442,7 +57280,7 @@ const conjugationVerbs = [
     }
   }, {
     "verb": "amortizar",
-    "definition": "to get one&#x27;s money&#x27;s worth out of,to pay off",
+    "definition": "to get one's money's worth out of,to pay off",
     "conjugations": {
       "participle": "amortizado",
       "gerund": "amortizando",
@@ -62790,7 +62628,7 @@ const conjugationVerbs = [
       }
     }
   }, {
-    "verb": "atolondrar", "definition": "", "conjugations": {
+    "verb": "atolondrar", "definition": "to bewilder", "conjugations": {
       "participle": "atolondrado",
       "gerund": "atolondrando",
       "indicative": {
@@ -66030,7 +65868,7 @@ const conjugationVerbs = [
       }
     }
   }, {
-    "verb": "capitular", "definition": "", "conjugations": {
+    "verb": "capitular", "definition": "to capitulate, to surrender", "conjugations": {
       "participle": "capitulado",
       "gerund": "capitulando",
       "indicative": {
@@ -68298,7 +68136,7 @@ const conjugationVerbs = [
       }
     }
   }, {
-    "verb": "circular", "definition": "", "conjugations": {
+    "verb": "circular", "definition": "to flow, to circulate", "conjugations": {
       "participle": "circulado",
       "gerund": "circulando",
       "indicative": {
@@ -68379,7 +68217,7 @@ const conjugationVerbs = [
       }
     }
   }, {
-    "verb": "civilizar", "definition": "", "conjugations": {
+    "verb": "civilizar", "definition": "to civilize", "conjugations": {
       "participle": "civilizado",
       "gerund": "civilizando",
       "indicative": {
@@ -69270,7 +69108,7 @@ const conjugationVerbs = [
       }
     }
   }, {
-    "verb": "coexistir", "definition": "", "conjugations": {
+    "verb": "coexistir", "definition": "to coexist", "conjugations": {
       "participle": "coexistido",
       "gerund": "coexistiendo",
       "indicative": {
@@ -72510,7 +72348,7 @@ const conjugationVerbs = [
       }
     }
   }, {
-    "verb": "congestionar", "definition": "", "conjugations": {
+    "verb": "congestionar", "definition": "to block,to become congested", "conjugations": {
       "participle": "congestionado",
       "gerund": "congestionando",
       "indicative": {
@@ -72672,7 +72510,7 @@ const conjugationVerbs = [
       }
     }
   }, {
-    "verb": "congratular", "definition": "", "conjugations": {
+    "verb": "congratular", "definition": "to congratulate", "conjugations": {
       "participle": "congratulado",
       "gerund": "congratulando",
       "indicative": {
@@ -72915,7 +72753,7 @@ const conjugationVerbs = [
       }
     }
   }, {
-    "verb": "connotar", "definition": "", "conjugations": {
+    "verb": "connotar", "definition": "to suggest, to have connotations of", "conjugations": {
       "participle": "connotado",
       "gerund": "connotando",
       "indicative": {
@@ -73806,7 +73644,7 @@ const conjugationVerbs = [
       }
     }
   }, {
-    "verb": "constreñir", "definition": "", "conjugations": {
+    "verb": "constreñir", "definition": "to compel,to force", "conjugations": {
       "participle": "constreñido",
       "gerund": "constr|iñ|endo",
       "indicative": {

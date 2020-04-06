@@ -165,54 +165,48 @@ class App extends React.Component {
   };
 
   handleClose = () => {
-    if (this.state.currentQuestion + 1 === this.questions.length) {
-      this.setState({ showStart: true });
-      return;
-    }
-    this.setState({ open: false }, () => {
-      this.setState((oldState, props) => ({
-        currentQuestion: oldState.currentQuestion + 1,
-        value: ""
-      }));
-    });
+    this.processNext();
   };
 
   _handleKeyDown = (e) => {
     if (e.key === 'Enter') {
-      if (this.state.open) {
-        this.setState({ open: false });
-        if (this.state.currentQuestion + 1 === this.questions.length) {
-          this.setState({ showStart: true });
-          return;
-        }
-        this.setState((oldState, props) => ({
-          currentQuestion: oldState.currentQuestion + 1,
-          value: ""
-        }));
-      } else {
-        this.processQuestion();
-      }
+      this.processNext();
     }
   };
 
-  processQuestion = () => {
-    if (this.realAnswer() !== this.state.value) {
-      this.setState({ open: true });
-      this.incorrectAnswers = this.incorrectAnswers + 1;
-    } else {
+  nextQuestion= () => {
+    this.setState((oldState, props) => ({
+      currentQuestion: oldState.currentQuestion + 1,
+      value: ""
+    }));
+  };
+
+  processNext = () => {
+    if (this.state.open) {
+      this.setState({ open: false });
       if (this.state.currentQuestion + 1 === this.questions.length) {
         this.setState({ showStart: true });
-        return;
+      } else {
+        this.nextQuestion();
       }
-      this.setState((oldState, props) => ({
-        currentQuestion: oldState.currentQuestion + 1,
-        value: ""
-      }));
+    } else {
+      if (this.realAnswer() !== this.state.value) {
+        this.setState({ open: true });
+        this.incorrectAnswers = this.incorrectAnswers + 1;
+      } else {
+        if (this.state.currentQuestion + 1 === this.questions.length) {
+          setTimeout(() => {
+            this.setState({ showStart: true });
+          }, 510);
+        } else {
+          setTimeout(this.nextQuestion, 510);
+        }
+      }
     }
   };
 
   handleSubmit = (value) => {
-    this.setState({ value: value }, this.processQuestion);
+    this.setState({ value: value }, this.processNext);
   };
 
   realAnswer() {
@@ -315,14 +309,14 @@ class App extends React.Component {
                       style={{ "maxWidth": "200px" }}
                       onChange={this.sliderChange}
                     />
-                    <Hidden smUp>
+                    <Hidden mdUp>
                       <Button variant="contained" color="primary" onClick={() => {
                         this.start(true)
                       }} style={{ 'marginTop': '50px' }}>
                         start
                       </Button>
                     </Hidden>
-                    <Hidden xsDown>
+                    <Hidden smDown>
                       <Button variant="contained" color="primary" onClick={() => {
                         this.start(false)
                       }} style={{ 'marginTop': '50px' }}>
