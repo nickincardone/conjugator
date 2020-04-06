@@ -33,6 +33,7 @@ class App extends React.Component {
       numberOfQuestions: 5,
       open: false,
       showStart: true,
+      started: false,
       isMobile: false,
       questionType1: true,
       questionType2: true,
@@ -231,8 +232,11 @@ class App extends React.Component {
 
   start = (isMobile) => {
     this.setState({ isMobile: isMobile }, () => {
+      if (this.getQuestionTypes().length == 0) {
+        return;
+      }
       this.createQuestions();
-      this.setState({ showStart: false, currentQuestion: 0 });
+      this.setState({ showStart: false, currentQuestion: 0, started: true });
     });
   };
 
@@ -262,7 +266,9 @@ class App extends React.Component {
                     textAlign={'center'}
                     style={{ 'paddingTop': '50px' }}
                   >
-                    Hello, welcome to Conjugator<br/>
+                    <Hidden xsUp={this.state.started}>Hello, welcome to Conjugator</Hidden>
+                    <Hidden xsUp={!this.state.started}>{this.state.numberOfQuestions-this.incorrectAnswers}/{this.state.numberOfQuestions} correct! Try Again.</Hidden>
+                    <br/>
                     <FormControl component="fieldset"
                                  style={{ 'marginTop': '50px', 'marginBottom': '20px' }}>
                       <FormLabel component="legend">Question Types</FormLabel>
