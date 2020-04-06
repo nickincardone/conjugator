@@ -104,18 +104,21 @@ html, body {
       }
     }
 
-    .nji-correct .MuiTouchRipple-rippleVisible {
-      background-color: green;
-      animation-duration: 250ms;
+    .nji-ripple {
+      transition: background 500ms;
     }
-
-    .nji-incorrect .MuiTouchRipple-rippleVisible {
-      background-color: red;
-      animation-duration: 250ms;
+    .nji-ripple:hover {
+      background: #fff radial-gradient(circle, transparent 1%, #fff 1%) center/15000%;
     }
-
-    .MuiTouchRipple-childLeaving {
-      animation-duration: 50ms;
+    .nji-ripple.nji-correct:active {
+      background-color: #00ca00;
+      background-size: 100%;
+      transition: background 0s;
+    }
+    .nji-ripple.nji-incorrect:active {
+      background-color: #FF6F62;
+      background-size: 100%;
+      transition: background 0s;
     }
 
     .nji-main-bottom {

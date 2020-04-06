@@ -7,7 +7,7 @@ import { Hidden } from '@material-ui/core';
 function simpleDialog(props) {
 
   return (
-    <Dialog onClose={props.handleClose} onClick={props.handleClose} aria-labelledby="simple-dialog-title" open={props.open}>
+    <Dialog onClick={props.handleClose} aria-labelledby="simple-dialog-title" open={props.open}>
       <Typography variant="h4">Keep working on this one!</Typography>
       <Typography variant="subtitle1">Your answer: {props.answer}</Typography>
       <Typography variant="subtitle2">Correct answer: {props.correctAnswer}</Typography>

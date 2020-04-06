@@ -73,8 +73,9 @@ class App extends React.Component {
     const questionArray = [];
     let questionTypes = this.getQuestionTypes();
     const pronouns = ['yo', 'tu', 'el', 'nosotros', 'vosotros', 'ellos'];
-    for (let i = 0; i < this.state.numberOfQuestions; i++) {
+    while (questionArray.length < this.state.numberOfQuestions) {
       const currentVerb = verbs[Math.floor(Math.random() * verbs.length)];
+      if(currentVerb.definition === "") continue;
       const currentVerbType = verbTypes[Math.floor(Math.random() * verbTypes.length)];
       const currentQuestionType = questionTypes[Math.floor(Math.random() * questionTypes.length)];
       const verbTypeList = verbTypeNicknames[currentVerbType].split('.');
@@ -197,9 +198,9 @@ class App extends React.Component {
         if (this.state.currentQuestion + 1 === this.questions.length) {
           setTimeout(() => {
             this.setState({ showStart: true });
-          }, 510);
+          }, 300);
         } else {
-          setTimeout(this.nextQuestion, 510);
+          setTimeout(this.nextQuestion, 300);
         }
       }
     }

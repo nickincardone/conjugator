@@ -7,7 +7,6 @@ import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
-import ButtonBase from '@material-ui/core/ButtonBase';
 
 class QuestionCard extends React.Component {
 
@@ -20,9 +19,7 @@ class QuestionCard extends React.Component {
           <Grid container spacing="1" className="nji-card-mc">
             {this.props.question.choices.map((choice, index) => {
               return (
-
-                <Grid item xs="6" key={index} className={this.props.question.answer === choice ? 'nji-correct' : 'nji-incorrect'}>
-                  <ButtonBase component="div">
+                <Grid item xs="6" key={index} className={ this.props.question.answer === choice ? 'nji-ripple nji-correct' : 'nji-ripple nji-incorrect'}>
                   <Card onClick={() => {
                     this.handleClick(choice)
                   }}>
@@ -30,9 +27,7 @@ class QuestionCard extends React.Component {
                       {choice}
                     </CardContent>
                   </Card>
-                  </ButtonBase>
                 </Grid>
-
               )
             })}
           </Grid>
