@@ -169,11 +169,12 @@ class App extends React.Component {
       this.setState({ showStart: true });
       return;
     }
-    this.setState((oldState, props) => ({
-      currentQuestion: oldState.currentQuestion + 1,
-      value: ""
-    }));
-    this.setState({ open: false });
+    this.setState({ open: false }, () => {
+      this.setState((oldState, props) => ({
+        currentQuestion: oldState.currentQuestion + 1,
+        value: ""
+      }));
+    });
   };
 
   _handleKeyDown = (e) => {
@@ -232,7 +233,7 @@ class App extends React.Component {
 
   start = (isMobile) => {
     this.setState({ isMobile: isMobile }, () => {
-      if (this.getQuestionTypes().length == 0) {
+      if (this.getQuestionTypes().length === 0) {
         return;
       }
       this.createQuestions();
