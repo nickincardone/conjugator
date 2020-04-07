@@ -29734,7 +29734,7 @@ const conjugationVerbs = [
       }
     }
   }, {
-    "verb": "subscribir", "definition": "to sign,to subscribe to", "conjugations": {
+    "verb": "suscribir", "definition": "to sign,to subscribe to", "conjugations": {
       "participle": "suscri|t|o",
       "gerund": "suscribiendo",
       "indicative": {
