@@ -20,6 +20,13 @@ class App extends React.Component {
 
   constructor(props) {
     super(props);
+    const initVerbTypes = [
+      "indicative.present",
+      "indicative.preterite",
+      "indicative.imperfect",
+      "indicative.conditional",
+      "indicative.future",
+    ];
     this.state = {
       value: '',
       currentQuestion: 0,
@@ -35,10 +42,27 @@ class App extends React.Component {
         questionType2: true,
         questionType3: true,
         questionType4: true,
+        verbTypes: [...initVerbTypes]
       },
     };
     this.createQuestions();
   }
+
+  updateVerbTypes = (event) => {
+    const eventTarget = event.target;
+    this.setState((oldState, props) => {
+      const settingsCopy = { ...oldState.settings };
+      let verbTypesCopy = [...settingsCopy.verbTypes];
+      const index = verbTypesCopy.indexOf(eventTarget.name);
+      index === -1 ? verbTypesCopy.push(eventTarget.name) : verbTypesCopy.splice(index, 1);
+      console.log(verbTypesCopy.verbTypes);
+      settingsCopy.verbTypes = verbTypesCopy;
+      return { settings: settingsCopy }
+    }, () => {
+
+      console.log(this.state);
+    });
+  };
 
   updateSettings = (event) => {
     const eventTarget = event.target;
@@ -85,7 +109,7 @@ class App extends React.Component {
     while (questionArray.length < this.state.numberOfQuestions) {
       const currentVerb = verbs[Math.floor(Math.random() * verbs.length)];
       if (currentVerb.definition === "") continue;
-      const currentVerbType = verbTypes[Math.floor(Math.random() * verbTypes.length)];
+      const currentVerbType = this.state.settings.verbTypes[Math.floor(Math.random() * this.state.settings.verbTypes.length)];
       const currentQuestionType = questionTypes[Math.floor(Math.random() * questionTypes.length)];
       const verbTypeList = verbTypeNicknames[currentVerbType].split('.');
       const currentPronoun = pronouns[Math.floor(Math.random() * pronouns.length)];
@@ -272,6 +296,7 @@ class App extends React.Component {
                       settingsChanged={this.updateSettings}
                       start={this.start}
                       sliderChange={this.sliderChange}
+                      updateVerbTypes={this.updateVerbTypes}
                       numberOfQuestions={this.state.numberOfQuestions}/>
                     :
                     <Home

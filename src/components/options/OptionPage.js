@@ -9,8 +9,18 @@ import FormControl from '@material-ui/core/FormControl';
 import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
 import Button from '@material-ui/core/Button';
+import verbTypes from '../../data/verbTypes';
+import verbTypeNicknames from '../../data/verbTypeNicknames';
 
 class OptionPage extends React.Component {
+  prettyVerb = (verbNickname) => {
+    let strCopy = verbNickname.replace(/\./g, ' ').toLowerCase().split(' ');
+    for (let i = 0; i < strCopy.length; i++) {
+      strCopy[i] = strCopy[i].charAt(0).toUpperCase() + strCopy[i].substring(1);
+    }
+    return strCopy.join(' ');
+  };
+
   render = () => {
     return (
       <Box
@@ -26,7 +36,7 @@ class OptionPage extends React.Component {
         <FormControl component="fieldset"
                      style={{ 'marginTop': '50px', 'marginBottom': '20px' }}>
           <FormLabel component="legend">Question Types</FormLabel>
-          <FormGroup>
+          <FormGroup row>
             <FormControlLabel
               control={<Checkbox name="vosotros" checked={this.props.settings.vosotros}
                                  onChange={this.props.settingsChanged}/>}
@@ -58,6 +68,17 @@ class OptionPage extends React.Component {
                 label="Conjugations (Written)"
               />
             </Hidden>
+          </FormGroup>
+          <FormGroup row>
+            {verbTypes.map((verbType, index) => {
+                return (
+                    <FormControlLabel
+                      control={<Checkbox name={verbType} key={index} checked={this.props.settings.verbTypes.indexOf(verbType) !== -1}
+                                         onChange={this.props.updateVerbTypes}/>}
+                      label={this.prettyVerb(verbTypeNicknames[verbType])}
+                    />
+                )
+            })}
           </FormGroup>
         </FormControl>
         <Typography id="discrete-slider-custom" gutterBottom>
