@@ -11,16 +11,9 @@ import verbTypeNicknames from './data/verbTypeNicknames';
 import SimpleDialog from './components/SimpleDialog';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import { Hidden } from '@material-ui/core';
-import Button from '@material-ui/core/Button';
-import Box from '@material-ui/core/Box';
 import QuestionCard from './components/cards/QuestionCard';
-import FormControl from '@material-ui/core/FormControl';
-import FormLabel from '@material-ui/core/FormLabel';
-import FormGroup from '@material-ui/core/FormGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import Typography from '@material-ui/core/Typography';
-import Slider from '@material-ui/core/Slider';
+import OptionPage from './components/options/OptionPage';
+import Home from './components/Home';
 
 class App extends React.Component {
   incorrectAnswers = 0;
@@ -33,14 +26,27 @@ class App extends React.Component {
       numberOfQuestions: 5,
       open: false,
       showStart: true,
+      showCustom: false,
       started: false,
       isMobile: false,
-      questionType1: true,
-      questionType2: true,
-      questionType3: true,
-      questionType4: true,
+      settings: {
+        vosotros: false,
+        questionType1: true,
+        questionType2: true,
+        questionType3: true,
+        questionType4: true,
+      },
     };
     this.createQuestions();
+  }
+
+  updateSettings = (event) => {
+    const eventTarget = event.target;
+    this.setState((oldState, props) => {
+      const settingsCopy = { ...oldState.settings };
+      settingsCopy[eventTarget.name] = eventTarget.checked;
+      return { settings: settingsCopy }
+    });
   }
 
   resolve(path, obj) {
@@ -61,10 +67,10 @@ class App extends React.Component {
 
   getQuestionTypes() {
     const questionTypes = [];
-    if (this.state.questionType1) questionTypes.push(1);
-    if (this.state.questionType2 && !this.state.isMobile) questionTypes.push(2);
-    if (this.state.questionType3) questionTypes.push(3);
-    if (this.state.questionType4 && !this.state.isMobile) questionTypes.push(4);
+    if (this.state.settings.questionType1) questionTypes.push(1);
+    if (this.state.settings.questionType2 && !this.state.isMobile) questionTypes.push(2);
+    if (this.state.settings.questionType3) questionTypes.push(3);
+    if (this.state.settings.questionType4 && !this.state.isMobile) questionTypes.push(4);
     return questionTypes;
   }
 
@@ -72,10 +78,13 @@ class App extends React.Component {
     this.incorrectAnswers = 0;
     const questionArray = [];
     let questionTypes = this.getQuestionTypes();
-    const pronouns = ['yo', 'tu', 'el', 'nosotros', 'vosotros', 'ellos'];
+    const pronouns = ['yo', 'tu', 'el', 'nosotros', 'ellos'];
+    if (this.state.settings.vosotros) {
+      pronouns.push('vosotros');
+    }
     while (questionArray.length < this.state.numberOfQuestions) {
       const currentVerb = verbs[Math.floor(Math.random() * verbs.length)];
-      if(currentVerb.definition === "") continue;
+      if (currentVerb.definition === "") continue;
       const currentVerbType = verbTypes[Math.floor(Math.random() * verbTypes.length)];
       const currentQuestionType = questionTypes[Math.floor(Math.random() * questionTypes.length)];
       const verbTypeList = verbTypeNicknames[currentVerbType].split('.');
@@ -175,7 +184,7 @@ class App extends React.Component {
     }
   };
 
-  nextQuestion= () => {
+  nextQuestion = () => {
     this.setState((oldState, props) => ({
       currentQuestion: oldState.currentQuestion + 1,
       value: ""
@@ -232,11 +241,16 @@ class App extends React.Component {
         return;
       }
       this.createQuestions();
-      this.setState({ showStart: false, currentQuestion: 0, started: true });
+      this.setState({ showStart: false, showCustom: false, currentQuestion: 0, started: true });
     });
   };
 
+  setCustom = (show) => {
+    this.setState({ showCustom: show });
+  };
+
   checkboxChange = (event) => {
+    console.log(event.target);
     this.setState({ [event.target.name]: event.target.checked });
   };
 
@@ -252,79 +266,22 @@ class App extends React.Component {
             <Card className="nji-main-card">
               <CardContent>
                 <Hidden xsUp={!this.state.showStart}>
-                  <Box
-                    display={'flex'}
-                    flexDirection={'column'}
-                    alignItems={'center'}
-                    justifyContent={'center'}
-                    minHeight={360}
-                    color={'common.black'}
-                    textAlign={'center'}
-                    style={{ 'paddingTop': '50px' }}
-                  >
-                    <Hidden xsUp={this.state.started}>Hello, welcome to Conjugator</Hidden>
-                    <Hidden xsUp={!this.state.started}>{this.state.numberOfQuestions-this.incorrectAnswers}/{this.state.numberOfQuestions} correct! Try Again.</Hidden>
-                    <br/>
-                    <FormControl component="fieldset"
-                                 style={{ 'marginTop': '50px', 'marginBottom': '20px' }}>
-                      <FormLabel component="legend">Question Types</FormLabel>
-                      <FormGroup>
-                        <FormControlLabel
-                          control={<Checkbox name="questionType3" checked={this.state.questionType3}
-                                             onChange={this.checkboxChange}/>}
-                          label="Definition (Multiple Choice)"
-                        />
-                        <Hidden mdDown>
-                          <FormControlLabel
-                            control={<Checkbox name="questionType4"
-                                               checked={this.state.questionType4}
-                                               onChange={this.checkboxChange}/>}
-                            label="Definition (Written)"
-                          />
-                        </Hidden>
-                        <FormControlLabel
-                          control={<Checkbox name="questionType1" checked={this.state.questionType1}
-                                             onChange={this.checkboxChange}/>}
-                          label="Conjugations (Multiple Choice)"
-                        />
-                        <Hidden mdDown>
-                          <FormControlLabel
-                            control={<Checkbox name="questionType2"
-                                               checked={this.state.questionType2}
-                                               onChange={this.checkboxChange}/>}
-                            label="Conjugations (Written)"
-                          />
-                        </Hidden>
-                      </FormGroup>
-                    </FormControl>
-                    <Typography id="discrete-slider-custom" gutterBottom>
-                      Number of Questions
-                    </Typography>
-                    <Slider
-                      defaultValue={this.state.numberOfQuestions}
-                      min={0}
-                      max={100}
-                      aria-labelledby="discrete-slider-custom"
-                      step={5}
-                      valueLabelDisplay="auto"
-                      style={{ "maxWidth": "200px" }}
-                      onChange={this.sliderChange}
-                    />
-                    <Hidden mdUp>
-                      <Button variant="contained" color="primary" onClick={() => {
-                        this.start(true)
-                      }} style={{ 'marginTop': '50px' }}>
-                        start
-                      </Button>
-                    </Hidden>
-                    <Hidden smDown>
-                      <Button variant="contained" color="primary" onClick={() => {
-                        this.start(false)
-                      }} style={{ 'marginTop': '50px' }}>
-                        start
-                      </Button>
-                    </Hidden>
-                  </Box>
+                  {this.state.showCustom ?
+                    <OptionPage
+                      settings={this.state.settings}
+                      settingsChanged={this.updateSettings}
+                      start={this.start}
+                      sliderChange={this.sliderChange}
+                      numberOfQuestions={this.state.numberOfQuestions}/>
+                    :
+                    <Home
+                      setCustom={this.setCustom}
+                      showStart={this.state.showStart}
+                      numberOfQuestions={this.state.numberOfQuestions}
+                      incorrectAnswers={this.incorrectAnswers}
+                      start={this.start}
+                      started={this.state.started}/>
+                  }
                 </Hidden>
                 <Hidden xsUp={this.state.showStart}>
                   <LinearProgress
