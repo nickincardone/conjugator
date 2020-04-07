@@ -11,6 +11,7 @@ import Slider from '@material-ui/core/Slider';
 import Button from '@material-ui/core/Button';
 import verbTypes from '../../data/verbTypes';
 import verbTypeNicknames from '../../data/verbTypeNicknames';
+import Grid from '@material-ui/core/Grid';
 
 class OptionPage extends React.Component {
   prettyVerb = (verbNickname) => {
@@ -20,6 +21,29 @@ class OptionPage extends React.Component {
     }
     return strCopy.join(' ');
   };
+
+
+  createFormGroups= () => {
+    const half_length = Math.ceil(verbTypes.length / 2);
+    const checkBoxes = verbTypes.map((verbType, index) => {
+      return (
+        <FormControlLabel
+          control={<Checkbox name={verbType} key={index} checked={this.props.settings.verbTypes.indexOf(verbType) !== -1}
+                             onChange={this.props.updateVerbTypes}/>}
+          label={this.prettyVerb(verbTypeNicknames[verbType])}
+        />
+      )
+    })
+    const firstCheckBoxes = checkBoxes.splice(0,half_length);
+    console.log(checkBoxes);
+    return (
+      <Grid container>
+        <Grid item xs={12} sm={6}><FormGroup>{firstCheckBoxes}</FormGroup></Grid>
+        <Grid item xs={12} sm={6}><FormGroup>{checkBoxes}</FormGroup></Grid>
+      </Grid>
+    )
+  };
+
 
   render = () => {
     return (
@@ -37,11 +61,6 @@ class OptionPage extends React.Component {
                      style={{ 'marginTop': '50px', 'marginBottom': '20px' }}>
           <FormLabel component="legend">Question Types</FormLabel>
           <FormGroup row>
-            <FormControlLabel
-              control={<Checkbox name="vosotros" checked={this.props.settings.vosotros}
-                                 onChange={this.props.settingsChanged}/>}
-              label="Use Vosotros"
-            />
             <FormControlLabel
               control={<Checkbox name="questionType3" checked={this.props.settings.questionType3}
                                  onChange={this.props.settingsChanged}/>}
@@ -69,17 +88,14 @@ class OptionPage extends React.Component {
               />
             </Hidden>
           </FormGroup>
-          <FormGroup row>
-            {verbTypes.map((verbType, index) => {
-                return (
-                    <FormControlLabel
-                      control={<Checkbox name={verbType} key={index} checked={this.props.settings.verbTypes.indexOf(verbType) !== -1}
-                                         onChange={this.props.updateVerbTypes}/>}
-                      label={this.prettyVerb(verbTypeNicknames[verbType])}
-                    />
-                )
-            })}
-          </FormGroup>
+          <FormLabel component="legend">Verb Tenses</FormLabel>
+          {this.createFormGroups()}
+          <FormLabel component="legend">Other</FormLabel>
+          <FormControlLabel
+            control={<Checkbox name="vosotros" checked={this.props.settings.vosotros}
+                               onChange={this.props.settingsChanged}/>}
+            label="Use Vosotros"
+          />
         </FormControl>
         <Typography id="discrete-slider-custom" gutterBottom>
           Number of Questions
