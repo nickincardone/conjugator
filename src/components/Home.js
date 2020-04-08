@@ -27,11 +27,6 @@ class Home extends React.Component {
           }} style={{ 'marginTop': '50px' }}>
             start
           </Button>
-          <Button variant="contained" color="secondary" onClick={() => {
-            this.props.setCustom(true);
-          }} style={{ 'marginTop': '50px' }}>
-            custom start
-          </Button>
         </Hidden>
         <Hidden smDown>
           <Button variant="contained" color="primary" onClick={() => {
