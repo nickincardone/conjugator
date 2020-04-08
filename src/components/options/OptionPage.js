@@ -33,9 +33,8 @@ class OptionPage extends React.Component {
           label={this.prettyVerb(verbTypeNicknames[verbType])}
         />
       )
-    })
+    });
     const firstCheckBoxes = checkBoxes.splice(0,half_length);
-    console.log(checkBoxes);
     return (
       <Grid container>
         <Grid item xs={12} sm={6}><FormGroup>{firstCheckBoxes}</FormGroup></Grid>
@@ -55,12 +54,14 @@ class OptionPage extends React.Component {
         minHeight={360}
         color={'common.black'}
         textAlign={'center'}
-        style={{ 'paddingTop': '50px' }}
+        className="nji-option-page"
       >
         <FormControl component="fieldset"
                      style={{ 'marginTop': '50px', 'marginBottom': '20px' }}>
           <FormLabel component="legend">Question Types</FormLabel>
-          <FormGroup row>
+          <Grid container>
+          <Grid item xs={12} sm={6}>
+          <FormGroup column>
             <FormControlLabel
               control={<Checkbox name="questionType3" checked={this.props.settings.questionType3}
                                  onChange={this.props.settingsChanged}/>}
@@ -74,6 +75,10 @@ class OptionPage extends React.Component {
                 label="Definition (Written)"
               />
             </Hidden>
+          </FormGroup>
+          </Grid>
+          <Grid item xs={12} sm={6}>
+          <FormGroup column>
             <FormControlLabel
               control={<Checkbox name="questionType1" checked={this.props.settings.questionType1}
                                  onChange={this.props.settingsChanged}/>}
@@ -88,6 +93,8 @@ class OptionPage extends React.Component {
               />
             </Hidden>
           </FormGroup>
+          </Grid>
+          </Grid>
           <FormLabel component="legend">Verb Tenses</FormLabel>
           {this.createFormGroups()}
           <FormLabel component="legend">Other</FormLabel>

@@ -111,7 +111,7 @@ class App extends React.Component {
       if (currentVerb.definition === "") continue;
       const currentVerbType = this.state.settings.verbTypes[Math.floor(Math.random() * this.state.settings.verbTypes.length)];
       const currentQuestionType = questionTypes[Math.floor(Math.random() * questionTypes.length)];
-      const verbTypeList = verbTypeNicknames[currentVerbType].split('.');
+      const verbTypeList = currentVerbType ? verbTypeNicknames[currentVerbType].split('.') : [];
       const currentPronoun = pronouns[Math.floor(Math.random() * pronouns.length)];
 
       let currentQuestionObject;
