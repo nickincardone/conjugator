@@ -35,7 +35,7 @@ class QuestionCard extends React.Component {
       )
     } else {
       return (
-        <Typography variant="h1">
+        <Typography variant="h1" className={this.props.value === this.props.question.answer && this.props.isSubmitted ? 'nji-correct' : 'nji-incorrect'}>
           <TextField id="standard-basic"
                      label={this.props.question.top3}
                      onChange={this.props.handleChange} value={this.props.value}

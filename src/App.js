@@ -34,6 +34,7 @@ class App extends React.Component {
       open: false,
       showStart: true,
       showCustom: false,
+      submitted: false,
       started: false,
       isMobile: false,
       settings: {
@@ -59,7 +60,6 @@ class App extends React.Component {
       settingsCopy.verbTypes = verbTypesCopy;
       return { settings: settingsCopy }
     }, () => {
-
       console.log(this.state);
     });
   };
@@ -71,7 +71,7 @@ class App extends React.Component {
       settingsCopy[eventTarget.name] = eventTarget.checked;
       return { settings: settingsCopy }
     });
-  }
+  };
 
   resolve(path, obj) {
     const properties = Array.isArray(path) ? path : path.split('.');
@@ -204,6 +204,7 @@ class App extends React.Component {
 
   _handleKeyDown = (e) => {
     if (e.key === 'Enter') {
+      this.setState({'submitted': true});
       this.processNext();
     }
   };
@@ -211,7 +212,8 @@ class App extends React.Component {
   nextQuestion = () => {
     this.setState((oldState, props) => ({
       currentQuestion: oldState.currentQuestion + 1,
-      value: ""
+      value: "",
+      submitted: false
     }));
   };
 
@@ -255,7 +257,8 @@ class App extends React.Component {
         question={this.questions[this.state.currentQuestion]}
         value={this.state.value}
         handleSubmit={this.handleSubmit}
-        handleChange={this.handleChange}/>
+        handleChange={this.handleChange}
+        isSubmitted={this.state.submitted}/>
     )
   }
 
@@ -265,7 +268,7 @@ class App extends React.Component {
         return;
       }
       this.createQuestions();
-      this.setState({ showStart: false, showCustom: false, currentQuestion: 0, started: true });
+      this.setState({ showStart: false, showCustom: false, currentQuestion: 0, started: true, value: '' });
     });
   };
 
