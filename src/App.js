@@ -285,10 +285,19 @@ class App extends React.Component {
     this.setState({ numberOfQuestions: newValue });
   };
 
+  getAppClass = () => {
+    let className = 'center-grid';
+    console.log(this.state);
+    if (this.state.showStart && this.state.showCustom) {
+      className = className + ' nji-option-mobile';
+    }
+    return className;
+  }
+
   render() {
     return (
       <Container maxWidth="md" className="nji-main" onKeyDown={this._handleKeyDown}>
-        <Grid container className="center-grid" direction="column">
+        <Grid container className={this.getAppClass()} direction="column">
           <Grid item>
             <Card className="nji-main-card">
               <CardContent>

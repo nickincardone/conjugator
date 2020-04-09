@@ -10,11 +10,22 @@ html, body {
 
 .nji-main {
   height: 100%;
+  .nji-option-mobile {
+    @media (max-width: 600px) {
+      height: fit-content;
+    }
+  }
 }
+
+
 
 .center-grid {
   height: 100%;
   justify-content: center;
+  @media (max-width: 600px) {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
 }
 
 .nji-option-page {
