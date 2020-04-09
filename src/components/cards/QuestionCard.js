@@ -10,6 +10,19 @@ import CardContent from '@material-ui/core/CardContent';
 
 class QuestionCard extends React.Component {
 
+  constructor(props) {
+    super(props);
+    this.textInput = React.createRef();
+  }
+
+  componentDidUpdate() {
+    if (this.textInput.current) {
+      setTimeout(() => {
+        this.textInput.current.focus();
+      }, 300);
+    }
+  }
+
   renderAnswerOption = () => {
     if (this.props.isMC) {
       return (
@@ -19,7 +32,8 @@ class QuestionCard extends React.Component {
           <Grid container spacing="1" className="nji-card-mc">
             {this.props.question.choices.map((choice, index) => {
               return (
-                <Grid item xs="6" key={index} className={ this.props.question.answer === choice ? 'nji-ripple nji-correct' : 'nji-ripple nji-incorrect'}>
+                <Grid item xs="6" key={index}
+                      className={this.props.question.answer === choice ? 'nji-ripple nji-correct' : 'nji-ripple nji-incorrect'}>
                   <Card onClick={() => {
                     this.handleClick(choice)
                   }}>
@@ -35,11 +49,13 @@ class QuestionCard extends React.Component {
       )
     } else {
       return (
-        <Typography variant="h1" className={this.props.value === this.props.question.answer && this.props.isSubmitted ? 'nji-correct' : 'nji-incorrect'}>
+        <Typography variant="h1"
+                    className={this.props.value === this.props.question.answer && this.props.isSubmitted ? 'nji-correct' : 'nji-incorrect'}>
           <TextField id="standard-basic"
                      label={this.props.question.top3}
                      onChange={this.props.handleChange} value={this.props.value}
-                     autoFocus={true} autoComplete='off'/>
+                     autoFocus={true} autoComplete='off' inputRef={this.textInput}
+          />
         </Typography>
       )
     }
