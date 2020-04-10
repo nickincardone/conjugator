@@ -20,13 +20,6 @@ class App extends React.Component {
 
   constructor(props) {
     super(props);
-    const initVerbTypes = [
-      "indicative.present",
-      "indicative.preterite",
-      "indicative.imperfect",
-      "indicative.conditional",
-      "indicative.future",
-    ];
     this.state = {
       value: '',
       currentQuestion: 0,
@@ -43,24 +36,36 @@ class App extends React.Component {
         questionType2: true,
         questionType3: true,
         questionType4: true,
-        verbTypes: [...initVerbTypes]
+        verbTypes: [
+          "indicative.present",
+          "indicative.preterite",
+          "indicative.imperfect",
+          "indicative.conditional",
+          "indicative.future",
+        ]
       },
     };
     this.createQuestions();
   }
 
+  resolve(path, obj) {
+    const properties = Array.isArray(path) ? path : path.split('.');
+    return properties.reduce((prev, curr) => prev && prev[curr], obj);
+  }
+
   updateVerbTypes = (event) => {
     const eventTarget = event.target;
-    this.setState((oldState, props) => {
+    this.setState((oldState) => {
       const settingsCopy = { ...oldState.settings };
-      let verbTypesCopy = [...settingsCopy.verbTypes];
+      const verbTypesCopy = [...settingsCopy.verbTypes];
       const index = verbTypesCopy.indexOf(eventTarget.name);
-      index === -1 ? verbTypesCopy.push(eventTarget.name) : verbTypesCopy.splice(index, 1);
-      console.log(verbTypesCopy.verbTypes);
+      if (index === -1) {
+        verbTypesCopy.push(eventTarget.name)
+      } else {
+        verbTypesCopy.splice(index, 1)
+      }
       settingsCopy.verbTypes = verbTypesCopy;
       return { settings: settingsCopy }
-    }, () => {
-      console.log(this.state);
     });
   };
 
@@ -73,20 +78,15 @@ class App extends React.Component {
     });
   };
 
-  resolve(path, obj) {
-    const properties = Array.isArray(path) ? path : path.split('.');
-    return properties.reduce((prev, curr) => prev && prev[curr], obj);
-  }
-
   getAnswer(currentVerbType, currentPronoun, conjugations) {
     if (currentVerbType === 'participle' || currentVerbType === 'gerund') {
       return conjugations[currentVerbType];
+    } else if (currentVerbType.includes('perfect.')) {
+      return this.resolve(currentVerbType.substring(8,) + '.' + currentPronoun, haber)
+        + ' ' + conjugations['participle'];
+    } else {
+      return this.resolve(currentVerbType + '.' + currentPronoun, conjugations);
     }
-    if (currentVerbType.includes('perfect.')) {
-      return this.resolve(currentVerbType.substring(8,) + '.' + currentPronoun,
-        haber) + ' ' + conjugations['participle'];
-    }
-    return this.resolve(currentVerbType + '.' + currentPronoun, conjugations);
   }
 
   getQuestionTypes() {
@@ -162,9 +162,8 @@ class App extends React.Component {
   };
 
   getConjugationChoices = (currentVerbType, currentPronoun, conjugations) => {
-    const choiceArray = [];
     const correctAnswer = this.getAnswer(currentVerbType, currentPronoun, conjugations);
-    choiceArray.push(this.filterAnswer(correctAnswer));
+    const choiceArray = [this.filterAnswer(correctAnswer)];
     while (choiceArray.length < 4) {
       const randomType = verbTypes[Math.floor(Math.random() * verbTypes.length)];
       const randomAnswer = this.getAnswer(randomType, currentPronoun, conjugations);
@@ -182,15 +181,12 @@ class App extends React.Component {
   shuffle(array) {
     let currentIndex = array.length, temporaryValue, randomIndex;
     while (0 !== currentIndex) {
-
       randomIndex = Math.floor(Math.random() * currentIndex);
       currentIndex -= 1;
-
       temporaryValue = array[currentIndex];
       array[currentIndex] = array[randomIndex];
       array[randomIndex] = temporaryValue;
     }
-
     return array;
   }
 
@@ -198,13 +194,9 @@ class App extends React.Component {
     this.setState({ value: event.target.value });
   };
 
-  handleClose = () => {
-    this.processNext();
-  };
-
-  _handleKeyDown = (e) => {
+  handleKeyDown = (e) => {
     if (e.key === 'Enter') {
-      this.setState({'submitted': true});
+      this.setState({ 'submitted': true });
       this.processNext();
     }
   };
@@ -268,7 +260,13 @@ class App extends React.Component {
         return;
       }
       this.createQuestions();
-      this.setState({ showStart: false, showCustom: false, currentQuestion: 0, started: true, value: '' });
+      this.setState({
+        showStart: false,
+        showCustom: false,
+        currentQuestion: 0,
+        started: true,
+        value: ''
+      });
     });
   };
 
@@ -277,7 +275,6 @@ class App extends React.Component {
   };
 
   checkboxChange = (event) => {
-    console.log(event.target);
     this.setState({ [event.target.name]: event.target.checked });
   };
 
@@ -286,17 +283,13 @@ class App extends React.Component {
   };
 
   getAppClass = () => {
-    let className = 'center-grid';
-    console.log(this.state);
-    if (this.state.showStart && this.state.showCustom) {
-      className = className + ' nji-option-mobile';
-    }
-    return className;
-  }
+    return (this.state.showStart && this.state.showCustom)
+      ? 'center-grid' : 'center-grid nji-option-mobile';
+  };
 
   render() {
     return (
-      <Container maxWidth="md" className="nji-main" onKeyDown={this._handleKeyDown}>
+      <Container maxWidth="md" className="nji-main" onKeyDown={this.handleKeyDown}>
         <Grid container className={this.getAppClass()} direction="column">
           <Grid item>
             <Card className="nji-main-card">
@@ -327,7 +320,7 @@ class App extends React.Component {
                     value={(this.state.currentQuestion / this.state.numberOfQuestions) * 100}/>
                   <SimpleDialog
                     open={this.state.open}
-                    handleClose={this.handleClose}
+                    handleClose={this.processNext}
                     answer={this.state.value}
                     correctAnswer={this.realAnswer()}/>
                   {this.getQuestion(this.questions[this.state.currentQuestion].questionType)}

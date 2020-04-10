@@ -14,8 +14,7 @@ class Home extends React.Component {
     } else {
       return "" + correctPercentage + "% correct. Try Again."
     }
-};
-
+  };
 
   render = () => {
     return (
@@ -28,32 +27,32 @@ class Home extends React.Component {
         color={'common.black'}
         textAlign={'center'}
         style={{ 'paddingTop': '50px' }}
+        className="nji-home-top"
       >
         <Hidden xsUp={this.props.started}>Hello, welcome to Conjugator</Hidden>
-        <Hidden
-          xsUp={!this.props.started}>{this.postQuizText()}</Hidden>
+        <Hidden xsUp={!this.props.started}>{this.postQuizText()}</Hidden>
         <br/>
         <Hidden mdUp>
           <Button variant="contained" color="primary" onClick={() => {
             this.props.start(true)
-          }} style={{ 'marginTop': '50px' }}>
+          }}>
             start
           </Button>
           <Button variant="contained" color="secondary" onClick={() => {
             this.props.setCustom(true);
-          }} style={{ 'marginTop': '50px' }}>
+          }}>
             custom start
           </Button>
         </Hidden>
         <Hidden smDown>
           <Button variant="contained" color="primary" onClick={() => {
             this.props.start(false)
-          }} style={{ 'marginTop': '50px' }}>
+          }}>
             start
           </Button>
           <Button variant="contained" color="secondary" onClick={() => {
             this.props.setCustom(true);
-          }} style={{ 'marginTop': '50px' }}>
+          }}>
             custom start
           </Button>
         </Hidden>

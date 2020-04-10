@@ -16,49 +16,52 @@ class QuestionCard extends React.Component {
   }
 
   componentDidUpdate() {
+    //ensure autofocus on input
     if (this.textInput.current) {
       setTimeout(() => {
-        this.textInput.current.focus();
+        if (this.textInput.current) {
+          this.textInput.current.focus();
+        }
       }, 300);
     }
   }
 
-  renderAnswerOption = () => {
-    if (this.props.isMC) {
-      return (
-        <React.Fragment>
-          <Typography
-            variant="subtitle1">{this.props.question.top3}</Typography>
-          <Grid container spacing="1" className="nji-card-mc">
-            {this.props.question.choices.map((choice, index) => {
-              return (
-                <Grid item xs="6" key={index}
-                      className={this.props.question.answer === choice ? 'nji-ripple nji-correct' : 'nji-ripple nji-incorrect'}>
-                  <Card onClick={() => {
-                    this.handleClick(choice)
-                  }}>
-                    <CardContent>
-                      {choice}
-                    </CardContent>
-                  </Card>
-                </Grid>
-              )
-            })}
-          </Grid>
-        </React.Fragment>
-      )
-    } else {
-      return (
-        <Typography variant="h1"
-                    className={this.props.value === this.props.question.answer && this.props.isSubmitted ? 'nji-correct' : 'nji-incorrect'}>
-          <TextField id="standard-basic"
-                     label={this.props.question.top3}
-                     onChange={this.props.handleChange} value={this.props.value}
-                     autoFocus={true} autoComplete='off' inputRef={this.textInput}
-          />
-        </Typography>
-      )
-    }
+  renderMultipleChoice = () => {
+    return (
+      <React.Fragment>
+        <Typography
+          variant="subtitle1">{this.props.question.top3}</Typography>
+        <Grid container spacing="1" className="nji-card-mc">
+          {this.props.question.choices.map((choice, index) => {
+            return (
+              <Grid item xs="6" key={index}
+                    className={this.props.question.answer === choice ? 'nji-ripple nji-correct' : 'nji-ripple nji-incorrect'}>
+                <Card onClick={() => {
+                  this.handleClick(choice)
+                }}>
+                  <CardContent>
+                    {choice}
+                  </CardContent>
+                </Card>
+              </Grid>
+            )
+          })}
+        </Grid>
+      </React.Fragment>
+    )
+  };
+
+  renderWrittenOption = () => {
+    return (
+      <Typography variant="h1"
+                  className={this.props.value === this.props.question.answer && this.props.isSubmitted ? 'nji-correct' : 'nji-incorrect'}>
+        <TextField id="standard-basic"
+                   label={this.props.question.top3}
+                   onChange={this.props.handleChange} value={this.props.value}
+                   autoFocus={true} autoComplete='off' inputRef={this.textInput}
+        />
+      </Typography>
+    )
   };
 
   handleClick = (val) => {
@@ -82,10 +85,8 @@ class QuestionCard extends React.Component {
             color={'common.black'}
             textAlign={'center'}
           >
-            <Typography
-              variant="h1">{this.props.question.top1}</Typography>
-            <Typography
-              variant="h4">{this.props.question.top2}</Typography>
+            <Typography variant="h1">{this.props.question.top1}</Typography>
+            <Typography variant="h4">{this.props.question.top2}</Typography>
             <div className="nji-main-chips">
               <Hidden xsUp={this.props.question.type1 === undefined}>
                 <Chip className={this.props.question.type1} label={this.props.question.type1}/>
@@ -108,7 +109,7 @@ class QuestionCard extends React.Component {
             color={'common.black'}
             textAlign={'center'}
           >
-            {this.renderAnswerOption()}
+            {this.props.isMC ? this.renderMultipleChoice() : this.renderWrittenOption()}
           </Box>
         </div>
       </React.Fragment>

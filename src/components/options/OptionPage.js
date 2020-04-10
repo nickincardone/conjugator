@@ -13,7 +13,16 @@ import verbTypes from '../../data/verbTypes';
 import verbTypeNicknames from '../../data/verbTypeNicknames';
 import Grid from '@material-ui/core/Grid';
 
+function CustomFormLabel(props) {
+  return (
+    <FormControlLabel label={props.label} control={
+      <Checkbox name={props.name} checked={props.checked} onChange={props.onChange}/>
+    }/>
+  )
+}
+
 class OptionPage extends React.Component {
+
   prettyVerb = (verbNickname) => {
     let strCopy = verbNickname.replace(/\./g, ' ').toLowerCase().split(' ');
     for (let i = 0; i < strCopy.length; i++) {
@@ -22,19 +31,20 @@ class OptionPage extends React.Component {
     return strCopy.join(' ');
   };
 
-
-  createFormGroups= () => {
-    const half_length = Math.ceil(verbTypes.length / 2);
+  createFormGroups = () => {
     const checkBoxes = verbTypes.map((verbType, index) => {
       return (
-        <FormControlLabel
-          control={<Checkbox name={verbType} key={index} checked={this.props.settings.verbTypes.indexOf(verbType) !== -1}
-                             onChange={this.props.updateVerbTypes}/>}
-          label={this.prettyVerb(verbTypeNicknames[verbType])}
-        />
+        <CustomFormLabel name={verbType}
+                              key={index}
+                              checked={this.props.settings.verbTypes.indexOf(verbType) !== -1}
+                              onChange={this.props.updateVerbTypes}
+                              label={this.prettyVerb(verbTypeNicknames[verbType])}/>
       )
     });
-    const firstCheckBoxes = checkBoxes.splice(0,half_length);
+
+    const half_length = Math.ceil(verbTypes.length / 2);
+    const firstCheckBoxes = checkBoxes.splice(0, half_length);
+
     return (
       <Grid container>
         <Grid item xs={12} sm={6}><FormGroup>{firstCheckBoxes}</FormGroup></Grid>
@@ -42,7 +52,6 @@ class OptionPage extends React.Component {
       </Grid>
     )
   };
-
 
   render = () => {
     return (
@@ -56,53 +65,43 @@ class OptionPage extends React.Component {
         textAlign={'center'}
         className="nji-option-page"
       >
-        <FormControl component="fieldset"
-                     style={{ 'marginTop': '50px', 'marginBottom': '20px' }}>
+        <FormControl component="fieldset" className="nji-option-top">
           <FormLabel component="legend">Question Types</FormLabel>
           <Grid container>
-          <Grid item xs={12} sm={6}>
-          <FormGroup column>
-            <FormControlLabel
-              control={<Checkbox name="questionType3" checked={this.props.settings.questionType3}
-                                 onChange={this.props.settingsChanged}/>}
-              label="Definition (Multiple Choice)"
-            />
-            <Hidden mdDown>
-              <FormControlLabel
-                control={<Checkbox name="questionType4"
-                                   checked={this.props.settings.questionType4}
-                                   onChange={this.props.settingsChanged}/>}
-                label="Definition (Written)"
-              />
-            </Hidden>
-          </FormGroup>
-          </Grid>
-          <Grid item xs={12} sm={6}>
-          <FormGroup column>
-            <FormControlLabel
-              control={<Checkbox name="questionType1" checked={this.props.settings.questionType1}
-                                 onChange={this.props.settingsChanged}/>}
-              label="Conjugations (Multiple Choice)"
-            />
-            <Hidden mdDown>
-              <FormControlLabel
-                control={<Checkbox name="questionType2"
-                                   checked={this.props.settings.questionType2}
-                                   onChange={this.props.settingsChanged}/>}
-                label="Conjugations (Written)"
-              />
-            </Hidden>
-          </FormGroup>
-          </Grid>
+            <Grid item xs={12} sm={6}>
+              <FormGroup column>
+                <CustomFormLabel name="questionType3"
+                                      checked={this.props.settings.questionType3}
+                                      onChange={this.props.settingsChanged}
+                                      label="Definition (Multiple Choice)"/>
+                <Hidden mdDown>
+                  <CustomFormLabel name="questionType4"
+                                        checked={this.props.settings.questionType4}
+                                        onChange={this.props.settingsChanged}
+                                        label="Definition (Written)"/>
+                </Hidden>
+              </FormGroup>
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <FormGroup column>
+                <CustomFormLabel name="questionType1"
+                                      checked={this.props.settings.questionType1}
+                                      onChange={this.props.settingsChanged}
+                                      label="Conjugations (Multiple Choice)"/>
+                <Hidden mdDown>
+                  <CustomFormLabel name="questionType2"
+                                        checked={this.props.settings.questionType2}
+                                        onChange={this.props.settingsChanged}
+                                        label="Conjugations (Written)"/>
+                </Hidden>
+              </FormGroup>
+            </Grid>
           </Grid>
           <FormLabel component="legend">Verb Tenses</FormLabel>
           {this.createFormGroups()}
           <FormLabel component="legend">Other</FormLabel>
-          <FormControlLabel
-            control={<Checkbox name="vosotros" checked={this.props.settings.vosotros}
-                               onChange={this.props.settingsChanged}/>}
-            label="Use Vosotros"
-          />
+          <CustomFormLabel name="vosotros" checked={this.props.settings.vosotros}
+                                onChange={this.props.settingsChanged} label="Use Vosotros"/>
         </FormControl>
         <Typography id="discrete-slider-custom" gutterBottom>
           Number of Questions
@@ -120,14 +119,14 @@ class OptionPage extends React.Component {
         <Hidden mdUp>
           <Button variant="contained" color="primary" onClick={() => {
             this.props.start(true)
-          }} style={{ 'marginTop': '50px' }}>
+          }}>
             start
           </Button>
         </Hidden>
         <Hidden smDown>
           <Button variant="contained" color="primary" onClick={() => {
             this.props.start(false)
-          }} style={{ 'marginTop': '50px' }}>
+          }}>
             start
           </Button>
         </Hidden>
