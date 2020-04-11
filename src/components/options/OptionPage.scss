@@ -1,0 +1,20 @@
+.nji-option-page {
+  .MuiFormControl-root {
+    @media (min-width: 600px) {
+      min-width: 540px;
+    }
+  }
+  .nji-option-top {
+    margin-top: 50px;
+    margin-bottom: 20px;
+  }
+  .MuiFormControlLabel-root {
+    margin-bottom: -10px;
+  }
+  .MuiGrid-container {
+    margin-bottom: 15px;
+  }
+  button {
+    margin-top: 20px;
+  }
+}

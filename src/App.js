@@ -8,12 +8,12 @@ import verbs from './data/conjugationVerbs';
 import haber from './data/haber';
 import verbTypes from './data/verbTypes';
 import verbTypeNicknames from './data/verbTypeNicknames';
-import SimpleDialog from './components/SimpleDialog';
+import SimpleDialog from './components/simpleDialog/SimpleDialog';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import { Hidden } from '@material-ui/core';
 import QuestionCard from './components/cards/QuestionCard';
 import OptionPage from './components/options/OptionPage';
-import Home from './components/Home';
+import Home from './components/home/Home';
 
 class App extends React.Component {
   incorrectAnswers = 0;

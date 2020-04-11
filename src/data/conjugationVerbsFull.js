@@ -103782,5 +103782,735 @@ const conjugationVerbs = [
       }
     }
   },
+  {
+    "verb": "asestar", "definition": "to deal", "conjugations": {
+      "participle": "asestado",
+      "gerund": "asestando",
+      "indicative": {
+        "present": {
+          "yo": "asesto",
+          "tu": "asestas",
+          "el": "asesta",
+          "nosotros": "asestamos",
+          "vosotros": "asestáis",
+          "ellos": "asestan"
+        },
+        "preterite": {
+          "yo": "asesté",
+          "tu": "asestaste",
+          "el": "asestó",
+          "nosotros": "asestamos",
+          "vosotros": "asestasteis",
+          "ellos": "asestaron"
+        },
+        "imperfect": {
+          "yo": "asestaba",
+          "tu": "asestabas",
+          "el": "asestaba",
+          "nosotros": "asestábamos",
+          "vosotros": "asestabais",
+          "ellos": "asestaban"
+        },
+        "conditional": {
+          "yo": "asestaría",
+          "tu": "asestarías",
+          "el": "asestaría",
+          "nosotros": "asestaríamos",
+          "vosotros": "asestaríais",
+          "ellos": "asestarían"
+        },
+        "future": {
+          "yo": "asestaré",
+          "tu": "asestarás",
+          "el": "asestará",
+          "nosotros": "asestaremos",
+          "vosotros": "asestaréis",
+          "ellos": "asestarán"
+        }
+      },
+      "subjunctive": {
+        "present": {
+          "yo": "aseste",
+          "tu": "asestes",
+          "el": "aseste",
+          "nosotros": "asestemos",
+          "vosotros": "asestéis",
+          "ellos": "asesten"
+        },
+        "imperfect": {
+          "yo": "asestara",
+          "tu": "asestaras",
+          "el": "asestara",
+          "nosotros": "asestáramos",
+          "vosotros": "asestarais",
+          "ellos": "asestaran"
+        },
+        "imperfect2": {
+          "yo": "asestase",
+          "tu": "asestases",
+          "el": "asestase",
+          "nosotros": "asestásemos",
+          "vosotros": "asestaseis",
+          "ellos": "asestasen"
+        },
+        "future": {
+          "yo": "asestare",
+          "tu": "asestares",
+          "el": "asestare",
+          "nosotros": "asestáremos",
+          "vosotros": "asestareis",
+          "ellos": "asestaren"
+        }
+      }
+    }
+  }, {
+    "verb": "esmerar", "definition": "to polish", "conjugations": {
+      "participle": "esmerado",
+      "gerund": "esmerando",
+      "indicative": {
+        "present": {
+          "yo": "esmero",
+          "tu": "esmeras",
+          "el": "esmera",
+          "nosotros": "esmeramos",
+          "vosotros": "esmeráis",
+          "ellos": "esmeran"
+        },
+        "preterite": {
+          "yo": "esmeré",
+          "tu": "esmeraste",
+          "el": "esmeró",
+          "nosotros": "esmeramos",
+          "vosotros": "esmerasteis",
+          "ellos": "esmeraron"
+        },
+        "imperfect": {
+          "yo": "esmeraba",
+          "tu": "esmerabas",
+          "el": "esmeraba",
+          "nosotros": "esmerábamos",
+          "vosotros": "esmerabais",
+          "ellos": "esmeraban"
+        },
+        "conditional": {
+          "yo": "esmeraría",
+          "tu": "esmerarías",
+          "el": "esmeraría",
+          "nosotros": "esmeraríamos",
+          "vosotros": "esmeraríais",
+          "ellos": "esmerarían"
+        },
+        "future": {
+          "yo": "esmeraré",
+          "tu": "esmerarás",
+          "el": "esmerará",
+          "nosotros": "esmeraremos",
+          "vosotros": "esmeraréis",
+          "ellos": "esmerarán"
+        }
+      },
+      "subjunctive": {
+        "present": {
+          "yo": "esmere",
+          "tu": "esmeres",
+          "el": "esmere",
+          "nosotros": "esmeremos",
+          "vosotros": "esmeréis",
+          "ellos": "esmeren"
+        },
+        "imperfect": {
+          "yo": "esmerara",
+          "tu": "esmeraras",
+          "el": "esmerara",
+          "nosotros": "esmeráramos",
+          "vosotros": "esmerarais",
+          "ellos": "esmeraran"
+        },
+        "imperfect2": {
+          "yo": "esmerase",
+          "tu": "esmerases",
+          "el": "esmerase",
+          "nosotros": "esmerásemos",
+          "vosotros": "esmeraseis",
+          "ellos": "esmerasen"
+        },
+        "future": {
+          "yo": "esmerare",
+          "tu": "esmerares",
+          "el": "esmerare",
+          "nosotros": "esmeráremos",
+          "vosotros": "esmerareis",
+          "ellos": "esmeraren"
+        }
+      }
+    }
+  }, {
+    "verb": "farfullar", "definition": "to gabble,to mumble", "conjugations": {
+      "participle": "farfullado",
+      "gerund": "farfullando",
+      "indicative": {
+        "present": {
+          "yo": "farfullo",
+          "tu": "farfullas",
+          "el": "farfulla",
+          "nosotros": "farfullamos",
+          "vosotros": "farfulláis",
+          "ellos": "farfullan"
+        },
+        "preterite": {
+          "yo": "farfullé",
+          "tu": "farfullaste",
+          "el": "farfulló",
+          "nosotros": "farfullamos",
+          "vosotros": "farfullasteis",
+          "ellos": "farfullaron"
+        },
+        "imperfect": {
+          "yo": "farfullaba",
+          "tu": "farfullabas",
+          "el": "farfullaba",
+          "nosotros": "farfullábamos",
+          "vosotros": "farfullabais",
+          "ellos": "farfullaban"
+        },
+        "conditional": {
+          "yo": "farfullaría",
+          "tu": "farfullarías",
+          "el": "farfullaría",
+          "nosotros": "farfullaríamos",
+          "vosotros": "farfullaríais",
+          "ellos": "farfullarían"
+        },
+        "future": {
+          "yo": "farfullaré",
+          "tu": "farfullarás",
+          "el": "farfullará",
+          "nosotros": "farfullaremos",
+          "vosotros": "farfullaréis",
+          "ellos": "farfullarán"
+        }
+      },
+      "subjunctive": {
+        "present": {
+          "yo": "farfulle",
+          "tu": "farfulles",
+          "el": "farfulle",
+          "nosotros": "farfullemos",
+          "vosotros": "farfulléis",
+          "ellos": "farfullen"
+        },
+        "imperfect": {
+          "yo": "farfullara",
+          "tu": "farfullaras",
+          "el": "farfullara",
+          "nosotros": "farfulláramos",
+          "vosotros": "farfullarais",
+          "ellos": "farfullaran"
+        },
+        "imperfect2": {
+          "yo": "farfullase",
+          "tu": "farfullases",
+          "el": "farfullase",
+          "nosotros": "farfullásemos",
+          "vosotros": "farfullaseis",
+          "ellos": "farfullasen"
+        },
+        "future": {
+          "yo": "farfullare",
+          "tu": "farfullares",
+          "el": "farfullare",
+          "nosotros": "farfulláremos",
+          "vosotros": "farfullareis",
+          "ellos": "farfullaren"
+        }
+      }
+    }
+  }, {
+    "verb": "acongojar", "definition": "to distress", "conjugations": {
+      "participle": "acongojado",
+      "gerund": "acongojando",
+      "indicative": {
+        "present": {
+          "yo": "acongojo",
+          "tu": "acongojas",
+          "el": "acongoja",
+          "nosotros": "acongojamos",
+          "vosotros": "acongojáis",
+          "ellos": "acongojan"
+        },
+        "preterite": {
+          "yo": "acongojé",
+          "tu": "acongojaste",
+          "el": "acongojó",
+          "nosotros": "acongojamos",
+          "vosotros": "acongojasteis",
+          "ellos": "acongojaron"
+        },
+        "imperfect": {
+          "yo": "acongojaba",
+          "tu": "acongojabas",
+          "el": "acongojaba",
+          "nosotros": "acongojábamos",
+          "vosotros": "acongojabais",
+          "ellos": "acongojaban"
+        },
+        "conditional": {
+          "yo": "acongojaría",
+          "tu": "acongojarías",
+          "el": "acongojaría",
+          "nosotros": "acongojaríamos",
+          "vosotros": "acongojaríais",
+          "ellos": "acongojarían"
+        },
+        "future": {
+          "yo": "acongojaré",
+          "tu": "acongojarás",
+          "el": "acongojará",
+          "nosotros": "acongojaremos",
+          "vosotros": "acongojaréis",
+          "ellos": "acongojarán"
+        }
+      },
+      "subjunctive": {
+        "present": {
+          "yo": "acongoje",
+          "tu": "acongojes",
+          "el": "acongoje",
+          "nosotros": "acongojemos",
+          "vosotros": "acongojéis",
+          "ellos": "acongojen"
+        },
+        "imperfect": {
+          "yo": "acongojara",
+          "tu": "acongojaras",
+          "el": "acongojara",
+          "nosotros": "acongojáramos",
+          "vosotros": "acongojarais",
+          "ellos": "acongojaran"
+        },
+        "imperfect2": {
+          "yo": "acongojase",
+          "tu": "acongojases",
+          "el": "acongojase",
+          "nosotros": "acongojásemos",
+          "vosotros": "acongojaseis",
+          "ellos": "acongojasen"
+        },
+        "future": {
+          "yo": "acongojare",
+          "tu": "acongojares",
+          "el": "acongojare",
+          "nosotros": "acongojáremos",
+          "vosotros": "acongojareis",
+          "ellos": "acongojaren"
+        }
+      }
+    }
+  }, {
+    "verb": "agarrotar", "definition": "to stiffen", "conjugations": {
+      "participle": "agarrotado",
+      "gerund": "agarrotando",
+      "indicative": {
+        "present": {
+          "yo": "agarroto",
+          "tu": "agarrotas",
+          "el": "agarrota",
+          "nosotros": "agarrotamos",
+          "vosotros": "agarrotáis",
+          "ellos": "agarrotan"
+        },
+        "preterite": {
+          "yo": "agarroté",
+          "tu": "agarrotaste",
+          "el": "agarrotó",
+          "nosotros": "agarrotamos",
+          "vosotros": "agarrotasteis",
+          "ellos": "agarrotaron"
+        },
+        "imperfect": {
+          "yo": "agarrotaba",
+          "tu": "agarrotabas",
+          "el": "agarrotaba",
+          "nosotros": "agarrotábamos",
+          "vosotros": "agarrotabais",
+          "ellos": "agarrotaban"
+        },
+        "conditional": {
+          "yo": "agarrotaría",
+          "tu": "agarrotarías",
+          "el": "agarrotaría",
+          "nosotros": "agarrotaríamos",
+          "vosotros": "agarrotaríais",
+          "ellos": "agarrotarían"
+        },
+        "future": {
+          "yo": "agarrotaré",
+          "tu": "agarrotarás",
+          "el": "agarrotará",
+          "nosotros": "agarrotaremos",
+          "vosotros": "agarrotaréis",
+          "ellos": "agarrotarán"
+        }
+      },
+      "subjunctive": {
+        "present": {
+          "yo": "agarrote",
+          "tu": "agarrotes",
+          "el": "agarrote",
+          "nosotros": "agarrotemos",
+          "vosotros": "agarrotéis",
+          "ellos": "agarroten"
+        },
+        "imperfect": {
+          "yo": "agarrotara",
+          "tu": "agarrotaras",
+          "el": "agarrotara",
+          "nosotros": "agarrotáramos",
+          "vosotros": "agarrotarais",
+          "ellos": "agarrotaran"
+        },
+        "imperfect2": {
+          "yo": "agarrotase",
+          "tu": "agarrotases",
+          "el": "agarrotase",
+          "nosotros": "agarrotásemos",
+          "vosotros": "agarrotaseis",
+          "ellos": "agarrotasen"
+        },
+        "future": {
+          "yo": "agarrotare",
+          "tu": "agarrotares",
+          "el": "agarrotare",
+          "nosotros": "agarrotáremos",
+          "vosotros": "agarrotareis",
+          "ellos": "agarrotaren"
+        }
+      }
+    }
+  }, {
+    "verb": "degollar", "definition": "to slit the throat of", "conjugations": {
+      "participle": "degollado",
+      "gerund": "degollando",
+      "indicative": {
+        "present": {
+          "yo": "deg|üe|llo",
+          "tu": "deg|üe|llas",
+          "el": "deg|üe|lla",
+          "nosotros": "degollamos",
+          "vosotros": "degolláis",
+          "ellos": "deg|üe|llan"
+        },
+        "preterite": {
+          "yo": "degollé",
+          "tu": "degollaste",
+          "el": "degolló",
+          "nosotros": "degollamos",
+          "vosotros": "degollasteis",
+          "ellos": "degollaron"
+        },
+        "imperfect": {
+          "yo": "degollaba",
+          "tu": "degollabas",
+          "el": "degollaba",
+          "nosotros": "degollábamos",
+          "vosotros": "degollabais",
+          "ellos": "degollaban"
+        },
+        "conditional": {
+          "yo": "degollaría",
+          "tu": "degollarías",
+          "el": "degollaría",
+          "nosotros": "degollaríamos",
+          "vosotros": "degollaríais",
+          "ellos": "degollarían"
+        },
+        "future": {
+          "yo": "degollaré",
+          "tu": "degollarás",
+          "el": "degollará",
+          "nosotros": "degollaremos",
+          "vosotros": "degollaréis",
+          "ellos": "degollarán"
+        }
+      },
+      "subjunctive": {
+        "present": {
+          "yo": "deg|üe|lle",
+          "tu": "deg|üe|lles",
+          "el": "deg|üe|lle",
+          "nosotros": "degollemos",
+          "vosotros": "degolléis",
+          "ellos": "deg|üe|llen"
+        },
+        "imperfect": {
+          "yo": "degollara",
+          "tu": "degollaras",
+          "el": "degollara",
+          "nosotros": "degolláramos",
+          "vosotros": "degollarais",
+          "ellos": "degollaran"
+        },
+        "imperfect2": {
+          "yo": "degollase",
+          "tu": "degollases",
+          "el": "degollase",
+          "nosotros": "degollásemos",
+          "vosotros": "degollaseis",
+          "ellos": "degollasen"
+        },
+        "future": {
+          "yo": "degollare",
+          "tu": "degollares",
+          "el": "degollare",
+          "nosotros": "degolláremos",
+          "vosotros": "degollareis",
+          "ellos": "degollaren"
+        }
+      }
+    }
+  }, {
+    "verb": "enredar", "definition": "to tangle up", "conjugations": {
+      "participle": "enredado",
+      "gerund": "enredando",
+      "indicative": {
+        "present": {
+          "yo": "enredo",
+          "tu": "enredas",
+          "el": "enreda",
+          "nosotros": "enredamos",
+          "vosotros": "enredáis",
+          "ellos": "enredan"
+        },
+        "preterite": {
+          "yo": "enredé",
+          "tu": "enredaste",
+          "el": "enredó",
+          "nosotros": "enredamos",
+          "vosotros": "enredasteis",
+          "ellos": "enredaron"
+        },
+        "imperfect": {
+          "yo": "enredaba",
+          "tu": "enredabas",
+          "el": "enredaba",
+          "nosotros": "enredábamos",
+          "vosotros": "enredabais",
+          "ellos": "enredaban"
+        },
+        "conditional": {
+          "yo": "enredaría",
+          "tu": "enredarías",
+          "el": "enredaría",
+          "nosotros": "enredaríamos",
+          "vosotros": "enredaríais",
+          "ellos": "enredarían"
+        },
+        "future": {
+          "yo": "enredaré",
+          "tu": "enredarás",
+          "el": "enredará",
+          "nosotros": "enredaremos",
+          "vosotros": "enredaréis",
+          "ellos": "enredarán"
+        }
+      },
+      "subjunctive": {
+        "present": {
+          "yo": "enrede",
+          "tu": "enredes",
+          "el": "enrede",
+          "nosotros": "enredemos",
+          "vosotros": "enredéis",
+          "ellos": "enreden"
+        },
+        "imperfect": {
+          "yo": "enredara",
+          "tu": "enredaras",
+          "el": "enredara",
+          "nosotros": "enredáramos",
+          "vosotros": "enredarais",
+          "ellos": "enredaran"
+        },
+        "imperfect2": {
+          "yo": "enredase",
+          "tu": "enredases",
+          "el": "enredase",
+          "nosotros": "enredásemos",
+          "vosotros": "enredaseis",
+          "ellos": "enredasen"
+        },
+        "future": {
+          "yo": "enredare",
+          "tu": "enredares",
+          "el": "enredare",
+          "nosotros": "enredáremos",
+          "vosotros": "enredareis",
+          "ellos": "enredaren"
+        }
+      }
+    }
+  }, {
+    "verb": "apear", "definition": "to help down", "conjugations": {
+      "participle": "apeado",
+      "gerund": "apeando",
+      "indicative": {
+        "present": {
+          "yo": "apeo",
+          "tu": "apeas",
+          "el": "apea",
+          "nosotros": "apeamos",
+          "vosotros": "apeáis",
+          "ellos": "apean"
+        },
+        "preterite": {
+          "yo": "apeé",
+          "tu": "apeaste",
+          "el": "apeó",
+          "nosotros": "apeamos",
+          "vosotros": "apeasteis",
+          "ellos": "apearon"
+        },
+        "imperfect": {
+          "yo": "apeaba",
+          "tu": "apeabas",
+          "el": "apeaba",
+          "nosotros": "apeábamos",
+          "vosotros": "apeabais",
+          "ellos": "apeaban"
+        },
+        "conditional": {
+          "yo": "apearía",
+          "tu": "apearías",
+          "el": "apearía",
+          "nosotros": "apearíamos",
+          "vosotros": "apearíais",
+          "ellos": "apearían"
+        },
+        "future": {
+          "yo": "apearé",
+          "tu": "apearás",
+          "el": "apeará",
+          "nosotros": "apearemos",
+          "vosotros": "apearéis",
+          "ellos": "apearán"
+        }
+      },
+      "subjunctive": {
+        "present": {
+          "yo": "apee",
+          "tu": "apees",
+          "el": "apee",
+          "nosotros": "apeemos",
+          "vosotros": "apeéis",
+          "ellos": "apeen"
+        },
+        "imperfect": {
+          "yo": "apeara",
+          "tu": "apearas",
+          "el": "apeara",
+          "nosotros": "apeáramos",
+          "vosotros": "apearais",
+          "ellos": "apearan"
+        },
+        "imperfect2": {
+          "yo": "apease",
+          "tu": "apeases",
+          "el": "apease",
+          "nosotros": "apeásemos",
+          "vosotros": "apeaseis",
+          "ellos": "apeasen"
+        },
+        "future": {
+          "yo": "apeare",
+          "tu": "apeares",
+          "el": "apeare",
+          "nosotros": "apeáremos",
+          "vosotros": "apeareis",
+          "ellos": "apearen"
+        }
+      }
+    }
+  }, {
+    "verb": "destrozar", "definition": "to destroy", "conjugations": {
+      "participle": "destrozado",
+      "gerund": "destrozando",
+      "indicative": {
+        "present": {
+          "yo": "destrozo",
+          "tu": "destrozas",
+          "el": "destroza",
+          "nosotros": "destrozamos",
+          "vosotros": "destrozáis",
+          "ellos": "destrozan"
+        },
+        "preterite": {
+          "yo": "destro|c|é",
+          "tu": "destrozaste",
+          "el": "destrozó",
+          "nosotros": "destrozamos",
+          "vosotros": "destrozasteis",
+          "ellos": "destrozaron"
+        },
+        "imperfect": {
+          "yo": "destrozaba",
+          "tu": "destrozabas",
+          "el": "destrozaba",
+          "nosotros": "destrozábamos",
+          "vosotros": "destrozabais",
+          "ellos": "destrozaban"
+        },
+        "conditional": {
+          "yo": "destrozaría",
+          "tu": "destrozarías",
+          "el": "destrozaría",
+          "nosotros": "destrozaríamos",
+          "vosotros": "destrozaríais",
+          "ellos": "destrozarían"
+        },
+        "future": {
+          "yo": "destrozaré",
+          "tu": "destrozarás",
+          "el": "destrozará",
+          "nosotros": "destrozaremos",
+          "vosotros": "destrozaréis",
+          "ellos": "destrozarán"
+        }
+      },
+      "subjunctive": {
+        "present": {
+          "yo": "destro|c|e",
+          "tu": "destro|c|es",
+          "el": "destro|c|e",
+          "nosotros": "destro|c|emos",
+          "vosotros": "destro|c|éis",
+          "ellos": "destro|c|en"
+        },
+        "imperfect": {
+          "yo": "destrozara",
+          "tu": "destrozaras",
+          "el": "destrozara",
+          "nosotros": "destrozáramos",
+          "vosotros": "destrozarais",
+          "ellos": "destrozaran"
+        },
+        "imperfect2": {
+          "yo": "destrozase",
+          "tu": "destrozases",
+          "el": "destrozase",
+          "nosotros": "destrozásemos",
+          "vosotros": "destrozaseis",
+          "ellos": "destrozasen"
+        },
+        "future": {
+          "yo": "destrozare",
+          "tu": "destrozares",
+          "el": "destrozare",
+          "nosotros": "destrozáremos",
+          "vosotros": "destrozareis",
+          "ellos": "destrozaren"
+        }
+      }
+    }
+  },
 ];
 export default conjugationVerbs;

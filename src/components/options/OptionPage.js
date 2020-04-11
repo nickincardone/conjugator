@@ -12,6 +12,7 @@ import Button from '@material-ui/core/Button';
 import verbTypes from '../../data/verbTypes';
 import verbTypeNicknames from '../../data/verbTypeNicknames';
 import Grid from '@material-ui/core/Grid';
+import './OptionPage.scss';
 
 function CustomFormLabel(props) {
   return (
