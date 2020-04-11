@@ -284,7 +284,7 @@ class App extends React.Component {
 
   getAppClass = () => {
     return (this.state.showStart && this.state.showCustom)
-      ? 'center-grid' : 'center-grid nji-option-mobile';
+      ? 'center-grid nji-option-mobile' :'center-grid';
   };
 
   render() {
