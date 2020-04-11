@@ -13780,12 +13780,12 @@ const conjugationVerbs = [
       "gerund": "errando",
       "indicative": {
         "present": {
-          "yo": "|y|erro,erro",
-          "tu": "|y|erras,erras",
-          "el": "|y|erra,erra",
+          "yo": "|y|erro",
+          "tu": "|y|erras",
+          "el": "|y|erra",
           "nosotros": "erramos",
           "vosotros": "erráis",
-          "ellos": "|y|erran,erran"
+          "ellos": "|y|erran"
         },
         "preterite": {
           "yo": "erré",
@@ -13822,12 +13822,12 @@ const conjugationVerbs = [
       },
       "subjunctive": {
         "present": {
-          "yo": "|y|erre,erre",
-          "tu": "|y|erres,erres",
-          "el": "|y|erre,erre",
+          "yo": "|y|erre",
+          "tu": "|y|erres",
+          "el": "|y|erre",
           "nosotros": "erremos",
           "vosotros": "erréis",
-          "ellos": "|y|erren,erren"
+          "ellos": "|y|erren"
         },
         "imperfect": {
           "yo": "errara",
@@ -23673,7 +23673,7 @@ const conjugationVerbs = [
         "preterite": {
           "yo": "plací",
           "tu": "placiste",
-          "el": "plació,plugo",
+          "el": "plació",
           "nosotros": "placimos",
           "vosotros": "placisteis",
           "ellos": "placieron"
@@ -23731,7 +23731,7 @@ const conjugationVerbs = [
         "future": {
           "yo": "placiere",
           "tu": "placieres",
-          "el": "placiere,pluguiere",
+          "el": "placiere",
           "nosotros": "placiéremos",
           "vosotros": "placiereis",
           "ellos": "placieren"
@@ -26831,12 +26831,12 @@ const conjugationVerbs = [
           "ellos": "responden"
         },
         "preterite": {
-          "yo": "respondí,repuse",
-          "tu": "respondiste,repusiste",
-          "el": "respondió,repuso",
-          "nosotros": "respondimos,repusimos",
-          "vosotros": "respondisteis,repusisteis",
-          "ellos": "respondieron,repusieron"
+          "yo": "respondí",
+          "tu": "respondiste",
+          "el": "respondió",
+          "nosotros": "respondimos",
+          "vosotros": "respondisteis",
+          "ellos": "respondieron"
         },
         "imperfect": {
           "yo": "respondía",
