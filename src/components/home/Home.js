@@ -7,7 +7,7 @@ import './Home.scss';
 class Home extends React.Component {
 
   postQuizText = () => {
-    const correctPercentage = 100 * (this.props.numberOfQuestions - this.props.incorrectAnswers) / this.props.numberOfQuestions;
+    const correctPercentage = Math.round(10000 * (this.props.numberOfQuestions - this.props.incorrectAnswers) / this.props.numberOfQuestions) / 100;
     if (correctPercentage === 100) {
       return "Perfect Score! Maybe try something harder with a Custom Quiz"
     } else if (correctPercentage > 79) {
