@@ -238,7 +238,7 @@ class App extends React.Component {
   };
 
   realAnswer() {
-    return this.questions[this.state.currentQuestion].answer.replace('|', '').replace('|', '');
+    return this.questions[this.state.currentQuestion].answer.replace(/\|/g,'');
   }
 
   getQuestion(questionType) {

@@ -36,7 +36,8 @@ class QuestionCard extends React.Component {
           {this.props.question.choices.map((choice, index) => {
             return (
               <Grid item xs="6" key={index}
-                    className={this.props.question.answer === choice ? 'nji-ripple nji-correct' : 'nji-ripple nji-incorrect'}>
+                    className={this.realAnswer(this.props.question.answer) === choice ?
+                      'nji-ripple nji-correct' : 'nji-ripple nji-incorrect'}>
                 <Card onClick={() => {
                   this.handleClick(choice)
                 }}>
@@ -70,7 +71,7 @@ class QuestionCard extends React.Component {
   };
 
   realAnswer(answer) {
-    return answer.replace('|', '').replace('|', '');
+    return answer.replace(/\|/g,'');
   };
 
   render() {
