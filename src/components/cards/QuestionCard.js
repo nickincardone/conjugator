@@ -39,7 +39,7 @@ class QuestionCard extends React.Component {
                     className={this.realAnswer(this.props.question.answer) === choice ?
                       'nji-ripple nji-correct' : 'nji-ripple nji-incorrect'}>
                 <Card onClick={() => {
-                  this.handleClick(choice)
+                  if (this.props.clickable) this.handleClick(choice);
                 }}>
                   <CardContent>
                     {choice}

@@ -30,6 +30,7 @@ class App extends React.Component {
       submitted: false,
       started: false,
       isMobile: false,
+      clickable: true,
       settings: {
         vosotros: false,
         questionType1: true,
@@ -205,15 +206,17 @@ class App extends React.Component {
     this.setState((oldState, props) => ({
       currentQuestion: oldState.currentQuestion + 1,
       value: "",
+      clickable: true,
       submitted: false
     }));
   };
 
   processNext = () => {
+    this.setState({clickable: false});
     if (this.state.open) {
       this.setState({ open: false });
       if (this.state.currentQuestion + 1 === this.questions.length) {
-        this.setState({ showStart: true });
+        this.setState({ showStart: true, clickable: true });
       } else {
         this.nextQuestion();
       }
@@ -224,7 +227,7 @@ class App extends React.Component {
       } else {
         if (this.state.currentQuestion + 1 === this.questions.length) {
           setTimeout(() => {
-            this.setState({ showStart: true });
+            this.setState({ showStart: true, clickable: true });
           }, 300);
         } else {
           setTimeout(this.nextQuestion, 300);
@@ -248,6 +251,7 @@ class App extends React.Component {
         isMC={isMC}
         question={this.questions[this.state.currentQuestion]}
         value={this.state.value}
+        clickable={this.state.clickable}
         handleSubmit={this.handleSubmit}
         handleChange={this.handleChange}
         isSubmitted={this.state.submitted}/>
