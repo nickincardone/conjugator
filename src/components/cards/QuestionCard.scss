@@ -2,6 +2,9 @@
   h1 {
     font-size: 7em;
     margin-top: 20px;
+    @media (max-width: 600px) {
+      margin-top: 10px;
+    }
   }
 
   h4 {

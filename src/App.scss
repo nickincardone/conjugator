@@ -1,7 +1,7 @@
 html, body {
   margin: 0;
   height: 100%;
-  background-color: #c8f1f5;;
+  background-color: #c8f1f5;
 }
 
 #root {
@@ -34,10 +34,6 @@ html, body {
   }
 
   .MuiCardContent-root {
-    min-height: 560px;
-    @media (max-width: 600px) {
-      min-height: 500px;
-    }
 
     .MuiLinearProgress-root {
       background-color: #e0e0e0;
