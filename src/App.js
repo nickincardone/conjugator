@@ -114,8 +114,9 @@ class App extends React.Component {
       if (currentVerb.definition === "") continue;
       let currentVerbType = this.state.settings.verbTypes[Math.floor(Math.random() * this.state.settings.verbTypes.length)];
       let currentPronoun = pronouns[Math.floor(Math.random() * pronouns.length)];
+      const currentQuestionType = questionTypes[Math.floor(Math.random() * questionTypes.length)];
 
-      if (this.state.settings.irregular) {
+      if (this.state.settings.irregular && (currentQuestionType === 1 || currentQuestionType === 2)) {
         currentVerb = irregularVerbs[Math.floor(Math.random() * irregularVerbs.length)];
         const irregularTenses = currentVerb.irregularities[Math.floor(Math.random() * currentVerb.irregularities.length)].split('.');
         if (irregularTenses.length === 1) {
@@ -127,9 +128,7 @@ class App extends React.Component {
         if (!this.state.settings.verbTypes.includes(currentVerbType)) continue;
       }
 
-      const currentQuestionType = questionTypes[Math.floor(Math.random() * questionTypes.length)];
       const verbTypeList = currentVerbType ? verbTypeNicknames[currentVerbType].split('.') : [];
-
 
       let currentQuestionObject;
       if (currentQuestionType === 3 || currentQuestionType === 4) {
