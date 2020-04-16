@@ -5,6 +5,7 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Grid from "@material-ui/core/Grid";
 import verbs from './data/conjugationVerbs';
+import irregularVerbs from './data/irregularVerbs';
 import haber from './data/haber';
 import verbTypes from './data/verbTypes';
 import verbTypeNicknames from './data/verbTypeNicknames';
@@ -33,6 +34,7 @@ class App extends React.Component {
       clickable: true,
       settings: {
         vosotros: false,
+        irregular: false,
         questionType1: true,
         questionType2: true,
         questionType3: true,
@@ -108,12 +110,26 @@ class App extends React.Component {
       pronouns.push('vosotros');
     }
     while (questionArray.length < this.state.numberOfQuestions) {
-      const currentVerb = verbs[Math.floor(Math.random() * verbs.length)];
+      let currentVerb = verbs[Math.floor(Math.random() * verbs.length)];
       if (currentVerb.definition === "") continue;
-      const currentVerbType = this.state.settings.verbTypes[Math.floor(Math.random() * this.state.settings.verbTypes.length)];
+      let currentVerbType = this.state.settings.verbTypes[Math.floor(Math.random() * this.state.settings.verbTypes.length)];
+      let currentPronoun = pronouns[Math.floor(Math.random() * pronouns.length)];
+
+      if (this.state.settings.irregular) {
+        currentVerb = irregularVerbs[Math.floor(Math.random() * irregularVerbs.length)];
+        const irregularTenses = currentVerb.irregularities[Math.floor(Math.random() * currentVerb.irregularities.length)].split('.');
+        if (irregularTenses.length === 1) {
+          currentPronoun = pronouns[Math.floor(Math.random() * pronouns.length)];
+        } else {
+          currentPronoun = irregularTenses.pop();
+        }
+        currentVerbType = irregularTenses.join('.');
+        if (!this.state.settings.verbTypes.includes(currentVerbType)) continue;
+      }
+
       const currentQuestionType = questionTypes[Math.floor(Math.random() * questionTypes.length)];
       const verbTypeList = currentVerbType ? verbTypeNicknames[currentVerbType].split('.') : [];
-      const currentPronoun = pronouns[Math.floor(Math.random() * pronouns.length)];
+
 
       let currentQuestionObject;
       if (currentQuestionType === 3 || currentQuestionType === 4) {
@@ -212,7 +228,7 @@ class App extends React.Component {
   };
 
   processNext = () => {
-    this.setState({clickable: false});
+    this.setState({ clickable: false });
     if (this.state.open) {
       this.setState({ open: false });
       if (this.state.currentQuestion + 1 === this.questions.length) {
@@ -241,7 +257,7 @@ class App extends React.Component {
   };
 
   realAnswer() {
-    return this.questions[this.state.currentQuestion].answer.replace(/\|/g,'');
+    return this.questions[this.state.currentQuestion].answer.replace(/\|/g, '');
   }
 
   getQuestion(questionType) {
@@ -288,7 +304,7 @@ class App extends React.Component {
 
   getAppClass = () => {
     return (this.state.showStart && this.state.showCustom)
-      ? 'center-grid nji-option-mobile' :'center-grid';
+      ? 'center-grid nji-option-mobile' : 'center-grid';
   };
 
   render() {

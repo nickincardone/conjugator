@@ -8,6 +8,8 @@ const verbTypeNicknames = {
   "indicative.future": "future",
   "subjunctive.present": "present.subjunctive",
   "subjunctive.imperfect": "imperfect.subjunctive",
+  "subjunctive.imperfect2": "imperfect.subjunctive.(ese)",
+  "subjunctive.future": "subjunctive.future",
   "perfect.indicative.present": "present.perfect",
   "perfect.indicative.preterite": "preterite.perfect",
   "perfect.indicative.imperfect": "pluperfect",

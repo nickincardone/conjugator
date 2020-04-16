@@ -36,10 +36,10 @@ class OptionPage extends React.Component {
     const checkBoxes = verbTypes.map((verbType, index) => {
       return (
         <CustomFormLabel name={verbType}
-                              key={index}
-                              checked={this.props.settings.verbTypes.indexOf(verbType) !== -1}
-                              onChange={this.props.updateVerbTypes}
-                              label={this.prettyVerb(verbTypeNicknames[verbType])}/>
+                         key={index}
+                         checked={this.props.settings.verbTypes.indexOf(verbType) !== -1}
+                         onChange={this.props.updateVerbTypes}
+                         label={this.prettyVerb(verbTypeNicknames[verbType])}/>
       )
     });
 
@@ -72,28 +72,28 @@ class OptionPage extends React.Component {
             <Grid item xs={12} sm={6}>
               <FormGroup column>
                 <CustomFormLabel name="questionType3"
-                                      checked={this.props.settings.questionType3}
-                                      onChange={this.props.settingsChanged}
-                                      label="Definition (Multiple Choice)"/>
+                                 checked={this.props.settings.questionType3}
+                                 onChange={this.props.settingsChanged}
+                                 label="Definition (Multiple Choice)"/>
                 <Hidden mdDown>
                   <CustomFormLabel name="questionType4"
-                                        checked={this.props.settings.questionType4}
-                                        onChange={this.props.settingsChanged}
-                                        label="Definition (Written)"/>
+                                   checked={this.props.settings.questionType4}
+                                   onChange={this.props.settingsChanged}
+                                   label="Definition (Written)"/>
                 </Hidden>
               </FormGroup>
             </Grid>
             <Grid item xs={12} sm={6}>
               <FormGroup column>
                 <CustomFormLabel name="questionType1"
-                                      checked={this.props.settings.questionType1}
-                                      onChange={this.props.settingsChanged}
-                                      label="Conjugations (Multiple Choice)"/>
+                                 checked={this.props.settings.questionType1}
+                                 onChange={this.props.settingsChanged}
+                                 label="Conjugations (Multiple Choice)"/>
                 <Hidden mdDown>
                   <CustomFormLabel name="questionType2"
-                                        checked={this.props.settings.questionType2}
-                                        onChange={this.props.settingsChanged}
-                                        label="Conjugations (Written)"/>
+                                   checked={this.props.settings.questionType2}
+                                   onChange={this.props.settingsChanged}
+                                   label="Conjugations (Written)"/>
                 </Hidden>
               </FormGroup>
             </Grid>
@@ -101,8 +101,20 @@ class OptionPage extends React.Component {
           <FormLabel component="legend">Verb Tenses</FormLabel>
           {this.createFormGroups()}
           <FormLabel component="legend">Other</FormLabel>
-          <CustomFormLabel name="vosotros" checked={this.props.settings.vosotros}
-                                onChange={this.props.settingsChanged} label="Use Vosotros"/>
+          <Grid container>
+            <Grid item xs={12} sm={6}>
+              <FormGroup column>
+                <CustomFormLabel name="vosotros" checked={this.props.settings.vosotros}
+                                 onChange={this.props.settingsChanged} label="Use Vosotros"/>
+              </FormGroup>
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <FormGroup column>
+                <CustomFormLabel name="irregular" checked={this.props.settings.irregular}
+                                 onChange={this.props.settingsChanged} label="Irregular Only"/>
+              </FormGroup>
+            </Grid>
+          </Grid>
         </FormControl>
         <Typography id="discrete-slider-custom" gutterBottom>
           Number of Questions
