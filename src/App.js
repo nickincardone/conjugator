@@ -95,9 +95,9 @@ class App extends React.Component {
   getQuestionTypes() {
     const questionTypes = [];
     if (this.state.settings.questionType1) questionTypes.push(1);
-    if (this.state.settings.questionType2) questionTypes.push(2);
+    if (this.state.settings.questionType2 && !this.state.isMobile) questionTypes.push(2);
     if (this.state.settings.questionType3) questionTypes.push(3);
-    if (this.state.settings.questionType4) questionTypes.push(4);
+    if (this.state.settings.questionType4 && !this.state.isMobile) questionTypes.push(4);
     return questionTypes;
   }
 
