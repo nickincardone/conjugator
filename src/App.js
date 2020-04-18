@@ -121,8 +121,6 @@ class App extends React.Component {
       let currentPronoun = randomItem(pronouns);
       const currentQuestionType = randomItem(questionTypes);
 
-      console.log(currentVerbType)
-
       if (this.state.settings.irregular && (currentQuestionType === 1 || currentQuestionType === 2)) {
         currentVerb = randomItem(irregularVerbs);
         const irregularTenses = randomItem(currentVerb.irregularities).split('.');
@@ -349,7 +347,7 @@ class App extends React.Component {
                     open={this.state.open}
                     handleClose={this.processNext}
                     answer={this.state.value}
-                    correctAnswer={this.realAnswer()}/>
+                    correctAnswer={this.questions[this.state.currentQuestion].answer}/>
                   {this.getQuestion(this.questions[this.state.currentQuestion].questionType)}
                 </Hidden>
               </CardContent>
