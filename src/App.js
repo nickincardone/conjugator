@@ -16,6 +16,11 @@ import QuestionCard from './components/cards/QuestionCard';
 import OptionPage from './components/options/OptionPage';
 import Home from './components/home/Home';
 
+
+function randomItem(arr) {
+  return arr[Math.floor(Math.random() * arr.length)];
+}
+
 class App extends React.Component {
   incorrectAnswers = 0;
 
@@ -110,22 +115,25 @@ class App extends React.Component {
       pronouns.push('vosotros');
     }
     while (questionArray.length < this.state.numberOfQuestions) {
-      let currentVerb = verbs[Math.floor(Math.random() * verbs.length)];
+      let currentVerb = randomItem(verbs);
       if (currentVerb.definition === "") continue;
-      let currentVerbType = this.state.settings.verbTypes[Math.floor(Math.random() * this.state.settings.verbTypes.length)];
-      let currentPronoun = pronouns[Math.floor(Math.random() * pronouns.length)];
-      const currentQuestionType = questionTypes[Math.floor(Math.random() * questionTypes.length)];
+      let currentVerbType = randomItem(this.state.settings.verbTypes);
+      let currentPronoun = randomItem(pronouns);
+      const currentQuestionType = randomItem(questionTypes);
+
+      console.log(currentVerbType)
 
       if (this.state.settings.irregular && (currentQuestionType === 1 || currentQuestionType === 2)) {
-        currentVerb = irregularVerbs[Math.floor(Math.random() * irregularVerbs.length)];
-        const irregularTenses = currentVerb.irregularities[Math.floor(Math.random() * currentVerb.irregularities.length)].split('.');
+        currentVerb = randomItem(irregularVerbs);
+        const irregularTenses = randomItem(currentVerb.irregularities).split('.');
         if (irregularTenses.length === 1) {
-          currentPronoun = pronouns[Math.floor(Math.random() * pronouns.length)];
+          currentPronoun = randomItem(pronouns);
         } else {
           currentPronoun = irregularTenses.pop();
         }
         currentVerbType = irregularTenses.join('.');
         if (!this.state.settings.verbTypes.includes(currentVerbType)) continue;
+        if (!this.state.settings.vosotros && currentPronoun === 'vosotros') continue;
       }
 
       const verbTypeList = currentVerbType ? verbTypeNicknames[currentVerbType].split('.') : [];
@@ -169,7 +177,7 @@ class App extends React.Component {
   getDefinitionChoices = (currentVerb) => {
     const choiceArray = [currentVerb];
     while (choiceArray.length < 4) {
-      const randomVerb = verbs[Math.floor(Math.random() * verbs.length)].verb;
+      const randomVerb = randomItem(verbs).verb;
       if (currentVerb !== randomVerb) {
         choiceArray.push(randomVerb);
       }
@@ -181,7 +189,7 @@ class App extends React.Component {
     const correctAnswer = this.getAnswer(currentVerbType, currentPronoun, conjugations);
     const choiceArray = [this.filterAnswer(correctAnswer)];
     while (choiceArray.length < 4) {
-      const randomType = verbTypes[Math.floor(Math.random() * verbTypes.length)];
+      const randomType = randomItem(verbTypes);
       const randomAnswer = this.getAnswer(randomType, currentPronoun, conjugations);
       if (correctAnswer !== randomAnswer) {
         choiceArray.push(this.filterAnswer(randomAnswer));
