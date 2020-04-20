@@ -4115,7 +4115,7 @@ const conjugationVerbs = [
     "verb": "apagar",
     "definition": "to turn off",
     "conjugations": {
-      "participle": "apagado,apag|o|",
+      "participle": "apagado",
       "gerund": "apagando",
       "indicative": {
         "present": {
@@ -6296,7 +6296,7 @@ const conjugationVerbs = [
     "verb": "bendecir",
     "definition": "to bless",
     "conjugations": {
-      "participle": "bendecido,bend|it|o",
+      "participle": "bendecido",
       "gerund": "bend|i|ciendo",
       "indicative": {
         "present": {
@@ -9657,7 +9657,7 @@ const conjugationVerbs = [
     "verb": "confesar",
     "definition": "to confess",
     "conjugations": {
-      "participle": "confesado,confes|o|",
+      "participle": "confesado",
       "gerund": "confesando",
       "indicative": {
         "present": {
@@ -10744,7 +10744,7 @@ const conjugationVerbs = [
     "verb": "convertir",
     "definition": "to turn into",
     "conjugations": {
-      "participle": "convertido,conver|s|o",
+      "participle": "convertido",
       "gerund": "conv|i|rtiendo",
       "indicative": {
         "present": {
@@ -14807,7 +14807,7 @@ const conjugationVerbs = [
     "verb": "elegir",
     "definition": "to choose",
     "conjugations": {
-      "participle": "elegido,ele|ct|o",
+      "participle": "elegido",
       "gerund": "el|i|giendo",
       "indicative": {
         "present": {
@@ -17267,7 +17267,7 @@ const conjugationVerbs = [
     "verb": "expresar",
     "definition": "to express",
     "conjugations": {
-      "participle": "expresado,ex|expres|o",
+      "participle": "expresado",
       "gerund": "expresando",
       "indicative": {
         "present": {
@@ -20553,7 +20553,7 @@ const conjugationVerbs = [
     "verb": "imprimir",
     "definition": "to print",
     "conjugations": {
-      "participle": "imprimido,impr|es|o",
+      "participle": "imprimido",
       "gerund": "imprimiendo",
       "indicative": {
         "present": {
@@ -20641,7 +20641,7 @@ const conjugationVerbs = [
     "verb": "incluir",
     "definition": "to include",
     "conjugations": {
-      "participle": "incluido,inclu|s|o",
+      "participle": "incluido",
       "gerund": "inclu|y|endo",
       "indicative": {
         "present": {
@@ -23045,7 +23045,7 @@ const conjugationVerbs = [
     "verb": "maldecir",
     "definition": "to swear,to curse",
     "conjugations": {
-      "participle": "maldecido,mald|it|o",
+      "participle": "mald|it|o",
       "gerund": "mald|i|ciendo",
       "indicative": {
         "present": {
@@ -24731,7 +24731,7 @@ const conjugationVerbs = [
     "verb": "nacer",
     "definition": "to be born",
     "conjugations": {
-      "participle": "nacido,na|t|o",
+      "participle": "nacido",
       "gerund": "naciendo",
       "indicative": {
         "present": {
@@ -26385,7 +26385,7 @@ const conjugationVerbs = [
     "verb": "pagar",
     "definition": "to pay,to pay for",
     "conjugations": {
-      "participle": "pagado,pag|o|",
+      "participle": "pagado",
       "gerund": "pagando",
       "indicative": {
         "present": {

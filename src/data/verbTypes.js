@@ -1,11 +1,11 @@
 const verbTypes = [
   "participle",
+  "gerund",
   "indicative.present",
   "indicative.preterite",
   "indicative.imperfect",
   "indicative.conditional",
   "indicative.future",
-  "gerund",
   "subjunctive.present",
   "subjunctive.imperfect",
   "perfect.indicative.present",
