@@ -4,23 +4,20 @@ import Chip from '@material-ui/core/Chip';
 import './QuestionCard.scss';
 import MultipleChoice from './MultipleChoice';
 import WrittenOption from './WrittenOption';
+import FillInBlankTop from './FillInBlank/FillInBlankTop';
 
 const NormalTop = (props) => {
+  const chips = props.question.chips.map((chip) => {
+    return <Chip key={chip} className={chip} label={chip}/>
+  });
+
   return (
     <React.Fragment>
       <Typography variant="h1">{props.question.top1}</Typography>
       <Typography variant="h4">{props.question.top2}</Typography>
       <div className="nji-main-chips">
-        {props.chips}
+        {chips}
       </div>
-    </React.Fragment>
-  )
-};
-
-const FillInBlankTop = (props) => {
-  return (
-    <React.Fragment>
-      <Typography variant="h1" className="nji-fib-header">{props.question.top1}</Typography>
     </React.Fragment>
   )
 };
@@ -47,12 +44,6 @@ class QuestionCard extends React.Component {
     return answer.replace(/\|/g, '');
   };
 
-  getChips = () => {
-    return this.props.question.chips.map((chip) => {
-      return <Chip key={chip} className={chip} label={chip}/>
-    });
-  };
-
   getBottom = () => {
     if (this.props.isMC || this.props.question.questionType === 'fill-in-blank-mc') {
       return <MultipleChoice header={this.props.question.top3}
@@ -72,11 +63,14 @@ class QuestionCard extends React.Component {
 
   getTop = () => {
     if (this.props.question.questionType === 'fill-in-blank-mc') {
-      return <FillInBlankTop question={this.props.question}/>
+      return <FillInBlankTop
+        submitted={!this.props.clickable}
+        choice={this.props.value}
+        question={this.props.question}/>
     } else {
-      return <NormalTop chips={this.getChips()} question={this.props.question}/>
+      return <NormalTop question={this.props.question}/>
     }
-  }
+  };
 
   render() {
     return (

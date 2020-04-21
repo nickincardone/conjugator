@@ -9,6 +9,7 @@ import irregularVerbs from './data/irregularVerbs';
 import haber from './data/haber';
 import verbTypes from './data/verbTypes';
 import verbTypeNicknames from './data/verbTypeNicknames';
+import poropara from './data/poropara';
 import SimpleDialog from './components/simpleDialog/SimpleDialog';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import { Hidden } from '@material-ui/core';
@@ -104,7 +105,7 @@ class App extends React.Component {
     // if (this.state.settings.questionType3) questionTypes.push(3);
     // if (this.state.settings.questionType4 && !this.state.isMobile) questionTypes.push(4);
     // return questionTypes;
-    return [5];
+    return [1];
   }
 
   createQuestions = () => {
@@ -161,14 +162,15 @@ class App extends React.Component {
             currentVerb.conjugations)
         }
       } else {
+        const randomPorOPara = randomItem(poropara);
         currentQuestionObject = {
           questionType: 'fill-in-blank-mc',
-          top1: "¿Dormiste ___ 12 horas?",
+          top1: randomPorOPara.question,
           top2: null,
           top3: null,
           chips: [],
-          answer: 'por',
-          translation: 'You slept for 12 hours?',
+          answer: randomPorOPara.answer,
+          translation: randomPorOPara.translation,
           choices: ['por', 'para']
         }
       }
@@ -241,6 +243,22 @@ class App extends React.Component {
   };
 
   processNext = () => {
+    if (this.questions[this.state.currentQuestion].questionType === 'fill-in-blank-mc') {
+      if (!this.state.clickable) {
+
+        if (this.realAnswer() !== this.state.value) {
+          this.incorrectAnswers = this.incorrectAnswers + 1;
+        }
+        if (this.state.currentQuestion + 1 === this.questions.length) {
+          this.setState({ showStart: true, clickable: true });
+        } else {
+          this.nextQuestion();
+        }
+      } else {
+        this.setState({ clickable: false });
+      }
+      return;
+    }
     this.setState({ clickable: false });
     if (this.state.open) {
       this.setState({ open: false });
