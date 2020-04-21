@@ -5,6 +5,26 @@ import './QuestionCard.scss';
 import MultipleChoice from './MultipleChoice';
 import WrittenOption from './WrittenOption';
 
+const NormalTop = (props) => {
+  return (
+    <React.Fragment>
+      <Typography variant="h1">{props.question.top1}</Typography>
+      <Typography variant="h4">{props.question.top2}</Typography>
+      <div className="nji-main-chips">
+        {props.chips}
+      </div>
+    </React.Fragment>
+  )
+};
+
+const FillInBlankTop = (props) => {
+  return (
+    <React.Fragment>
+      <Typography variant="h1" className="nji-fib-header">{props.question.top1}</Typography>
+    </React.Fragment>
+  )
+};
+
 class QuestionCard extends React.Component {
 
   constructor(props) {
@@ -34,7 +54,7 @@ class QuestionCard extends React.Component {
   };
 
   getBottom = () => {
-    if (this.props.isMC) {
+    if (this.props.isMC || this.props.question.questionType === 'fill-in-blank-mc') {
       return <MultipleChoice header={this.props.question.top3}
                              choices={this.props.question.choices}
                              clickable={this.props.clickable}
@@ -50,15 +70,19 @@ class QuestionCard extends React.Component {
     }
   };
 
+  getTop = () => {
+    if (this.props.question.questionType === 'fill-in-blank-mc') {
+      return <FillInBlankTop question={this.props.question}/>
+    } else {
+      return <NormalTop chips={this.getChips()} question={this.props.question}/>
+    }
+  }
+
   render() {
     return (
       <React.Fragment>
         <div className="nji-main-top">
-          <Typography variant="h1">{this.props.question.top1}</Typography>
-          <Typography variant="h4">{this.props.question.top2}</Typography>
-          <div className="nji-main-chips">
-            {this.getChips()}
-          </div>
+          {this.getTop()}
         </div>
         <div className="nji-main-bottom">
           {this.getBottom()}

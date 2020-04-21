@@ -98,12 +98,13 @@ class App extends React.Component {
   }
 
   getQuestionTypes() {
-    const questionTypes = [];
-    if (this.state.settings.questionType1) questionTypes.push(1);
-    if (this.state.settings.questionType2 && !this.state.isMobile) questionTypes.push(2);
-    if (this.state.settings.questionType3) questionTypes.push(3);
-    if (this.state.settings.questionType4 && !this.state.isMobile) questionTypes.push(4);
-    return questionTypes;
+    // const questionTypes = [];
+    // if (this.state.settings.questionType1) questionTypes.push(1);
+    // if (this.state.settings.questionType2 && !this.state.isMobile) questionTypes.push(2);
+    // if (this.state.settings.questionType3) questionTypes.push(3);
+    // if (this.state.settings.questionType4 && !this.state.isMobile) questionTypes.push(4);
+    // return questionTypes;
+    return [5];
   }
 
   createQuestions = () => {
@@ -139,26 +140,37 @@ class App extends React.Component {
       let currentQuestionObject;
       if (currentQuestionType === 3 || currentQuestionType === 4) {
         currentQuestionObject = {
-          "questionType": currentQuestionType,
-          "top1": currentVerb.definition,
-          "top2": '',
-          "top3": '',
-          "chips": ['defintion'],
-          "answer": currentVerb.verb,
-          "choices": this.getDefinitionChoices(currentVerb.verb)
+          questionType: currentQuestionType,
+          top1: currentVerb.definition,
+          top2: '',
+          top3: '',
+          chips: ['defintion'],
+          answer: currentVerb.verb,
+          choices: this.getDefinitionChoices(currentVerb.verb)
         };
-      } else {
+      } else if (currentQuestionType === 0 || currentQuestionType === 1) {
         currentQuestionObject = {
-          "questionType": currentQuestionType,
-          "top1": currentVerb.verb,
-          "top2": currentVerb.definition,
-          "top3": currentPronoun,
-          "chips": verbTypeList,
-          "answer": this.getAnswer(currentVerbType, currentPronoun, currentVerb.conjugations),
-          "choices": this.getConjugationChoices(currentVerbType,
+          questionType: currentQuestionType,
+          top1: currentVerb.verb,
+          top2: currentVerb.definition,
+          top3: currentPronoun,
+          chips: verbTypeList,
+          answer: this.getAnswer(currentVerbType, currentPronoun, currentVerb.conjugations),
+          choices: this.getConjugationChoices(currentVerbType,
             currentPronoun,
             currentVerb.conjugations)
-        };
+        }
+      } else {
+        currentQuestionObject = {
+          questionType: 'fill-in-blank-mc',
+          top1: "¿Dormiste ___ 12 horas?",
+          top2: null,
+          top3: null,
+          chips: [],
+          answer: 'por',
+          translation: 'You slept for 12 hours?',
+          choices: ['por', 'para']
+        }
       }
       if (currentVerbType === 'participle' || currentVerbType === 'gerund') {
         currentQuestionObject.top3 = '';
