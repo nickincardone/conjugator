@@ -12,9 +12,9 @@ import verbTypeNicknames from './data/verbTypeNicknames';
 import SimpleDialog from './components/simpleDialog/SimpleDialog';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import { Hidden } from '@material-ui/core';
-import QuestionCard from './components/cards/QuestionCard';
 import OptionPage from './components/options/OptionPage';
 import Home from './components/home/Home';
+import QuestCard from './components/cards/QuestionCard';
 
 
 function randomItem(arr) {
@@ -143,9 +143,7 @@ class App extends React.Component {
           "top1": currentVerb.definition,
           "top2": '',
           "top3": '',
-          "type1": 'defintion',
-          "type2": undefined,
-          "type3": undefined,
+          "chips": ['defintion'],
           "answer": currentVerb.verb,
           "choices": this.getDefinitionChoices(currentVerb.verb)
         };
@@ -155,9 +153,7 @@ class App extends React.Component {
           "top1": currentVerb.verb,
           "top2": currentVerb.definition,
           "top3": currentPronoun,
-          "type1": verbTypeList[0],
-          "type2": verbTypeList[1],
-          "type3": verbTypeList[2],
+          "chips": verbTypeList,
           "answer": this.getAnswer(currentVerbType, currentPronoun, currentVerb.conjugations),
           "choices": this.getConjugationChoices(currentVerbType,
             currentPronoun,
@@ -268,7 +264,7 @@ class App extends React.Component {
   getQuestion(questionType) {
     const isMC = questionType % 2 === 1;
     return (
-      <QuestionCard
+      <QuestCard
         isMC={isMC}
         question={this.questions[this.state.currentQuestion]}
         value={this.state.value}

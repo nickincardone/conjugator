@@ -1,13 +1,9 @@
 import React from 'react';
-import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import Chip from '@material-ui/core/Chip';
-import { Hidden } from '@material-ui/core';
-import TextField from '@material-ui/core/TextField';
-import Grid from '@material-ui/core/Grid';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
 import './QuestionCard.scss';
+import MultipleChoice from './MultipleChoice';
+import WrittenOption from './WrittenOption';
 
 class QuestionCard extends React.Component {
 
@@ -27,92 +23,45 @@ class QuestionCard extends React.Component {
     }
   }
 
-  renderMultipleChoice = () => {
-    return (
-      <React.Fragment>
-        <Typography
-          variant="subtitle1">{this.props.question.top3}</Typography>
-        <Grid container spacing="1" className="nji-card-mc">
-          {this.props.question.choices.map((choice, index) => {
-            return (
-              <Grid item xs="6" key={index}
-                    className={this.realAnswer(this.props.question.answer) === choice ?
-                      'nji-ripple nji-correct' : 'nji-ripple nji-incorrect'}>
-                <Card onClick={() => {
-                  if (this.props.clickable) this.handleClick(choice);
-                }}>
-                  <CardContent>
-                    {choice}
-                  </CardContent>
-                </Card>
-              </Grid>
-            )
-          })}
-        </Grid>
-      </React.Fragment>
-    )
-  };
-
-  renderWrittenOption = () => {
-    return (
-      <Typography variant="h1"
-                  className={this.props.value === this.props.question.answer && this.props.isSubmitted ? 'nji-correct' : 'nji-incorrect'}>
-        <TextField id="standard-basic"
-                   label={this.props.question.top3}
-                   onChange={this.props.handleChange} value={this.props.value}
-                   autoFocus={true} autoComplete='off' inputRef={this.textInput}
-        />
-      </Typography>
-    )
-  };
-
-  handleClick = (val) => {
-    this.props.handleSubmit(val);
-  };
-
   realAnswer(answer) {
-    return answer.replace(/\|/g,'');
+    return answer.replace(/\|/g, '');
+  };
+
+  getChips = () => {
+    return this.props.question.chips.map((chip) => {
+      return <Chip key={chip} className={chip} label={chip}/>
+    });
+  };
+
+  getBottom = () => {
+    if (this.props.isMC) {
+      return <MultipleChoice header={this.props.question.top3}
+                             choices={this.props.question.choices}
+                             clickable={this.props.clickable}
+                             click={this.props.handleSubmit}
+                             answer={this.realAnswer(this.props.question.answer)}/>
+    } else {
+      return <WrittenOption header={this.props.question.top3}
+                            value={this.props.value}
+                            submitted={this.props.isSubmitted}
+                            answer={this.realAnswer(this.props.question.answer)}
+                            inputRef={this.textInput}
+                            handleChange={this.props.handleChange}/>
+    }
   };
 
   render() {
     return (
       <React.Fragment>
         <div className="nji-main-top">
-          <Box
-            display={'flex'}
-            flexDirection={'column'}
-            alignItems={'center'}
-            justifyContent={'center'}
-            minHeight={360}
-            color={'common.black'}
-            textAlign={'center'}
-          >
-            <Typography variant="h1">{this.props.question.top1}</Typography>
-            <Typography variant="h4">{this.props.question.top2}</Typography>
-            <div className="nji-main-chips">
-              <Hidden xsUp={this.props.question.type1 === undefined}>
-                <Chip className={this.props.question.type1} label={this.props.question.type1}/>
-              </Hidden>
-              <Hidden xsUp={this.props.question.type2 === undefined}>
-                <Chip className={this.props.question.type2} label={this.props.question.type2}/>
-              </Hidden>
-              <Hidden xsUp={this.props.question.type3 === undefined}>
-                <Chip className={this.props.question.type3} label={this.props.question.type3}/>
-              </Hidden>
-            </div>
-          </Box>
+          <Typography variant="h1">{this.props.question.top1}</Typography>
+          <Typography variant="h4">{this.props.question.top2}</Typography>
+          <div className="nji-main-chips">
+            {this.getChips()}
+          </div>
         </div>
         <div className="nji-main-bottom">
-          <Box
-            display={'flex'}
-            flexDirection={'column'}
-            alignItems={'center'}
-            justifyContent={'center'}
-            color={'common.black'}
-            textAlign={'center'}
-          >
-            {this.props.isMC ? this.renderMultipleChoice() : this.renderWrittenOption()}
-          </Box>
+          {this.getBottom()}
         </div>
       </React.Fragment>
     )

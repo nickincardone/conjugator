@@ -11,9 +11,9 @@ function simpleDialog(props) {
 
   for (let i = 0; i < splitArray.length; i++) {
     if (i % 2 === 0) {
-      styledCorrectAnswer.push(<React.Fragment>{splitArray[i]}</React.Fragment>)
+      styledCorrectAnswer.push(<React.Fragment key={i}>{splitArray[i]}</React.Fragment>)
     } else {
-      styledCorrectAnswer.push(<span style={{"color": "red"}}>{splitArray[i]}</span>)
+      styledCorrectAnswer.push(<span key={i} style={{"color": "red"}}>{splitArray[i]}</span>)
     }
   }
 

@@ -1,4 +1,11 @@
 .nji-main-top {
+  min-height: 360px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
   h1 {
     font-size: 7em;
     margin-top: 20px;
@@ -70,6 +77,12 @@
 }
 
 .nji-main-bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
   .MuiInputLabel-root {
     transform: translateX(-50%);
     left: 50%;
