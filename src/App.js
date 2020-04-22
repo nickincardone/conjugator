@@ -48,6 +48,7 @@ class App extends React.Component {
         questionType2: true,
         questionType3: true,
         questionType4: true,
+        questionType5: true,
         verbTypes: [
           "indicative.present",
           "indicative.preterite",
@@ -117,13 +118,13 @@ class App extends React.Component {
   }
 
   getQuestionTypes() {
-    // const questionTypes = [];
-    // if (this.state.settings.questionType1) questionTypes.push(1);
-    // if (this.state.settings.questionType2 && !this.state.isMobile) questionTypes.push(2);
-    // if (this.state.settings.questionType3) questionTypes.push(3);
-    // if (this.state.settings.questionType4 && !this.state.isMobile) questionTypes.push(4);
-    // return questionTypes;
-    return [5];
+    const questionTypes = [];
+    if (this.state.settings.questionType1) questionTypes.push(1);
+    if (this.state.settings.questionType2 && !this.state.isMobile) questionTypes.push(2);
+    if (this.state.settings.questionType3) questionTypes.push(3);
+    if (this.state.settings.questionType4 && !this.state.isMobile) questionTypes.push(4);
+    if (this.state.settings.questionType5) questionTypes.push(5);
+    return questionTypes;
   }
 
   createQuestions = () => {
@@ -165,7 +166,8 @@ class App extends React.Component {
           top3: '',
           chips: ['defintion'],
           answer: currentVerb.verb,
-          choices: this.getDefinitionChoices(currentVerb.verb)
+          choices: this.getDefinitionChoices(currentVerb.verb),
+          explanation: 0
         };
       } else if (currentQuestionType === 0 || currentQuestionType === 1) {
         currentQuestionObject = {
@@ -177,7 +179,8 @@ class App extends React.Component {
           answer: this.getAnswer(currentVerbType, currentPronoun, currentVerb.conjugations),
           choices: this.getConjugationChoices(currentVerbType,
             currentPronoun,
-            currentVerb.conjugations)
+            currentVerb.conjugations),
+          explanation: 0
         }
       } else {
         const randomPorOPara = randomItem(poropara);
