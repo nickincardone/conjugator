@@ -1363,7 +1363,7 @@ const irregularVerbs = [
     "verb": "apagar",
     "definition": "to turn off",
     "conjugations": {
-      "participle": "apagado,apag|o|",
+      "participle": "apagado",
       "gerund": "apagando",
       "indicative": {
         "present": {
@@ -1444,7 +1444,6 @@ const irregularVerbs = [
     },
     "isIrregular": true,
     "irregularities": [
-      "participle",
       "indicative.preterite.yo",
       "subjunctive.present.yo",
       "subjunctive.present.tu",
@@ -2426,7 +2425,7 @@ const irregularVerbs = [
     "verb": "bendecir",
     "definition": "to bless",
     "conjugations": {
-      "participle": "bendecido,bend|it|o",
+      "participle": "bend|it|o",
       "gerund": "bend|i|ciendo",
       "indicative": {
         "present": {
@@ -4411,7 +4410,7 @@ const irregularVerbs = [
     "verb": "confesar",
     "definition": "to confess",
     "conjugations": {
-      "participle": "confesado,confes|o|",
+      "participle": "confesado",
       "gerund": "confesando",
       "indicative": {
         "present": {
@@ -4492,7 +4491,6 @@ const irregularVerbs = [
     },
     "isIrregular": true,
     "irregularities": [
-      "participle",
       "indicative.present.yo",
       "indicative.present.tu",
       "indicative.present.el",
@@ -5412,7 +5410,7 @@ const irregularVerbs = [
     "verb": "convertir",
     "definition": "to turn into",
     "conjugations": {
-      "participle": "convertido,conver|s|o",
+      "participle": "convertido",
       "gerund": "conv|i|rtiendo",
       "indicative": {
         "present": {
@@ -5493,7 +5491,6 @@ const irregularVerbs = [
     },
     "isIrregular": true,
     "irregularities": [
-      "participle",
       "gerund",
       "indicative.present.yo",
       "indicative.present.tu",
@@ -8013,7 +8010,7 @@ const irregularVerbs = [
     "verb": "elegir",
     "definition": "to choose",
     "conjugations": {
-      "participle": "elegido,ele|ct|o",
+      "participle": "elegido",
       "gerund": "el|i|giendo",
       "indicative": {
         "present": {
@@ -8094,7 +8091,6 @@ const irregularVerbs = [
     },
     "isIrregular": true,
     "irregularities": [
-      "participle",
       "gerund",
       "indicative.present.yo",
       "indicative.present.tu",
@@ -9779,94 +9775,6 @@ const irregularVerbs = [
       "subjunctive.present.nosotros",
       "subjunctive.present.vosotros",
       "subjunctive.present.ellos"
-    ]
-  },
-  {
-    "verb": "expresar",
-    "definition": "to express",
-    "conjugations": {
-      "participle": "expresado,ex|expres|o",
-      "gerund": "expresando",
-      "indicative": {
-        "present": {
-          "yo": "expreso",
-          "tu": "expresas",
-          "el": "expresa",
-          "nosotros": "expresamos",
-          "vosotros": "expresáis",
-          "ellos": "expresan"
-        },
-        "preterite": {
-          "yo": "expresé",
-          "tu": "expresaste",
-          "el": "expresó",
-          "nosotros": "expresamos",
-          "vosotros": "expresasteis",
-          "ellos": "expresaron"
-        },
-        "imperfect": {
-          "yo": "expresaba",
-          "tu": "expresabas",
-          "el": "expresaba",
-          "nosotros": "expresábamos",
-          "vosotros": "expresabais",
-          "ellos": "expresaban"
-        },
-        "conditional": {
-          "yo": "expresaría",
-          "tu": "expresarías",
-          "el": "expresaría",
-          "nosotros": "expresaríamos",
-          "vosotros": "expresaríais",
-          "ellos": "expresarían"
-        },
-        "future": {
-          "yo": "expresaré",
-          "tu": "expresarás",
-          "el": "expresará",
-          "nosotros": "expresaremos",
-          "vosotros": "expresaréis",
-          "ellos": "expresarán"
-        }
-      },
-      "subjunctive": {
-        "present": {
-          "yo": "exprese",
-          "tu": "expreses",
-          "el": "exprese",
-          "nosotros": "expresemos",
-          "vosotros": "expreséis",
-          "ellos": "expresen"
-        },
-        "imperfect": {
-          "yo": "expresara",
-          "tu": "expresaras",
-          "el": "expresara",
-          "nosotros": "expresáramos",
-          "vosotros": "expresarais",
-          "ellos": "expresaran"
-        },
-        "imperfect2": {
-          "yo": "expresase",
-          "tu": "expresases",
-          "el": "expresase",
-          "nosotros": "expresásemos",
-          "vosotros": "expresaseis",
-          "ellos": "expresasen"
-        },
-        "future": {
-          "yo": "expresare",
-          "tu": "expresares",
-          "el": "expresare",
-          "nosotros": "expresáremos",
-          "vosotros": "expresareis",
-          "ellos": "expresaren"
-        }
-      }
-    },
-    "isIrregular": true,
-    "irregularities": [
-      "participle"
     ]
   },
   {
@@ -11609,7 +11517,7 @@ const irregularVerbs = [
     "verb": "imprimir",
     "definition": "to print",
     "conjugations": {
-      "participle": "imprimido,impr|es|o",
+      "participle": "impr|es|o",
       "gerund": "imprimiendo",
       "indicative": {
         "present": {
@@ -11697,7 +11605,7 @@ const irregularVerbs = [
     "verb": "incluir",
     "definition": "to include",
     "conjugations": {
-      "participle": "incluido,inclu|s|o",
+      "participle": "incluido",
       "gerund": "inclu|y|endo",
       "indicative": {
         "present": {
@@ -11778,7 +11686,6 @@ const irregularVerbs = [
     },
     "isIrregular": true,
     "irregularities": [
-      "participle",
       "gerund",
       "indicative.present.yo",
       "indicative.present.tu",
@@ -13069,7 +12976,7 @@ const irregularVerbs = [
     "verb": "maldecir",
     "definition": "to swear,to curse",
     "conjugations": {
-      "participle": "maldecido,mald|it|o",
+      "participle": "mald|it|o",
       "gerund": "mald|i|ciendo",
       "indicative": {
         "present": {
@@ -14153,7 +14060,7 @@ const irregularVerbs = [
     "verb": "nacer",
     "definition": "to be born",
     "conjugations": {
-      "participle": "nacido,na|t|o",
+      "participle": "nacido",
       "gerund": "naciendo",
       "indicative": {
         "present": {
@@ -14234,7 +14141,6 @@ const irregularVerbs = [
     },
     "isIrregular": true,
     "irregularities": [
-      "participle",
       "indicative.present.yo",
       "subjunctive.present.yo",
       "subjunctive.present.tu",
@@ -15205,7 +15111,7 @@ const irregularVerbs = [
     "verb": "pagar",
     "definition": "to pay,to pay for",
     "conjugations": {
-      "participle": "pagado,pag|o|",
+      "participle": "pagado",
       "gerund": "pagando",
       "indicative": {
         "present": {
@@ -15286,7 +15192,6 @@ const irregularVerbs = [
     },
     "isIrregular": true,
     "irregularities": [
-      "participle",
       "indicative.preterite.yo",
       "subjunctive.present.yo",
       "subjunctive.present.tu",

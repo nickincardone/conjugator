@@ -102,6 +102,7 @@ class App extends React.Component {
     this.setState((oldState, props) => {
       const settingsCopy = { ...oldState.settings };
       settingsCopy[eventTarget.name] = eventTarget.checked;
+      console.log(settingsCopy)
       return { settings: settingsCopy }
     });
   };
@@ -169,7 +170,7 @@ class App extends React.Component {
           choices: this.getDefinitionChoices(currentVerb.verb),
           explanation: 0
         };
-      } else if (currentQuestionType === 0 || currentQuestionType === 1) {
+      } else if (currentQuestionType === 1 || currentQuestionType === 2) {
         currentQuestionObject = {
           questionType: currentQuestionType,
           top1: currentVerb.verb,
@@ -276,7 +277,7 @@ class App extends React.Component {
   processNext = () => {
     if (this.questions[this.state.currentQuestion].questionType === 'fill-in-blank-mc') {
       if (!this.state.clickable) {
-        if (this.realAnswer() !== this.state.value) {
+        if (this.realAnswer() !== this.state.value.toLowerCase()) {
           this.incorrectAnswers = this.incorrectAnswers + 1;
         }
         if (this.state.currentQuestion + 1 === this.questions.length) {
@@ -298,7 +299,7 @@ class App extends React.Component {
         this.nextQuestion();
       }
     } else {
-      if (this.realAnswer() !== this.state.value) {
+      if (this.realAnswer() !== this.state.value.toLowerCase()) {
         this.setState({ open: true });
         this.incorrectAnswers = this.incorrectAnswers + 1;
       } else {
@@ -318,7 +319,7 @@ class App extends React.Component {
   };
 
   realAnswer() {
-    return this.questions[this.state.currentQuestion].answer.replace(/\|/g, '');
+    return this.questions[this.state.currentQuestion].answer.replace(/\|/g, '').toLowerCase();
   }
 
   getQuestion(questionType) {
