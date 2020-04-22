@@ -67,10 +67,12 @@ class App extends React.Component {
 
   componentWillMount = () => {
     document.addEventListener("keydown", this.handleKeyDown, false);
+    document.addEventListener("touchend", this.handleKeyDown, false);
   };
 
   componentWillUnmount = () => {
     document.removeEventListener("keydown", this.handleKeyDown, false);
+    document.removeEventListener("touchend", this.handleKeyDown, false);
   };
 
   resolve(path, obj) {
@@ -244,13 +246,15 @@ class App extends React.Component {
   };
 
   handleKeyDown = (e) => {
+    const isEnterOrTouch = e.key === 'Enter' || e.type === 'touchend';
+    if (e.target !== null && e.target.classList && e.target.classList.contains('prevent-touch')) return;
     //por o para next
-    if (e.key === 'Enter' && this.questions[this.state.currentQuestion].questionType === 'fill-in-blank-mc'
+    if (isEnterOrTouch && this.questions[this.state.currentQuestion].questionType === 'fill-in-blank-mc'
       && !this.state.clickable) {
       return this.processNext();
     }
     //popup next
-    if (e.key === 'Enter' && (this.questions[this.state.currentQuestion].questionType % 2 === 0 || this.state.open)) {
+    if (isEnterOrTouch && (this.questions[this.state.currentQuestion].questionType % 2 === 0 || this.state.open)) {
       this.setState({ 'submitted': true });
       this.processNext();
     }

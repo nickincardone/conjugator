@@ -27,7 +27,7 @@ const FillInBlankTop = (props) => {
           <Typography variant="h1" className={'nji-fib-header ' + className}>{questionText}</Typography>
       </Tooltip>
       {/*<HelpIcon className={"nji-fib-why " + className}/>*/}
-      <Typography onClick={() => {props.showExplanation()}} variant="subtitle1" className={className}>{nextString}</Typography>
+      <Typography onClick={() => {props.showExplanation()}} variant="subtitle1" className={className + ' prevent-touch'}>{nextString}</Typography>
     </div>
   )
 };
