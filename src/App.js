@@ -118,7 +118,7 @@ class App extends React.Component {
     // if (this.state.settings.questionType3) questionTypes.push(3);
     // if (this.state.settings.questionType4 && !this.state.isMobile) questionTypes.push(4);
     // return questionTypes;
-    return [1,2,3,4,5];
+    return [5];
   }
 
   createQuestions = () => {

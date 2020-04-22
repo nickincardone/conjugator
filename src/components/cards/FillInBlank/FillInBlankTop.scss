@@ -2,16 +2,24 @@
   .nji-fib-header {
     font-size: 3em;
     border-bottom: 2px dotted #cacaca;
+    display: inline-block;
+    margin: 10px;
 
     .nji-correct {
-      color: #00ca00
+      color: #00ca00;
     }
 
     .nji-incorrect {
-      color: #ff3d33
+      color: #ff3d33;
     }
     &:hover {
       border-bottom: 2px dotted #5a5a5a;
+    }
+  }
+  .nji-fib-why {
+    display: none;
+    &.nji-incorrect {
+      display: inline-block;
     }
   }
 }
