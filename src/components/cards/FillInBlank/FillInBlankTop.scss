@@ -22,6 +22,17 @@
       display: inline-block;
     }
   }
+  .MuiTypography-subtitle1 {
+    display: none;
+    &.nji-incorrect,&.nji-correct {
+      display: block;
+    }
+  }
+  .MuiTypography-h1 {
+    &.nji-incorrect,&.nji-correct {
+      margin-top: 38px;
+    }
+  }
 }
 
 .nji-fib-tooltip.MuiTooltip-tooltip {

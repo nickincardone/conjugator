@@ -66,7 +66,8 @@ class QuestionCard extends React.Component {
       return <FillInBlankTop
         submitted={!this.props.clickable}
         choice={this.props.value}
-        question={this.props.question}/>
+        question={this.props.question}
+        showExplanation={this.props.showExplanation}/>
     } else {
       return <NormalTop question={this.props.question}/>
     }

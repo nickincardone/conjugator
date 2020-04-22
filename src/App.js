@@ -10,12 +10,14 @@ import haber from './data/haber';
 import verbTypes from './data/verbTypes';
 import verbTypeNicknames from './data/verbTypeNicknames';
 import poropara from './data/poropara';
-import SimpleDialog from './components/simpleDialog/SimpleDialog';
+import rules from './data/rules';
+import SimpleDialog from './components/dialogs/simpleDialog/SimpleDialog';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import { Hidden } from '@material-ui/core';
 import OptionPage from './components/options/OptionPage';
 import Home from './components/home/Home';
 import QuestCard from './components/cards/QuestionCard';
+import ExplanationDialog from './components/dialogs/explanationDialog/ExplanationDialog';
 
 
 function randomItem(arr) {
@@ -32,6 +34,7 @@ class App extends React.Component {
       currentQuestion: 0,
       numberOfQuestions: 5,
       open: false,
+      showExplanation: false,
       showStart: true,
       showCustom: false,
       submitted: false,
@@ -184,7 +187,8 @@ class App extends React.Component {
           chips: [],
           answer: randomPorOPara.answer,
           translation: randomPorOPara.translation,
-          choices: ['por', 'para']
+          choices: ['por', 'para'],
+          explanation: 13
         }
       }
       if (currentVerbType === 'participle' || currentVerbType === 'gerund') {
@@ -241,7 +245,7 @@ class App extends React.Component {
 
   handleKeyDown = (e) => {
     //por o para next
-    if (this.questions[this.state.currentQuestion].questionType === 'fill-in-blank-mc'
+    if (e.key === 'Enter' && this.questions[this.state.currentQuestion].questionType === 'fill-in-blank-mc'
       && !this.state.clickable) {
       return this.processNext();
     }
@@ -257,6 +261,7 @@ class App extends React.Component {
       currentQuestion: oldState.currentQuestion + 1,
       value: "",
       clickable: true,
+      showExplanation: false,
       submitted: false
     }));
   };
@@ -268,7 +273,7 @@ class App extends React.Component {
           this.incorrectAnswers = this.incorrectAnswers + 1;
         }
         if (this.state.currentQuestion + 1 === this.questions.length) {
-          this.setState({ showStart: true, clickable: true });
+          this.setState({ showStart: true, showExplanation: false, clickable: true });
         } else {
           this.nextQuestion();
         }
@@ -281,7 +286,7 @@ class App extends React.Component {
     if (this.state.open) {
       this.setState({ open: false });
       if (this.state.currentQuestion + 1 === this.questions.length) {
-        this.setState({ showStart: true, clickable: true });
+        this.setState({ showStart: true, showExplanation: false, clickable: true });
       } else {
         this.nextQuestion();
       }
@@ -292,7 +297,7 @@ class App extends React.Component {
       } else {
         if (this.state.currentQuestion + 1 === this.questions.length) {
           setTimeout(() => {
-            this.setState({ showStart: true, clickable: true });
+            this.setState({ showStart: true, showExplanation: false, clickable: true });
           }, 300);
         } else {
           setTimeout(this.nextQuestion, 300);
@@ -316,6 +321,7 @@ class App extends React.Component {
         isMC={isMC}
         question={this.questions[this.state.currentQuestion]}
         value={this.state.value}
+        showExplanation={this.openExplanation}
         clickable={this.state.clickable}
         handleSubmit={this.handleSubmit}
         handleChange={this.handleChange}
@@ -349,6 +355,14 @@ class App extends React.Component {
 
   sliderChange = (event, newValue) => {
     this.setState({ numberOfQuestions: newValue });
+  };
+
+  closeExplanation = () => {
+    this.setState({showExplanation: false});
+  };
+
+  openExplanation = () => {
+    this.setState({showExplanation: true});
   };
 
   getAppClass = () => {
@@ -387,6 +401,10 @@ class App extends React.Component {
                     variant="determinate"
                     color="secondary"
                     value={(this.state.currentQuestion / this.state.numberOfQuestions) * 100}/>
+                    <ExplanationDialog
+                      open={this.state.showExplanation}
+                      handleClose={this.closeExplanation}
+                      rule={rules[this.questions[this.state.currentQuestion].explanation]}/>
                   <SimpleDialog
                     open={this.state.open}
                     handleClose={this.processNext}
