@@ -57,6 +57,19 @@ class App extends React.Component {
     this.createQuestions();
   }
 
+  temp = (event) => {
+    console.log(event)
+    console.log('hi');
+  }
+
+  componentWillMount = () => {
+    document.addEventListener("keydown", this.handleKeyDown, false);
+  };
+
+  componentWillUnmount = () => {
+    document.removeEventListener("keydown", this.handleKeyDown, false);
+  };
+
   resolve(path, obj) {
     const properties = Array.isArray(path) ? path : path.split('.');
     return properties.reduce((prev, curr) => prev && prev[curr], obj);
@@ -105,7 +118,7 @@ class App extends React.Component {
     // if (this.state.settings.questionType3) questionTypes.push(3);
     // if (this.state.settings.questionType4 && !this.state.isMobile) questionTypes.push(4);
     // return questionTypes;
-    return [1];
+    return [1,2,3,4,5];
   }
 
   createQuestions = () => {
@@ -227,7 +240,13 @@ class App extends React.Component {
   };
 
   handleKeyDown = (e) => {
-    if (e.key === 'Enter') {
+    //por o para next
+    if (this.questions[this.state.currentQuestion].questionType === 'fill-in-blank-mc'
+      && !this.state.clickable) {
+      return this.processNext();
+    }
+    //popup next
+    if (e.key === 'Enter' && (this.questions[this.state.currentQuestion].questionType % 2 === 0 || this.state.open)) {
       this.setState({ 'submitted': true });
       this.processNext();
     }
@@ -245,7 +264,6 @@ class App extends React.Component {
   processNext = () => {
     if (this.questions[this.state.currentQuestion].questionType === 'fill-in-blank-mc') {
       if (!this.state.clickable) {
-
         if (this.realAnswer() !== this.state.value) {
           this.incorrectAnswers = this.incorrectAnswers + 1;
         }
@@ -340,7 +358,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <Container maxWidth="md" className="nji-main" onKeyDown={this.handleKeyDown}>
+      <Container maxWidth="md" className="nji-main">
         <Grid container className={this.getAppClass()} direction="column">
           <Grid item>
             <Card className="nji-main-card">
