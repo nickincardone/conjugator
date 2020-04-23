@@ -16,7 +16,7 @@ import LinearProgress from '@material-ui/core/LinearProgress';
 import { Hidden } from '@material-ui/core';
 import OptionPage from './components/options/OptionPage';
 import Home from './components/home/Home';
-import QuestCard from './components/cards/QuestionCard';
+import QuestionCard from './components/cards/QuestionCard';
 import ExplanationDialog from './components/dialogs/explanationDialog/ExplanationDialog';
 
 
@@ -61,19 +61,12 @@ class App extends React.Component {
     this.createQuestions();
   }
 
-  temp = (event) => {
-    console.log(event)
-    console.log('hi');
-  }
-
-  componentWillMount = () => {
+  componentDidMount = () => {
     document.addEventListener("keydown", this.handleKeyDown, false);
-    document.addEventListener("touchend", this.handleKeyDown, false);
   };
 
   componentWillUnmount = () => {
     document.removeEventListener("keydown", this.handleKeyDown, false);
-    document.removeEventListener("touchend", this.handleKeyDown, false);
   };
 
   resolve(path, obj) {
@@ -102,7 +95,6 @@ class App extends React.Component {
     this.setState((oldState, props) => {
       const settingsCopy = { ...oldState.settings };
       settingsCopy[eventTarget.name] = eventTarget.checked;
-      console.log(settingsCopy)
       return { settings: settingsCopy }
     });
   };
@@ -306,9 +298,9 @@ class App extends React.Component {
         if (this.state.currentQuestion + 1 === this.questions.length) {
           setTimeout(() => {
             this.setState({ showStart: true, showExplanation: false, clickable: true });
-          }, 300);
+          }, 400);
         } else {
-          setTimeout(this.nextQuestion, 300);
+          setTimeout(this.nextQuestion, 400);
         }
       }
     }
@@ -325,12 +317,13 @@ class App extends React.Component {
   getQuestion(questionType) {
     const isMC = questionType % 2 === 1;
     return (
-      <QuestCard
+      <QuestionCard
         isMC={isMC}
         question={this.questions[this.state.currentQuestion]}
         value={this.state.value}
         showExplanation={this.openExplanation}
         clickable={this.state.clickable}
+        next={this.processNext}
         handleSubmit={this.handleSubmit}
         handleChange={this.handleChange}
         isSubmitted={this.state.submitted}/>
@@ -348,6 +341,7 @@ class App extends React.Component {
         showCustom: false,
         currentQuestion: 0,
         started: true,
+        submitted: false,
         value: ''
       });
     });
@@ -411,12 +405,12 @@ class App extends React.Component {
                     value={(this.state.currentQuestion / this.state.numberOfQuestions) * 100}/>
                     <ExplanationDialog
                       open={this.state.showExplanation}
-                      handleClose={this.closeExplanation}
+                      handleClose={this.processNext}
                       rule={rules[this.questions[this.state.currentQuestion].explanation]}/>
                   <SimpleDialog
                     open={this.state.open}
-                    handleClose={this.processNext}
                     answer={this.state.value}
+                    handleClose={this.processNext}
                     correctAnswer={this.questions[this.state.currentQuestion].answer}/>
                   {this.getQuestion(this.questions[this.state.currentQuestion].questionType)}
                 </Hidden>

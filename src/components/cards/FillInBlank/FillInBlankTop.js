@@ -38,10 +38,21 @@ const FillInBlankTop = (props) => {
   return (
     <div>
       <Tooltip classes={{tooltip: 'nji-fib-tooltip'}} placement={placement} title={props.question.translation}>
-          <Typography variant="h1" className={'nji-fib-header ' + className}>{questionText}</Typography>
+        <Typography variant="h1" className={'nji-fib-header ' + className}><span>{questionText}</span></Typography>
       </Tooltip>
       {/*<HelpIcon className={"nji-fib-why " + className}/>*/}
-      <Typography onClick={() => {if (className === 'nji-incorrect') props.showExplanation()}} variant="subtitle1" className={className + ' prevent-touch'}>{nextString}</Typography>
+      <Typography
+        onClick={() => {
+          if (className === 'nji-incorrect') {
+            props.showExplanation()
+          } else {
+            props.next()
+          }}
+        }
+        variant="subtitle1"
+        className={className + ' prevent-touch'}>
+        {nextString}
+      </Typography>
     </div>
   )
 };

@@ -1,9 +1,11 @@
 .nji-main-top {
   .nji-fib-header {
     font-size: 3em;
-    border-bottom: 2px dotted #cacaca;
     display: inline-block;
     margin: 10px;
+    @media (max-width: 600px) {
+      font-size: 2.5em;
+    }
 
     .nji-correct {
       color: #00ca00;
@@ -12,24 +14,34 @@
     .nji-incorrect {
       color: #ff3d33;
     }
-    &:hover {
-      border-bottom: 2px dotted #5a5a5a;
+
+    span {
+      border-bottom: 2px dotted #cacaca;
+      &:hover {
+        border-bottom: 2px dotted #5a5a5a;
+      }
     }
+
   }
+
   .nji-fib-why {
     display: none;
+
     &.nji-incorrect {
       display: inline-block;
     }
   }
+
   .MuiTypography-subtitle1 {
     display: none;
-    &.nji-incorrect,&.nji-correct {
+
+    &.nji-incorrect, &.nji-correct {
       display: block;
     }
   }
+
   .MuiTypography-h1 {
-    &.nji-incorrect,&.nji-correct {
+    &.nji-incorrect, &.nji-correct {
       margin-top: 38px;
     }
   }

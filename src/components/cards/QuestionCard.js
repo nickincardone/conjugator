@@ -41,7 +41,7 @@ class QuestionCard extends React.Component {
   }
 
   realAnswer(answer) {
-    return answer.replace(/\|/g, '');
+    return answer.replace(/\|/g, '').toLowerCase();
   };
 
   getBottom = () => {
@@ -67,6 +67,7 @@ class QuestionCard extends React.Component {
         submitted={!this.props.clickable}
         choice={this.props.value}
         question={this.props.question}
+        next={this.props.next}
         showExplanation={this.props.showExplanation}/>
     } else {
       return <NormalTop question={this.props.question}/>
