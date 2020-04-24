@@ -81,6 +81,10 @@ class OptionPage extends React.Component {
                                    onChange={this.props.settingsChanged}
                                    label="Definition (Written)"/>
                 </Hidden>
+                {/*<CustomFormLabel name="questionType5"*/}
+                {/*                 checked={this.props.settings.questionType5}*/}
+                {/*                 onChange={this.props.settingsChanged}*/}
+                {/*                 label="Por vs Para"/>*/}
               </FormGroup>
             </Grid>
             <Grid item xs={12} sm={6}>

@@ -27,7 +27,6 @@ class Home extends React.Component {
         minHeight={360}
         color={'common.black'}
         textAlign={'center'}
-        style={{ 'paddingTop': '50px' }}
         className="nji-home-top"
       >
         <Hidden xsUp={this.props.started}>Hello, welcome to Conjugator</Hidden>

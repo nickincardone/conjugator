@@ -9,12 +9,15 @@ import irregularVerbs from './data/irregularVerbs';
 import haber from './data/haber';
 import verbTypes from './data/verbTypes';
 import verbTypeNicknames from './data/verbTypeNicknames';
-import SimpleDialog from './components/simpleDialog/SimpleDialog';
+import poropara from './data/poropara';
+import rules from './data/rules';
+import SimpleDialog from './components/dialogs/simpleDialog/SimpleDialog';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import { Hidden } from '@material-ui/core';
 import OptionPage from './components/options/OptionPage';
 import Home from './components/home/Home';
-import QuestCard from './components/cards/QuestionCard';
+import QuestionCard from './components/cards/QuestionCard';
+import ExplanationDialog from './components/dialogs/explanationDialog/ExplanationDialog';
 
 
 function randomItem(arr) {
@@ -31,6 +34,7 @@ class App extends React.Component {
       currentQuestion: 0,
       numberOfQuestions: 5,
       open: false,
+      showExplanation: false,
       showStart: true,
       showCustom: false,
       submitted: false,
@@ -44,6 +48,7 @@ class App extends React.Component {
         questionType2: true,
         questionType3: true,
         questionType4: true,
+        questionType5: false,
         verbTypes: [
           "indicative.present",
           "indicative.preterite",
@@ -55,6 +60,14 @@ class App extends React.Component {
     };
     this.createQuestions();
   }
+
+  componentDidMount = () => {
+    document.addEventListener("keydown", this.handleKeyDown, false);
+  };
+
+  componentWillUnmount = () => {
+    document.removeEventListener("keydown", this.handleKeyDown, false);
+  };
 
   resolve(path, obj) {
     const properties = Array.isArray(path) ? path : path.split('.');
@@ -103,6 +116,7 @@ class App extends React.Component {
     if (this.state.settings.questionType2 && !this.state.isMobile) questionTypes.push(2);
     if (this.state.settings.questionType3) questionTypes.push(3);
     if (this.state.settings.questionType4 && !this.state.isMobile) questionTypes.push(4);
+    if (this.state.settings.questionType5) questionTypes.push(5);
     return questionTypes;
   }
 
@@ -131,6 +145,10 @@ class App extends React.Component {
         }
         currentVerbType = irregularTenses.join('.');
         if (!this.state.settings.verbTypes.includes(currentVerbType)) continue;
+        if (currentVerbType === 'subjunctive.present' && this.state.settings.verbTypes.length !== 1) {
+          //reducing the chance of picking a subjunctive present by half
+          if (randomItem(randomItem([true, false]))) continue;
+        }
         if (!this.state.settings.vosotros && currentPronoun === 'vosotros') continue;
       }
 
@@ -139,26 +157,41 @@ class App extends React.Component {
       let currentQuestionObject;
       if (currentQuestionType === 3 || currentQuestionType === 4) {
         currentQuestionObject = {
-          "questionType": currentQuestionType,
-          "top1": currentVerb.definition,
-          "top2": '',
-          "top3": '',
-          "chips": ['defintion'],
-          "answer": currentVerb.verb,
-          "choices": this.getDefinitionChoices(currentVerb.verb)
+          questionType: currentQuestionType,
+          top1: currentVerb.definition,
+          top2: '',
+          top3: '',
+          chips: ['defintion'],
+          answer: currentVerb.verb,
+          choices: this.getDefinitionChoices(currentVerb.verb),
+          explanation: 0
         };
-      } else {
+      } else if (currentQuestionType === 1 || currentQuestionType === 2) {
         currentQuestionObject = {
-          "questionType": currentQuestionType,
-          "top1": currentVerb.verb,
-          "top2": currentVerb.definition,
-          "top3": currentPronoun,
-          "chips": verbTypeList,
-          "answer": this.getAnswer(currentVerbType, currentPronoun, currentVerb.conjugations),
-          "choices": this.getConjugationChoices(currentVerbType,
+          questionType: currentQuestionType,
+          top1: currentVerb.verb,
+          top2: currentVerb.definition,
+          top3: currentPronoun,
+          chips: verbTypeList,
+          answer: this.getAnswer(currentVerbType, currentPronoun, currentVerb.conjugations),
+          choices: this.getConjugationChoices(currentVerbType,
             currentPronoun,
-            currentVerb.conjugations)
-        };
+            currentVerb.conjugations),
+          explanation: 0
+        }
+      } else {
+        const randomPorOPara = randomItem(poropara);
+        currentQuestionObject = {
+          questionType: 'fill-in-blank-mc',
+          top1: randomPorOPara.question,
+          top2: null,
+          top3: null,
+          chips: [],
+          answer: randomPorOPara.answer,
+          translation: randomPorOPara.translation,
+          choices: ['por', 'para'],
+          explanation: 13
+        }
       }
       if (currentVerbType === 'participle' || currentVerbType === 'gerund') {
         currentQuestionObject.top3 = '';
@@ -213,7 +246,15 @@ class App extends React.Component {
   };
 
   handleKeyDown = (e) => {
-    if (e.key === 'Enter') {
+    const isEnterOrTouch = e.key === 'Enter' || e.type === 'touchend';
+    if (e.target !== null && e.target.classList && e.target.classList.contains('prevent-touch')) return;
+    //por o para next
+    if (isEnterOrTouch && this.questions[this.state.currentQuestion].questionType === 'fill-in-blank-mc'
+      && !this.state.clickable) {
+      return this.processNext();
+    }
+    //popup next
+    if (isEnterOrTouch && (this.questions[this.state.currentQuestion].questionType % 2 === 0 || this.state.open)) {
       this.setState({ 'submitted': true });
       this.processNext();
     }
@@ -224,30 +265,46 @@ class App extends React.Component {
       currentQuestion: oldState.currentQuestion + 1,
       value: "",
       clickable: true,
+      showExplanation: false,
       submitted: false
     }));
   };
 
   processNext = () => {
+    if (this.questions[this.state.currentQuestion].questionType === 'fill-in-blank-mc') {
+      if (!this.state.clickable) {
+        if (this.realAnswer() !== this.state.value.toLowerCase()) {
+          this.incorrectAnswers = this.incorrectAnswers + 1;
+        }
+        if (this.state.currentQuestion + 1 === this.questions.length) {
+          this.setState({ showStart: true, showExplanation: false, clickable: true });
+        } else {
+          this.nextQuestion();
+        }
+      } else {
+        this.setState({ clickable: false });
+      }
+      return;
+    }
     this.setState({ clickable: false });
     if (this.state.open) {
       this.setState({ open: false });
       if (this.state.currentQuestion + 1 === this.questions.length) {
-        this.setState({ showStart: true, clickable: true });
+        this.setState({ showStart: true, showExplanation: false, clickable: true });
       } else {
         this.nextQuestion();
       }
     } else {
-      if (this.realAnswer() !== this.state.value) {
+      if (this.realAnswer() !== this.state.value.toLowerCase()) {
         this.setState({ open: true });
         this.incorrectAnswers = this.incorrectAnswers + 1;
       } else {
         if (this.state.currentQuestion + 1 === this.questions.length) {
           setTimeout(() => {
-            this.setState({ showStart: true, clickable: true });
-          }, 300);
+            this.setState({ showStart: true, showExplanation: false, clickable: true });
+          }, 400);
         } else {
-          setTimeout(this.nextQuestion, 300);
+          setTimeout(this.nextQuestion, 400);
         }
       }
     }
@@ -258,17 +315,19 @@ class App extends React.Component {
   };
 
   realAnswer() {
-    return this.questions[this.state.currentQuestion].answer.replace(/\|/g, '');
+    return this.questions[this.state.currentQuestion].answer.replace(/\|/g, '').toLowerCase();
   }
 
   getQuestion(questionType) {
     const isMC = questionType % 2 === 1;
     return (
-      <QuestCard
+      <QuestionCard
         isMC={isMC}
         question={this.questions[this.state.currentQuestion]}
         value={this.state.value}
+        showExplanation={this.openExplanation}
         clickable={this.state.clickable}
+        next={this.processNext}
         handleSubmit={this.handleSubmit}
         handleChange={this.handleChange}
         isSubmitted={this.state.submitted}/>
@@ -286,6 +345,7 @@ class App extends React.Component {
         showCustom: false,
         currentQuestion: 0,
         started: true,
+        submitted: false,
         value: ''
       });
     });
@@ -303,6 +363,14 @@ class App extends React.Component {
     this.setState({ numberOfQuestions: newValue });
   };
 
+  closeExplanation = () => {
+    this.setState({showExplanation: false});
+  };
+
+  openExplanation = () => {
+    this.setState({showExplanation: true});
+  };
+
   getAppClass = () => {
     return (this.state.showStart && this.state.showCustom)
       ? 'center-grid nji-option-mobile' : 'center-grid';
@@ -310,7 +378,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <Container maxWidth="md" className="nji-main" onKeyDown={this.handleKeyDown}>
+      <Container maxWidth="md" className="nji-main">
         <Grid container className={this.getAppClass()} direction="column">
           <Grid item>
             <Card className="nji-main-card">
@@ -339,10 +407,14 @@ class App extends React.Component {
                     variant="determinate"
                     color="secondary"
                     value={(this.state.currentQuestion / this.state.numberOfQuestions) * 100}/>
+                    <ExplanationDialog
+                      open={this.state.showExplanation}
+                      handleClose={this.processNext}
+                      rule={rules[this.questions[this.state.currentQuestion].explanation]}/>
                   <SimpleDialog
                     open={this.state.open}
-                    handleClose={this.processNext}
                     answer={this.state.value}
+                    handleClose={this.processNext}
                     correctAnswer={this.questions[this.state.currentQuestion].answer}/>
                   {this.getQuestion(this.questions[this.state.currentQuestion].questionType)}
                 </Hidden>

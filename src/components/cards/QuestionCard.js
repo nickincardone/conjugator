@@ -4,6 +4,23 @@ import Chip from '@material-ui/core/Chip';
 import './QuestionCard.scss';
 import MultipleChoice from './MultipleChoice';
 import WrittenOption from './WrittenOption';
+import FillInBlankTop from './FillInBlank/FillInBlankTop';
+
+const NormalTop = (props) => {
+  const chips = props.question.chips.map((chip) => {
+    return <Chip key={chip} className={chip} label={chip}/>
+  });
+
+  return (
+    <React.Fragment>
+      <Typography variant="h1">{props.question.top1}</Typography>
+      <Typography variant="h4">{props.question.top2}</Typography>
+      <div className="nji-main-chips">
+        {chips}
+      </div>
+    </React.Fragment>
+  )
+};
 
 class QuestionCard extends React.Component {
 
@@ -24,17 +41,11 @@ class QuestionCard extends React.Component {
   }
 
   realAnswer(answer) {
-    return answer.replace(/\|/g, '');
-  };
-
-  getChips = () => {
-    return this.props.question.chips.map((chip) => {
-      return <Chip key={chip} className={chip} label={chip}/>
-    });
+    return answer.replace(/\|/g, '').toLowerCase();
   };
 
   getBottom = () => {
-    if (this.props.isMC) {
+    if (this.props.isMC || this.props.question.questionType === 'fill-in-blank-mc') {
       return <MultipleChoice header={this.props.question.top3}
                              choices={this.props.question.choices}
                              clickable={this.props.clickable}
@@ -50,15 +61,24 @@ class QuestionCard extends React.Component {
     }
   };
 
+  getTop = () => {
+    if (this.props.question.questionType === 'fill-in-blank-mc') {
+      return <FillInBlankTop
+        submitted={!this.props.clickable}
+        choice={this.props.value}
+        question={this.props.question}
+        next={this.props.next}
+        showExplanation={this.props.showExplanation}/>
+    } else {
+      return <NormalTop question={this.props.question}/>
+    }
+  };
+
   render() {
     return (
       <React.Fragment>
         <div className="nji-main-top">
-          <Typography variant="h1">{this.props.question.top1}</Typography>
-          <Typography variant="h4">{this.props.question.top2}</Typography>
-          <div className="nji-main-chips">
-            {this.getChips()}
-          </div>
+          {this.getTop()}
         </div>
         <div className="nji-main-bottom">
           {this.getBottom()}

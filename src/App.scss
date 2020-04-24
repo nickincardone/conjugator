@@ -2,6 +2,9 @@ html, body {
   margin: 0;
   height: 100%;
   background-color: #c8f1f5;
+  @media (max-width: 600px) {
+    overflow: hidden;
+  }
 }
 
 #root {
@@ -30,7 +33,7 @@ html, body {
   font-family: 'Sen', 'Open Sans', sans-serif;
   min-height: 600px;
   @media (max-width: 600px) {
-    min-height: 500px;
+    min-height: 300px;
   }
 
   .MuiCardContent-root {

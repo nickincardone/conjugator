@@ -3,15 +3,11 @@ import TextField from '@material-ui/core/TextField';
 
 const writtenOption = (props) => {
 
-  function getClass() {
-    if (props.value === props.answer && props.submitted) {
-      return 'nji-correct';
-    }
-    return 'nji-incorrect';
-  }
+  const className = props.value && props.value.toLowerCase() === props.answer && props.submitted
+    ? 'nji-correct' : 'nji-incorrect';
 
   return (
-    <div className={getClass()}>
+    <div className={className}>
       <TextField id="standard-basic"
                  label={props.header}
                  onChange={props.handleChange} value={props.value}

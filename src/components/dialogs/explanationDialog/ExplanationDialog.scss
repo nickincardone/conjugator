@@ -1,0 +1,23 @@
+.nji-explanation-body {
+  padding: 0 20px;
+  h1 {
+    margin: 0;
+  }
+  h2 {
+    margin-bottom: 10px;
+  }
+  .nji-rule-span {
+    font-weight: bold;
+  }
+  .nji-example {
+    border-bottom: 2px dotted black;
+  }
+  .nji-caption {
+    margin-top: 20px;
+  }
+}
+
+.nji-explanation-tooltip.MuiTooltip-tooltip {
+  margin-top: 5px;
+  font-size: 0.8em;
+}
