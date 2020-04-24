@@ -48,7 +48,7 @@ class App extends React.Component {
         questionType2: true,
         questionType3: true,
         questionType4: true,
-        questionType5: true,
+        questionType5: false,
         verbTypes: [
           "indicative.present",
           "indicative.preterite",
@@ -145,6 +145,10 @@ class App extends React.Component {
         }
         currentVerbType = irregularTenses.join('.');
         if (!this.state.settings.verbTypes.includes(currentVerbType)) continue;
+        if (currentVerbType === 'subjunctive.present' && this.state.settings.verbTypes.length !== 1) {
+          //reducing the chance of picking a subjunctive present by half
+          if (randomItem(randomItem([true, false]))) continue;
+        }
         if (!this.state.settings.vosotros && currentPronoun === 'vosotros') continue;
       }
 

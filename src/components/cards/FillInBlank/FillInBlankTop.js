@@ -1,8 +1,7 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import './FillInBlankTop.scss';
-import Tooltip from '@material-ui/core/Tooltip';
-// import HelpIcon from '@material-ui/icons/Help';
+import ModifiedTooltip from '../../ui/ModifiedTooltip/ModifiedTooltip';
 
 function capitalize(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
@@ -37,10 +36,11 @@ const FillInBlankTop = (props) => {
 
   return (
     <div>
-      <Tooltip classes={{tooltip: 'nji-fib-tooltip'}} placement={placement} title={props.question.translation}>
+      <ModifiedTooltip
+        placement={placement}
+        title={props.question.translation}>
         <Typography variant="h1" className={'nji-fib-header ' + className}><span>{questionText}</span></Typography>
-      </Tooltip>
-      {/*<HelpIcon className={"nji-fib-why " + className}/>*/}
+      </ModifiedTooltip>
       <Typography
         onClick={() => {
           if (className === 'nji-incorrect') {
