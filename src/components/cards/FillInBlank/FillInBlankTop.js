@@ -7,8 +7,8 @@ function capitalize(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
-function isBeginning(string) {
-  return string === '' || '!\'"¿'.indexOf(string) > -1;
+function isBeginning(string, index) {
+  return index === 1 && (string === '' || '!\'"¿'.indexOf(string) > -1);
 }
 
 const FillInBlankTop = (props) => {
@@ -20,16 +20,20 @@ const FillInBlankTop = (props) => {
   if (props.submitted) {
     className = props.choice === props.question.answer ?
       'nji-correct' : 'nji-incorrect';
+
     const splitArr = props.question.top1.split('___');
-    questionText = (
-      <React.Fragment>
-        {splitArr[0]}
-        <span className={className}>
-          {isBeginning(splitArr[0]) ? capitalize(props.choice) : props.choice}
-        </span>
-        {splitArr[1]}
-      </React.Fragment>
-    )
+    questionText = [];
+    splitArr.forEach((text, i) => {
+      if (i % 2 === 0) {
+        questionText.push(<React.Fragment>text</React.Fragment>)
+      } else {
+        questionText.push(
+          <span className={className}>
+            {isBeginning(splitArr[0], i) ? capitalize(props.choice) : props.choice}
+          </span>
+        )
+      }
+    });
   }
 
   const placement = className.length > 0 ? 'top' : 'bottom';

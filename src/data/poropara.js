@@ -204,7 +204,7 @@ const poropara = [
   },
   {
     "question": "La ensalada es ___ mí y el gazpacho es ___ ella.",
-    "translation": "The salad is for me and the gazpacho es for her.",
+    "translation": "The salad is for me and the gazpacho is for her.",
     "answer": "para",
     "reason": 20
   },

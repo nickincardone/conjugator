@@ -13,7 +13,7 @@ function simpleDialog(props) {
     if (i % 2 === 0) {
       styledCorrectAnswer.push(<React.Fragment key={i}>{splitArray[i]}</React.Fragment>)
     } else {
-      styledCorrectAnswer.push(<span key={i} style={{"color": "red"}}>{splitArray[i]}</span>)
+      styledCorrectAnswer.push(<span key={i} style={{"font-weight": "bold"}}>{splitArray[i]}</span>)
     }
   }
 

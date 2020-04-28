@@ -190,7 +190,7 @@ class App extends React.Component {
           answer: randomPorOPara.answer,
           translation: randomPorOPara.translation,
           choices: ['por', 'para'],
-          explanation: 13
+          explanation: randomPorOPara.reason
         }
       }
       if (currentVerbType === 'participle' || currentVerbType === 'gerund') {

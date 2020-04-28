@@ -122,13 +122,13 @@ const rules = [
     id: 17,
     use: "por o para",
     rule: "Express Opinion",
-    example: "|Para mi|, drogas son mal",
+    example: "|Para| mi, drogas son mal",
     translation: "To me, drugs are bad"
   },{
     id: 18,
     use: "por o para",
     rule: "Express personal capability ",
-    example: "Español es dificil para mi",
+    example: "Español es dificil |para| mi",
     translation: "Spanish is difficult for me"
   },
   {
