@@ -110,7 +110,8 @@ const rules = [
     rule: "Express Destination or Direction",
     example: "Viajo |para| (a) Antigua",
     translation: "I am traveling to Antigua"
-  },{
+  },
+  {
     id: 16,
     use: "por o para",
     rule: "Express relation that things/people share",
@@ -136,7 +137,21 @@ const rules = [
     rule: "Indicate imminent action (Estoy + Para)",
     example: "Estoy |para| salir",
     translation: "I am leaving"
-  }
+  },
+  {
+    id: 20,
+    use: "por o para",
+    rule: "Express Destination (Person or Object)",
+    example: "Esta carta es |para| ti.",
+    translation: "This letter is for you"
+  },
+  {
+    id: 21,
+    use: "por o para",
+    rule: "Colliqual",
+    example: "",
+    translation: ""
+  },
 ];
 
 export default rules;
