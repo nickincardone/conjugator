@@ -16237,20 +16237,20 @@ const irregularVerbs = [
           "ellos": "predecían"
         },
         "conditional": {
-          "yo": "pred|ir|ía,predec|ir|ía",
-          "tu": "pred|ir|ías,predec|ir|ías",
-          "el": "pred|ir|ía,predec|ir|ía",
-          "nosotros": "pred|ir|íamos,predec|ir|íamos",
-          "vosotros": "pred|ir|íais,predec|ir|íais",
-          "ellos": "pred|ir|ían,predec|ir|ían"
+          "yo": "pred|ir|ía",
+          "tu": "pred|ir|ías",
+          "el": "pred|ir|ía",
+          "nosotros": "pred|ir|íamos",
+          "vosotros": "pred|ir|íais",
+          "ellos": "pred|ir|ían"
         },
         "future": {
-          "yo": "pred|ir|é,predec|ir|é",
-          "tu": "pred|ir|ás,predec|ir|ás",
-          "el": "pred|ir|á,predec|ir|á",
-          "nosotros": "pred|ir|emos,predec|ir|emos",
-          "vosotros": "pred|ir|éis,predec|ir|éis",
-          "ellos": "pred|ir|án,predec|ir|án"
+          "yo": "pred|ir|é",
+          "tu": "pred|ir|ás",
+          "el": "pred|ir|á",
+          "nosotros": "pred|ir|emos",
+          "vosotros": "pred|ir|éis",
+          "ellos": "pred|ir|án"
         }
       },
       "subjunctive": {
@@ -17224,7 +17224,7 @@ const irregularVerbs = [
       "gerund": "ra|y|endo",
       "indicative": {
         "present": {
-          "yo": "ra|ig|o,ra|y|o",
+          "yo": "ra|y|o",
           "tu": "raes",
           "el": "rae",
           "nosotros": "raemos",
@@ -17266,12 +17266,12 @@ const irregularVerbs = [
       },
       "subjunctive": {
         "present": {
-          "yo": "ra|ig|a,ra|y|a",
-          "tu": "ra|ig|as,ra|y|as",
-          "el": "ra|ig|a,ra|y|a",
-          "nosotros": "ra|ig|amos,ra|y|amos",
-          "vosotros": "ra|ig|áis,ra|y|áis",
-          "ellos": "ra|ig|an,ra|y|an"
+          "yo": "ra|y|a",
+          "tu": "ra|y|as",
+          "el": "ra|y|a",
+          "nosotros": "ra|y|amos",
+          "vosotros": "ra|y|áis",
+          "ellos": "ra|y|an"
         },
         "imperfect": {
           "yo": "ra|y|era",

@@ -46,6 +46,7 @@ function getStringDifferenceArray(str, stringDifference, noMatchNumber, answerAr
     return answerArray;
   }
   if (stringDifference[0] === '') {
+    stringDifference.shift();
     answerArray.push([noMatchNumber, str]);
     return answerArray;
   }
@@ -55,7 +56,10 @@ function getStringDifferenceArray(str, stringDifference, noMatchNumber, answerAr
       answerArray.push([0, str]);
       return answerArray;
     } else {
-      answerArray.push([noMatchNumber, str]);
+      const currentSplitArr = splitFirst(str, currentMatch);
+      if (currentSplitArr[0] !== '') answerArray.push([noMatchNumber, currentSplitArr[0]]);
+      answerArray.push([0, currentMatch]);
+      if (currentSplitArr[1] !== '') answerArray.push([noMatchNumber, currentSplitArr[1]]);
       return answerArray;
     }
   }
