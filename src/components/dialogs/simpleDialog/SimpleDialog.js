@@ -42,8 +42,8 @@ function simpleDialog(props) {
       <Typography variant="h4">Keep working on this one!</Typography>
       {/*<Typography variant="subtitle1">Your answer: {props.answer}</Typography>*/}
       {/*<Typography variant="subtitle2">Correct answer: {styledCorrectAnswer}</Typography>*/}
-      <Typography variant="subtitle1">Your answer: {styledAnswer(inputArray)}</Typography>
-      <Typography variant="subtitle2">Correct answer: {styledAnswer(answerArray)}</Typography>
+      <Typography variant="subtitle1">Correct answer: {styledAnswer(answerArray)}</Typography>
+      <Typography variant="subtitle2">Your answer: {styledAnswer(inputArray)}</Typography>
       <Hidden smUp>
         <Typography variant="caption">Touch anywhere to continue</Typography>
       </Hidden>

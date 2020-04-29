@@ -152,6 +152,20 @@ const rules = [
     example: "",
     translation: ""
   },
+  {
+    id: 22,
+    use: "por o para",
+    rule: "Feelings for something",
+    example: "Tengo tanto amor |por| ti",
+    translation: "I have so much love for you"
+  },
+  {
+    id: 23,
+    use: "por o para",
+    rule: "By (physically)",
+    example: "Corrí |por| el río",
+    translation: "I ran by the river"
+  },
 ];
 
 export default rules;

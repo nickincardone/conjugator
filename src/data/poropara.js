@@ -610,6 +610,925 @@ const poropara = [
     "answer": "para",
     "reason": 13
   },
+  //here
+  {
+    "question": "Gracias ___ venir",
+    "translation": "Thanks for coming",
+    "answer": "por",
+    "reason": 3
+  },
+  {
+    "question": "La contacté ___ correo.",
+    "translation": "I contacted her through mail.",
+    "answer": "por",
+    "reason": 6
+  },
+  {
+    "question": "Viajé ___ Francia y España.",
+    "translation": "I traveled through France and Spain.",
+    "answer": "por",
+    "reason": 7
+  },
+  {
+    "question": "¿Quieres pasar ___ el parque?",
+    "translation": "Do you want to walk through the park?",
+    "answer": "por",
+    "reason": 7
+  },
+  {
+    "question": "Te cambiearía mi manzana ___ tu sandwich.",
+    "translation": "I would change my apple for your sandwich.",
+    "answer": "por",
+    "reason": 3
+  },
+  {
+    "question": "Te doy sesenta pesos ___ la mochila.",
+    "translation": "I am giving you sixty pesos for the backpack.",
+    "answer": "por",
+    "reason": 3
+  },
+  {
+    "question": "Tengo que trabajar ___ ocho horas hoy.",
+    "translation": "I have to work for eight hours today.",
+    "answer": "por",
+    "reason": 2
+  },
+  {
+    "question": "¿Dormiste ___ 12 horas?",
+    "translation": "Did you sleep 12 hours?",
+    "answer": "por",
+    "reason": 2
+  },
+  {
+    "question": "Por su amor a los niños, quiere ser pediatra.",
+    "translation": "Because of her love for children, she wants to be a pediatrician.",
+    "answer": "por",
+    "reason": 4
+  },
+  {
+    "question": "Trabajo ___ ti, porque te quiero cuidar.",
+    "translation": "I work for you, because I want to take care of you.",
+    "answer": "por",
+    "reason": 9
+  },
+  {
+    "question": "Viajamos en coche ___ ocho horas.",
+    "translation": "I traveled by car for eight hours.",
+    "answer": "por",
+    "reason": 2
+  },
+  {
+    "question": "Estudié ___ cinco horas.",
+    "translation": "I studied for 5 hours",
+    "answer": "por",
+    "reason": 2
+  },
+  {
+    "question": "___ su amor al español, siempre lo estudiaba.",
+    "translation": "Because of his love of Spanish, he always studied it.",
+    "answer": "por",
+    "reason": 4
+  },
+  {
+    "question": "___ el número de gente que vino, pedí más comida.",
+    "translation": "Because of the number of people that came, I asked for more food.",
+    "answer": "por",
+    "reason": 9
+  },
+  {
+    "question": "Tengo tanto amor ___ ti.",
+    "translation": "I have so much love for you.",
+    "answer": "por",
+    "reason": 22
+  },
+  {
+    "question": "La chica siente muchos celos ___ la estrella del cine.",
+    "translation": "The girl is very jealous of the movie star.",
+    "answer": "por",
+    "reason": 22
+  },
+  {
+    "question": "Pagué $60 por estos zapatos.",
+    "translation": "I paid $60 for these shoes.",
+    "answer": "por",
+    "reason": 3
+  },
+  {
+    "question": "Te daré mi galleta ___ tu pastelito.",
+    "translation": "I'll give you my cookie for your cupcake.",
+    "answer": "por",
+    "reason": 3
+  },
+  {
+    "question": "Viajamos ___ tren a Italia.",
+    "translation": "I traveled by train to Italy.",
+    "answer": "por",
+    "reason": 5
+  },
+  {
+    "question": "Hablamos ___ teléfono anoche.",
+    "translation": "We talked on the phone last night.",
+    "answer": "por",
+    "reason": 6
+  },
+  {
+    "question": "Caminamos ___ el parque hace dos días.",
+    "translation": "We walked through the park two days ago.",
+    "answer": "por",
+    "reason": 7
+  },
+  {
+    "question": "Hay una maestra sustituta ___ la Señora Martinez hoy.",
+    "translation": "There is a substitute teacher for Mrs. Martinez today.",
+    "answer": "por",
+    "reason": 9
+  },
+  {
+    "question": "Fui al supermercado ___ mi madre porque ella estaba enferma.",
+    "translation": "I went to the supermarket for my mother because she was sick.",
+    "answer": "por",
+    "reason": 9
+  },
+  {
+    "question": "Salimos por la puerta.",
+    "translation": "We left through the door.",
+    "answer": "por",
+    "reason": 7
+  },
+  {
+    "question": "Conduje ___ dos horas.",
+    "translation": "I drove for two hours.",
+    "answer": "por",
+    "reason": 2
+  },
+  {
+    "question": "___ favor, ten el artículo listo para mañana",
+    "translation": "Please, have the article ready by tomorrow",
+    "answer": "por",
+    "reason": 3
+  },
+  {
+    "question": "He vivido en Colombia ___ cinco años",
+    "translation": "I have lived in Colombia for five years",
+    "answer": "por",
+    "reason": 2
+  },
+  {
+    "question": "Veo la televisión ___ una hora todos los días",
+    "translation": "I watch TV for a hour every day",
+    "answer": "por",
+    "reason": 0
+  },
+  {
+    "question": "Pasé el día caminando ___ las calles de San Francisco",
+    "translation": "I passed the day walking through the streets of San Francisco",
+    "answer": "por",
+    "reason": 7
+  },
+  {
+    "question": "Hoy solamente, puedes comprar dos pizzas ___ $10",
+    "translation": "Today only, you can buy two pizzas for $10",
+    "answer": "por",
+    "reason": 3
+  },
+  {
+    "question": "Lo hice ___ respeto",
+    "translation": "I did it for respect",
+    "answer": "por",
+    "reason": 3
+  },
+  {
+    "question": "Te pagaré el martes ___ una hamburguesa hoy",
+    "translation": "I will pay you on Tuesday for a hamburger today",
+    "answer": "por",
+    "reason": 3
+  },
+  {
+    "question": "Mi hermano estaba enfermo, así que cuidé a los niños ___ él",
+    "translation": "My brother was sick so I looked after the children for him",
+    "answer": "por",
+    "reason": 9
+  },
+  {
+    "question": "El juego fue cancelado ___ la lluvia",
+    "translation": "The game was canceled by the rain",
+    "answer": "por",
+    "reason": 4
+  },
+  {
+    "question": "Alquilamos un lugar más grande ___ el número de personas",
+    "translation": "We rent a bigger place by the number of people",
+    "answer": "por",
+    "reason": 9
+  },
+  {
+    "question": "No me gusta hablar ___ teléfono",
+    "translation": "I do not like to talk on the phone",
+    "answer": "por",
+    "reason": 6
+  },
+  {
+    "question": "Estoy ___ la libertad de expresión",
+    "translation": "I am for freedom of expression",
+    "answer": "por",
+    "reason": 8
+  },
+  {
+    "question": "El cuadro fue pintado ___ Picasso",
+    "translation": "The picture was painted by Picasso",
+    "answer": "por",
+    "reason": 1
+  },
+  {
+    "question": "Estudio medicina ___ mis padres.",
+    "translation": "I study medicine for my parents.",
+    "answer": "por",
+    "reason": 9
+  },
+  {
+    "question": "Estudio medicina ___ mi deseo de ser médico.",
+    "translation": "I study medicine because of my desire to be a doctor.",
+    "answer": "por",
+    "reason": 9
+  },
+  {
+    "question": "La oficina está cerrada ___ vacaciones.",
+    "translation": "The office is closed for holidays.",
+    "answer": "por",
+    "reason": 0
+  },
+  {
+    "question": "Llegamos dos horas más tarde ___ el tráfico.",
+    "translation": "We arrived two hours later due to traffic.",
+    "answer": "por",
+    "reason": 4
+  },
+  {
+    "question": "Se suspendió el concierto ___ la lluvia.",
+    "translation": "The concert was suspended due to the rain.",
+    "answer": "por",
+    "reason": 4
+  },
+  {
+    "question": "Vamos a pasar ___ el parque.",
+    "translation": "Let's go through the park.",
+    "answer": "por",
+    "reason": 7
+  },
+  {
+    "question": "Tienes que entrar ___ allí.",
+    "translation": "You have to enter through here.",
+    "answer": "por",
+    "reason": 7
+  },
+  {
+    "question": "Corro ___ el río todos los días.",
+    "translation": "I run by the river every day",
+    "answer": "por",
+    "reason": 23
+  },
+  {
+    "question": "No puedo hablar por mis amigos.",
+    "translation": "I cannot talk for my friends",
+    "answer": "por",
+    "reason": 9
+  },
+  {
+    "question": "Marco no puede trabajar hoy. Trabajo por él.",
+    "translation": "Marco cannot work today. I am working for him.",
+    "answer": "por",
+    "reason": 9
+  },
+  {
+    "question": "El murió ___ su país.",
+    "translation": "He died for his country",
+    "answer": "por",
+    "reason": 4
+  },
+  {
+    "question": "Estoy hablando ___ teléfono con mi madre. ",
+    "translation": "I am talking on the phone with my mother.",
+    "answer": "por",
+    "reason": 6
+  },
+  {
+    "question": "Lara me ha enviado mis resultados por correo electrónico.",
+    "translation": "Lara has sent me my results via email",
+    "answer": "por",
+    "reason": 6
+  },
+  {
+    "question": "Él envió el paquete por avión.",
+    "translation": "",
+    "answer": "por",
+    "reason": 0
+  },
+  {
+    "question": "No me gusta trabajar por la mañana.",
+    "translation": "",
+    "answer": "por",
+    "reason": 0
+  },
+  {
+    "question": "Tienes que ver la ciudad por la noche. Es increíble.",
+    "translation": "",
+    "answer": "por",
+    "reason": 0
+  },
+  {
+    "question": "Yo prefiero salir por la noche de los viernes.",
+    "translation": "",
+    "answer": "por",
+    "reason": 0
+  },
+  {
+    "question": "Lo compré por 12 euros.",
+    "translation": "",
+    "answer": "por",
+    "reason": 0
+  },
+  {
+    "question": "Ella me dio 15 dólares por la lámpara.",
+    "translation": "",
+    "answer": "por",
+    "reason": 0
+  },
+  {
+    "question": "Me encanta tu bolso. ¿Te interesa cambiarlo por mi chaqueta?",
+    "translation": "",
+    "answer": "por",
+    "reason": 0
+  },
+  {
+    "question": "Lo siento por lo que he dicho.",
+    "translation": "",
+    "answer": "por",
+    "reason": 0
+  },
+  {
+    "question": "Gracias por la información.",
+    "translation": "",
+    "answer": "por",
+    "reason": 0
+  },
+  {
+    "question": "Dos por dos son cuatro.",
+    "translation": "",
+    "answer": "por",
+    "reason": 0
+  },
+  {
+    "question": "Voy al restaurante cinco veces por semana.",
+    "translation": "",
+    "answer": "por",
+    "reason": 0
+  },
+  {
+    "question": "Andamos por el parque.",
+    "translation": "",
+    "answer": "por",
+    "reason": 0
+  },
+  {
+    "question": "Él me dio diez dólares por el libro.",
+    "translation": "",
+    "answer": "por",
+    "reason": 0
+  },
+  {
+    "question": "No voté por nadie.",
+    "translation": "",
+    "answer": "por",
+    "reason": 0
+  },
+  {
+    "question": "Yo estudié por dos horas.",
+    "translation": "",
+    "answer": "por",
+    "reason": 0
+  },
+  {
+    "question": "Se puede ver las estrellas por la noche.",
+    "translation": "",
+    "answer": "por",
+    "reason": 0
+  },
+  {
+    "question": "Prefiero viajar por tren y hablar por teléfono.",
+    "translation": "",
+    "answer": "por",
+    "reason": 0
+  },
+  {
+    "question": "Me tienen por loco.",
+    "translation": "",
+    "answer": "por",
+    "reason": 0
+  },
+  {
+    "question": "Paso por ti a las ocho.",
+    "translation": "",
+    "answer": "por",
+    "reason": 0
+  },
+  {
+    "question": "La cena está por cocinar.",
+    "translation": "",
+    "answer": "por",
+    "reason": 0
+  },
+  {
+    "question": "El hombre murió por falta de agua.",
+    "translation": "",
+    "answer": "por",
+    "reason": 0
+  },
+  {
+    "question": "El libro fue escrito por Octavio Paz.",
+    "translation": "",
+    "answer": "por",
+    "reason": 0
+  },
+  {
+    "question": "Estoy por tomar café.",
+    "translation": "",
+    "answer": "por",
+    "reason": 0
+  },
+  {
+    "question": "Estudio español por mi trabajo.",
+    "translation": "",
+    "answer": "por",
+    "reason": 0
+  },
+  {
+    "question": "Este autobús pasa por el centro de la ciudad.",
+    "translation": "",
+    "answer": "por",
+    "reason": 0
+  },
+  {
+    "question": "El año pasado viajamos por España.﻿",
+    "translation": "",
+    "answer": "por",
+    "reason": 0
+  },
+  {
+    "question": "Este puente fue construido por los romanos.",
+    "translation": "",
+    "answer": "por",
+    "reason": 0
+  },
+  {
+    "question": "No hay ningún cine por aquí, creo que hay uno por el centro.",
+    "translation": "",
+    "answer": "por",
+    "reason": 0
+  },
+  {
+    "question": "Anoche hablé con Ana por teléfono.",
+    "translation": "",
+    "answer": "por",
+    "reason": 0
+  },
+  {
+    "question": "Yo corro por el parque en las mañanas",
+    "translation": "",
+    "answer": "por",
+    "reason": 0
+  },
+  {
+    "question": "Voy a Mexico por Tijuana.",
+    "translation": "",
+    "answer": "por",
+    "reason": 0
+  },
+  {
+    "question": "Solamente durmieron por cuatro horas",
+    "translation": "",
+    "answer": "por",
+    "reason": 0
+  },
+  {
+    "question": "Ella siempre duerme por las tardes",
+    "translation": "",
+    "answer": "por",
+    "reason": 0
+  },
+  {
+    "question": "La fiesta fue organizada por sus padres",
+    "translation": "",
+    "answer": "por",
+    "reason": 0
+  },
+  {
+    "question": "Enseñé la clase por mi amiga. Estuvo enferma",
+    "translation": "",
+    "answer": "por",
+    "reason": 0
+  },
+  {
+    "question": "Por las elecciones, hay mucha gente en las calles",
+    "translation": "",
+    "answer": "por",
+    "reason": 0
+  },
+  {
+    "question": "Tomaba clases dos veces por semana",
+    "translation": "",
+    "answer": "por",
+    "reason": 0
+  },
+  {
+    "question": "Julia siempre va al restaurante por la tarde",
+    "translation": "",
+    "answer": "por",
+    "reason": 0
+  },
+  {
+    "question": "La tienda debe estar por aqui",
+    "translation": "",
+    "answer": "por",
+    "reason": 0
+  },
+  {
+    "question": "Visitaré a mis amigos por el verano",
+    "translation": "",
+    "answer": "por",
+    "reason": 0
+  },
+  {
+    "question": "Limpié la casa por ti.",
+    "translation": "",
+    "answer": "por",
+    "reason": 0
+  },
+  {
+    "question": "Por mí como si no vuelve",
+    "translation": "",
+    "answer": "por",
+    "reason": 0
+  },
+  {
+    "question": "Lo compró por mí.",
+    "translation": "",
+    "answer": "por",
+    "reason": 0
+  },
+  {
+    "question": "Me dijo la verdad por mí.",
+    "translation": "",
+    "answer": "por",
+    "reason": 0
+  },
+  {
+    "question": "Limpié la casa por ti",
+    "translation": "",
+    "answer": "por",
+    "reason": 0
+  },
+  {
+    "question": "Llegué tarde por tu culpa",
+    "translation": "",
+    "answer": "por",
+    "reason": 0
+  },
+  {
+    "question": "No fuimos al parque por la lluvia",
+    "translation": "",
+    "answer": "por",
+    "reason": 0
+  },
+  {
+    "question": "Ganó el campeonato por su resistencia",
+    "translation": "",
+    "answer": "por",
+    "reason": 0
+  },
+  {
+    "question": "Voy al cine dos veces por semana.",
+    "translation": "",
+    "answer": "por",
+    "reason": 0
+  },
+  {
+    "question": "Me pagan cuatro veces por mes",
+    "translation": "",
+    "answer": "por",
+    "reason": 0
+  },
+  {
+    "question": "Michael está conduciendo a 80 millas por hora",
+    "translation": "",
+    "answer": "por",
+    "reason": 0
+  },
+  {
+    "question": "Muchas gracias por todo",
+    "translation": "",
+    "answer": "por",
+    "reason": 0
+  },
+  {
+    "question": "Perdona por llegar tarde",
+    "translation": "",
+    "answer": "por",
+    "reason": 0
+  },
+  {
+    "question": "Todavía tengo dos libros por leer",
+    "translation": "",
+    "answer": "por",
+    "reason": 0
+  },
+  {
+    "question": "La habitación está por ordenar",
+    "translation": "",
+    "answer": "por",
+    "reason": 0
+  },
+  {
+    "question": "Lo hice por ti.",
+    "translation": "",
+    "answer": "por",
+    "reason": 0
+  },
+  {
+    "question": "Mis padres fueron a Italia por nosotros porque teníamos mucho trabajo",
+    "translation": "",
+    "answer": "por",
+    "reason": 0
+  },
+  {
+    "question": "Sesenta dividido por dos son treinta",
+    "translation": "",
+    "answer": "por",
+    "reason": 0
+  },
+  {
+    "question": "Me gusta viajar por Europa",
+    "translation": "",
+    "answer": "por",
+    "reason": 0
+  },
+  {
+    "question": "A ella le gusta pasear por la orilla del mar",
+    "translation": "",
+    "answer": "por",
+    "reason": 0
+  },
+  {
+    "question": "Estoy por pedir pizza",
+    "translation": "",
+    "answer": "por",
+    "reason": 0
+  },
+  {
+    "question": "Estamos por irnos a dormir.",
+    "translation": "",
+    "answer": "por",
+    "reason": 0
+  },
+  {
+    "question": "Por lo menos no estoy solo",
+    "translation": "",
+    "answer": "por",
+    "reason": 0
+  },
+  {
+    "question": "Llegué a tiempo por los pelos",
+    "translation": "",
+    "answer": "por",
+    "reason": 0
+  },
+  {
+    "question": "Por lo mismo no te lo dije",
+    "translation": "",
+    "answer": "por",
+    "reason": 0
+  },
+  {
+    "question": "Tienes que pagar por adelantado",
+    "translation": "",
+    "answer": "por",
+    "reason": 0
+  },
+  {
+    "question": "por lo tanto la respuesta es No",
+    "translation": "",
+    "answer": "por",
+    "reason": 0
+  },
+  {
+    "question": "No tengo nada que decir por ahora",
+    "translation": "",
+    "answer": "por",
+    "reason": 0
+  },
+  {
+    "question": "Por lo visto es enfermera",
+    "translation": "",
+    "answer": "por",
+    "reason": 0
+  },
+  {
+    "question": "Por lo que a mí me toca, el mayor problema es el idioma",
+    "translation": "",
+    "answer": "por",
+    "reason": 0
+  },
+  {
+    "question": "Debe estar por ahí.",
+    "translation": "",
+    "answer": "por",
+    "reason": 0
+  },
+  {
+    "question": "Tuve que repetirlo palabra por palabra.",
+    "translation": "",
+    "answer": "por",
+    "reason": 0
+  },
+  {
+    "question": "Por sano que sea, no quiero comerlo",
+    "translation": "",
+    "answer": "por",
+    "reason": 0
+  },
+  {
+    "question": "Por lo que he oído no es de España",
+    "translation": "",
+    "answer": "por",
+    "reason": 0
+  },
+  {
+    "question": "Podemos ir por aquí.",
+    "translation": "",
+    "answer": "por",
+    "reason": 0
+  },
+  {
+    "question": "Por mi parte, prometo volver pronto",
+    "translation": "",
+    "answer": "por",
+    "reason": 0
+  },
+  {
+    "question": "Por medio de este artículo podrás aprender a usar por y para",
+    "translation": "",
+    "answer": "por",
+    "reason": 0
+  },
+  {
+    "question": "Lo encontré por casualidad",
+    "translation": "",
+    "answer": "por",
+    "reason": 0
+  },
+  {
+    "question": "Lo había olvidado por completo",
+    "translation": "",
+    "answer": "por",
+    "reason": 0
+  },
+  {
+    "question": "Por cierto, ¿tienes más café?",
+    "translation": "",
+    "answer": "por",
+    "reason": 0
+  },
+  {
+    "question": "El treinta por ciento de la gente no votó",
+    "translation": "",
+    "answer": "por",
+    "reason": 0
+  },
+  {
+    "question": "No fuimos por motivo de la lluvia",
+    "translation": "",
+    "answer": "por",
+    "reason": 0
+  },
+  {
+    "question": "No lo encuentro por ningún lado",
+    "translation": "",
+    "answer": "por",
+    "reason": 0
+  },
+  {
+    "question": "Por un lado, ya es muy tarde",
+    "translation": "",
+    "answer": "por",
+    "reason": 0
+  },
+  {
+    "question": "Por otro lado, está lloviendo",
+    "translation": "",
+    "answer": "por",
+    "reason": 0
+  },
+  {
+    "question": "Por eso no puedes ir a la fiesta",
+    "translation": "",
+    "answer": "por",
+    "reason": 0
+  },
+  {
+    "question": "Por poco me caigo",
+    "translation": "",
+    "answer": "por",
+    "reason": 0
+  },
+  {
+    "question": "Por desgracia ya se ha ido",
+    "translation": "",
+    "answer": "por",
+    "reason": 0
+  },
+  {
+    "question": "Tienes varias opciones. Por ejemplo, puedes ir en coche.",
+    "translation": "",
+    "answer": "por",
+    "reason": 0
+  },
+  {
+    "question": "Por supuesto que te quiero",
+    "translation": "",
+    "answer": "por",
+    "reason": 0
+  },
+  {
+    "question": "La cuenta, por favor",
+    "translation": "",
+    "answer": "por",
+    "reason": 0
+  },
+  {
+    "question": "Por suerte estabas allí",
+    "translation": "",
+    "answer": "por",
+    "reason": 0
+  },
+  {
+    "question": "Lo compré por si acaso lo necesitabas",
+    "translation": "",
+    "answer": "por",
+    "reason": 0
+  },
+  {
+    "question": "Irás al dentista por las buenas o por las malas.",
+    "translation": "",
+    "answer": "por",
+    "reason": 0
+  },
+  {
+    "question": "No se venden por separado",
+    "translation": "",
+    "answer": "por",
+    "reason": 0
+  },
+  {
+    "question": "Lo necesito por escrito.",
+    "translation": "",
+    "answer": "por",
+    "reason": 0
+  },
+  {
+    "question": "Te lo digo por última vez",
+    "translation": "",
+    "answer": "por",
+    "reason": 0
+  },
+  {
+    "question": "Los juguetes están por todas partes",
+    "translation": "",
+    "answer": "por",
+    "reason": 0
+  },
+  {
+    "question": "Por lo demás no tienes que hacer nada más",
+    "translation": "",
+    "answer": "por",
+    "reason": 0
+  },
+  {
+    "question": "Por lo general no como plátanos",
+    "translation": "",
+    "answer": "por",
+    "reason": 0
+  },
+  {
+    "question": "Por último, añade la leche",
+    "translation": "",
+    "answer": "por",
+    "reason": 0
+  },
+  {
+    "question": "Por fin ha llegado",
+    "translation": "",
+    "answer": "por",
+    "reason": 0
+  },
 ];
 
 export default poropara;

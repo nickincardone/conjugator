@@ -63,10 +63,9 @@ function getStringDifferenceArray(str, stringDifference, noMatchNumber, answerAr
       return answerArray;
     }
   }
-  if (currentMatch === '') {
-    return answerArray;
-  }
-  if (currentMatch === '') return;
+
+  if (currentMatch === '') return answerArray;
+
   const currentSplitArr = splitFirst(str, currentMatch);
   getStringDifferenceArray(currentSplitArr[0], stringDifference, noMatchNumber, answerArray);
   answerArray.push([0, currentMatch]);
@@ -75,6 +74,9 @@ function getStringDifferenceArray(str, stringDifference, noMatchNumber, answerAr
 }
 
 function getStringDifferenceArrays(targetString, inputString) {
+  if (targetString === null || typeof targetString !== 'string') return null;
+  if (inputString === null || inputString === '') return [[[1, targetString]], []];
+  if (typeof inputString !== 'string') return null;
 
   const stringDifference = findStringDifferences(targetString, inputString);
   const stringDifferenceCopy = [...stringDifference];
