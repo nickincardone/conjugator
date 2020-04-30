@@ -79,7 +79,7 @@ const rules = [
   {
     id: 11,
     use: "por o para",
-    rule: "Use with Estar (coliqual) ",
+    rule: "Use with Estar (coliqual) to express an action about to be completed",
     example: "Estoy |por| comprar un carro",
     translation: "I am about to buy a car"
   },
@@ -162,9 +162,37 @@ const rules = [
   {
     id: 23,
     use: "por o para",
-    rule: "By (physically)",
+    rule: "By/Along (physically)",
     example: "Corrí |por| el río",
     translation: "I ran by the river"
+  },
+  {
+    id: 24,
+    use: "por o para",
+    rule: "To apologize or express gratitude",
+    example: "Gracias |por| la información",
+    translation: "Thanks for the information"
+  },
+  {
+    id: 25,
+    use: "por o para",
+    rule: "To express multiplication",
+    example: "Dos |por| dos son cuatro",
+    translation: "Two times two is four"
+  },
+  {
+    id: 26,
+    use: "por o para",
+    rule: "To express \"per\"",
+    example: "Voy al restaurante cinco veces |por| semana",
+    translation: "I go to the restaurant five times per week"
+  },
+  {
+    id: 27,
+    use: "por o para",
+    rule: "Followed by an infinitive, to express that an action has not been carried out yet",
+    example: "Todavía tengo dos libros |por| leer",
+    translation: "I still have two books to read"
   },
 ];
 
