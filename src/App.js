@@ -415,6 +415,7 @@ class App extends React.Component {
                     open={this.state.open}
                     answer={this.state.value}
                     handleClose={this.processNext}
+                    question={this.questions[this.state.currentQuestion]}
                     correctAnswer={this.questions[this.state.currentQuestion].answer}/>
                   {this.getQuestion(this.questions[this.state.currentQuestion].questionType)}
                 </Hidden>

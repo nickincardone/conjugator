@@ -75,8 +75,7 @@ function getStringDifferenceArray(str, stringDifference, noMatchNumber, answerAr
   return answerArray;
 }
 
-
-
+// eslint-disable-next-line no-unused-vars
 function _getStringDifferenceArrays(targetString, inputString) { //leaving my own implementation for reference
   if (targetString === null || typeof targetString !== 'string') return null;
   if (inputString === null || inputString === '') return [[[1, targetString]], []];

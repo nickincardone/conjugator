@@ -9,21 +9,6 @@ function simpleDialog(props) {
 
   const [answerArray, inputArray] = getStringDifferenceArrays(props.correctAnswer.replace(/\|/g, ''), props.answer);
 
-  // let styledCorrectAnswer = [];
-  // const splitArray = props.correctAnswer.split('|');
-  //
-  // for (let i = 0; i < splitArray.length; i++) {
-  //   if (i % 2 === 0) {
-  //     styledCorrectAnswer.push(<React.Fragment key={i}>{splitArray[i]}</React.Fragment>)
-  //   } else {
-  //     styledCorrectAnswer.push(<span key={i} style={{"font-weight": "bold"}}>{splitArray[i]}</span>)
-  //   }
-  // }
-  //
-  // if (splitArray.length % 2 === 0) {
-  //   styledCorrectAnswer = props.correctAnswer.replace(/\|/g, '')
-  // }
-
   const styledAnswer = (array) => {
     return (
       <React.Fragment>
@@ -37,11 +22,20 @@ function simpleDialog(props) {
     )
   };
 
+  const topPart = (question) => {
+    console.log(question)
+    if (question.questionType === 1 || question.questionType === 2) {
+      return <Typography style={{marginBottom: "15px"}} variant="body1">
+        <span style={{textTransform: 'capitalize'}}>{question.top1}</span>/<span style={{textTransform: 'capitalize'}}>{question.chips.join(' ')}</span>/<span style={{textTransform: 'capitalize'}}>{question.top3}</span>
+      </Typography>
+    }
+    return null;
+  }
+
   return (
     <Dialog onClick={props.handleClose} aria-labelledby="simple-dialog-title" open={props.open}>
       <Typography variant="h4">Keep working on this one!</Typography>
-      {/*<Typography variant="subtitle1">Your answer: {props.answer}</Typography>*/}
-      {/*<Typography variant="subtitle2">Correct answer: {styledCorrectAnswer}</Typography>*/}
+      {topPart(props.question)}
       <Typography variant="subtitle1">Correct answer: {styledAnswer(answerArray)}</Typography>
       <Typography variant="subtitle2">Your answer: {styledAnswer(inputArray)}</Typography>
       <Hidden smUp>
