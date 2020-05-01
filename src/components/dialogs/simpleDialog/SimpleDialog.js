@@ -23,14 +23,13 @@ function simpleDialog(props) {
   };
 
   const topPart = (question) => {
-    console.log(question)
     if (question.questionType === 1 || question.questionType === 2) {
       return <Typography style={{marginBottom: "15px"}} variant="body1">
         <span style={{textTransform: 'capitalize'}}>{question.top1}</span>/<span style={{textTransform: 'capitalize'}}>{question.chips.join(' ')}</span>/<span style={{textTransform: 'capitalize'}}>{question.top3}</span>
       </Typography>
     }
     return null;
-  }
+  };
 
   return (
     <Dialog onClick={props.handleClose} aria-labelledby="simple-dialog-title" open={props.open}>

@@ -194,6 +194,13 @@ const rules = [
     example: "Todavía tengo dos libros |por| leer",
     translation: "I still have two books to read"
   },
+  {
+    id: 28,
+    use: "por o para",
+    rule: "To express percentage",
+    example: "Cuarenta por ciento",
+    translation: "Fourty percent"
+  },
 ];
 
 export default rules;

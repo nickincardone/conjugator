@@ -888,13 +888,13 @@ const poropara = [
     "reason": 23
   },
   {
-    "question": "No puedo hablar por mis amigos.",
+    "question": "No puedo hablar ___ mis amigos.",
     "translation": "I cannot talk for my friends",
     "answer": "por",
     "reason": 9
   },
   {
-    "question": "Marco no puede trabajar hoy. Trabajo por él.",
+    "question": "Marco no puede trabajar hoy. Trabajo ___ él.",
     "translation": "Marco cannot work today. I am working for him.",
     "answer": "por",
     "reason": 9
@@ -1087,7 +1087,7 @@ const poropara = [
   },
   {
     "question": "Anoche hablé con Ana ___ teléfono.",
-    "translation": "Last night I talked with Ana on the phone",
+    "translation": "Last night I talked with Ana on the phone.",
     "answer": "por",
     "reason": 6
   },
@@ -1099,7 +1099,7 @@ const poropara = [
   },
   {
     "question": "Voy a Mexico ___ Tulum.",
-    "translation": "I am going to Mexico for Tulum",
+    "translation": "I am going to Mexico for Tulum.",
     "answer": "por",
     "reason": 4
   },
@@ -1254,244 +1254,244 @@ const poropara = [
     "reason": 27
   },
   {
-    "question": "Por lo menos no estoy solo",
-    "translation": "",
+    "question": "___ lo menos no estás solo",
+    "translation": "At least you are not alone",
     "answer": "por",
     "reason": 21
   },
   {
-    "question": "Llegué a tiempo por los pelos",
-    "translation": "",
+    "question": "El equipo llegaron a tiempo ___ los pelos",
+    "translation": "The team barely arrive on time",
+    "answer": "por",
+    "reason": 21
+  },
+  {
+    "question": "___ lo mismo yo no vine",
+    "translation": "For that very reason, I did not come",
+    "answer": "por",
+    "reason": 21
+  },
+  {
+    "question": "Ella tuvo que pagar ___ adelantado",
+    "translation": "She had to pay in advance",
+    "answer": "por",
+    "reason": 21
+  },
+  {
+    "question": "___ lo tanto la respuesta es no",
+    "translation": "For that reason the answer is no",
+    "answer": "por",
+    "reason": 21
+  },
+  {
+    "question": "No tengo nada que decir ___ ahora",
+    "translation": "I have nothing to say for now",
     "answer": "por",
     "reason": 0
   },
   {
-    "question": "Por lo mismo no te lo dije",
-    "translation": "",
+    "question": "___ lo visto, ella es una doctora",
+    "translation": "Apparently, she is a nurse",
     "answer": "por",
-    "reason": 0
+    "reason": 21
   },
   {
-    "question": "Tienes que pagar por adelantado",
-    "translation": "",
+    "question": "___ lo que a mí me toca, el mayor problema es el pescado",
+    "translation": "As far as I am concerned, the biggest problem is the fish.",
     "answer": "por",
-    "reason": 0
+    "reason": 21
   },
   {
-    "question": "por lo tanto la respuesta es No",
-    "translation": "",
+    "question": "Debe estar ___ ahí.",
+    "translation": "It should be around here",
     "answer": "por",
-    "reason": 0
+    "reason": 21
   },
   {
-    "question": "No tengo nada que decir por ahora",
-    "translation": "",
+    "question": "¿Puedes leerlo palabra ___ palabra?",
+    "translation": "Can you read it word for word?",
     "answer": "por",
-    "reason": 0
+    "reason": 21
   },
   {
-    "question": "Por lo visto es enfermera",
-    "translation": "",
+    "question": "___ sano que sea, no quiero comerlo",
+    "translation": "However healthy it is, I don't want to eat it",
     "answer": "por",
-    "reason": 0
+    "reason": 21
   },
   {
-    "question": "Por lo que a mí me toca, el mayor problema es el idioma",
-    "translation": "",
+    "question": "___ lo que he oído no necesitas trabajar mañana",
+    "translation": "From what I have heard you do not need to work tomorrow",
     "answer": "por",
-    "reason": 0
+    "reason": 21
   },
   {
-    "question": "Debe estar por ahí.",
-    "translation": "",
+    "question": "Podemos ir ___ aquí.",
+    "translation": "We can go through here",
     "answer": "por",
-    "reason": 0
+    "reason": 7
   },
   {
-    "question": "Tuve que repetirlo palabra por palabra.",
-    "translation": "",
+    "question": "___ mi parte, prometo volver pronto",
+    "translation": "For my part, I promise to return soon",
     "answer": "por",
-    "reason": 0
+    "reason": 4
   },
   {
-    "question": "Por sano que sea, no quiero comerlo",
-    "translation": "",
+    "question": "___ medio de este lección podrás aprender a usar por y para",
+    "translation": "By means of this lección you will learn how to use por and para.",
     "answer": "por",
-    "reason": 0
+    "reason": 21
   },
   {
-    "question": "Por lo que he oído no es de España",
-    "translation": "",
+    "question": "Lo encontré ___ casualidad",
+    "translation": "I found it by chance",
     "answer": "por",
-    "reason": 0
+    "reason": 21
   },
   {
-    "question": "Podemos ir por aquí.",
-    "translation": "",
+    "question": "Lo había olvidado ___ completo",
+    "translation": "I had forgot about it completely",
     "answer": "por",
-    "reason": 0
+    "reason": 21
   },
   {
-    "question": "Por mi parte, prometo volver pronto",
-    "translation": "",
+    "question": "___ cierto, ¿tienes más café?",
+    "translation": "By the way, do you have more coffee?",
     "answer": "por",
-    "reason": 0
+    "reason": 21
   },
   {
-    "question": "Por medio de este artículo podrás aprender a usar por y para",
+    "question": "El treinta ___ ciento de la gente no votó",
     "translation": "",
     "answer": "por",
-    "reason": 0
+    "reason": 28
   },
   {
-    "question": "Lo encontré por casualidad",
-    "translation": "",
+    "question": "No fuimos ___ motivo de la lluvia",
+    "translation": "We did not go on account of the rain",
     "answer": "por",
-    "reason": 0
+    "reason": 21
   },
   {
-    "question": "Lo había olvidado por completo",
-    "translation": "",
+    "question": "No lo encuentro ___ ningún lado",
+    "translation": "I cannot find it anywhere",
     "answer": "por",
-    "reason": 0
+    "reason": 21
   },
   {
-    "question": "Por cierto, ¿tienes más café?",
-    "translation": "",
+    "question": "___ un lado, ya es muy tarde",
+    "translation": "For one part, it is already very late",
     "answer": "por",
-    "reason": 0
+    "reason": 21 //these two are related
   },
   {
-    "question": "El treinta por ciento de la gente no votó",
-    "translation": "",
+    "question": "___ otro lado, está lloviendo",
+    "translation": "On the other hand, it's raining",
     "answer": "por",
-    "reason": 0
+    "reason": 21
   },
   {
-    "question": "No fuimos por motivo de la lluvia",
-    "translation": "",
+    "question": "___ eso no puedes ir a la fiesta",
+    "translation": "That's why you can't go to the party",
     "answer": "por",
-    "reason": 0
+    "reason": 21
   },
   {
-    "question": "No lo encuentro por ningún lado",
-    "translation": "",
+    "question": "___ desgracia ya se ha ido",
+    "translation": "Unfortunately he has already gone.",
     "answer": "por",
-    "reason": 0
+    "reason": 21
   },
   {
-    "question": "Por un lado, ya es muy tarde",
-    "translation": "",
+    "question": "Tienes varias opciones. ___ ejemplo, puedes ir en coche.",
+    "translation": "You have different options. For example, you can go by car.",
     "answer": "por",
-    "reason": 0
+    "reason": 21
   },
   {
-    "question": "Por otro lado, está lloviendo",
-    "translation": "",
+    "question": "___ supuesto que te quiero",
+    "translation": "Of course I love you",
     "answer": "por",
-    "reason": 0
+    "reason": 21
   },
   {
-    "question": "Por eso no puedes ir a la fiesta",
-    "translation": "",
+    "question": "La cuenta, ___ favor",
+    "translation": "The check, please",
     "answer": "por",
-    "reason": 0
+    "reason": 24
   },
   {
-    "question": "Por poco me caigo",
-    "translation": "",
+    "question": "___ suerte estabas allí",
+    "translation": "Fortunately you were there.",
     "answer": "por",
-    "reason": 0
+    "reason": 21
   },
   {
-    "question": "Por desgracia ya se ha ido",
-    "translation": "",
+    "question": "Lo compré ___ si acaso lo necesitabas",
+    "translation": "I bought it just in case you needed it.",
     "answer": "por",
-    "reason": 0
+    "reason": 21
   },
   {
-    "question": "Tienes varias opciones. Por ejemplo, puedes ir en coche.",
-    "translation": "",
+    "question": "Irás al dentista ___ las buenas o ___ las malas.",
+    "translation": "You will go to the dentist whether you like it or not.",
     "answer": "por",
-    "reason": 0
+    "reason": 21
   },
   {
-    "question": "Por supuesto que te quiero",
-    "translation": "",
+    "question": "No se venden ___ separado",
+    "translation": "They are not sold separately.",
     "answer": "por",
-    "reason": 0
+    "reason": 21
   },
   {
-    "question": "La cuenta, por favor",
-    "translation": "",
+    "question": "Lo necesito ___ escrito.",
+    "translation": "I need it in writing",
     "answer": "por",
-    "reason": 0
+    "reason": 21
   },
   {
-    "question": "Por suerte estabas allí",
-    "translation": "",
+    "question": "Te lo digo ___ última vez",
+    "translation": "I am telling you this for the last time",
     "answer": "por",
-    "reason": 0
+    "reason": 21
   },
   {
-    "question": "Lo compré por si acaso lo necesitabas",
-    "translation": "",
+    "question": "Te lo digo ___ primera vez",
+    "translation": "I am telling you this for the first time",
     "answer": "por",
-    "reason": 0
+    "reason": 21
   },
   {
-    "question": "Irás al dentista por las buenas o por las malas.",
-    "translation": "",
+    "question": "Los juguetes están ___ todas partes",
+    "translation": "The toys are everywhere.",
     "answer": "por",
-    "reason": 0
+    "reason": 21
   },
   {
-    "question": "No se venden por separado",
-    "translation": "",
+    "question": "___ lo demás no tienes que hacer nada más",
+    "translation": "Apart from that you don’t have to do anything else",
     "answer": "por",
-    "reason": 0
+    "reason": 21
   },
   {
-    "question": "Lo necesito por escrito.",
-    "translation": "",
+    "question": "___ lo general no como plátanos",
+    "translation": "I generally don’t eat bananas.",
     "answer": "por",
-    "reason": 0
+    "reason": 21
   },
   {
-    "question": "Te lo digo por última vez",
-    "translation": "",
+    "question": "___ último, añade la leche",
+    "translation": "Finally, add the milk.",
     "answer": "por",
-    "reason": 0
+    "reason": 21
   },
   {
-    "question": "Los juguetes están por todas partes",
-    "translation": "",
+    "question": "___ fin ha llegado",
+    "translation": "He has finally arrived",
     "answer": "por",
-    "reason": 0
-  },
-  {
-    "question": "Por lo demás no tienes que hacer nada más",
-    "translation": "",
-    "answer": "por",
-    "reason": 0
-  },
-  {
-    "question": "Por lo general no como plátanos",
-    "translation": "",
-    "answer": "por",
-    "reason": 0
-  },
-  {
-    "question": "Por último, añade la leche",
-    "translation": "",
-    "answer": "por",
-    "reason": 0
-  },
-  {
-    "question": "Por fin ha llegado",
-    "translation": "",
-    "answer": "por",
-    "reason": 0
+    "reason": 21
   },
 ];
 
