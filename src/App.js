@@ -149,6 +149,10 @@ class App extends React.Component {
           //reducing the chance of picking a subjunctive present by half
           if (randomItem(randomItem([true, false]))) continue;
         }
+        if (currentVerbType.indexOf('perfect.') === 0 && this.state.settings.verbTypes.length !== 1) {
+          //reducing the chance of picking a irregular perfect verb by 6
+          if (randomItem(randomItem([true, false, false, false, false, false]))) continue;
+        }
         if (!this.state.settings.vosotros && currentPronoun === 'vosotros') continue;
       }
 

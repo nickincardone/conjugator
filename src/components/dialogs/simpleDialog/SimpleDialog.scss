@@ -1,6 +1,11 @@
 .MuiDialog-root .MuiDialog-paper {
   padding: 20px;
   text-align: center;
+  .nji-dialog-top {
+    span {
+      text-transform: capitalize;
+    }
+  }
   h4 {
     margin-bottom: 20px;
   }
@@ -9,8 +14,10 @@
   }
   .red_different {
     color: red;
+    font-weight: bold;
   }
   .green_different {
     color: green;
+    font-weight: bold;
   }
 }

@@ -22,10 +22,29 @@ function simpleDialog(props) {
     )
   };
 
+  let answerPart = (
+    <React.Fragment>
+      <Typography variant="subtitle1">Correct answer: {props.correctAnswer.replace(/\|/g, '')}</Typography>
+      <Typography variant="subtitle2">Your answer: {props.answer}</Typography>
+    </React.Fragment>
+  )
+  if (props.question.questionType === 1 || props.question.questionType === 2) {
+    answerPart = (
+      <React.Fragment>
+        <Typography variant="subtitle1">Correct answer: {styledAnswer(answerArray)}</Typography>
+        <Typography variant="subtitle2">Your answer: {styledAnswer(inputArray)}</Typography>
+      </React.Fragment>
+    )
+  }
+
   const topPart = (question) => {
     if (question.questionType === 1 || question.questionType === 2) {
-      return <Typography style={{marginBottom: "15px"}} variant="body1">
-        <span style={{textTransform: 'capitalize'}}>{question.top1}</span>/<span style={{textTransform: 'capitalize'}}>{question.chips.join(' ')}</span>/<span style={{textTransform: 'capitalize'}}>{question.top3}</span>
+      return <Typography style={{marginBottom: "15px"}} className="nji-dialog-top"variant="body1">
+        <span>{question.top1}</span>
+        <span> - </span>
+        <span>{question.chips.join(' ')}</span>
+        <span> - </span>
+        <span>{question.top3}</span>
       </Typography>
     }
     return null;
@@ -35,8 +54,7 @@ function simpleDialog(props) {
     <Dialog onClick={props.handleClose} aria-labelledby="simple-dialog-title" open={props.open}>
       <Typography variant="h4">Keep working on this one!</Typography>
       {topPart(props.question)}
-      <Typography variant="subtitle1">Correct answer: {styledAnswer(answerArray)}</Typography>
-      <Typography variant="subtitle2">Your answer: {styledAnswer(inputArray)}</Typography>
+      {answerPart}
       <Hidden smUp>
         <Typography variant="caption">Touch anywhere to continue</Typography>
       </Hidden>
