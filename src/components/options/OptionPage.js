@@ -17,7 +17,11 @@ import './OptionPage.scss';
 function CustomFormLabel(props) {
   return (
     <FormControlLabel label={props.label} control={
-      <Checkbox name={props.name} checked={props.checked} onChange={props.onChange}/>
+      <Checkbox
+        name={props.name}
+        checked={props.checked}
+        onChange={props.onChange}
+        disabled={props.disabled}/>
     }/>
   )
 }
@@ -33,11 +37,13 @@ class OptionPage extends React.Component {
   };
 
   createFormGroups = () => {
+    const conjugationEnabled = this.props.settings.questionType1 || this.props.settings.questionType2;
     const checkBoxes = verbTypes.map((verbType, index) => {
       return (
         <CustomFormLabel name={verbType}
                          key={index}
-                         checked={this.props.settings.verbTypes.indexOf(verbType) !== -1}
+                         disabled={!conjugationEnabled}
+                         checked={conjugationEnabled && this.props.settings.verbTypes.indexOf(verbType) !== -1}
                          onChange={this.props.updateVerbTypes}
                          label={this.prettyVerb(verbTypeNicknames[verbType])}/>
       )
@@ -54,7 +60,18 @@ class OptionPage extends React.Component {
     )
   };
 
+  disableStart() {
+    if (!(this.props.settings.questionType1 || this.props.settings.questionType2 ||
+      this.props.settings.questionType3 || this.props.settings.questionType4 || this.props.settings.questionType5)) return true;
+    if (this.props.settings.verbTypes.length !== 0) return false;
+    if (this.props.settings.questionType3 || this.props.settings.questionType4
+      || this.props.settings.questionType5) return false;
+    return true;
+  }
+
   render = () => {
+    const conjugationEnabled = this.props.settings.questionType1 || this.props.settings.questionType2;
+    let disableStart = this.disableStart();
     return (
       <Box
         display={'flex'}
@@ -81,10 +98,11 @@ class OptionPage extends React.Component {
                                    onChange={this.props.settingsChanged}
                                    label="Definition (Written)"/>
                 </Hidden>
-                {/*<CustomFormLabel name="questionType5"*/}
-                {/*                 checked={this.props.settings.questionType5}*/}
-                {/*                 onChange={this.props.settingsChanged}*/}
-                {/*                 label="Por vs Para"/>*/}
+                <CustomFormLabel name="questionType5"
+                                 checked={this.props.settings.questionType5}
+                                 onChange={this.props.settingsChanged}
+                                 disabled
+                                 label="Por vs Para"/>
               </FormGroup>
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -108,13 +126,17 @@ class OptionPage extends React.Component {
           <Grid container>
             <Grid item xs={12} sm={6}>
               <FormGroup column>
-                <CustomFormLabel name="vosotros" checked={this.props.settings.vosotros}
+                <CustomFormLabel name="vosotros"
+                                 disabled={!conjugationEnabled}
+                                 checked={conjugationEnabled && this.props.settings.vosotros}
                                  onChange={this.props.settingsChanged} label="Use Vosotros"/>
               </FormGroup>
             </Grid>
             <Grid item xs={12} sm={6}>
               <FormGroup column>
-                <CustomFormLabel name="irregular" checked={this.props.settings.irregular}
+                <CustomFormLabel name="irregular"
+                                 disabled={!conjugationEnabled}
+                                 checked={conjugationEnabled && this.props.settings.irregular}
                                  onChange={this.props.settingsChanged} label="Irregular Only"/>
               </FormGroup>
             </Grid>
@@ -134,14 +156,14 @@ class OptionPage extends React.Component {
           onChange={this.props.sliderChange}
         />
         <Hidden mdUp>
-          <Button variant="contained" color="primary" onClick={() => {
+          <Button variant="contained" color="primary" disabled={disableStart} onClick={() => {
             this.props.start(true)
           }}>
             start
           </Button>
         </Hidden>
         <Hidden smDown>
-          <Button variant="contained" color="primary" onClick={() => {
+          <Button variant="contained" color="primary" disabled={disableStart} onClick={() => {
             this.props.start(false)
           }}>
             start

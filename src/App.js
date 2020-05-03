@@ -11,7 +11,7 @@ import verbTypes from './data/verbTypes';
 import verbTypeNicknames from './data/verbTypeNicknames';
 import poropara from './data/poropara';
 import rules from './data/rules';
-import SimpleDialog from './components/dialogs/simpleDialog/SimpleDialog';
+import SimpleDialog from './components/dialogs/answerDialog/AnswerDialog';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import { Hidden } from '@material-ui/core';
 import OptionPage from './components/options/OptionPage';
