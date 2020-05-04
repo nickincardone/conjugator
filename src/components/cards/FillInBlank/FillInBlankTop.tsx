@@ -1,28 +1,37 @@
-import React from 'react';
+import React, {FunctionComponent} from 'react';
 import Typography from '@material-ui/core/Typography';
 import './FillInBlankTop.scss';
 import ModifiedTooltip from '../../ui/ModifiedTooltip/ModifiedTooltip';
+import {Question} from "../../../types";
 
-function capitalize(string) {
+interface FillInBlankTopProps {
+  question: Question;
+  choice: string;
+  submitted: boolean;
+  showExplanation: () => void;
+  next: () => void;
+}
+
+function capitalize(string: string): string {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
-function isBeginning(string, index) {
+function isBeginning(string: string, index: number): boolean {
   return index === 1 && (string === '' || '!\'"¿'.indexOf(string) > -1);
 }
 
-const FillInBlankTop = (props) => {
-  let questionText = props.question.top1;
-  let className =  '';
-  const nextString = props.choice === props.question.answer ?
+const FillInBlankTop: FunctionComponent<FillInBlankTopProps> = (props) => {
+  const questionText: string = props.question.top1;
+  let className: string =  '';
+  const nextString: string = props.choice === props.question.answer ?
     'Press Enter to Continue' : 'Click here for Explanation or Press Enter to Continue';
 
   if (props.submitted) {
     className = props.choice === props.question.answer ?
       'nji-correct' : 'nji-incorrect';
 
-    const splitArr = props.question.top1.split('___');
-    questionText = [];
+    const splitArr: string[] = props.question.top1.split('___');
+    const questionText: JSX.Element[] = [];
     splitArr.forEach((text, i) => {
       if (i % 2 === 0) {
         questionText.push(<React.Fragment>text</React.Fragment>)
@@ -40,25 +49,19 @@ const FillInBlankTop = (props) => {
 
   return (
     <div>
-      <ModifiedTooltip
-        placement={placement}
-        title={props.question.translation}>
-        <Typography variant="h1" className={'nji-fib-header ' + className}><span>{questionText}</span></Typography>
+      <ModifiedTooltip placement={placement} title={props.question.translation}>
+        <Typography variant="h1" className={"nji-fib-header " + className}>
+          <span>{questionText}</span>
+        </Typography>
       </ModifiedTooltip>
       <Typography
-        onClick={() => {
-          if (className === 'nji-incorrect') {
-            props.showExplanation()
-          } else {
-            props.next()
-          }}
-        }
+        onClick={() => className === "nji-incorrect" ? props.showExplanation(): props.next()}
         variant="subtitle1"
-        className={className + ' prevent-touch'}>
+        className={className + " prevent-touch"} >
         {nextString}
       </Typography>
     </div>
-  )
+  );
 };
 
 export default FillInBlankTop;

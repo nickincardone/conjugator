@@ -1,13 +1,21 @@
-import React from 'react';
+import * as React from 'react';
 import Box from '@material-ui/core/Box';
 import { Hidden } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import './Home.scss';
 
-class Home extends React.Component {
+export interface HomeProps {
+  incorrectAnswers: number;
+  numberOfQuestions: number;
+  started: boolean;
+  start: (b: boolean) => void;
+  setCustom: (b: boolean) => void;
+}
 
-  postQuizText = () => {
-    const correctPercentage = Math.round(10000 * (this.props.numberOfQuestions - this.props.incorrectAnswers) / this.props.numberOfQuestions) / 100;
+class Home extends React.Component<HomeProps, {}> {
+
+  postQuizText(): string {
+    const correctPercentage: number = Math.round(10000 * (this.props.numberOfQuestions - this.props.incorrectAnswers) / this.props.numberOfQuestions) / 100;
     if (correctPercentage === 100) {
       return "Perfect Score! Maybe try something harder with a Custom Quiz"
     } else if (correctPercentage > 79) {
@@ -17,7 +25,7 @@ class Home extends React.Component {
     }
   };
 
-  render = () => {
+  render(): JSX.Element {
     return (
       <Box
         display={'flex'}
@@ -33,26 +41,18 @@ class Home extends React.Component {
         <Hidden xsUp={!this.props.started}>{this.postQuizText()}</Hidden>
         <br/>
         <Hidden mdUp>
-          <Button variant="contained" color="primary" onClick={() => {
-            this.props.start(true)
-          }}>
+          <Button variant="contained" color="primary" onClick={() => this.props.start(true)}>
             start
           </Button>
-          <Button variant="contained" color="secondary" onClick={() => {
-            this.props.setCustom(true);
-          }}>
+          <Button variant="contained" color="secondary" onClick={() => this.props.setCustom(true)}>
             custom start
           </Button>
         </Hidden>
         <Hidden smDown>
-          <Button variant="contained" color="primary" onClick={() => {
-            this.props.start(false)
-          }}>
+          <Button variant="contained" color="primary" onClick={() => this.props.start(false)}>
             start
           </Button>
-          <Button variant="contained" color="secondary" onClick={() => {
-            this.props.setCustom(true);
-          }}>
+          <Button variant="contained" color="secondary" onClick={() => this.props.setCustom(true)}>
             custom start
           </Button>
         </Hidden>

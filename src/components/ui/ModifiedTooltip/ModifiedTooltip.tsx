@@ -4,8 +4,8 @@ import Tooltip from '@material-ui/core/Tooltip';
 import Hidden from '@material-ui/core/Hidden';
 
 export interface ModifiedTooltipProps {
-  className: string;
-  placement?: "top" | undefined;
+  className?: string;
+  placement?: "top" | "bottom" | undefined;
   children: React.ReactElement;
   title: string;
 }
