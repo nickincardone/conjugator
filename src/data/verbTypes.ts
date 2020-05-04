@@ -1,4 +1,6 @@
-const verbTypes = [
+import {VerbType} from "../types";
+
+const verbTypes: VerbType[] = [
   "participle",
   "gerund",
   "indicative.present",

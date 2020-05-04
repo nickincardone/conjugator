@@ -1,4 +1,6 @@
-const rules = [
+import {Rule} from "../types";
+
+const rules: Rule[] = [
   {
     id: 0,
     use: "por o para",

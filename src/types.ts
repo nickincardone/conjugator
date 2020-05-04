@@ -44,9 +44,18 @@ export interface Question {
 }
 
 export interface Rule {
+  id: number;
+  use: string;
   rule: string;
   translation: string;
   example: string;
+}
+
+export interface FillInBlank {
+  question: string;
+  translation: string;
+  answer: string;
+  reason: number;
 }
 
 export interface Conjugations {

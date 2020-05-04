@@ -1,4 +1,6 @@
-const poropara = [
+import {FillInBlank} from "../types";
+
+const poropara: FillInBlank[] = [
   {
     "question": "La puerta sigue abierta ___ todo",
     "translation": "The door continues to be open for everyone",

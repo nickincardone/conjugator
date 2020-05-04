@@ -1,4 +1,6 @@
-const haber = {
+import {Conjugations} from "../types";
+
+const haber: Conjugations = {
   "participle": "habido",
   "gerund": "habiendo",
   "indicative": {
