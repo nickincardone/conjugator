@@ -1,12 +1,20 @@
-import React from 'react';
+import * as React from 'react';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import Tooltip from '@material-ui/core/Tooltip';
 import Hidden from '@material-ui/core/Hidden';
 
-export default function ModifiedTooltip(props) {
+export interface ModifiedTooltipProps {
+  className: string;
+  placement?: "top" | undefined;
+  children: React.ReactElement;
+  title: string;
+}
+
+export default function ModifiedTooltip(props: ModifiedTooltipProps) {
   const [open, setOpen] = React.useState(false);
-  const classes = 'nji-fib-tooltip ' + props.className;
-  const placement = props.placement ? props.placement : 'bottom';
+  const classes: string = 'nji-fib-tooltip ' + props.className;
+  const placement: "top" | "bottom" = props.placement ? props.placement : "bottom";
+
   return (
     <React.Fragment>
       <Hidden smDown>
@@ -15,25 +23,21 @@ export default function ModifiedTooltip(props) {
         </Tooltip>
       </Hidden>
       <Hidden mdUp>
-        <ClickAwayListener onClickAway={() => {setOpen(false)}}>
+        <ClickAwayListener onClickAway={() => setOpen(false)}>
           <div onClick={() => {if (open) setOpen(true)}}>
             <Tooltip
-              PopperProps={{
-                disablePortal: true,
-              }}
-              onClose={() => {setOpen(false)}}
+              PopperProps={{ disablePortal: true, }}
+              onClose={() => setOpen(false)}
               open={open}
               disableFocusListener
               disableHoverListener
               disableTouchListener
-              title={props.title}
-            >
+              title={props.title} >
               {props.children}
             </Tooltip>
           </div>
         </ClickAwayListener>
       </Hidden>
     </React.Fragment>
-
   )
 };
