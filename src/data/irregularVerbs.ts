@@ -1,4 +1,6 @@
-const irregularVerbs = [
+import { Verb } from "../types";
+
+const irregularVerbs: Verb[] = [
   {
     "verb": "abrazar",
     "definition": "to hug",

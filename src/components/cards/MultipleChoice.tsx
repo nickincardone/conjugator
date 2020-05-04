@@ -1,16 +1,22 @@
-import React from 'react';
+import React, {FunctionComponent} from 'react';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 
-const multipleChoice = (props) => {
+interface multipleChoiceProps {
+  answer: string;
+  choices: string[];
+  header: string;
+  clickable: boolean;
+  click: (s: string) => void;
+}
 
-  function getClass(choice) {
+const multipleChoice: FunctionComponent<multipleChoiceProps> = (props) => {
+  function getClass(choice: string): string {
     return props.answer === choice ?
-      'nji-ripple nji-correct' : 'nji-ripple nji-incorrect'
+      'nji-ripple nji-correct' : 'nji-ripple nji-incorrect';
   }
-
 
   return (
     <React.Fragment>
@@ -28,7 +34,6 @@ const multipleChoice = (props) => {
       </Grid>
     </React.Fragment>
   )
-
 };
 
 export default multipleChoice;

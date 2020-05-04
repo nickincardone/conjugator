@@ -1,13 +1,30 @@
-import React from 'react';
+import React, {FunctionComponent} from 'react';
 import Typography from '@material-ui/core/Typography';
 import Chip from '@material-ui/core/Chip';
 import './QuestionCard.scss';
 import MultipleChoice from './MultipleChoice';
 import WrittenOption from './WrittenOption';
 import FillInBlankTop from './FillInBlank/FillInBlankTop';
+import { Question } from '../../types';
 
-const NormalTop = (props) => {
-  const chips = props.question.chips.map((chip) => {
+interface NormalTopProps {
+  question: Question;
+}
+
+interface QuestionCardProps {
+  question: Question;
+  isMC: boolean;
+  clickable: boolean;
+  value: string;
+  isSubmitted: boolean;
+  showExplanation: () => void;
+  next: () => void;
+  handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  handleSubmit: (s: string) => void;
+}
+
+const NormalTop: FunctionComponent<NormalTopProps> = (props) => {
+  const chips: JSX.Element[] = props.question.chips.map((chip) => {
     return <Chip key={chip} className={chip} label={chip}/>
   });
 
@@ -22,12 +39,8 @@ const NormalTop = (props) => {
   )
 };
 
-class QuestionCard extends React.Component {
-
-  constructor(props) {
-    super(props);
-    this.textInput = React.createRef();
-  }
+class QuestionCard extends React.Component<QuestionCardProps, {}> {
+  textInput = React.createRef<any>();
 
   componentDidUpdate() {
     //ensure autofocus on input
@@ -40,11 +53,11 @@ class QuestionCard extends React.Component {
     }
   }
 
-  realAnswer(answer) {
+  realAnswer(answer: string): string {
     return answer.replace(/\|/g, '').toLowerCase();
   };
 
-  getBottom = () => {
+  getBottom(): JSX.Element {
     if (this.props.isMC || this.props.question.questionType === 'fill-in-blank-mc') {
       return <MultipleChoice header={this.props.question.top3}
                              choices={this.props.question.choices}
@@ -61,7 +74,7 @@ class QuestionCard extends React.Component {
     }
   };
 
-  getTop = () => {
+  getTop(): JSX.Element {
     if (this.props.question.questionType === 'fill-in-blank-mc') {
       return <FillInBlankTop
         submitted={!this.props.clickable}
