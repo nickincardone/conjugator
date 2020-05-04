@@ -21,7 +21,7 @@ function isBeginning(string: string, index: number): boolean {
 }
 
 const FillInBlankTop: FunctionComponent<FillInBlankTopProps> = (props) => {
-  const questionText: string = props.question.top1;
+  let questionText: JSX.Element[] = [<React.Fragment>{props.question.top1}</React.Fragment>];
   let className: string =  '';
   const nextString: string = props.choice === props.question.answer ?
     'Press Enter to Continue' : 'Click here for Explanation or Press Enter to Continue';
@@ -29,17 +29,19 @@ const FillInBlankTop: FunctionComponent<FillInBlankTopProps> = (props) => {
   if (props.submitted) {
     className = props.choice === props.question.answer ?
       'nji-correct' : 'nji-incorrect';
-
     const splitArr: string[] = props.question.top1.split('___');
-    const questionText: JSX.Element[] = [];
+    questionText = [];
     splitArr.forEach((text, i) => {
       if (i % 2 === 0) {
-        questionText.push(<React.Fragment>text</React.Fragment>)
+        questionText.push(<React.Fragment key={i}>{text}</React.Fragment>)
       } else {
         questionText.push(
-          <span className={className}>
-            {isBeginning(splitArr[0], i) ? capitalize(props.choice) : props.choice}
-          </span>
+          <React.Fragment key={i}>
+            <span className={className}>
+              {isBeginning(splitArr[0], i) ? capitalize(props.choice) : props.choice}
+            </span>
+            {text}
+          </React.Fragment>
         )
       }
     });
