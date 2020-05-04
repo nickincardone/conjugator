@@ -21,18 +21,18 @@ export type VerbType =
 export type Pronoun = "yo" | "tu" | "el" | "nosotros" | "vosotros" | "ellos";
 
 export interface Settings {
-  questionType1: boolean;
-  questionType2: boolean;
-  questionType3: boolean;
-  questionType4: boolean;
-  questionType5: boolean;
+  conjugationMC: boolean;
+  conjugationW: boolean;
+  definitionMC: boolean;
+  definitionW: boolean;
+  poropara: boolean;
   verbTypes: VerbType[];
   vosotros: boolean;
   irregular: boolean;
 }
 
 export interface Question {
-  questionType: any; //need to change to enum type
+  questionType: QuestionType;
   top1: string;
   top2: string;
   top3: string;
@@ -82,4 +82,12 @@ export interface Verb {
   conjugations: Conjugations;
   isIrregular?: boolean;
   irregularities: string[];
+}
+
+export enum QuestionType {
+  ConjugationMC = 1,
+  ConjugationW,
+  DefinitionMC,
+  DefinitionW,
+  PorOParaFIB
 }

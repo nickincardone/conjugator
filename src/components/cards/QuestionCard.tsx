@@ -5,7 +5,7 @@ import './QuestionCard.scss';
 import MultipleChoice from './MultipleChoice';
 import WrittenOption from './WrittenOption';
 import FillInBlankTop from './FillInBlank/FillInBlankTop';
-import { Question } from '../../types';
+import {Question, QuestionType} from '../../types';
 
 interface NormalTopProps {
   question: Question;
@@ -58,7 +58,7 @@ class QuestionCard extends React.Component<QuestionCardProps, {}> {
   };
 
   getBottom(): JSX.Element {
-    if (this.props.isMC || this.props.question.questionType === 'fill-in-blank-mc') {
+    if (this.props.isMC || this.props.question.questionType === QuestionType.PorOParaFIB) {
       return <MultipleChoice header={this.props.question.top3}
                              choices={this.props.question.choices}
                              clickable={this.props.clickable}
@@ -75,7 +75,7 @@ class QuestionCard extends React.Component<QuestionCardProps, {}> {
   };
 
   getTop(): JSX.Element {
-    if (this.props.question.questionType === 'fill-in-blank-mc') {
+    if (this.props.question.questionType === QuestionType.PorOParaFIB) {
       return <FillInBlankTop
         submitted={!this.props.clickable}
         choice={this.props.value}

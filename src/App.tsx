@@ -13,12 +13,12 @@ import poropara from './data/poropara';
 import rules from './data/rules';
 import SimpleDialog from './components/dialogs/answerDialog/AnswerDialog';
 import LinearProgress from '@material-ui/core/LinearProgress';
-import { Hidden } from '@material-ui/core';
+import {Hidden} from '@material-ui/core';
 import OptionPage from './components/options/OptionPage';
 import Home from './components/home/Home';
 import QuestionCard from './components/cards/QuestionCard';
 import ExplanationDialog from './components/dialogs/explanationDialog/ExplanationDialog';
-import {Settings, Conjugations, Question, Verb, VerbType, Pronoun} from "./types";
+import {Conjugations, Pronoun, Question, QuestionType, Settings, Verb, VerbType} from "./types";
 
 interface AppProps {
 
@@ -64,11 +64,11 @@ class App extends React.Component<AppProps, AppState> {
       settings: {
         vosotros: false,
         irregular: false,
-        questionType1: true,
-        questionType2: true,
-        questionType3: true,
-        questionType4: true,
-        questionType5: false,
+        conjugationMC: true,
+        conjugationW: true,
+        definitionMC: true,
+        definitionW: true,
+        poropara: false,
         verbTypes: [
           "indicative.present",
           "indicative.preterite",
@@ -132,20 +132,20 @@ class App extends React.Component<AppProps, AppState> {
     }
   }
 
-  getQuestionTypes(): number[] {
-    const questionTypes = [];
-    if (this.state.settings.questionType1) questionTypes.push(1);
-    if (this.state.settings.questionType2 && !this.state.isMobile) questionTypes.push(2);
-    if (this.state.settings.questionType3) questionTypes.push(3);
-    if (this.state.settings.questionType4 && !this.state.isMobile) questionTypes.push(4);
-    if (this.state.settings.questionType5) questionTypes.push(5);
+  getQuestionTypes(): QuestionType[] {
+    const questionTypes: QuestionType[] = [];
+    if (this.state.settings.conjugationMC) questionTypes.push(QuestionType.ConjugationMC);
+    if (this.state.settings.conjugationW && !this.state.isMobile) questionTypes.push(QuestionType.ConjugationW);
+    if (this.state.settings.definitionMC) questionTypes.push(QuestionType.DefinitionMC);
+    if (this.state.settings.definitionW && !this.state.isMobile) questionTypes.push(QuestionType.DefinitionW);
+    if (this.state.settings.poropara) questionTypes.push(QuestionType.PorOParaFIB);
     return questionTypes;
   }
 
   createQuestions(): void {
     this.incorrectAnswers = 0;
     const questionArray: Question[] = [];
-    const questionTypes = this.getQuestionTypes();
+    const questionTypes: QuestionType[] = this.getQuestionTypes();
     const pronouns: Pronoun[] = ['yo', 'tu', 'el', 'nosotros', 'ellos'];
     if (this.state.settings.vosotros) {
       pronouns.push('vosotros');
@@ -208,7 +208,7 @@ class App extends React.Component<AppProps, AppState> {
       } else {
         const randomPorOPara = randomItem(poropara);
         currentQuestionObject = {
-          questionType: 'fill-in-blank-mc',
+          questionType: QuestionType.PorOParaFIB,
           top1: randomPorOPara.question,
           top2: '',
           top3: '',
@@ -277,7 +277,7 @@ class App extends React.Component<AppProps, AppState> {
     // @ts-ignore
     if (e.target !== null && e.target.classList && e.target.classList.contains('prevent-touch')) return;
     //por o para next
-    if (isEnterOrTouch && this.questions[this.state.currentQuestion].questionType === 'fill-in-blank-mc'
+    if (isEnterOrTouch && this.questions[this.state.currentQuestion].questionType === QuestionType.PorOParaFIB
       && !this.state.clickable) {
       return this.processNext();
     }
@@ -299,7 +299,7 @@ class App extends React.Component<AppProps, AppState> {
   };
 
   processNext = () => {
-    if (this.questions[this.state.currentQuestion].questionType === 'fill-in-blank-mc') {
+    if (this.questions[this.state.currentQuestion].questionType === QuestionType.PorOParaFIB) {
       if (!this.state.clickable) {
         if (this.realAnswer() !== this.state.value.toLowerCase()) {
           this.incorrectAnswers = this.incorrectAnswers + 1;

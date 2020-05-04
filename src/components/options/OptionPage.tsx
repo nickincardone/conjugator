@@ -61,7 +61,7 @@ class OptionPage extends React.Component<OptionPageProps, {}> {
 
   createFormGroups(): JSX.Element {
     const conjugationEnabled: boolean =
-      this.props.settings.questionType1 || this.props.settings.questionType2;
+      this.props.settings.conjugationMC || this.props.settings.conjugationW;
 
     // @ts-ignore
     const checkBoxes: JSX.Element[] = verbTypes.map((verbType: keyof typeof verbTypeNicknames, index: number) => {
@@ -98,25 +98,25 @@ class OptionPage extends React.Component<OptionPageProps, {}> {
   disableStart(): boolean {
     if (
       !(
-        this.props.settings.questionType1 ||
-        this.props.settings.questionType2 ||
-        this.props.settings.questionType3 ||
-        this.props.settings.questionType4 ||
-        this.props.settings.questionType5
+        this.props.settings.conjugationMC ||
+        this.props.settings.conjugationW ||
+        this.props.settings.definitionMC ||
+        this.props.settings.definitionW ||
+        this.props.settings.poropara
       )
     )
       return true;
     if (this.props.settings.verbTypes.length !== 0) return false;
     return !(
-      this.props.settings.questionType3 ||
-      this.props.settings.questionType4 ||
-      this.props.settings.questionType5
+      this.props.settings.definitionMC ||
+      this.props.settings.definitionW ||
+      this.props.settings.poropara
     );
   }
 
   render() {
     const conjugationEnabled: boolean =
-      this.props.settings.questionType1 || this.props.settings.questionType2;
+      this.props.settings.conjugationMC || this.props.settings.conjugationW;
     const disableStart: boolean = this.disableStart();
 
     return (
@@ -137,20 +137,20 @@ class OptionPage extends React.Component<OptionPageProps, {}> {
             <Grid item xs={12} sm={6}>
               <FormGroup>
                 <CustomFormLabel
-                  name="questionType3"
-                  checked={this.props.settings.questionType3}
+                  name="definitionMC"
+                  checked={this.props.settings.definitionMC}
                   onChange={this.props.settingsChanged}
                   label="Definition (Multiple Choice)"/>
                 <Hidden mdDown>
                   <CustomFormLabel
-                    name="questionType4"
-                    checked={this.props.settings.questionType4}
+                    name="definitionW"
+                    checked={this.props.settings.definitionW}
                     onChange={this.props.settingsChanged}
                     label="Definition (Written)"/>
                 </Hidden>
                 <CustomFormLabel
-                  name="questionType5"
-                  checked={this.props.settings.questionType5}
+                  name="poropara"
+                  checked={this.props.settings.poropara}
                   onChange={this.props.settingsChanged}
                   label="Por vs Para"/>
               </FormGroup>
@@ -158,14 +158,14 @@ class OptionPage extends React.Component<OptionPageProps, {}> {
             <Grid item xs={12} sm={6}>
               <FormGroup>
                 <CustomFormLabel
-                  name="questionType1"
-                  checked={this.props.settings.questionType1}
+                  name="conjugationMC"
+                  checked={this.props.settings.conjugationMC}
                   onChange={this.props.settingsChanged}
                   label="Conjugations (Multiple Choice)" />
                 <Hidden mdDown>
                   <CustomFormLabel
-                    name="questionType2"
-                    checked={this.props.settings.questionType2}
+                    name="conjugationW"
+                    checked={this.props.settings.conjugationW}
                     onChange={this.props.settingsChanged}
                     label="Conjugations (Written)" />
                 </Hidden>
