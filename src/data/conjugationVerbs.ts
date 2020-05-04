@@ -1,4 +1,6 @@
-const conjugationVerbs = [
+import { Verb } from "../types";
+
+const conjugationVerbs: Verb[] = [
   {
     "verb": "abatir",
     "definition": "to shoot down,to take down",

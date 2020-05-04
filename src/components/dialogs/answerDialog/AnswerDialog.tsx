@@ -1,16 +1,25 @@
 import Dialog from '@material-ui/core/Dialog';
-import React from 'react';
+import React, {FunctionComponent} from 'react';
 import Typography from '@material-ui/core/Typography';
-import './SimpleDialog.scss';
+import './AnswerDialog.scss';
 import { Hidden } from '@material-ui/core';
 import { getStringDifferenceArrays } from '../../../helpers/stringHelpers';
+import {Question} from "../../../types";
 
-function answerDialog(props) {
+interface answerDialogProps {
+  correctAnswer: string;
+  answer: string;
+  question: Question;
+  handleClose: () => void;
+  open: boolean;
+}
+
+const answerDialog: FunctionComponent<answerDialogProps> = (props) => {
 
   const [answerArray, inputArray] = getStringDifferenceArrays(props.correctAnswer.replace(/\|/g,
     ''), props.answer);
 
-  const styledAnswer = (array) => {
+  function styledAnswer(array: Array<string | number[]>) {
     return (
       <React.Fragment>
         {array.map((item, i) => {
@@ -21,9 +30,9 @@ function answerDialog(props) {
         })}
       </React.Fragment>
     )
-  };
+  }
 
-  const topPart = (question) => {
+  function topPart(question: Question)  {
     if (question.questionType === 1 || question.questionType === 2) {
       return <Typography style={{ marginBottom: "15px" }} className="nji-dialog-top"
                          variant="body1">
@@ -35,7 +44,7 @@ function answerDialog(props) {
       </Typography>
     }
     return null;
-  };
+  }
 
   return (
     <Dialog onClick={props.handleClose} aria-labelledby="simple-dialog-title" open={props.open}>

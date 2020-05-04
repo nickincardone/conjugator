@@ -46,10 +46,11 @@ const FillInBlankTop: FunctionComponent<FillInBlankTopProps> = (props) => {
   }
 
   const placement = className.length > 0 ? 'top' : 'bottom';
+  const title = props.question.translation ? props.question.translation : '';
 
   return (
     <div>
-      <ModifiedTooltip placement={placement} title={props.question.translation}>
+      <ModifiedTooltip placement={placement} title={title}>
         <Typography variant="h1" className={"nji-fib-header " + className}>
           <span>{questionText}</span>
         </Typography>

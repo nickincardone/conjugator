@@ -17,10 +17,10 @@ interface QuestionCardProps {
   clickable: boolean;
   value: string;
   isSubmitted: boolean;
-  showExplanation: boolean;
+  showExplanation: () => void;
   next: () => void;
-  handleChange: () => void;
-  handleSubmit: () => void;
+  handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  handleSubmit: (s: string) => void;
 }
 
 const NormalTop: FunctionComponent<NormalTopProps> = (props) => {

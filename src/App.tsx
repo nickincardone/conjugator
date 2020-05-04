@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {ChangeEvent} from 'react';
 import './App.scss';
 import Container from "@material-ui/core/Container";
 import Card from "@material-ui/core/Card";
@@ -18,16 +18,36 @@ import OptionPage from './components/options/OptionPage';
 import Home from './components/home/Home';
 import QuestionCard from './components/cards/QuestionCard';
 import ExplanationDialog from './components/dialogs/explanationDialog/ExplanationDialog';
+import {Settings, Conjugations, Question, Verb, VerbType, Pronoun} from "./types";
 
+interface AppProps {
 
-function randomItem(arr) {
+}
+
+interface AppState {
+  value: string;
+  currentQuestion: number;
+  numberOfQuestions: number;
+  open: boolean;
+  showExplanation: boolean;
+  showStart: boolean;
+  showCustom: boolean;
+  submitted: boolean;
+  started: boolean;
+  isMobile: boolean;
+  clickable: boolean;
+  settings: Settings;
+}
+
+function randomItem<T>(arr: T[]): T {
   return arr[Math.floor(Math.random() * arr.length)];
 }
 
-class App extends React.Component {
-  incorrectAnswers = 0;
+class App extends React.Component<AppProps, AppState> {
+  incorrectAnswers: number = 0;
+  questions: Question[] = [];
 
-  constructor(props) {
+  constructor(props: AppProps) {
     super(props);
     this.state = {
       value: '',
@@ -69,14 +89,15 @@ class App extends React.Component {
     document.removeEventListener("keydown", this.handleKeyDown, false);
   };
 
-  resolve(path, obj) {
-    const properties = Array.isArray(path) ? path : path.split('.');
-    return properties.reduce((prev, curr) => prev && prev[curr], obj);
+  resolve(path: string, obj: object): any {
+    const properties = path.split('.');
+    // @ts-ignore
+    return properties.reduce((prev: object, curr: string) => prev && prev[curr], obj);
   }
 
-  updateVerbTypes = (event) => {
+  updateVerbTypes = (event: ChangeEvent<HTMLInputElement>) => {
     const eventTarget = event.target;
-    this.setState((oldState) => {
+    this.setState((oldState: any) => {
       const settingsCopy = { ...oldState.settings };
       const verbTypesCopy = [...settingsCopy.verbTypes];
       const index = verbTypesCopy.indexOf(eventTarget.name);
@@ -90,16 +111,17 @@ class App extends React.Component {
     });
   };
 
-  updateSettings = (event) => {
+  updateSettings = (event: ChangeEvent<HTMLInputElement>) => {
     const eventTarget = event.target;
-    this.setState((oldState, props) => {
+    this.setState((oldState) => {
       const settingsCopy = { ...oldState.settings };
+      // @ts-ignore
       settingsCopy[eventTarget.name] = eventTarget.checked;
       return { settings: settingsCopy }
     });
   };
 
-  getAnswer(currentVerbType, currentPronoun, conjugations) {
+  getAnswer(currentVerbType: string, currentPronoun: string, conjugations: Conjugations): string {
     if (currentVerbType === 'participle' || currentVerbType === 'gerund') {
       return conjugations[currentVerbType];
     } else if (currentVerbType.includes('perfect.')) {
@@ -110,7 +132,7 @@ class App extends React.Component {
     }
   }
 
-  getQuestionTypes() {
+  getQuestionTypes(): number[] {
     const questionTypes = [];
     if (this.state.settings.questionType1) questionTypes.push(1);
     if (this.state.settings.questionType2 && !this.state.isMobile) questionTypes.push(2);
@@ -120,19 +142,19 @@ class App extends React.Component {
     return questionTypes;
   }
 
-  createQuestions = () => {
+  createQuestions(): void {
     this.incorrectAnswers = 0;
-    const questionArray = [];
-    let questionTypes = this.getQuestionTypes();
-    const pronouns = ['yo', 'tu', 'el', 'nosotros', 'ellos'];
+    const questionArray: Question[] = [];
+    const questionTypes = this.getQuestionTypes();
+    const pronouns: Pronoun[] = ['yo', 'tu', 'el', 'nosotros', 'ellos'];
     if (this.state.settings.vosotros) {
       pronouns.push('vosotros');
     }
     while (questionArray.length < this.state.numberOfQuestions) {
-      let currentVerb = randomItem(verbs);
+      let currentVerb: Verb = randomItem(verbs);
       if (currentVerb.definition === "") continue;
       let currentVerbType = randomItem(this.state.settings.verbTypes);
-      let currentPronoun = randomItem(pronouns);
+      let currentPronoun: Pronoun = randomItem(pronouns);
       const currentQuestionType = randomItem(questionTypes);
 
       if (this.state.settings.irregular && (currentQuestionType === 1 || currentQuestionType === 2)) {
@@ -141,17 +163,17 @@ class App extends React.Component {
         if (irregularTenses.length === 1) {
           currentPronoun = randomItem(pronouns);
         } else {
-          currentPronoun = irregularTenses.pop();
+          currentPronoun = irregularTenses.pop() as Pronoun;
         }
-        currentVerbType = irregularTenses.join('.');
+        currentVerbType = irregularTenses.join('.') as VerbType;
         if (!this.state.settings.verbTypes.includes(currentVerbType)) continue;
         if (currentVerbType === 'subjunctive.present' && this.state.settings.verbTypes.length !== 1) {
           //reducing the chance of picking a subjunctive present by half
-          if (randomItem(randomItem([true, false]))) continue;
+          if (randomItem([true, false])) continue;
         }
         if (currentVerbType.indexOf('perfect.') === 0 && this.state.settings.verbTypes.length !== 1) {
           //reducing the chance of picking a irregular perfect verb by 6
-          if (randomItem(randomItem([true, false, false, false, false, false]))) continue;
+          if (randomItem([true, false, false, false, false, false])) continue;
         }
         if (!this.state.settings.vosotros && currentPronoun === 'vosotros') continue;
       }
@@ -188,8 +210,8 @@ class App extends React.Component {
         currentQuestionObject = {
           questionType: 'fill-in-blank-mc',
           top1: randomPorOPara.question,
-          top2: null,
-          top3: null,
+          top2: '',
+          top3: '',
           chips: [],
           answer: randomPorOPara.answer,
           translation: randomPorOPara.translation,
@@ -205,7 +227,7 @@ class App extends React.Component {
     this.questions = questionArray;
   };
 
-  getDefinitionChoices = (currentVerb) => {
+  getDefinitionChoices(currentVerb: string): string[] {
     const choiceArray = [currentVerb];
     while (choiceArray.length < 4) {
       const randomVerb = randomItem(verbs).verb;
@@ -216,7 +238,7 @@ class App extends React.Component {
     return this.shuffle(choiceArray);
   };
 
-  getConjugationChoices = (currentVerbType, currentPronoun, conjugations) => {
+  getConjugationChoices = (currentVerbType: VerbType, currentPronoun: Pronoun, conjugations: Conjugations) => {
     const correctAnswer = this.getAnswer(currentVerbType, currentPronoun, conjugations);
     const choiceArray = [this.filterAnswer(correctAnswer)];
     while (choiceArray.length < 4) {
@@ -229,11 +251,11 @@ class App extends React.Component {
     return this.shuffle(choiceArray);
   };
 
-  filterAnswer = (answer) => {
+  filterAnswer = (answer: string) => {
     return answer.replace(/\|/g, '')
   };
 
-  shuffle(array) {
+  shuffle<T>(array: T[]): T[] {
     let currentIndex = array.length, temporaryValue, randomIndex;
     while (0 !== currentIndex) {
       randomIndex = Math.floor(Math.random() * currentIndex);
@@ -245,12 +267,14 @@ class App extends React.Component {
     return array;
   }
 
-  handleChange = (event) => {
+  handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     this.setState({ value: event.target.value });
   };
 
-  handleKeyDown = (e) => {
+  // TODO needs typing
+  handleKeyDown = (e: any) => {
     const isEnterOrTouch = e.key === 'Enter' || e.type === 'touchend';
+    // @ts-ignore
     if (e.target !== null && e.target.classList && e.target.classList.contains('prevent-touch')) return;
     //por o para next
     if (isEnterOrTouch && this.questions[this.state.currentQuestion].questionType === 'fill-in-blank-mc'
@@ -314,7 +338,7 @@ class App extends React.Component {
     }
   };
 
-  handleSubmit = (value) => {
+  handleSubmit = (value: string) => {
     this.setState({ value: value }, this.processNext);
   };
 
@@ -322,7 +346,7 @@ class App extends React.Component {
     return this.questions[this.state.currentQuestion].answer.replace(/\|/g, '').toLowerCase();
   }
 
-  getQuestion(questionType) {
+  getQuestion(questionType: number) {
     const isMC = questionType % 2 === 1;
     return (
       <QuestionCard
@@ -338,11 +362,9 @@ class App extends React.Component {
     )
   }
 
-  start = (isMobile) => {
+  start = (isMobile: boolean) => {
     this.setState({ isMobile: isMobile }, () => {
-      if (this.getQuestionTypes().length === 0) {
-        return;
-      }
+      if (this.getQuestionTypes().length === 0) return
       this.createQuestions();
       this.setState({
         showStart: false,
@@ -355,16 +377,18 @@ class App extends React.Component {
     });
   };
 
-  setCustom = (show) => {
+  setCustom = (show: boolean) => {
     this.setState({ showCustom: show });
   };
 
-  checkboxChange = (event) => {
-    this.setState({ [event.target.name]: event.target.checked });
+  checkboxChange = (event: any) => {
+    const setting = event.target.name as keyof Settings;
+    // @ts-ignore
+    this.setState({ [setting]: event.target.checked });
   };
 
-  sliderChange = (event, newValue) => {
-    this.setState({ numberOfQuestions: newValue });
+  sliderChange = (event: any, newValue: number|number[]) => {
+    this.setState({ numberOfQuestions: newValue as number });
   };
 
   closeExplanation = () => {
@@ -399,7 +423,6 @@ class App extends React.Component {
                     :
                     <Home
                       setCustom={this.setCustom}
-                      showStart={this.state.showStart}
                       numberOfQuestions={this.state.numberOfQuestions}
                       incorrectAnswers={this.incorrectAnswers}
                       start={this.start}

@@ -6,7 +6,7 @@ export interface writtenOptionProps {
   answer: string;
   submitted: boolean;
   header: string;
-  handleChange: (e: ChangeEvent<{}>) => void;
+  handleChange: (e: ChangeEvent<HTMLInputElement>) => void;
   inputRef: RefObject<any>;
 }
 

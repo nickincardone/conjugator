@@ -1,17 +1,24 @@
 import Dialog from '@material-ui/core/Dialog';
-import React from 'react';
+import React, {FunctionComponent} from 'react';
 import Typography from '@material-ui/core/Typography';
 import './ExplanationDialog.scss';
 import { Hidden } from '@material-ui/core';
 import Tooltip from '@material-ui/core/Tooltip';
+import { Rule } from '../../../types';
 
-function formatPipes(str) {
-  let styledJSX = [];
+interface explanationDialogProps {
+  handleClose: () => void;
+  rule: Rule;
+  open: boolean;
+}
+
+function formatPipes(str: string): JSX.Element[] | string {
+  const styledJSX: JSX.Element[] = [];
   const splitArray = str.split('|');
 
   // should be even number of pipes
   if (splitArray.length % 2 === 0) {
-    return str.replace(/\|/g, '')
+    return str.replace(/\|/g, '');
   }
 
   for (let i = 0; i < splitArray.length; i++) {
@@ -24,7 +31,7 @@ function formatPipes(str) {
   return styledJSX;
 }
 
-function explanationDialog(props) {
+const explanationDialog: FunctionComponent<explanationDialogProps> = (props) => {
 
   return (
     <Dialog onClick={props.handleClose} aria-labelledby="simple-dialog-title" open={props.open}>

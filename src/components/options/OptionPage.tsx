@@ -20,7 +20,7 @@ export interface OptionPageProps {
   settings: Settings;
   settingsChanged: (s: ChangeEvent<HTMLInputElement>) => void;
   updateVerbTypes: (s: ChangeEvent<HTMLInputElement>) => void;
-  sliderChange: (e: ChangeEvent<{}>) => void;
+  sliderChange: (e: ChangeEvent<{}>, n: number|number[]) => void;
   numberOfQuestions: number;
   start: (b: boolean) => void;
 }
