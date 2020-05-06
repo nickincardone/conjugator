@@ -198,6 +198,7 @@ export default class Quiz {
   }
 
   isEnd(): boolean {
-    return this.currentQuestion + 1 >= this.questions.length ? true : false;
+    console.log(this.incorrectAnswers)
+    return this.currentQuestion + 1 >= this.questions.length;
   }
 }

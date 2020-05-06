@@ -30,7 +30,6 @@ interface AppState {
 }
 
 class App extends React.Component<{}, AppState> {
-  incorrectAnswers: number = 0;
   quiz: Quiz = new Quiz();
 
   constructor(props: {}) {
@@ -101,8 +100,7 @@ class App extends React.Component<{}, AppState> {
     this.setState({ value: event.target.value });
   };
 
-  // TODO needs typing
-  handleKeyDown = (e: any) => {
+  handleKeyDown = (e: KeyboardEvent) => {
     const isEnterOrTouch = e.key === 'Enter' || e.type === 'touchend';
     // @ts-ignore
     if (e.target !== null && e.target.classList && e.target.classList.contains('prevent-touch')) return;
@@ -129,14 +127,21 @@ class App extends React.Component<{}, AppState> {
     });
   };
 
+  showStart = () => {
+    this.setState({ showStart: true, showExplanation: false, clickable: true });
+  };
+
   processNext = () => {
     if (this.state.currentQuestion.questionType === QuestionType.PorOParaFIB) {
       if (!this.state.clickable) {
         if (this.realAnswer() !== this.state.value.toLowerCase()) {
-          this.incorrectAnswers = this.incorrectAnswers + 1;
+          this.quiz.incorrectAnswers.push({
+            ...this.state.currentQuestion,
+            response: this.state.value
+          });
         }
         if (this.quiz.isEnd()) {
-          this.setState({ showStart: true, showExplanation: false, clickable: true });
+          this.showStart();
         } else {
           this.nextQuestion();
         }
@@ -149,19 +154,20 @@ class App extends React.Component<{}, AppState> {
     if (this.state.open) {
       this.setState({ open: false });
       if (this.quiz.isEnd()) {
-        this.setState({ showStart: true, showExplanation: false, clickable: true });
+        this.showStart();
       } else {
         this.nextQuestion();
       }
     } else {
       if (this.realAnswer() !== this.state.value.toLowerCase()) {
+        this.quiz.incorrectAnswers.push({
+          ...this.state.currentQuestion,
+          response: this.state.value
+        });
         this.setState({ open: true });
-        this.incorrectAnswers = this.incorrectAnswers + 1;
       } else {
         if (this.quiz.isEnd()) {
-          setTimeout(() => {
-            this.setState({ showStart: true, showExplanation: false, clickable: true });
-          }, 400);
+          setTimeout(this.showStart, 400);
         } else {
           setTimeout(this.nextQuestion, 400);
         }
@@ -277,7 +283,7 @@ class App extends React.Component<{}, AppState> {
                     <Home
                       setCustom={this.setCustom}
                       numberOfQuestions={this.state.settings.numberOfQuestions}
-                      incorrectAnswers={this.incorrectAnswers}
+                      incorrectAnswers={this.quiz.incorrectAnswers.length}
                       start={this.start}
                       started={this.state.started}/>
                   }
