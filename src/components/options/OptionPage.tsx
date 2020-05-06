@@ -14,7 +14,7 @@ import verbTypes from "../../data/verbTypes";
 import verbTypeNicknames from "../../data/verbTypeNicknames";
 import Grid from "@material-ui/core/Grid";
 import "./OptionPage.scss";
-import { Settings } from "../../types";
+import Settings from "../../structures/Settings";
 
 export interface OptionPageProps {
   settings: Settings;

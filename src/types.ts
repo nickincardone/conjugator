@@ -19,28 +19,32 @@ export type VerbType =
   | "perfect.subjunctive.imperfect";
 
 export type Pronoun = "yo" | "tu" | "el" | "nosotros" | "vosotros" | "ellos";
+//
+// export interface Settings {
+//   conjugationMC: boolean;
+//   conjugationW: boolean;
+//   definitionMC: boolean;
+//   definitionW: boolean;
+//   poropara: boolean;
+//   verbTypes: VerbType[];
+//   vosotros: boolean;
+//   irregular: boolean;
+// }
 
-export interface Settings {
-  conjugationMC: boolean;
-  conjugationW: boolean;
-  definitionMC: boolean;
-  definitionW: boolean;
-  poropara: boolean;
-  verbTypes: VerbType[];
-  vosotros: boolean;
-  irregular: boolean;
+export class Question {
+  questionType: QuestionType = QuestionType.ConjugationMC;
+  top1: string = '';
+  top2: string = '';
+  top3: string = '';
+  chips: string[] = [''];
+  answer: string = '';
+  choices: string[] = ['',''];
+  explanation: number = -1;
+  translation?: string;
 }
 
-export interface Question {
-  questionType: QuestionType;
-  top1: string;
-  top2: string;
-  top3: string;
-  chips: string[];
-  answer: string;
-  choices: string[];
-  explanation: number;
-  translation?: string;
+export interface IncorrectAnswer extends Question{
+  response: string;
 }
 
 export interface Rule {
