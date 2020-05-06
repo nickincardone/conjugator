@@ -9,8 +9,6 @@ export default class Settings {
   definitionW: boolean = true;
   poropara: boolean = false;
 
-  // numberOfQuestions: number = 5;
-
   vosotros: boolean = false;
   irregular: boolean = false;
 

@@ -21,7 +21,6 @@ export interface OptionPageProps {
   settingsChanged: (s: ChangeEvent<HTMLInputElement>) => void;
   updateVerbTypes: (s: ChangeEvent<HTMLInputElement>) => void;
   sliderChange: (e: ChangeEvent<{}>, n: number|number[]) => void;
-  numberOfQuestions: number;
   start: (b: boolean) => void;
 }
 
@@ -206,7 +205,7 @@ class OptionPage extends React.Component<OptionPageProps, {}> {
           Number of Questions
         </Typography>
         <Slider
-          defaultValue={this.props.numberOfQuestions}
+          defaultValue={this.props.settings.numberOfQuestions}
           min={0}
           max={100}
           aria-labelledby="discrete-slider-custom"

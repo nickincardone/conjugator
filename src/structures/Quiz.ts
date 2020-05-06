@@ -123,13 +123,13 @@ export default class Quiz {
   currentQuestion: number = 0;
   incorrectAnswers: IncorrectAnswer[] = [];
 
-  generateQuiz(settings: Settings, numberOfQuestions: number) {
+  generateQuiz(settings: Settings) {
     const questionArray: Question[] = [];
     const questionTypes: QuestionType[] = getQuestionTypes(settings);
     const pronouns: Pronoun[] = ['yo', 'tu', 'el', 'nosotros', 'ellos'];
     if (settings.vosotros) pronouns.push('vosotros');
 
-    while (questionArray.length < numberOfQuestions) {
+    while (questionArray.length < settings.numberOfQuestions) {
       let currentVerb: Verb = randomItem(verbs);
       if (currentVerb.definition === "") continue; //Need to make sure there are no empty definitions
       let currentVerbType: VerbType= randomItem(settings.verbTypes);
@@ -187,6 +187,7 @@ export default class Quiz {
       questionArray.push(currentQuestionObject);
     }
     this.questions = questionArray;
+    this.currentQuestion = 0;
     return this.questions[this.currentQuestion];
   }
 

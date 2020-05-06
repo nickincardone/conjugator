@@ -19,17 +19,14 @@ export type VerbType =
   | "perfect.subjunctive.imperfect";
 
 export type Pronoun = "yo" | "tu" | "el" | "nosotros" | "vosotros" | "ellos";
-//
-// export interface Settings {
-//   conjugationMC: boolean;
-//   conjugationW: boolean;
-//   definitionMC: boolean;
-//   definitionW: boolean;
-//   poropara: boolean;
-//   verbTypes: VerbType[];
-//   vosotros: boolean;
-//   irregular: boolean;
-// }
+
+export enum QuestionType {
+  ConjugationMC = 1,
+  ConjugationW,
+  DefinitionMC,
+  DefinitionW,
+  PorOParaFIB
+}
 
 export class Question {
   questionType: QuestionType = QuestionType.ConjugationMC;
@@ -95,12 +92,4 @@ export interface Verb {
   conjugations: Conjugations;
   isIrregular?: boolean;
   irregularities: string[];
-}
-
-export enum QuestionType {
-  ConjugationMC = 1,
-  ConjugationW,
-  DefinitionMC,
-  DefinitionW,
-  PorOParaFIB
 }

@@ -12,21 +12,19 @@ import OptionPage from './components/options/OptionPage';
 import Home from './components/home/Home';
 import QuestionCard from './components/cards/QuestionCard';
 import ExplanationDialog from './components/dialogs/explanationDialog/ExplanationDialog';
-import {Conjugations, Pronoun, Question, QuestionType, Verb, VerbType} from "./types";
+import {Question, QuestionType} from "./types";
 import Settings from "./structures/Settings";
 import Quiz from "./structures/Quiz";
 
 interface AppState {
   value: string;
   currentQuestion: Question;
-  numberOfQuestions: number;
   open: boolean;
   showExplanation: boolean;
   showStart: boolean;
   showCustom: boolean;
   submitted: boolean;
   started: boolean;
-  isMobile: boolean;
   clickable: boolean;
   settings: Settings;
 }
@@ -40,14 +38,12 @@ class App extends React.Component<{}, AppState> {
     this.state = {
       value: '',
       currentQuestion: new Question(),
-      numberOfQuestions: 5,
       open: false,
       showExplanation: false,
       showStart: true,
       showCustom: false,
       submitted: false,
       started: false,
-      isMobile: false,
       clickable: true,
       settings: new Settings(),
     };
@@ -77,12 +73,16 @@ class App extends React.Component<{}, AppState> {
     });
   };
 
-  updateSettings = (event: ChangeEvent<HTMLInputElement>) => {
+  updateSettingsEvent = (event: ChangeEvent<HTMLInputElement>) => {
     const eventTarget = event.target;
+    this.updateSettings(eventTarget.name as keyof Settings, eventTarget.checked);
+  };
+
+  updateSettings = (settingKey: keyof Settings, settingValue: any) => {
     this.setState((oldState) => {
       const settingsCopy = { ...oldState.settings };
       // @ts-ignore
-      settingsCopy[eventTarget.name] = eventTarget.checked;
+      settingsCopy[settingKey] = settingValue as any;
       return { settings: settingsCopy }
     });
   };
@@ -90,9 +90,9 @@ class App extends React.Component<{}, AppState> {
   getQuestionTypes(): QuestionType[] {
     const questionTypes: QuestionType[] = [];
     if (this.state.settings.conjugationMC) questionTypes.push(QuestionType.ConjugationMC);
-    if (this.state.settings.conjugationW && !this.state.isMobile) questionTypes.push(QuestionType.ConjugationW);
+    if (this.state.settings.conjugationW && !this.state.settings.isMobile) questionTypes.push(QuestionType.ConjugationW);
     if (this.state.settings.definitionMC) questionTypes.push(QuestionType.DefinitionMC);
-    if (this.state.settings.definitionW && !this.state.isMobile) questionTypes.push(QuestionType.DefinitionW);
+    if (this.state.settings.definitionW && !this.state.settings.isMobile) questionTypes.push(QuestionType.DefinitionW);
     if (this.state.settings.poropara) questionTypes.push(QuestionType.PorOParaFIB);
     return questionTypes;
   }
@@ -194,17 +194,18 @@ class App extends React.Component<{}, AppState> {
   }
 
   start = (isMobile: boolean) => {
-    this.setState({ isMobile: isMobile }, () => {
-      if (this.getQuestionTypes().length === 0) return;
-      const firstQuestion = this.quiz.generateQuiz(this.state.settings, this.state.numberOfQuestions);
-      this.setState({
-        showStart: false,
-        showCustom: false,
-        currentQuestion: firstQuestion,
-        started: true,
-        submitted: false,
-        value: ''
-      });
+    if (this.getQuestionTypes().length === 0) return;
+    const settings = {...this.state.settings};
+    settings.isMobile = isMobile;
+    const firstQuestion = this.quiz.generateQuiz(settings);
+    this.setState({
+      showStart: false,
+      showCustom: false,
+      settings: settings,
+      currentQuestion: firstQuestion,
+      started: true,
+      submitted: false,
+      value: ''
     });
   };
 
@@ -219,7 +220,7 @@ class App extends React.Component<{}, AppState> {
   };
 
   sliderChange = (event: any, newValue: number|number[]) => {
-    this.setState({ numberOfQuestions: newValue as number });
+    this.updateSettings('numberOfQuestions', newValue);
   };
 
   closeExplanation = () => {
@@ -241,7 +242,7 @@ class App extends React.Component<{}, AppState> {
         <LinearProgress
           variant="determinate"
           color="secondary"
-          value={(this.quiz.currentQuestion / this.state.numberOfQuestions) * 100}/>
+          value={(this.quiz.currentQuestion / this.state.settings.numberOfQuestions) * 100}/>
         <ExplanationDialog
           open={this.state.showExplanation}
           handleClose={this.processNext}
@@ -268,15 +269,14 @@ class App extends React.Component<{}, AppState> {
                   {this.state.showCustom ?
                     <OptionPage
                       settings={this.state.settings}
-                      settingsChanged={this.updateSettings}
+                      settingsChanged={this.updateSettingsEvent}
                       start={this.start}
                       sliderChange={this.sliderChange}
-                      updateVerbTypes={this.updateVerbTypes}
-                      numberOfQuestions={this.state.numberOfQuestions}/>
+                      updateVerbTypes={this.updateVerbTypes}/>
                     :
                     <Home
                       setCustom={this.setCustom}
-                      numberOfQuestions={this.state.numberOfQuestions}
+                      numberOfQuestions={this.state.settings.numberOfQuestions}
                       incorrectAnswers={this.incorrectAnswers}
                       start={this.start}
                       started={this.state.started}/>
