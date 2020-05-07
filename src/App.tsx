@@ -15,32 +15,29 @@ import ExplanationDialog from './components/dialogs/explanationDialog/Explanatio
 import {Question, QuestionType} from "./types";
 import Settings from "./structures/Settings";
 import Quiz from "./structures/Quiz";
+import { Route, Switch, withRouter, RouteComponentProps } from 'react-router-dom';
 
 interface AppState {
   value: string;
   currentQuestion: Question;
   open: boolean;
   showExplanation: boolean;
-  showStart: boolean;
-  showCustom: boolean;
   submitted: boolean;
   started: boolean;
   clickable: boolean;
   settings: Settings;
 }
 
-class App extends React.Component<{}, AppState> {
+class App extends React.Component<RouteComponentProps, AppState> {
   quiz: Quiz = new Quiz();
 
-  constructor(props: {}) {
+  constructor(props: RouteComponentProps) {
     super(props);
     this.state = {
       value: '',
       currentQuestion: new Question(),
       open: false,
       showExplanation: false,
-      showStart: true,
-      showCustom: false,
       submitted: false,
       started: false,
       clickable: true,
@@ -127,8 +124,10 @@ class App extends React.Component<{}, AppState> {
     });
   };
 
-  showStart = () => {
-    this.setState({ showStart: true, showExplanation: false, clickable: true });
+  restart = () => {
+    this.setState({ showExplanation: false, clickable: true }, () =>
+      this.props.history.replace("/")
+    );
   };
 
   processNext = () => {
@@ -141,7 +140,7 @@ class App extends React.Component<{}, AppState> {
           });
         }
         if (this.quiz.isEnd()) {
-          this.showStart();
+          this.restart();
         } else {
           this.nextQuestion();
         }
@@ -154,7 +153,7 @@ class App extends React.Component<{}, AppState> {
     if (this.state.open) {
       this.setState({ open: false });
       if (this.quiz.isEnd()) {
-        this.showStart();
+        this.restart();
       } else {
         this.nextQuestion();
       }
@@ -167,7 +166,7 @@ class App extends React.Component<{}, AppState> {
         this.setState({ open: true });
       } else {
         if (this.quiz.isEnd()) {
-          setTimeout(this.showStart, 400);
+          setTimeout(this.restart, 400);
         } else {
           setTimeout(this.nextQuestion, 400);
         }
@@ -205,18 +204,12 @@ class App extends React.Component<{}, AppState> {
     settings.isMobile = isMobile;
     const firstQuestion = this.quiz.generateQuiz(settings);
     this.setState({
-      showStart: false,
-      showCustom: false,
       settings: settings,
       currentQuestion: firstQuestion,
       started: true,
       submitted: false,
       value: ''
-    });
-  };
-
-  setCustom = (show: boolean) => {
-    this.setState({ showCustom: show });
+    }, () => this.props.history.replace('/quiz'));
   };
 
   checkboxChange = (event: any) => {
@@ -237,58 +230,55 @@ class App extends React.Component<{}, AppState> {
     this.setState({showExplanation: true});
   };
 
-  getAppClass = () => {
-    return (this.state.showStart && this.state.showCustom)
-      ? 'center-grid nji-option-mobile' : 'center-grid';
-  };
-
-  questionBlock(): JSX.Element {
-    return (
-      <Hidden xsUp={this.state.showStart}>
-        <LinearProgress
-          variant="determinate"
-          color="secondary"
-          value={(this.quiz.currentQuestion / this.state.settings.numberOfQuestions) * 100}/>
-        <ExplanationDialog
-          open={this.state.showExplanation}
-          handleClose={this.processNext}
-          rule={rules[this.state.currentQuestion.explanation]}/>
-        <SimpleDialog
-          open={this.state.open}
-          answer={this.state.value}
-          handleClose={this.processNext}
-          question={this.state.currentQuestion}
-          correctAnswer={this.state.currentQuestion.answer}/>
-        {this.getQuestion(this.state.currentQuestion.questionType)}
-      </Hidden>
-    );
-  }
+  // getAppClass = () => {
+  //   return (this.state.showStart && this.state.showCustom)
+  //     ? 'center-grid nji-option-mobile' : 'center-grid';
+  // };
 
   render() {
     return (
       <Container maxWidth="md" className="nji-main">
-        <Grid container className={this.getAppClass()} direction="column">
+        <Grid container className="center-grid" direction="column">
           <Grid item>
             <Card className="nji-main-card">
               <CardContent>
-                <Hidden xsUp={!this.state.showStart}>
-                  {this.state.showCustom ?
-                    <OptionPage
+                <Switch>
+                  <Route path="/options" exact render={(props => {
+                    return <OptionPage
                       settings={this.state.settings}
                       settingsChanged={this.updateSettingsEvent}
                       start={this.start}
                       sliderChange={this.sliderChange}
                       updateVerbTypes={this.updateVerbTypes}/>
-                    :
-                    <Home
-                      setCustom={this.setCustom}
+                  })}/>
+                  <Route path="/quiz" exact render={(props => {
+                    return (<Hidden>
+                      <LinearProgress
+                        variant="determinate"
+                        color="secondary"
+                        value={(this.quiz.currentQuestion / this.state.settings.numberOfQuestions) * 100}/>
+                      <ExplanationDialog
+                        open={this.state.showExplanation}
+                        handleClose={this.processNext}
+                        rule={rules[this.state.currentQuestion.explanation]}/>
+                      <SimpleDialog
+                        open={this.state.open}
+                        answer={this.state.value}
+                        handleClose={this.processNext}
+                        question={this.state.currentQuestion}
+                        correctAnswer={this.state.currentQuestion.answer}/>
+                      {this.getQuestion(this.state.currentQuestion.questionType)}
+                    </Hidden>)
+                  })}/>
+                  <Route path="/" render={(props => {
+                    return <Home
+                      history={props.history}
                       numberOfQuestions={this.state.settings.numberOfQuestions}
                       incorrectAnswers={this.quiz.incorrectAnswers.length}
                       start={this.start}
                       started={this.state.started}/>
-                  }
-                </Hidden>
-                { this.state.showStart ? null : this.questionBlock() }
+                  })}/>
+                </Switch>
               </CardContent>
             </Card>
           </Grid>
@@ -298,4 +288,4 @@ class App extends React.Component<{}, AppState> {
   }
 }
 
-export default App;
+export default withRouter(App);
