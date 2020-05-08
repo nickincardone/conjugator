@@ -80,7 +80,7 @@ class QuestionCard extends React.Component<QuestionCardProps, {}> {
   getTop(): JSX.Element {
     if (this.props.question.questionType === QuestionType.PorOParaFIB) {
       return <FillInBlankTop
-        submitted={!this.props.clickable}
+        submitted={this.props.isSubmitted}
         choice={this.props.value}
         question={this.props.question}
         handleSubmit={this.props.handleSubmit}

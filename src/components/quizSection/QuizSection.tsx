@@ -1,19 +1,21 @@
-import React, {ChangeEvent, useState} from "react";
-import {Question} from "../../types";
-import LinearProgress from "@material-ui/core/LinearProgress";
-import ExplanationDialog from "../dialogs/explanationDialog/ExplanationDialog";
-import rules from "../../data/rules";
+import React, {ChangeEvent, useCallback, useEffect, useState} from "react";
+import {Question, QuestionType} from "../../types";
 import SimpleDialog from "../dialogs/answerDialog/AnswerDialog";
+import ExplanationDialog from "../dialogs/explanationDialog/ExplanationDialog";
 import QuestionCard from "../cards/QuestionCard";
+import {LinearProgress} from "@material-ui/core";
+import {History, LocationState} from "history";
+import rules from "../../data/rules";
 
 export interface QuizSectionProps {
   question: Question;
   next: (s: string) => void;
-  // percentComplete: number;
-  // value: string;
+  percentComplete: number;
+  history: History<LocationState>;
 }
 
 const QuizSection = (props: QuizSectionProps) => {
+  if (props.question.answer === '' && props.question.top1 === '') props.history.replace('/');
   const [value, setValue] = useState<string>("");
   const [isClickable, setIsClickable] = useState<boolean>(true);
   const [showExplanationDialog, setShowExplanationDialog] = useState<boolean>(false);
@@ -22,20 +24,36 @@ const QuizSection = (props: QuizSectionProps) => {
 
   const realAnswer: string = props.question.answer.replace(/\|/g, '').toLowerCase();
 
-  const openExplanation = () => {
-
+  const reset = () => {
+    setIsSubmitted(false);
+    setShowAnswerDialog(false);
+    setShowExplanationDialog(false);
+    setValue('');
   };
 
-  const processNext = (value: string) => {
+
+  const openExplanation = () => {
+    setShowExplanationDialog(true)
+  };
+
+  const processNext = (currentValue: string) => {
+    if (props.question.questionType === QuestionType.PorOParaFIB) {
+      if (isSubmitted) {
+        reset();
+        return props.next(currentValue);
+      } else {
+        return setIsSubmitted(true);
+      }
+    }
     if (isSubmitted) {
-      setIsSubmitted(false);
-      return props.next(value);
+      reset();
+      return props.next(currentValue);
     }
     setIsSubmitted(true);
-    if (value.toLowerCase() === realAnswer) {
+    if (currentValue.toLowerCase() === realAnswer) {
       setTimeout(() => {
-        setIsSubmitted(false);
-        props.next(value);
+        reset();
+        props.next(currentValue);
       }, 400)
     } else {
       setShowAnswerDialog(true);
@@ -43,8 +61,7 @@ const QuizSection = (props: QuizSectionProps) => {
   };
 
   const handleClose = () => {
-    setShowAnswerDialog(false);
-    setIsSubmitted(false);
+    reset();
     props.next(value);
   };
 
@@ -54,9 +71,23 @@ const QuizSection = (props: QuizSectionProps) => {
 
   const handleSubmit = (value: string) => {
     setValue(value);
-
     processNext(value);
   };
+
+  const handleUserKeyPress = useCallback(event => {
+    const { key, keyCode } = event;
+    if (key === 'Enter' && isSubmitted) {
+      return processNext(value);
+    }
+    if (key === 'Enter' && (props.question.questionType === QuestionType.DefinitionW || props.question.questionType === QuestionType.ConjugationW)) {
+      return processNext(value);
+    }
+  }, [isSubmitted, value, processNext]);
+
+  useEffect(() => {
+    window.addEventListener('keydown', handleUserKeyPress);
+    return () => window.removeEventListener('keydown', handleUserKeyPress);
+  }, [handleUserKeyPress]);
 
   const question = (
     <QuestionCard
@@ -71,14 +102,14 @@ const QuizSection = (props: QuizSectionProps) => {
 
   return (
     <React.Fragment>
-      {/*<LinearProgress*/}
-      {/*  variant="determinate"*/}
-      {/*  color="secondary"*/}
-      {/*  value={props.percentComplete}/>*/}
-      {/*<ExplanationDialog*/}
-      {/*  open={showExplanationDialog}*/}
-      {/*  handleClose={this.processNext}*/}
-      {/*  rule={rules[props.question.explanation]}/>*/}
+      <LinearProgress
+        variant="determinate"
+        color="secondary"
+        value={props.percentComplete}/>
+      <ExplanationDialog
+        open={showExplanationDialog}
+        handleClose={handleClose}
+        rule={rules[props.question.explanation]}/>
       <SimpleDialog
         open={showAnswerDialog}
         answer={value}

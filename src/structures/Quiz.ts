@@ -188,6 +188,7 @@ export default class Quiz {
     }
     this.questions = questionArray;
     this.currentQuestion = 0;
+    this.incorrectAnswers = [];
     return this.questions[this.currentQuestion];
   }
 
