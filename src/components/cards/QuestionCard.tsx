@@ -13,7 +13,6 @@ interface NormalTopProps {
 
 interface QuestionCardProps {
   question: Question;
-  clickable: boolean;
   value: string;
   isSubmitted: boolean;
   showExplanation: () => void;
@@ -64,7 +63,7 @@ class QuestionCard extends React.Component<QuestionCardProps, {}> {
     if (isMC) {
       return <MultipleChoice header={this.props.question.top3}
                              choices={this.props.question.choices}
-                             clickable={this.props.clickable}
+                             isSubmitted={this.props.isSubmitted}
                              click={this.props.handleSubmit}
                              answer={this.realAnswer(this.props.question.answer)}/>
     } else {

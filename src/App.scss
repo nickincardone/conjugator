@@ -13,8 +13,9 @@ html, body {
 
 .nji-main {
   height: 100%;
-  .nji-option-mobile {
-    @media (max-width: 600px) {
+  @media (max-width: 600px) {
+    overflow: scroll;
+    .nji-option-mobile {
       height: fit-content;
     }
   }
@@ -24,8 +25,8 @@ html, body {
   height: 100%;
   justify-content: center;
   @media (max-width: 600px) {
-    margin-top: 10px;
-    margin-bottom: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
   }
 }
 

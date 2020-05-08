@@ -119,10 +119,15 @@ class App extends React.Component<RouteComponentProps, AppState> {
     this.updateSettings('numberOfQuestions', newValue);
   };
 
+  getAppClass = () => {
+    console.log(this.props.location);
+    return (this.props.location.pathname === '/options')
+      ? 'center-grid nji-option-mobile' : 'center-grid';
+  };
   render() {
     return (
       <Container maxWidth="md" className="nji-main">
-        <Grid container className="center-grid" direction="column">
+        <Grid container className={this.getAppClass()} direction="column">
           <Grid item>
             <Card className="nji-main-card">
               <CardContent>

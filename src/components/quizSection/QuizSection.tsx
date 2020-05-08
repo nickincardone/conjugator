@@ -1,6 +1,6 @@
 import React, {ChangeEvent, useCallback, useEffect, useState} from "react";
 import {Question, QuestionType} from "../../types";
-import SimpleDialog from "../dialogs/answerDialog/AnswerDialog";
+import AnswerDialog from "../dialogs/answerDialog/AnswerDialog";
 import ExplanationDialog from "../dialogs/explanationDialog/ExplanationDialog";
 import QuestionCard from "../cards/QuestionCard";
 import {LinearProgress} from "@material-ui/core";
@@ -17,7 +17,6 @@ export interface QuizSectionProps {
 const QuizSection = (props: QuizSectionProps) => {
   if (props.question.answer === '' && props.question.top1 === '') props.history.replace('/');
   const [value, setValue] = useState<string>("");
-  const [isClickable, setIsClickable] = useState<boolean>(true);
   const [showExplanationDialog, setShowExplanationDialog] = useState<boolean>(false);
   const [showAnswerDialog, setShowAnswerDialog] = useState<boolean>(false);
   const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
@@ -89,17 +88,6 @@ const QuizSection = (props: QuizSectionProps) => {
     return () => window.removeEventListener('keydown', handleUserKeyPress);
   }, [handleUserKeyPress]);
 
-  const question = (
-    <QuestionCard
-      question={props.question}
-      value={value}
-      showExplanation={openExplanation}
-      clickable={isClickable}
-      handleSubmit={handleSubmit}
-      handleChange={handleChange}
-      isSubmitted={isSubmitted}/>
-  );
-
   return (
     <React.Fragment>
       <LinearProgress
@@ -110,12 +98,18 @@ const QuizSection = (props: QuizSectionProps) => {
         open={showExplanationDialog}
         handleClose={handleClose}
         rule={rules[props.question.explanation]}/>
-      <SimpleDialog
+      <AnswerDialog
         open={showAnswerDialog}
         answer={value}
         handleClose={handleClose}
         question={props.question}/>
-      {question}
+      <QuestionCard
+        question={props.question}
+        value={value}
+        showExplanation={openExplanation}
+        handleSubmit={handleSubmit}
+        handleChange={handleChange}
+        isSubmitted={isSubmitted}/>
     </React.Fragment>
   )
 };
