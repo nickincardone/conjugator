@@ -8,7 +8,7 @@ interface multipleChoiceProps {
   answer: string;
   choices: string[];
   header: string;
-  clickable: boolean;
+  isSubmitted: boolean;
   click: (s: string) => void;
 }
 
@@ -25,7 +25,7 @@ const multipleChoice: FunctionComponent<multipleChoiceProps> = (props) => {
         {props.choices.map((choice, index) => {
           return (
             <Grid item xs={6} key={index} className={getClass(choice)}>
-              <Card onClick={() => {if (props.clickable) props.click(choice)}}>
+              <Card onClick={() => {if (!props.isSubmitted) props.click(choice)}}>
                 <CardContent>{choice}</CardContent>
               </Card>
             </Grid>

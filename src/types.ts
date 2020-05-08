@@ -36,7 +36,7 @@ export class Question {
   chips: string[] = [''];
   answer: string = '';
   choices: string[] = ['',''];
-  explanation: number = -1;
+  explanation: number = 0;
   translation?: string;
 }
 

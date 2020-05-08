@@ -4,27 +4,17 @@ import Container from "@material-ui/core/Container";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Grid from "@material-ui/core/Grid";
-import rules from './data/rules';
-import SimpleDialog from './components/dialogs/answerDialog/AnswerDialog';
-import LinearProgress from '@material-ui/core/LinearProgress';
-import {Hidden} from '@material-ui/core';
 import OptionPage from './components/options/OptionPage';
 import Home from './components/home/Home';
-import QuestionCard from './components/cards/QuestionCard';
-import ExplanationDialog from './components/dialogs/explanationDialog/ExplanationDialog';
 import {Question, QuestionType} from "./types";
 import Settings from "./structures/Settings";
 import Quiz from "./structures/Quiz";
 import { Route, Switch, withRouter, RouteComponentProps } from 'react-router-dom';
+import QuizSection from "./components/quizSection/QuizSection";
 
 interface AppState {
-  value: string;
   currentQuestion: Question;
-  open: boolean;
-  showExplanation: boolean;
-  submitted: boolean;
   started: boolean;
-  clickable: boolean;
   settings: Settings;
 }
 
@@ -34,24 +24,11 @@ class App extends React.Component<RouteComponentProps, AppState> {
   constructor(props: RouteComponentProps) {
     super(props);
     this.state = {
-      value: '',
       currentQuestion: new Question(),
-      open: false,
-      showExplanation: false,
-      submitted: false,
       started: false,
-      clickable: true,
       settings: new Settings(),
     };
   }
-
-  componentDidMount = () => {
-    document.addEventListener("keydown", this.handleKeyDown, false);
-  };
-
-  componentWillUnmount = () => {
-    document.removeEventListener("keydown", this.handleKeyDown, false);
-  };
 
   updateVerbTypes = (event: ChangeEvent<HTMLInputElement>) => {
     const eventTarget = event.target;
@@ -93,109 +70,31 @@ class App extends React.Component<RouteComponentProps, AppState> {
     return questionTypes;
   }
 
-  handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    this.setState({ value: event.target.value });
-  };
-
-  handleKeyDown = (e: KeyboardEvent) => {
-    const isEnterOrTouch = e.key === 'Enter' || e.type === 'touchend';
-    // @ts-ignore
-    if (e.target !== null && e.target.classList && e.target.classList.contains('prevent-touch')) return;
-    //por o para next
-    if (isEnterOrTouch && this.state.currentQuestion.questionType === QuestionType.PorOParaFIB
-      && !this.state.clickable) {
-      return this.processNext();
-    }
-    //popup next
-    if (isEnterOrTouch && (this.state.currentQuestion.questionType % 2 === 0 || this.state.open)) {
-      this.setState({ 'submitted': true });
-      this.processNext();
-    }
-  };
-
   nextQuestion = () => {
     const nextQuestion = this.quiz.nextQuestion() as Question;
-    this.setState({
-      currentQuestion: nextQuestion,
-      value: "",
-      clickable: true,
-      showExplanation: false,
-      submitted: false
-    });
+    this.setState({currentQuestion: nextQuestion});
   };
 
   restart = () => {
-    this.setState({ showExplanation: false, clickable: true }, () =>
-      this.props.history.replace("/")
-    );
+    this.props.history.replace("/");
   };
 
-  processNext = () => {
-    if (this.state.currentQuestion.questionType === QuestionType.PorOParaFIB) {
-      if (!this.state.clickable) {
-        if (this.realAnswer() !== this.state.value.toLowerCase()) {
-          this.quiz.incorrectAnswers.push({
-            ...this.state.currentQuestion,
-            response: this.state.value
-          });
-        }
-        if (this.quiz.isEnd()) {
-          this.restart();
-        } else {
-          this.nextQuestion();
-        }
-      } else {
-        this.setState({ clickable: false });
-      }
-      return;
+  processNext = (value: string) => {
+    if (this.realAnswer() !== value.toLowerCase()) {
+      this.quiz.incorrectAnswers.push({
+        ...this.state.currentQuestion,
+        response: value
+      });
     }
-    this.setState({ clickable: false });
-    if (this.state.open) {
-      this.setState({ open: false });
-      if (this.quiz.isEnd()) {
-        this.restart();
-      } else {
-        this.nextQuestion();
-      }
+    if (this.quiz.isEnd()) {
+      this.restart();
     } else {
-      if (this.realAnswer() !== this.state.value.toLowerCase()) {
-        this.quiz.incorrectAnswers.push({
-          ...this.state.currentQuestion,
-          response: this.state.value
-        });
-        this.setState({ open: true });
-      } else {
-        if (this.quiz.isEnd()) {
-          setTimeout(this.restart, 400);
-        } else {
-          setTimeout(this.nextQuestion, 400);
-        }
-      }
+      this.nextQuestion();
     }
-  };
-
-  handleSubmit = (value: string) => {
-    this.setState({ value: value }, this.processNext);
   };
 
   realAnswer() {
     return this.state.currentQuestion.answer.replace(/\|/g, '').toLowerCase();
-  }
-
-  getQuestion(questionType: number) {
-    const isMC = questionType % 2 === 1;
-    return (
-      <QuestionCard
-        isMC={isMC}
-        question={this.state.currentQuestion}
-        value={this.state.value}
-        showExplanation={this.openExplanation}
-        clickable={this.state.clickable}
-        next={this.processNext}
-        handleSubmit={this.handleSubmit}
-        handleChange={this.handleChange}
-        isSubmitted={this.state.submitted}/>
-    )
   }
 
   start = (isMobile: boolean) => {
@@ -206,9 +105,7 @@ class App extends React.Component<RouteComponentProps, AppState> {
     this.setState({
       settings: settings,
       currentQuestion: firstQuestion,
-      started: true,
-      submitted: false,
-      value: ''
+      started: true
     }, () => this.props.history.replace('/quiz'));
   };
 
@@ -222,23 +119,15 @@ class App extends React.Component<RouteComponentProps, AppState> {
     this.updateSettings('numberOfQuestions', newValue);
   };
 
-  closeExplanation = () => {
-    this.setState({showExplanation: false});
+  getAppClass = () => {
+    console.log(this.props.location);
+    return (this.props.location.pathname === '/options')
+      ? 'center-grid nji-option-mobile' : 'center-grid';
   };
-
-  openExplanation = () => {
-    this.setState({showExplanation: true});
-  };
-
-  // getAppClass = () => {
-  //   return (this.state.showStart && this.state.showCustom)
-  //     ? 'center-grid nji-option-mobile' : 'center-grid';
-  // };
-
   render() {
     return (
       <Container maxWidth="md" className="nji-main">
-        <Grid container className="center-grid" direction="column">
+        <Grid container className={this.getAppClass()} direction="column">
           <Grid item>
             <Card className="nji-main-card">
               <CardContent>
@@ -252,23 +141,10 @@ class App extends React.Component<RouteComponentProps, AppState> {
                       updateVerbTypes={this.updateVerbTypes}/>
                   })}/>
                   <Route path="/quiz" exact render={(props => {
-                    return (<Hidden>
-                      <LinearProgress
-                        variant="determinate"
-                        color="secondary"
-                        value={(this.quiz.currentQuestion / this.state.settings.numberOfQuestions) * 100}/>
-                      <ExplanationDialog
-                        open={this.state.showExplanation}
-                        handleClose={this.processNext}
-                        rule={rules[this.state.currentQuestion.explanation]}/>
-                      <SimpleDialog
-                        open={this.state.open}
-                        answer={this.state.value}
-                        handleClose={this.processNext}
-                        question={this.state.currentQuestion}
-                        correctAnswer={this.state.currentQuestion.answer}/>
-                      {this.getQuestion(this.state.currentQuestion.questionType)}
-                    </Hidden>)
+                    return <QuizSection next={this.processNext}
+                                        history={props.history}
+                                        question={this.state.currentQuestion}
+                                        percentComplete={(this.quiz.currentQuestion / this.state.settings.numberOfQuestions) * 100}/>
                   })}/>
                   <Route path="/" render={(props => {
                     return <Home

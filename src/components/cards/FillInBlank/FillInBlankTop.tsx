@@ -9,7 +9,7 @@ interface FillInBlankTopProps {
   choice: string;
   submitted: boolean;
   showExplanation: () => void;
-  next: () => void;
+  handleSubmit: (s: string) => void;
 }
 
 function capitalize(string: string): string {
@@ -58,7 +58,7 @@ const FillInBlankTop: FunctionComponent<FillInBlankTopProps> = (props) => {
         </Typography>
       </ModifiedTooltip>
       <Typography
-        onClick={() => className === "nji-incorrect" ? props.showExplanation(): props.next()}
+        onClick={() => className === "nji-incorrect" ? props.showExplanation(): props.handleSubmit(props.choice)}
         variant="subtitle1"
         className={className + " prevent-touch"} >
         {nextString}

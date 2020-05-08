@@ -13,12 +13,9 @@ interface NormalTopProps {
 
 interface QuestionCardProps {
   question: Question;
-  isMC: boolean;
-  clickable: boolean;
   value: string;
   isSubmitted: boolean;
   showExplanation: () => void;
-  next: () => void;
   handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   handleSubmit: (s: string) => void;
 }
@@ -58,10 +55,15 @@ class QuestionCard extends React.Component<QuestionCardProps, {}> {
   };
 
   getBottom(): JSX.Element {
-    if (this.props.isMC || this.props.question.questionType === QuestionType.PorOParaFIB) {
+    const isMC =
+      this.props.question.questionType === QuestionType.ConjugationMC ||
+      this.props.question.questionType === QuestionType.DefinitionMC ||
+      this.props.question.questionType === QuestionType.PorOParaFIB;
+
+    if (isMC) {
       return <MultipleChoice header={this.props.question.top3}
                              choices={this.props.question.choices}
-                             clickable={this.props.clickable}
+                             isSubmitted={this.props.isSubmitted}
                              click={this.props.handleSubmit}
                              answer={this.realAnswer(this.props.question.answer)}/>
     } else {
@@ -77,10 +79,10 @@ class QuestionCard extends React.Component<QuestionCardProps, {}> {
   getTop(): JSX.Element {
     if (this.props.question.questionType === QuestionType.PorOParaFIB) {
       return <FillInBlankTop
-        submitted={!this.props.clickable}
+        submitted={this.props.isSubmitted}
         choice={this.props.value}
         question={this.props.question}
-        next={this.props.next}
+        handleSubmit={this.props.handleSubmit}
         showExplanation={this.props.showExplanation}/>
     } else {
       return <NormalTop question={this.props.question}/>
