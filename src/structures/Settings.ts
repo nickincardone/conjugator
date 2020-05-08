@@ -4,8 +4,8 @@ export default class Settings {
   isMobile: boolean = false;
   numberOfQuestions: number = 5;
   conjugationMC: boolean = true;
-  conjugationW: boolean = true;
-  definitionMC: boolean = true;
+  conjugationW: boolean = false;
+  definitionMC: boolean = false;
   definitionW: boolean = true;
   poropara: boolean = false;
 

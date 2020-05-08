@@ -16,6 +16,7 @@ import {Question, QuestionType} from "./types";
 import Settings from "./structures/Settings";
 import Quiz from "./structures/Quiz";
 import { Route, Switch, withRouter, RouteComponentProps } from 'react-router-dom';
+import QuizSection from "./components/quizSection/QuizSection";
 
 interface AppState {
   value: string;
@@ -46,11 +47,11 @@ class App extends React.Component<RouteComponentProps, AppState> {
   }
 
   componentDidMount = () => {
-    document.addEventListener("keydown", this.handleKeyDown, false);
+    // document.addEventListener("keydown", this.handleKeyDown, false);
   };
 
   componentWillUnmount = () => {
-    document.removeEventListener("keydown", this.handleKeyDown, false);
+    // document.removeEventListener("keydown", this.handleKeyDown, false);
   };
 
   updateVerbTypes = (event: ChangeEvent<HTMLInputElement>) => {
@@ -97,21 +98,21 @@ class App extends React.Component<RouteComponentProps, AppState> {
     this.setState({ value: event.target.value });
   };
 
-  handleKeyDown = (e: KeyboardEvent) => {
-    const isEnterOrTouch = e.key === 'Enter' || e.type === 'touchend';
-    // @ts-ignore
-    if (e.target !== null && e.target.classList && e.target.classList.contains('prevent-touch')) return;
-    //por o para next
-    if (isEnterOrTouch && this.state.currentQuestion.questionType === QuestionType.PorOParaFIB
-      && !this.state.clickable) {
-      return this.processNext();
-    }
-    //popup next
-    if (isEnterOrTouch && (this.state.currentQuestion.questionType % 2 === 0 || this.state.open)) {
-      this.setState({ 'submitted': true });
-      this.processNext();
-    }
-  };
+  // handleKeyDown = (e: KeyboardEvent) => {
+  //   const isEnterOrTouch = e.key === 'Enter' || e.type === 'touchend';
+  //   // @ts-ignore
+  //   if (e.target !== null && e.target.classList && e.target.classList.contains('prevent-touch')) return;
+  //   //por o para next
+  //   if (isEnterOrTouch && this.state.currentQuestion.questionType === QuestionType.PorOParaFIB
+  //     && !this.state.clickable) {
+  //     return this.processNext();
+  //   }
+  //   //popup next
+  //   if (isEnterOrTouch && (this.state.currentQuestion.questionType % 2 === 0 || this.state.open)) {
+  //     this.setState({ 'submitted': true });
+  //     this.processNext();
+  //   }
+  // };
 
   nextQuestion = () => {
     const nextQuestion = this.quiz.nextQuestion() as Question;
@@ -130,13 +131,13 @@ class App extends React.Component<RouteComponentProps, AppState> {
     );
   };
 
-  processNext = () => {
+  processNext = (value: string) => {
     if (this.state.currentQuestion.questionType === QuestionType.PorOParaFIB) {
       if (!this.state.clickable) {
-        if (this.realAnswer() !== this.state.value.toLowerCase()) {
+        if (this.realAnswer() !== value.toLowerCase()) {
           this.quiz.incorrectAnswers.push({
             ...this.state.currentQuestion,
-            response: this.state.value
+            response: value
           });
         }
         if (this.quiz.isEnd()) {
@@ -158,45 +159,41 @@ class App extends React.Component<RouteComponentProps, AppState> {
         this.nextQuestion();
       }
     } else {
-      if (this.realAnswer() !== this.state.value.toLowerCase()) {
+      if (this.realAnswer() !== value.toLowerCase()) {
         this.quiz.incorrectAnswers.push({
           ...this.state.currentQuestion,
-          response: this.state.value
+          response: value
         });
-        this.setState({ open: true });
+      }
+      if (this.quiz.isEnd()) {
+        this.restart();
       } else {
-        if (this.quiz.isEnd()) {
-          setTimeout(this.restart, 400);
-        } else {
-          setTimeout(this.nextQuestion, 400);
-        }
+        this.nextQuestion();
       }
     }
   };
 
-  handleSubmit = (value: string) => {
-    this.setState({ value: value }, this.processNext);
-  };
+  // handleSubmit = (value: string) => {
+  //   this.setState({ value: value }, this.processNext);
+  // };
 
   realAnswer() {
     return this.state.currentQuestion.answer.replace(/\|/g, '').toLowerCase();
   }
 
-  getQuestion(questionType: number) {
-    const isMC = questionType % 2 === 1;
-    return (
-      <QuestionCard
-        isMC={isMC}
-        question={this.state.currentQuestion}
-        value={this.state.value}
-        showExplanation={this.openExplanation}
-        clickable={this.state.clickable}
-        next={this.processNext}
-        handleSubmit={this.handleSubmit}
-        handleChange={this.handleChange}
-        isSubmitted={this.state.submitted}/>
-    )
-  }
+  // getQuestion(questionType: number) {
+  //   return (
+  //     <QuestionCard
+  //       question={this.state.currentQuestion}
+  //       value={this.state.value}
+  //       showExplanation={this.openExplanation}
+  //       clickable={this.state.clickable}
+  //       next={this.processNext}
+  //       handleSubmit={this.handleSubmit}
+  //       handleChange={this.handleChange}
+  //       isSubmitted={this.state.submitted}/>
+  //   )
+  // }
 
   start = (isMobile: boolean) => {
     if (this.getQuestionTypes().length === 0) return;
@@ -252,23 +249,25 @@ class App extends React.Component<RouteComponentProps, AppState> {
                       updateVerbTypes={this.updateVerbTypes}/>
                   })}/>
                   <Route path="/quiz" exact render={(props => {
-                    return (<Hidden>
-                      <LinearProgress
-                        variant="determinate"
-                        color="secondary"
-                        value={(this.quiz.currentQuestion / this.state.settings.numberOfQuestions) * 100}/>
-                      <ExplanationDialog
-                        open={this.state.showExplanation}
-                        handleClose={this.processNext}
-                        rule={rules[this.state.currentQuestion.explanation]}/>
-                      <SimpleDialog
-                        open={this.state.open}
-                        answer={this.state.value}
-                        handleClose={this.processNext}
-                        question={this.state.currentQuestion}
-                        correctAnswer={this.state.currentQuestion.answer}/>
-                      {this.getQuestion(this.state.currentQuestion.questionType)}
-                    </Hidden>)
+                    return (
+                    //   <Hidden>
+                    //   <LinearProgress
+                    //     variant="determinate"
+                    //     color="secondary"
+                    //     value={(this.quiz.currentQuestion / this.state.settings.numberOfQuestions) * 100}/>
+                    //   <ExplanationDialog
+                    //     open={this.state.showExplanation}
+                    //     handleClose={this.processNext}
+                    //     rule={rules[this.state.currentQuestion.explanation]}/>
+                    //   <SimpleDialog
+                    //     open={this.state.open}
+                    //     answer={this.state.value}
+                    //     handleClose={this.processNext}
+                    //     question={this.state.currentQuestion}/>
+                    //   {this.getQuestion(this.state.currentQuestion.questionType)}
+                    // </Hidden>
+                      <QuizSection next={this.processNext} question={this.state.currentQuestion}/>
+                    )
                   })}/>
                   <Route path="/" render={(props => {
                     return <Home

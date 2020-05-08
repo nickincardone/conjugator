@@ -7,7 +7,6 @@ import { getStringDifferenceArrays } from '../../../helpers/stringHelpers';
 import {Question} from "../../../types";
 
 interface answerDialogProps {
-  correctAnswer: string;
   answer: string;
   question: Question;
   handleClose: () => void;
@@ -16,7 +15,7 @@ interface answerDialogProps {
 
 const answerDialog: FunctionComponent<answerDialogProps> = (props) => {
 
-  const [answerArray, inputArray] = getStringDifferenceArrays(props.correctAnswer.replace(/\|/g,
+  const [answerArray, inputArray] = getStringDifferenceArrays(props.question.answer.replace(/\|/g,
     ''), props.answer);
 
   function styledAnswer(array: Array<string | number[]>) {
