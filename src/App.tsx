@@ -108,6 +108,18 @@ class App extends React.Component<RouteComponentProps, AppState> {
       started: true
     }, () => this.props.history.replace('/quiz'));
   };
+  
+  goToOptions = (isMobile: boolean) => {
+    const settings = {...this.state.settings};
+    settings.isMobile = isMobile;
+    if (isMobile) {
+      settings.conjugationW = false;
+      settings.definitionW = false;
+    }
+    this.setState({ settings: settings }, () =>
+      this.props.history.replace("/options")
+    );
+  };
 
   checkboxChange = (event: any) => {
     const setting = event.target.name as keyof Settings;
@@ -152,6 +164,7 @@ class App extends React.Component<RouteComponentProps, AppState> {
                       numberOfQuestions={this.state.settings.numberOfQuestions}
                       incorrectAnswers={this.quiz.incorrectAnswers.length}
                       start={this.start}
+                      goToOptions={this.goToOptions}
                       started={this.state.started}/>
                   })}/>
                 </Switch>

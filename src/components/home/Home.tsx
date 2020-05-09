@@ -9,6 +9,7 @@ export interface HomeProps {
   numberOfQuestions: number;
   started: boolean;
   start: (b: boolean) => void;
+  goToOptions: (b: boolean) => void;
   history: any;
 }
 
@@ -44,7 +45,7 @@ class Home extends React.Component<HomeProps, {}> {
           <Button variant="contained" color="primary" onClick={() => this.props.start(true)}>
             start
           </Button>
-          <Button variant="contained" color="secondary" onClick={() => this.props.history.replace('/options')}>
+          <Button variant="contained" color="secondary" onClick={() => this.props.goToOptions(true)}>
             custom start
           </Button>
         </Hidden>
@@ -52,7 +53,7 @@ class Home extends React.Component<HomeProps, {}> {
           <Button variant="contained" color="primary" onClick={() => this.props.start(false)}>
             start
           </Button>
-          <Button variant="contained" color="secondary" onClick={() => this.props.history.replace('/options')}>
+          <Button variant="contained" color="secondary" onClick={() => this.props.goToOptions(false)}>
             custom start
           </Button>
         </Hidden>
