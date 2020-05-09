@@ -3,11 +3,11 @@ import React, {FunctionComponent} from 'react';
 import Typography from '@material-ui/core/Typography';
 import './ExplanationDialog.scss';
 import { Hidden } from '@material-ui/core';
-import Tooltip from '@material-ui/core/Tooltip';
 import { Rule } from '../../../types';
+import ModifiedTooltip from "../../ui/ModifiedTooltip/ModifiedTooltip";
 
 interface explanationDialogProps {
-  handleClose: () => void;
+  handleClose: (a: React.MouseEvent<HTMLDivElement>) => void;
   rule: Rule;
   open: boolean;
 }
@@ -38,9 +38,9 @@ const explanationDialog: FunctionComponent<explanationDialogProps> = (props) => 
       <div className="nji-explanation-body">
         <h1>Explanation</h1>
         <h2>Rule: {props.rule.rule}</h2>
-        <Tooltip classes={{tooltip: 'nji-explanation-tooltip'}} placement="bottom" title={props.rule.translation}>
+        <ModifiedTooltip className="nji-explanation-tooltip" placement="bottom" title={props.rule.translation}>
           <div><b>Example</b>: <span className="nji-example">{formatPipes(props.rule.example)}</span></div>
-        </Tooltip>
+        </ModifiedTooltip>
         <div className="nji-caption">
         <Hidden lgUp>
           <Typography variant="caption">Touch anywhere to continue</Typography>

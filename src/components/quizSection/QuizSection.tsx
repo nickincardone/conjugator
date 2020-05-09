@@ -30,7 +30,6 @@ const QuizSection = (props: QuizSectionProps) => {
     setValue('');
   };
 
-
   const openExplanation = () => {
     setShowExplanationDialog(true)
   };
@@ -59,7 +58,9 @@ const QuizSection = (props: QuizSectionProps) => {
     }
   };
 
-  const handleClose = () => {
+  const handleClose = (event: React.MouseEvent<HTMLDivElement>) => {
+    const target = event.target as HTMLDivElement;
+    if (target.classList.contains('nji-example')) return;
     reset();
     props.next(value);
   };
@@ -73,15 +74,20 @@ const QuizSection = (props: QuizSectionProps) => {
     processNext(value);
   };
 
-  const handleUserKeyPress = useCallback(event => {
-    const { key, keyCode } = event;
+  const handleUserKeyPress = useCallback((event: KeyboardEvent) => {
+    const key = event.key;
     if (key === 'Enter' && isSubmitted) {
       return processNext(value);
     }
-    if (key === 'Enter' && (props.question.questionType === QuestionType.DefinitionW || props.question.questionType === QuestionType.ConjugationW)) {
+    if (
+      key === "Enter" &&
+      (props.question.questionType === QuestionType.DefinitionW ||
+        props.question.questionType === QuestionType.ConjugationW)
+    ) {
       return processNext(value);
     }
-  }, [isSubmitted, value, processNext]);
+    // eslint-disable-next-line
+  }, [isSubmitted, value, props.question.questionType]); //processNext does not need to be in array
 
   useEffect(() => {
     window.addEventListener('keydown', handleUserKeyPress);
