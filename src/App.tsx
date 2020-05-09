@@ -120,10 +120,10 @@ class App extends React.Component<RouteComponentProps, AppState> {
   };
 
   getAppClass = () => {
-    console.log(this.props.location);
     return (this.props.location.pathname === '/options')
       ? 'center-grid nji-option-mobile' : 'center-grid';
   };
+
   render() {
     return (
       <Container maxWidth="md" className="nji-main">

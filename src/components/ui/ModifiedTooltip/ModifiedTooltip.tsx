@@ -24,7 +24,7 @@ export default function ModifiedTooltip(props: ModifiedTooltipProps) {
       </Hidden>
       <Hidden mdUp>
         <ClickAwayListener onClickAway={() => setOpen(false)}>
-          <div onClick={() => {if (open) setOpen(true)}}>
+          <div onClick={() => setOpen(oldOpen => !oldOpen)}>
             <Tooltip
               PopperProps={{ disablePortal: true, }}
               onClose={() => setOpen(false)}
