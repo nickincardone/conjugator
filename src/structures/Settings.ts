@@ -2,11 +2,11 @@ import {VerbType} from "../types";
 
 export default class Settings {
   isMobile: boolean = false;
-  numberOfQuestions: number = 5;
+  numberOfQuestions: number = 10;
   conjugationMC: boolean = true;
-  conjugationW: boolean = false;
-  definitionMC: boolean = false;
-  definitionW: boolean = false;
+  conjugationW: boolean = true;
+  definitionMC: boolean = true;
+  definitionW: boolean = true;
   poropara: boolean = false;
 
   vosotros: boolean = false;

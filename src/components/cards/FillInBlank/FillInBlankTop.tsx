@@ -3,7 +3,6 @@ import Typography from '@material-ui/core/Typography';
 import './FillInBlankTop.scss';
 import ModifiedTooltip from '../../ui/ModifiedTooltip/ModifiedTooltip';
 import {Question} from "../../../types";
-import {Hidden} from "@material-ui/core";
 
 interface FillInBlankTopProps {
   question: Question;
@@ -24,10 +23,6 @@ function isBeginning(string: string, index: number): boolean {
 const FillInBlankTop: FunctionComponent<FillInBlankTopProps> = (props) => {
   let questionText: JSX.Element[] = [<React.Fragment>{props.question.top1}</React.Fragment>];
   let className: string =  '';
-  const nextString: string = props.choice === props.question.answer ?
-    'Press Enter to Continue' : 'Click here for Explanation or Press Enter to Continue';
-  const nextStringMobile: string = props.choice === props.question.answer ?
-    'Touch here to Continue' : 'Touch here for Explanation';
 
   if (props.submitted) {
     className = props.choice === props.question.answer ?
@@ -64,8 +59,6 @@ const FillInBlankTop: FunctionComponent<FillInBlankTopProps> = (props) => {
         onClick={() => className === "nji-incorrect" ? props.showExplanation(): props.handleSubmit(props.choice)}
         variant="subtitle1"
         className={className + " prevent-touch"} >
-        <Hidden mdUp>{nextStringMobile}</Hidden>
-        <Hidden smDown>{nextString}</Hidden>
       </Typography>
     </div>
   );

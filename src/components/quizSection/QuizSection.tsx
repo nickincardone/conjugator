@@ -35,12 +35,23 @@ const QuizSection = (props: QuizSectionProps) => {
   };
 
   const processNext = (currentValue: string) => {
+    console.log(currentValue);
+    console.log(realAnswer)
     if (props.question.questionType === QuestionType.PorOParaFIB) {
       if (isSubmitted) {
         reset();
         return props.next(currentValue);
       } else {
-        return setIsSubmitted(true);
+        setIsSubmitted(true);
+        if (currentValue.toLowerCase() === realAnswer) {
+          setTimeout(() => {
+            reset();
+            props.next(currentValue);
+          }, 1000)
+        } else {
+          setTimeout(() => setShowExplanationDialog(true), 1000)
+        }
+        return;
       }
     }
     if (isSubmitted) {
@@ -52,7 +63,7 @@ const QuizSection = (props: QuizSectionProps) => {
       setTimeout(() => {
         reset();
         props.next(currentValue);
-      }, 400)
+      }, 400);
     } else {
       setShowAnswerDialog(true);
     }
