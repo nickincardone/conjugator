@@ -61,49 +61,49 @@ const poropara: FillInBlank[] = [
     "reason": 5
   },
   {
-    "question": "EL recetó antibióticos ___ la infección.",
+    "question": "EL recetó antibióticos ___ la infección.",
     "translation": "He prescribed antibiotics for the infection.",
     "answer": "para",
     "reason": 12
   },
   {
-    "question": "Este informe es ___ el jefe.",
+    "question": "Este informe es ___ el jefe.",
     "translation": "This report is for the boss.",
     "answer": "para",
     "reason": 20
   },
   {
-    "question": "Esta situación no resulta aceptable ___ el propietario.",
+    "question": "Esta situación no resulta aceptable ___ el propietario.",
     "translation": "This situation is not acceptable for the owner.",
     "answer": "para",
     "reason": 20
   },
   {
-    "question": "Hay dos lecciones vitales ___ todo el mundo.",
+    "question": "Hay dos lecciones vitales ___ todo el mundo.",
     "translation": "There are two vital lessons for everyone.",
     "answer": "para",
     "reason": 20
   },
   {
-    "question": "___ nosotros, un million dolares era un sueño.",
+    "question": "___ nosotros, un million dolares era un sueño.",
     "translation": "For us, a million dollars was a dream.",
     "answer": "para",
     "reason": 16
   },
   {
-    "question": "Esta es una mala señal ___ el crecimiento.",
+    "question": "Esta es una mala señal ___ el crecimiento.",
     "translation": "This is a bad sign for growth.",
     "answer": "para",
     "reason": 20
   },
   {
-    "question": "Ella ha trabajado duro ___ suavizar su imagen.",
+    "question": "Ella ha trabajado duro ___ suavizar su imagen.",
     "translation": "She has worked hard to soften her image.",
     "answer": "para",
     "reason": 13
   },
   {
-    "question": "Este escenario es más peligroso ___ todo el mundo",
+    "question": "Este escenario es más peligroso ___ todo el mundo",
     "translation": "This scenario is more dangerous for everyone",
     "answer": "para",
     "reason": 20
@@ -115,7 +115,7 @@ const poropara: FillInBlank[] = [
     "reason": 13
   },
   {
-    "question": "Europa ha demostrado su capacidad ___ actuar.",
+    "question": "Europa ha demostrado su capacidad ___ actuar.",
     "translation": "Europe has shown it's capacity to act.",
     "answer": "para",
     "reason": 13
@@ -199,7 +199,7 @@ const poropara: FillInBlank[] = [
     "reason": 20
   },
   {
-    "question": "Este dinero es ___ ti.",
+    "question": "Este dinero es ___ ti.",
     "translation": "This money is for you.",
     "answer": "para",
     "reason": 20
@@ -217,19 +217,19 @@ const poropara: FillInBlank[] = [
     "reason": 13
   },
   {
-    "question": "Necesito el vestido ___ el lunes.",
+    "question": "Necesito el vestido ___ el lunes.",
     "translation": "I need the dress for Monday",
     "answer": "para",
     "reason": 14
   },
   {
-    "question": "___ un niño lee muy bien.",
+    "question": "___ un niño lee muy bien.",
     "translation": "For a kid, he reads very well.",
     "answer": "para",
     "reason": 18
   },
   {
-    "question": "Juan compró el regalo ___ María.",
+    "question": "Juan compró el regalo ___ María.",
     "translation": "Juan bought the present for María.",
     "answer": "para",
     "reason": 20
@@ -307,43 +307,43 @@ const poropara: FillInBlank[] = [
     "reason": 14
   },
   {
-    "question": "Llegó tarde y, ___ colmo, no pidió disculpas",
+    "question": "Llegó tarde y, ___ colmo, no pidió disculpas",
     "translation": "He was late and, to top it off, he did not apologize",
     "answer": "para",
     "reason": 21
   },
   {
-    "question": "___ empezar, vamos a llamar a papá",
+    "question": "___ empezar, vamos a llamar a papá",
     "translation": "To start, we are going to call father",
     "answer": "para",
     "reason": 13
   },
   {
-    "question": "___ entonces ya habré terminado",
+    "question": "___ entonces ya habré terminado",
     "translation": "By then I will have finished",
     "answer": "para",
     "reason": 14
   },
   {
-    "question": "No es ___ nada lista",
+    "question": "No es ___ nada lista",
     "translation": "It is not ready at all",
     "answer": "para",
     "reason": 21
   },
   {
-    "question": "Dejémoslo ___ otra vez",
+    "question": "Dejémoslo ___ otra vez",
     "translation": "Let's leave it for another time",
     "answer": "para",
     "reason": 14
   },
   {
-    "question": "Lo hice ___ que vinieras",
+    "question": "Lo hice ___ que vinieras",
     "translation": "I made it for you to come",
     "answer": "para",
     "reason": 20
   },
   {
-    "question": "Quiero estar contigo ___ siempre",
+    "question": "Quiero estar contigo ___ siempre",
     "translation": "I want to be with you forever",
     "answer": "para",
     "reason": 21
@@ -355,121 +355,121 @@ const poropara: FillInBlank[] = [
     "reason": 21
   },
   {
-    "question": "Estaba ___ salir cuando llamaste",
+    "question": "Estaba ___ salir cuando llamaste",
     "translation": "I was about to leave when you called",
     "answer": "para",
     "reason": 19
   },
   {
-    "question": "El plato más grande es ___ ellos.",
+    "question": "El plato más grande es ___ ellos.",
     "translation": "The largest plate is for them",
     "answer": "para",
     "reason": 18
   },
   {
-    "question": "Frank escribe ___ su universidad",
+    "question": "Frank escribe ___ su universidad",
     "translation": "Frank writes for his university",
     "answer": "para",
     "reason": 13
   },
   {
-    "question": "Salimos ___ Barcelona mañana",
+    "question": "Salimos ___ Barcelona mañana",
     "translation": "We leave for Barcelona tomorrow",
     "answer": "para",
     "reason": 15
   },
   {
-    "question": "El tren salió ___ Madrid.",
+    "question": "El tren salió ___ Madrid.",
     "translation": "The train left for Madrid",
     "answer": "para",
     "reason": 15
   },
   {
-    "question": "Salgo ___ Polonia en cinco minutos",
+    "question": "Salgo ___ Polonia en cinco minutos",
     "translation": "I leave for Poland in five minutes",
     "answer": "para",
     "reason": 15
   },
   {
-    "question": "Necesito el coche de vuelta ___ el martes",
+    "question": "Necesito el coche de vuelta ___ el martes",
     "translation": "I need the car back by Tuesday",
     "answer": "para",
     "reason": 14
   },
   {
-    "question": "Haz esto ___ el lunes",
+    "question": "Haz esto ___ el lunes",
     "translation": "Do this by Monday",
     "answer": "para",
     "reason": 14
   },
   {
-    "question": "Prepara el vocabulario ___ la semana que viene",
+    "question": "Prepara el vocabulario ___ la semana que viene",
     "translation": "Prepare the vocabulary by next week",
     "answer": "",
     "reason": 14
   },
   {
-    "question": "Estudio español ___ conseguir un trabajo mejor.",
+    "question": "Estudio español ___ conseguir un trabajo mejor.",
     "translation": "I am studying Spanish in order to get a better job",
     "answer": "para",
     "reason": 13
   },
   {
-    "question": "Bebo agua ___ estar sano",
+    "question": "Bebo agua ___ estar sano",
     "translation": "I drink water to be healthy",
     "answer": "para",
     "reason": 13
   },
   {
-    "question": "Viajé a Londres ___ mejorar mi inglés",
+    "question": "Viajé a Londres ___ mejorar mi inglés",
     "translation": "I traveled to London to improve my English",
     "answer": "para",
     "reason": 13
   },
   {
-    "question": "Está muy alto ___ tener seis años",
+    "question": "Está muy alto ___ tener seis años",
     "translation": "She is very tall to be six years old",
     "answer": "para",
     "reason": 18
   },
   {
-    "question": "___ su edad es muy lista ya.",
+    "question": "___ su edad es muy lista ya.",
     "translation": "For her age, she is already very clever.",
     "answer": "para",
     "reason": 18
   },
   {
-    "question": "___ ser escritor no lees mucho",
+    "question": "___ ser escritor no lees mucho",
     "translation": "For a writer, you do not read a lot",
     "answer": "para",
     "reason": 18
   },
   {
-    "question": "Esta copa es ___ vino",
+    "question": "Esta copa es ___ vino",
     "translation": "This cup is for wine",
     "answer": "para",
     "reason": 12
   },
   {
-    "question": "Esta lámpara es ___ el baño",
+    "question": "Esta lámpara es ___ el baño",
     "translation": "This lamp is for the bathroom",
     "answer": "para",
     "reason": 12
   },
   {
-    "question": "Está ___ llover",
+    "question": "Está ___ llover",
     "translation": "It is about to rain",
     "answer": "para",
     "reason": 19
   },
   {
-    "question": "Estamos ___ irnos",
+    "question": "Estamos ___ irnos",
     "translation": "We are about to leave",
     "answer": "para",
     "reason": 19
   },
   {
-    "question": "La película está ___ terminar.",
+    "question": "La película está ___ terminar.",
     "translation": "The move is about to end",
     "answer": "para",
     "reason": 19
@@ -517,19 +517,19 @@ const poropara: FillInBlank[] = [
     "reason": 21
   },
   {
-    "question": "Este autobús va ___ el centro de la ciudad.",
+    "question": "Este autobús va ___ el centro de la ciudad.",
     "translation": "This bus goes to the center of the city",
     "answer": "para",
     "reason": 15
   },
   {
-    "question": "Necesito terminar el informe ___ mañana.",
+    "question": "Necesito terminar el informe ___ mañana.",
     "translation": "I need to finish the report by tomorrow",
     "answer": "para",
     "reason": 14
   },
   {
-    "question": "Compré este libro ___ mi hermana.",
+    "question": "Compré este libro ___ mi hermana.",
     "translation": "I bought this book for my sister.",
     "answer": "para",
     "reason": 20
@@ -541,7 +541,7 @@ const poropara: FillInBlank[] = [
     "reason": 17
   },
   {
-    "question": "___ aprobar tu examen necesitas estudiar arduamente.",
+    "question": "___ aprobar tu examen necesitas estudiar arduamente.",
     "translation": "In order to pass your exam you need to study hard.",
     "answer": "para",
     "reason": 13
@@ -620,145 +620,145 @@ const poropara: FillInBlank[] = [
     "reason": 3
   },
   {
-    "question": "La contacté ___ correo.",
+    "question": "La contacté ___ correo.",
     "translation": "I contacted her through mail.",
     "answer": "por",
     "reason": 6
   },
   {
-    "question": "Viajé ___ Francia y España.",
+    "question": "Viajé ___ Francia y España.",
     "translation": "I traveled through France and Spain.",
     "answer": "por",
     "reason": 7
   },
   {
-    "question": "¿Quieres pasar ___ el parque?",
+    "question": "¿Quieres pasar ___ el parque?",
     "translation": "Do you want to walk through the park?",
     "answer": "por",
     "reason": 7
   },
   {
-    "question": "Te cambiearía mi manzana ___ tu sandwich.",
+    "question": "Te cambiearía mi manzana ___ tu sandwich.",
     "translation": "I would change my apple for your sandwich.",
     "answer": "por",
     "reason": 3
   },
   {
-    "question": "Te doy sesenta pesos ___ la mochila.",
+    "question": "Te doy sesenta pesos ___ la mochila.",
     "translation": "I am giving you sixty pesos for the backpack.",
     "answer": "por",
     "reason": 3
   },
   {
-    "question": "Tengo que trabajar ___ ocho horas hoy.",
+    "question": "Tengo que trabajar ___ ocho horas hoy.",
     "translation": "I have to work for eight hours today.",
     "answer": "por",
     "reason": 2
   },
   {
-    "question": "¿Dormiste ___ 12 horas?",
+    "question": "¿Dormiste ___ 12 horas?",
     "translation": "Did you sleep 12 hours?",
     "answer": "por",
     "reason": 2
   },
   {
-    "question": "Por su amor a los niños, quiere ser pediatra.",
+    "question": "Por su amor a los niños, quiere ser pediatra.",
     "translation": "Because of her love for children, she wants to be a pediatrician.",
     "answer": "por",
     "reason": 4
   },
   {
-    "question": "Trabajo ___ ti, porque te quiero cuidar.",
+    "question": "Trabajo ___ ti, porque te quiero cuidar.",
     "translation": "I work for you, because I want to take care of you.",
     "answer": "por",
     "reason": 9
   },
   {
-    "question": "Viajamos en coche ___ ocho horas.",
+    "question": "Viajamos en coche ___ ocho horas.",
     "translation": "I traveled by car for eight hours.",
     "answer": "por",
     "reason": 2
   },
   {
-    "question": "Estudié ___ cinco horas.",
+    "question": "Estudié ___ cinco horas.",
     "translation": "I studied for 5 hours",
     "answer": "por",
     "reason": 2
   },
   {
-    "question": "___ su amor al español, siempre lo estudiaba.",
+    "question": "___ su amor al español, siempre lo estudiaba.",
     "translation": "Because of his love of Spanish, he always studied it.",
     "answer": "por",
     "reason": 4
   },
   {
-    "question": "___ el número de gente que vino, pedí más comida.",
+    "question": "___ el número de gente que vino, pedí más comida.",
     "translation": "Because of the number of people that came, I asked for more food.",
     "answer": "por",
     "reason": 9
   },
   {
-    "question": "Tengo tanto amor ___ ti.",
+    "question": "Tengo tanto amor ___ ti.",
     "translation": "I have so much love for you.",
     "answer": "por",
     "reason": 22
   },
   {
-    "question": "La chica siente muchos celos ___ la estrella del cine.",
+    "question": "La chica siente muchos celos ___ la estrella del cine.",
     "translation": "The girl is very jealous of the movie star.",
     "answer": "por",
     "reason": 22
   },
   {
-    "question": "Pagué $60 por estos zapatos.",
+    "question": "Pagué $60 por estos zapatos.",
     "translation": "I paid $60 for these shoes.",
     "answer": "por",
     "reason": 3
   },
   {
-    "question": "Te daré mi galleta ___ tu pastelito.",
+    "question": "Te daré mi galleta ___ tu pastelito.",
     "translation": "I'll give you my cookie for your cupcake.",
     "answer": "por",
     "reason": 3
   },
   {
-    "question": "Viajamos ___ tren a Italia.",
+    "question": "Viajamos ___ tren a Italia.",
     "translation": "I traveled by train to Italy.",
     "answer": "por",
     "reason": 5
   },
   {
-    "question": "Hablamos ___ teléfono anoche.",
+    "question": "Hablamos ___ teléfono anoche.",
     "translation": "We talked on the phone last night.",
     "answer": "por",
     "reason": 6
   },
   {
-    "question": "Caminamos ___ el parque hace dos días.",
+    "question": "Caminamos ___ el parque hace dos días.",
     "translation": "We walked through the park two days ago.",
     "answer": "por",
     "reason": 7
   },
   {
-    "question": "Hay una maestra sustituta ___ la Señora Martinez hoy.",
+    "question": "Hay una maestra sustituta ___ la Señora Martinez hoy.",
     "translation": "There is a substitute teacher for Mrs. Martinez today.",
     "answer": "por",
     "reason": 9
   },
   {
-    "question": "Fui al supermercado ___ mi madre porque ella estaba enferma.",
+    "question": "Fui al supermercado ___ mi madre porque ella estaba enferma.",
     "translation": "I went to the supermarket for my mother because she was sick.",
     "answer": "por",
     "reason": 9
   },
   {
-    "question": "Salimos por la puerta.",
+    "question": "Salimos por la puerta.",
     "translation": "We left through the door.",
     "answer": "por",
     "reason": 7
   },
   {
-    "question": "Conduje ___ dos horas.",
+    "question": "Conduje ___ dos horas.",
     "translation": "I drove for two hours.",
     "answer": "por",
     "reason": 2
@@ -908,7 +908,7 @@ const poropara: FillInBlank[] = [
     "reason": 4
   },
   {
-    "question": "Estoy hablando ___ teléfono con mi madre. ",
+    "question": "Estoy hablando ___ teléfono con mi madre. ",
     "translation": "I am talking on the phone with my mother.",
     "answer": "por",
     "reason": 6
@@ -932,7 +932,7 @@ const poropara: FillInBlank[] = [
     "reason": 0
   },
   {
-    "question": "Tienes que ver la ciudad ___ la noche. Es increíble.",
+    "question": "Tienes que ver la ciudad ___ la noche. Es increíble.",
     "translation": "You have to see the city at night. It is incredible.",
     "answer": "por",
     "reason": 0
@@ -950,7 +950,7 @@ const poropara: FillInBlank[] = [
     "reason": 3
   },
   {
-    "question": "Ella me dio 15 dólares ___ la lámpara.",
+    "question": "Ella me dio 15 dólares ___ la lámpara.",
     "translation": "She gave me 15 dollars for the lamp.",
     "answer": "por",
     "reason": 3
@@ -1058,7 +1058,7 @@ const poropara: FillInBlank[] = [
     "reason": 11
   },
   {
-    "question": "Estudio español ___ mi trabajo.",
+    "question": "Estudio español ___ mi trabajo.",
     "translation": "I study Spanish for my job.",
     "answer": "por",
     "reason": 4
@@ -1070,13 +1070,13 @@ const poropara: FillInBlank[] = [
     "reason": 7
   },
   {
-    "question": "El año pasado viajamos ___ España.",
+    "question": "El año pasado viajamos ___ España.",
     "translation": "Last year we traveled through Spain.",
     "answer": "por",
     "reason": 7
   },
   {
-    "question": "Este puente fue construido ___ los romanos.",
+    "question": "Este puente fue construido ___ los romanos.",
     "translation": "This bridge was built by the Romans.",
     "answer": "por",
     "reason": 1
@@ -1088,43 +1088,43 @@ const poropara: FillInBlank[] = [
     "reason": 21
   },
   {
-    "question": "Anoche hablé con Ana ___ teléfono.",
+    "question": "Anoche hablé con Ana ___ teléfono.",
     "translation": "Last night I talked with Ana on the phone.",
     "answer": "por",
     "reason": 6
   },
   {
-    "question": "Yo corro ___ el parque en las mañanas",
+    "question": "Yo corro ___ el parque en las mañanas",
     "translation": "I run through the park in the mornings",
     "answer": "por",
     "reason": 0
   },
   {
-    "question": "Voy a Mexico ___ Tulum.",
+    "question": "Voy a Mexico ___ Tulum.",
     "translation": "I am going to Mexico for Tulum.",
     "answer": "por",
     "reason": 4
   },
   {
-    "question": "Solamente durmieron ___ cuatro horas",
+    "question": "Solamente durmieron ___ cuatro horas",
     "translation": "They only slept for four hours",
     "answer": "por",
     "reason": 2
   },
   {
-    "question": "Ella siempre duerme ___ las tardes",
+    "question": "Ella siempre duerme ___ las tardes",
     "translation": "She always sleeps in the afternoons",
     "answer": "por",
     "reason": 0
   },
   {
-    "question": "La fiesta fue organizada ___ sus padres",
+    "question": "La fiesta fue organizada ___ sus padres",
     "translation": "The party was organized by her parents",
     "answer": "por",
     "reason": 1
   },
   {
-    "question": "Enseñé la clase ___ mi amiga. Estuvo enferma.",
+    "question": "Enseñé la clase ___ mi amiga. Estuvo enferma.",
     "translation": "I taught the class for my friend. She was sick.",
     "answer": "por",
     "reason": 9
@@ -1136,25 +1136,25 @@ const poropara: FillInBlank[] = [
     "reason": 4
   },
   {
-    "question": "Tomaba clases dos veces ___ semana",
+    "question": "Tomaba clases dos veces ___ semana",
     "translation": "I took classes two times per week",
     "answer": "por",
     "reason": 26
   },
   {
-    "question": "Julia siempre va al restaurante ___ la tarde",
+    "question": "Julia siempre va al restaurante ___ la tarde",
     "translation": "Julia always goes to the restaurant in the afternoon",
     "answer": "por",
     "reason": 0
   },
   {
-    "question": "La tienda debe estar ___ aquí",
+    "question": "La tienda debe estar ___ aquí",
     "translation": "The store must be near here",
     "answer": "por",
     "reason": 21
   },
   {
-    "question": "Visitaré a mis amigos ___ el verano",
+    "question": "Visitaré a mis amigos ___ el verano",
     "translation": "I will visit my friends for the summer",
     "answer": "por",
     "reason": 0
@@ -1172,85 +1172,85 @@ const poropara: FillInBlank[] = [
     "reason": 9
   },
   {
-    "question": "Llegué tarde ___ tu culpa",
+    "question": "Llegué tarde ___ tu culpa",
     "translation": "I arrived late because of your mistake",
     "answer": "por",
     "reason": 4
   },
   {
-    "question": "No fuimos al parque ___ la lluvia",
+    "question": "No fuimos al parque ___ la lluvia",
     "translation": "We didn't go to the park because of the rain",
     "answer": "por",
     "reason": 4
   },
   {
-    "question": "Ganó el campeonato ___ su resistencia",
+    "question": "Ganó el campeonato ___ su resistencia",
     "translation": "He won the championship because of his resiliency",
     "answer": "por",
     "reason": 4
   },
   {
-    "question": "Voy al cine dos veces ___ semana.",
+    "question": "Voy al cine dos veces ___ semana.",
     "translation": "I go to the movies twice per week.",
     "answer": "por",
     "reason": 26
   },
   {
-    "question": "Me pagan cuatro veces ___ mes",
+    "question": "Me pagan cuatro veces ___ mes",
     "translation": "I get paid four times per month",
     "answer": "por",
     "reason": 26
   },
   {
-    "question": "Michael está conduciendo a 80 millas ___ hora",
+    "question": "Michael está conduciendo a 80 millas ___ hora",
     "translation": "Michael is driving 80 miles per hour.",
     "answer": "por",
     "reason": 26
   },
   {
-    "question": "Muchas gracias ___ todo",
+    "question": "Muchas gracias ___ todo",
     "translation": "Thanks a lot for everything",
     "answer": "por",
     "reason": 24
   },
   {
-    "question": "Perdona ___ llegar tarde",
+    "question": "Perdona ___ llegar tarde",
     "translation": "Excuse me for arriving late",
     "answer": "por",
     "reason": 24
   },
   // {
-  //   "question": "La habitación está por ordenar",
+  //   "question": "La habitación está por ordenar",
   //   "translation": "The room is to be ordered",
   //   "answer": "por",
   //   "reason": 0
   // },
   {
-    "question": "Sesenta dividido ___ dos son treinta",
+    "question": "Sesenta dividido ___ dos son treinta",
     "translation": "Sixty divided by two is thirty",
     "answer": "por",
     "reason": 21
   },
   {
-    "question": "Me gustaría viajar ___ Europa",
+    "question": "Me gustaría viajar ___ Europa",
     "translation": "I would like to travel through Europe",
     "answer": "por",
     "reason": 7
   },
   {
-    "question": "A ella le gusta pasear ___ la orilla del mar",
+    "question": "A ella le gusta pasear ___ la orilla del mar",
     "translation": "She likes to walk along the seashore",
     "answer": "por",
     "reason": 23
   },
   {
-    "question": "Estoy ___ pedir pizza",
+    "question": "Estoy ___ pedir pizza",
     "translation": "11",
     "answer": "por",
     "reason": 11
   },
   {
-    "question": "Estamos ___ irnos a dormir.",
+    "question": "Estamos ___ irnos a dormir.",
     "translation": "We are about to go to sleep.",
     "answer": "por",
     "reason": 27
@@ -1388,7 +1388,7 @@ const poropara: FillInBlank[] = [
     "reason": 21 //these two are related
   },
   {
-    "question": "___ otro lado, está lloviendo",
+    "question": "___ otro lado, está lloviendo",
     "translation": "On the other hand, it's raining",
     "answer": "por",
     "reason": 21
