@@ -45,9 +45,9 @@ const QuizSection = (props: QuizSectionProps) => {
           setTimeout(() => {
             reset();
             props.next(currentValue);
-          }, 1000)
+          }, 700)
         } else {
-          setTimeout(() => setShowExplanationDialog(true), 1000)
+          setTimeout(() => setShowExplanationDialog(true), 700)
         }
         return;
       }

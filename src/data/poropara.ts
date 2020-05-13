@@ -1409,13 +1409,13 @@ const poropara: FillInBlank[] = [
     "question": "Tienes varias opciones. ___ ejemplo, puedes ir en coche.",
     "translation": "You have different options. For example, you can go by car.",
     "answer": "por",
-    "reason": 21
+    "reason": 29
   },
   {
     "question": "___ supuesto que te quiero",
     "translation": "Of course I love you",
     "answer": "por",
-    "reason": 21
+    "reason": 30
   },
   {
     "question": "La cuenta, ___ favor",
@@ -1427,43 +1427,43 @@ const poropara: FillInBlank[] = [
     "question": "___ suerte estabas allí",
     "translation": "Fortunately you were there.",
     "answer": "por",
-    "reason": 21
+    "reason": 31
   },
   {
     "question": "Lo compré ___ si acaso lo necesitabas",
     "translation": "I bought it just in case you needed it.",
     "answer": "por",
-    "reason": 21
+    "reason": 32
   },
   {
     "question": "Irás al dentista ___ las buenas o ___ las malas.",
     "translation": "You will go to the dentist whether you like it or not.",
     "answer": "por",
-    "reason": 21
+    "reason": 33
   },
   {
     "question": "No se venden ___ separado",
     "translation": "They are not sold separately.",
     "answer": "por",
-    "reason": 21
+    "reason": 34
   },
   {
     "question": "Lo necesito ___ escrito.",
     "translation": "I need it in writing",
     "answer": "por",
-    "reason": 21
+    "reason": 35
   },
   {
     "question": "Te lo digo ___ última vez",
     "translation": "I am telling you this for the last time",
     "answer": "por",
-    "reason": 21
+    "reason": 36
   },
   {
     "question": "Te lo digo ___ primera vez",
     "translation": "I am telling you this for the first time",
     "answer": "por",
-    "reason": 21
+    "reason": 36
   },
   {
     "question": "Los juguetes están ___ todas partes",

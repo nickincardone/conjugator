@@ -140,7 +140,7 @@ class OptionPage extends React.Component<OptionPageProps, {}> {
                   checked={this.props.settings.definitionMC}
                   onChange={this.props.settingsChanged}
                   label="Definition (Multiple Choice)"/>
-                <Hidden mdDown>
+                <Hidden smDown>
                   <CustomFormLabel
                     name="definitionW"
                     checked={this.props.settings.definitionW}
@@ -161,7 +161,7 @@ class OptionPage extends React.Component<OptionPageProps, {}> {
                   checked={this.props.settings.conjugationMC}
                   onChange={this.props.settingsChanged}
                   label="Conjugations (Multiple Choice)" />
-                <Hidden mdDown>
+                <Hidden smDown>
                   <CustomFormLabel
                     name="conjugationW"
                     checked={this.props.settings.conjugationW}
@@ -213,28 +213,15 @@ class OptionPage extends React.Component<OptionPageProps, {}> {
           valueLabelDisplay="auto"
           style={{ maxWidth: "200px" }}
           onChange={this.props.sliderChange}/>
-        <Hidden mdUp>
           <Button
             variant="contained"
             color="primary"
             disabled={disableStart}
             onClick={() => {
-              this.props.start(true);
+              this.props.start(this.props.settings.isMobile);
             }}>
             start
           </Button>
-        </Hidden>
-        <Hidden smDown>
-          <Button
-            variant="contained"
-            color="primary"
-            disabled={disableStart}
-            onClick={() => {
-              this.props.start(false);
-            }}>
-            start
-          </Button>
-        </Hidden>
       </Box>
     );
   }

@@ -200,8 +200,64 @@ const rules: Rule[] = [
     id: 28,
     use: "por o para",
     rule: "To express percentage",
-    example: "Cuarenta por ciento",
+    example: "Cuarenta |por| ciento",
     translation: "Fourty percent"
+  },
+  {
+    id: 29,
+    use: "por o para",
+    rule: "Colloquial: \"Por ejemplo\" is used to express \"For example\" ",
+    example: "|Por| ejemplo, podría ayudar a premiar a una persona",
+    translation: "For example, it might help to reward a person"
+  },
+  {
+    id: 30,
+    use: "por o para",
+    rule: "Colloquial: \"Por supesto\" is used to express \"Of course\" ",
+    example: "|Por| supesto que puedo verte",
+    translation: "Of course I can see you"
+  },
+  {
+    id: 31,
+    use: "por o para",
+    rule: "Colloquial: \"Por suerte\" is used to express \"Luckily\" ",
+    example: "|Por| suerte para usted, existe una curae",
+    translation: "Luckily for you, there is a cure"
+  },
+  {
+    id: 32,
+    use: "por o para",
+    rule: "Colloquial: \"Por si acaso\" is used to express \"Just in case\" ",
+    example: "Jason debe tener a su papá con él |por| si acaso",
+    translation: "Jason should have his father with him just in case"
+  },
+  {
+    id: 33,
+    use: "por o para",
+    rule: "Colloquial: \"Por las buenas o por las malas\" is used to express \"the easy way or the hard way\", \"one way or another\", or \"whether you like it or not\" ",
+    example: "Podemos hacer esto |por| las buenas o |por| las malas",
+    translation: "We can do this the easy way or the hard way"
+  },
+  {
+    id: 34,
+    use: "por o para",
+    rule: "Colloquial: \"Por seperado\" is used to express \"Separately\"",
+    example: "Este es otro tema que debe abordarse |por| separado",
+    translation: "This is another issue that should be addressed separately"
+  },
+  {
+    id: 35,
+    use: "por o para",
+    rule: "Colloquial: \"Por escrito\" is used to express \"In writing\"",
+    example: "Ella examinó la petición y respondió |por| escrito",
+    translation: "She examined the request and replied in writing"
+  },
+  {
+    id: 36,
+    use: "por o para",
+    rule: "Colloquial: \"Por última/primera vez\" is used to express \"For the last/first time\"",
+    example: "Te lo estoy preguntando |por| ultima vez",
+    translation: "I am asking you this for the last time"
   },
 ];
 
