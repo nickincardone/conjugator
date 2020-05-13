@@ -2,7 +2,7 @@ import {VerbType} from "../types";
 
 export default class Settings {
   isMobile: boolean = false;
-  numberOfQuestions: number = 10;
+  numberOfQuestions: number = 5;
   conjugationMC: boolean = true;
   conjugationW: boolean = true;
   definitionMC: boolean = true;

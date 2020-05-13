@@ -5,6 +5,7 @@ import './AnswerDialog.scss';
 import {Hidden} from '@material-ui/core';
 import {getStringDifferenceArrays} from '../../../helpers/stringHelpers';
 import {Question, QuestionType} from "../../../types";
+import StyledAnswer from "../../ui/StyledAnswer/StyledAnswer";
 
 interface answerDialogProps {
   answer: string;
@@ -21,23 +22,6 @@ const answerDialog: FunctionComponent<answerDialogProps> = (props) => {
   const showStyledArray =
     props.question.questionType === QuestionType.ConjugationW ||
     props.question.questionType === QuestionType.DefinitionW;
-
-  function styledAnswer(array: Array<string | number[]>) {
-    return (
-      <React.Fragment>
-        {array.map((item, i) => {
-          let className = "";
-          if (item[0] === -1) className = "red_different";
-          if (item[0] === 1) className = "green_different";
-          return (
-            <span key={i} className={className}>
-              {item[1]}
-            </span>
-          );
-        })}
-      </React.Fragment>
-    );
-  }
 
   function topPart(question: Question)  {
     if (question.questionType === 1 || question.questionType === 2) {
@@ -57,8 +41,8 @@ const answerDialog: FunctionComponent<answerDialogProps> = (props) => {
     <Dialog onClick={props.handleClose} aria-labelledby="simple-dialog-title" open={props.open}>
       <Typography variant="h4">Keep working on this one!</Typography>
       {topPart(props.question)}
-      <Typography variant="subtitle1">Correct answer: {showStyledArray ? styledAnswer(answerArray) : cleanedAnswer}</Typography>
-      <Typography variant="subtitle2">Your answer: {showStyledArray ? styledAnswer(inputArray) : props.answer}</Typography>
+      <Typography variant="subtitle1">Correct answer: {showStyledArray ? <StyledAnswer answerArray={answerArray}/> : cleanedAnswer}</Typography>
+      <Typography variant="subtitle2">Your answer: {showStyledArray ? <StyledAnswer answerArray={inputArray}/>  : props.answer}</Typography>
       <Hidden smUp>
         <Typography variant="caption">Touch anywhere to continue</Typography>
       </Hidden>

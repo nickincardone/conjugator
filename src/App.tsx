@@ -11,6 +11,7 @@ import Settings from "./structures/Settings";
 import Quiz from "./structures/Quiz";
 import { Route, Switch, withRouter, RouteComponentProps } from 'react-router-dom';
 import QuizSection from "./components/quizSection/QuizSection";
+import Results from "./components/results/Results";
 
 interface AppState {
   currentQuestion: Question;
@@ -79,6 +80,10 @@ class App extends React.Component<RouteComponentProps, AppState> {
     this.props.history.replace("/");
   };
 
+  goToResults = () => {
+    this.props.history.replace("/results");
+  };
+
   processNext = (value: string) => {
     if (this.realAnswer() !== value.toLowerCase()) {
       this.quiz.incorrectAnswers.push({
@@ -140,10 +145,13 @@ class App extends React.Component<RouteComponentProps, AppState> {
     return (
       <Container maxWidth="md" className="nji-main">
         <Grid container className={this.getAppClass()} direction="column">
-          <Grid item>
+          <Grid item className="nji-wrap">
             <Card className="nji-main-card">
               <CardContent>
                 <Switch>
+                  <Route path="/results" exact render={(props => {
+                    return <Results history={props.history} results={this.quiz.incorrectAnswers}/>
+                  })} />
                   <Route path="/options" exact render={(props => {
                     return <OptionPage
                       settings={this.state.settings}
@@ -160,11 +168,11 @@ class App extends React.Component<RouteComponentProps, AppState> {
                   })}/>
                   <Route path="/" render={(props => {
                     return <Home
-                      history={props.history}
                       numberOfQuestions={this.state.settings.numberOfQuestions}
                       incorrectAnswers={this.quiz.incorrectAnswers.length}
                       start={this.start}
                       goToOptions={this.goToOptions}
+                      goToResults={this.goToResults}
                       started={this.state.started}/>
                   })}/>
                 </Switch>

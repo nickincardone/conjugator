@@ -35,8 +35,6 @@ const QuizSection = (props: QuizSectionProps) => {
   };
 
   const processNext = (currentValue: string) => {
-    console.log(currentValue);
-    console.log(realAnswer)
     if (props.question.questionType === QuestionType.PorOParaFIB) {
       if (isSubmitted) {
         reset();
