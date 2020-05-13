@@ -33,6 +33,7 @@ html, body {
 .nji-main-card {
   font-family: 'Sen', 'Open Sans', sans-serif;
   min-height: 600px;
+  max-height: 95%;
   @media (max-width: 600px) {
     min-height: 300px;
   }

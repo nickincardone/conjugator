@@ -10,7 +10,7 @@ export interface HomeProps {
   started: boolean;
   start: (b: boolean) => void;
   goToOptions: (b: boolean) => void;
-  history: any;
+  goToResults: () => void;
 }
 
 class Home extends React.Component<HomeProps, {}> {
@@ -41,6 +41,8 @@ class Home extends React.Component<HomeProps, {}> {
         <Hidden xsUp={this.props.started}>Hello, welcome to Conjugator</Hidden>
         <Hidden xsUp={!this.props.started}>{this.postQuizText()}</Hidden>
         <br/>
+        { this.props.started && this.props.incorrectAnswers !== 0 ?
+          <Button variant="contained" color="secondary" onClick={() => this.props.goToResults()}>Results</Button> : null }
         <Hidden mdUp>
           <Button variant="contained" color="primary" onClick={() => this.props.start(true)}>
             start
