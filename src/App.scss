@@ -13,6 +13,9 @@ html, body {
 
 .nji-main {
   height: 100%;
+  .nji-wrap {
+    max-height: 95%;
+  }
   @media (max-width: 600px) {
     overflow: scroll;
     .nji-option-mobile {
@@ -30,10 +33,11 @@ html, body {
   }
 }
 
-.nji-main-card {
+.nji-main .nji-main-card {
   font-family: 'Sen', 'Open Sans', sans-serif;
   min-height: 600px;
-  max-height: 95%;
+  max-height: 100%;
+  overflow: scroll;
   @media (max-width: 600px) {
     min-height: 300px;
   }

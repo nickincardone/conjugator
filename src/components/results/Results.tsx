@@ -5,6 +5,7 @@ import styles from "./Results.module.scss";
 import {Typography} from "@material-ui/core";
 import {getStringDifferenceArrays} from "../../helpers/stringHelpers";
 import StyledAnswer from "../ui/StyledAnswer/StyledAnswer";
+import Button from "@material-ui/core/Button";
 
 export interface ResultsProps {
   results: IncorrectAnswer[];
@@ -58,6 +59,9 @@ const Results = (props: ResultsProps) => {
     <div className={styles.nji_results}>
       <Typography variant="h4">Results</Typography>
       {results}
+      <Button variant="contained" color="primary" onClick={() => props.history.replace("/")}>
+        Go Home
+      </Button>
     </div>
   )
 };

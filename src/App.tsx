@@ -145,7 +145,7 @@ class App extends React.Component<RouteComponentProps, AppState> {
     return (
       <Container maxWidth="md" className="nji-main">
         <Grid container className={this.getAppClass()} direction="column">
-          <Grid item>
+          <Grid item className="nji-wrap">
             <Card className="nji-main-card">
               <CardContent>
                 <Switch>
