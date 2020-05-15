@@ -284,8 +284,148 @@ const rules: Rule[] = [
     id: 40,
     use: "por o para",
     rule: "Colloquial: \"Por todas partes\" is used to express \"Everywhere\"",
-    example: "Había un montón de gente por todas partes",
+    example: "Había un montón de gente |por| todas partes",
     translation: "There were lots of people everywhere"
+  },
+  {
+    id: 41,
+    use: "por o para",
+    rule: "Colloquial: \"Para colmo\" is used to express \"To top it all off\"",
+    example: "Se nos pinchó una llanta y |para| colmo empezó a nevar",
+    translation: "We got a flat tire, and to top it all it started to snow"
+  },
+  {
+    id: 42,
+    use: "por o para",
+    rule: "Colloquial: \"Para siempre\" is used to express \"Forever\"",
+    example: "Nada es |para| siempre",
+    translation: "Nothing lasts forever"
+  },
+  {
+    id: 43,
+    use: "por o para",
+    rule: "Colloquial: \"Para variar\" is used to express \"For a change\"",
+    example: "Hoy quiero helado de fresa |para| variar",
+    translation: "Today, I want strawberry ice cream for a change"
+  },
+  {
+    id: 44,
+    use: "por o para",
+    rule: "Colloquial: \"Para abajo/arriba/adelante/atras\" is used to express \"Downward/Upward/Forward/Backward\"",
+    example: "Por favor, mueve la silla un poco |para| adelante",
+    translation: "Move your chair a bit forward, please"
+  },
+  {
+    id: 45,
+    use: "por o para",
+    rule: "Colloquial: \"Por loco\" is used to express \"Crazy/Madman\"",
+    example: "Le tomaron |por| loco",
+    translation: "They took him for a madman"
+  },
+  {
+    id: 46,
+    use: "por o para",
+    rule: "Colloquial: \"Por aquí/ahí\" is used to express \"Around here\"",
+    example: "El hombre ha estado |por| aquí",
+    translation: "The man has been around here"
+  },
+  {
+    id: 47,
+    use: "por o para",
+    rule: "To express division with \"dividido\"",
+    example: "Sesenta dividido |por| dos son treinta",
+    translation: "Sixty divided by two is thirty"
+  },
+  {
+    id: 48,
+    use: "por o para",
+    rule: "Colloquial: \"Por desgracia\" is used to express \"Unfortunately\"",
+    example: "Bueno, |por| desgracia, no tienes autorización",
+    translation: "Well, unfortunately, you don't have clearance"
+  },
+  {
+    id: 49,
+    use: "por o para",
+    rule: "Colloquial: \"Por eso\" is used to express \"That's why\"",
+    example: "|Por| eso que eres perfecto para este lugar",
+    translation: "That is why you are perfect for this place"
+  },
+  {
+    id: 51,
+    use: "por o para",
+    rule: "Colloquial: \"Por un lado/Por otro lado\" is used to express \"On the one hand/On the other hand\"",
+    example: "Por un lado, entiendo tu punto, pero no estoy de acuerdo contingo",
+    translation: "On the one hand, I understand your point, but I don't agree with you"
+  },
+  {
+    id: 52,
+    use: "por o para",
+    rule: "Colloquial: \"Por ningún lado\" is used to express \"Anywhere\" in the negative",
+    example: "No lo encuentro |por| ningún lado",
+    translation: "I can't find it anywhere"
+  },
+  {
+    id: 53,
+    use: "por o para",
+    rule: "Colloquial: \"Por cierto\" is used to express \"By the way\"",
+    example: "|Por| cierto, tienes un nuevo estudiante",
+    translation: "By the way, you have a new student"
+  },
+  {
+    id: 54,
+    use: "por o para",
+    rule: "Colloquial: \"Por completo\" is used to express \"Completely\"",
+    example: "Eso cambia por completo la situación.",
+    translation: "That completely changes the situation"
+  },
+  {
+    id: 55,
+    use: "por o para",
+    rule: "Colloquial: \"Por casualidad\" is used to express \"By chance\"",
+    example: "Lo encontré |por| casualidad",
+    translation: "I found it by chance"
+  },
+  {
+    id: 56,
+    use: "por o para",
+    rule: "Colloquial: \"Por lo visto\" is used to express \"Apparently\"",
+    example: "Por lo visto, ella está embarazada",
+    translation: "Apparently she is pregnant"
+  },
+  {
+    id: 57,
+    use: "por o para",
+    rule: "Colloquial: \"Por lo tanto\" is used to express \"Therefore/Thus\"",
+    example: "|Por| lo tanto la respuesta es no",
+    translation: "Therefore the answer is no"
+  },
+  {
+    id: 58,
+    use: "por o para",
+    rule: "Colloquial: \"Por adelantado\" is used to express \"In advance\"",
+    example: "Compré el juego |por| adelantado",
+    translation: "I bought the game in advance"
+  },
+  {
+    id: 59,
+    use: "por o para",
+    rule: "Colloquial: \"Por lo mismo\" is used to express \"For the same reason/thing\"",
+    example: "Yo he pagado mucho más |por| lo mismo",
+    translation: "I've paid a lot more for the same thing"
+  },
+  {
+    id: 60,
+    use: "por o para",
+    rule: "Colloquial: \"Por los pelos\" is used to express \"Barely/By the hair\"",
+    example: "El ciclista ganó la carrera |por| los pelos",
+    translation: "The cyclist won the race by a hair"
+  },
+  {
+    id: 61,
+    use: "por o para",
+    rule: "Colloquial: \"Por lo menos\" is used to express \"At least\"",
+    example: "Bueno, |por| lo menos esta vez no es tu problema",
+    translation: "Well, at least this time it's not your problem"
   },
 ];
 
