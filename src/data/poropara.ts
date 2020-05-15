@@ -1469,31 +1469,31 @@ const poropara: FillInBlank[] = [
     "question": "Los juguetes están ___ todas partes",
     "translation": "The toys are everywhere.",
     "answer": "por",
-    "reason": 21
+    "reason": 40
   },
   {
     "question": "___ lo demás no tienes que hacer nada más",
     "translation": "Apart from that you don’t have to do anything else",
     "answer": "por",
-    "reason": 21
+    "reason": 39
   },
   {
     "question": "___ lo general no como plátanos",
     "translation": "I generally don’t eat bananas.",
     "answer": "por",
-    "reason": 21
+    "reason": 38
   },
   {
     "question": "___ último, añade la leche",
     "translation": "Finally, add the milk.",
     "answer": "por",
-    "reason": 21
+    "reason": 37
   },
   {
     "question": "___ fin ha llegado",
     "translation": "He has finally arrived",
     "answer": "por",
-    "reason": 21
+    "reason": 37
   },
 ];
 

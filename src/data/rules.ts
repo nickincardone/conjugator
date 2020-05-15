@@ -259,6 +259,34 @@ const rules: Rule[] = [
     example: "Te lo estoy preguntando |por| ultima vez",
     translation: "I am asking you this for the last time"
   },
+  {
+    id: 37,
+    use: "por o para",
+    rule: "Colloquial: \"Por fin/último\" is used to express \"Finally\"",
+    example: "|Por| fin encontré las llaves del coche",
+    translation: "I finally found my car keys"
+  },
+  {
+    id: 38,
+    use: "por o para",
+    rule: "Colloquial: \"Por lo general\" is used to express \"Generally/In general\"",
+    example: "|Por| lo general, voy a trabajar a pie",
+    translation: "I generally walk to work"
+  },
+  {
+    id: 39,
+    use: "por o para",
+    rule: "Colloquial: \"Por lo demás\" is used to express \"Apart from that\"",
+    example: "|Por| lo demás, ya todo está listo",
+    translation: "Apart from that, everything is ready"
+  },
+  {
+    id: 40,
+    use: "por o para",
+    rule: "Colloquial: \"Por todas partes\" is used to express \"Everywhere\"",
+    example: "Había un montón de gente por todas partes",
+    translation: "There were lots of people everywhere"
+  },
 ];
 
 export default rules;
