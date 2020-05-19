@@ -30,7 +30,7 @@ const FillInBlankTop: FunctionComponent<FillInBlankTopProps> = (props) => {
     <div>
       <ModifiedTooltip placement={placement} title={title}>
         <Typography variant="h1" className={"nji-fib-header " + className}>
-          <span>{questionText}</span>
+          <span className="dotted-border">{questionText}</span>
         </Typography>
       </ModifiedTooltip>
       <Typography
