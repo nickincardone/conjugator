@@ -3,6 +3,7 @@ import Typography from '@material-ui/core/Typography';
 import './FillInBlankTop.scss';
 import ModifiedTooltip from '../../ui/ModifiedTooltip/ModifiedTooltip';
 import {Question} from "../../../types";
+import FillInBlankText from "../../ui/FillInBlankText";
 
 interface FillInBlankTopProps {
   question: Question;
@@ -12,37 +13,14 @@ interface FillInBlankTopProps {
   handleSubmit: (s: string) => void;
 }
 
-function capitalize(string: string): string {
-  return string.charAt(0).toUpperCase() + string.slice(1);
-}
-
-function isBeginning(string: string, index: number): boolean {
-  return index === 1 && (string === '' || '!\'"¿'.indexOf(string) > -1);
-}
-
 const FillInBlankTop: FunctionComponent<FillInBlankTopProps> = (props) => {
-  let questionText: JSX.Element[] = [<React.Fragment>{props.question.top1}</React.Fragment>];
+  let questionText: JSX.Element = <React.Fragment>{props.question.top1}</React.Fragment>;
   let className: string =  '';
 
   if (props.submitted) {
     className = props.choice === props.question.answer ?
       'nji-correct' : 'nji-incorrect';
-    const splitArr: string[] = props.question.top1.split('___');
-    questionText = [];
-    splitArr.forEach((text, i) => {
-      if (i % 2 === 0) {
-        questionText.push(<React.Fragment key={i}>{text}</React.Fragment>)
-      } else {
-        questionText.push(
-          <React.Fragment key={i}>
-            <span className={className}>
-              {isBeginning(splitArr[0], i) ? capitalize(props.choice) : props.choice}
-            </span>
-            {text}
-          </React.Fragment>
-        )
-      }
-    });
+    questionText = <FillInBlankText text={props.question.top1} insert={props.choice} className={className}/>
   }
 
   const placement = className.length > 0 ? 'top' : 'bottom';

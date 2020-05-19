@@ -112,6 +112,7 @@ const QuizSection = (props: QuizSectionProps) => {
         value={props.percentComplete}/>
       <ExplanationDialog
         open={showExplanationDialog}
+        question={props.question}
         handleClose={handleClose}
         rule={rules[props.question.explanation]}/>
       <AnswerDialog
