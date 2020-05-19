@@ -36,21 +36,22 @@ const QuizSection = (props: QuizSectionProps) => {
 
   const processNext = (currentValue: string) => {
     if (props.question.questionType === QuestionType.PorOParaFIB) {
-      if (isSubmitted) {
+      if (showExplanationDialog) {
         reset();
         return props.next(currentValue);
-      } else {
-        setIsSubmitted(true);
-        if (currentValue.toLowerCase() === realAnswer) {
-          setTimeout(() => {
-            reset();
-            props.next(currentValue);
-          }, 700)
-        } else {
-          setTimeout(() => setShowExplanationDialog(true), 700)
-        }
-        return;
       }
+      if (isSubmitted) return;
+
+      setIsSubmitted(true);
+      if (currentValue.toLowerCase() === realAnswer) {
+        setTimeout(() => {
+          reset();
+          props.next(currentValue);
+        }, 700)
+      } else {
+        setTimeout(() => setShowExplanationDialog(true), 700)
+      }
+      return;
     }
     if (isSubmitted) {
       reset();
@@ -95,8 +96,8 @@ const QuizSection = (props: QuizSectionProps) => {
     ) {
       return processNext(value);
     }
-    // eslint-disable-next-line
-  }, [isSubmitted, value, props.question.questionType]); //processNext does not need to be in array
+  }, [isSubmitted, showExplanationDialog, value, props.question.questionType]);
+  //TODO wrap process next into own callback hook
 
   useEffect(() => {
     window.addEventListener('keydown', handleUserKeyPress);

@@ -746,7 +746,7 @@ const poropara: FillInBlank[] = [
     "reason": 9
   },
   {
-    "question": "Salimos por la puerta.",
+    "question": "Salimos ___ la puerta.",
     "translation": "We left through the door.",
     "answer": "por",
     "reason": 7
