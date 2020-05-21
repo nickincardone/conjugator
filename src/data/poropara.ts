@@ -656,7 +656,7 @@ const poropara: FillInBlank[] = [
     "reason": 2
   },
   {
-    "question": "Por su amor a los niños, quiere ser pediatra.",
+    "question": "___ su amor a los niños, quiere ser pediatra.",
     "translation": "Because of her love for children, she wants to be a pediatrician.",
     "answer": "por",
     "reason": 4
@@ -704,7 +704,7 @@ const poropara: FillInBlank[] = [
     "reason": 22
   },
   {
-    "question": "Pagué $60 por estos zapatos.",
+    "question": "Pagué $60 ___ estos zapatos.",
     "translation": "I paid $60 for these shoes.",
     "answer": "por",
     "reason": 3
