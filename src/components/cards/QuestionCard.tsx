@@ -2,8 +2,8 @@ import React, {FunctionComponent} from 'react';
 import Typography from '@material-ui/core/Typography';
 import Chip from '@material-ui/core/Chip';
 import './QuestionCard.scss';
-import MultipleChoice from './MultipleChoice';
-import WrittenOption from './WrittenOption';
+import MultipleChoice from './MultipleChoice/MultipleChoice';
+import WrittenOption from './WrittenOption/WrittenOption';
 import FillInBlankTop from './FillInBlank/FillInBlankTop';
 import {Question, QuestionType} from '../../types';
 
