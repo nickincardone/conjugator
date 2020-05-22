@@ -206,7 +206,7 @@ class OptionPage extends React.Component<OptionPageProps, {}> {
         </Typography>
         <Slider
           defaultValue={this.props.settings.numberOfQuestions}
-          min={0}
+          min={5}
           max={100}
           aria-labelledby="discrete-slider-custom"
           step={5}
