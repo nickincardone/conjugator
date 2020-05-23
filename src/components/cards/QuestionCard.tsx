@@ -1,4 +1,4 @@
-import React, {FunctionComponent} from 'react';
+import React, {FunctionComponent, useEffect, useRef} from 'react';
 import Typography from '@material-ui/core/Typography';
 import Chip from '@material-ui/core/Chip';
 import './QuestionCard.scss';
@@ -36,71 +36,69 @@ const NormalTop: FunctionComponent<NormalTopProps> = (props) => {
   )
 };
 
-class QuestionCard extends React.Component<QuestionCardProps, {}> {
-  textInput = React.createRef<any>();
+function QuestionCard(props: QuestionCardProps) {
+  const textInput = useRef();
 
-  componentDidUpdate() {
-    //ensure autofocus on input
-    if (this.textInput.current) {
+  useEffect(() => {
+    if (textInput.current) {
       setTimeout(() => {
-        if (this.textInput.current) {
-          this.textInput.current.focus();
+        if (textInput.current) {
+          // @ts-ignore
+          textInput.current.focus();
         }
       }, 300);
     }
-  }
+  });
 
-  realAnswer(answer: string): string {
+  const realAnswer = function(answer: string): string {
     return answer.replace(/\|/g, '').toLowerCase();
   };
 
-  getBottom(): JSX.Element {
+  const getBottom = function(): JSX.Element {
     const isMC =
-      this.props.question.questionType === QuestionType.ConjugationMC ||
-      this.props.question.questionType === QuestionType.DefinitionMC ||
-      this.props.question.questionType === QuestionType.PorOParaFIB;
+      props.question.questionType === QuestionType.ConjugationMC ||
+      props.question.questionType === QuestionType.DefinitionMC ||
+      props.question.questionType === QuestionType.PorOParaFIB;
 
     if (isMC) {
-      return <MultipleChoice header={this.props.question.top3}
-                             choices={this.props.question.choices}
-                             isSubmitted={this.props.isSubmitted}
-                             click={this.props.handleSubmit}
-                             answer={this.realAnswer(this.props.question.answer)}/>
+      return <MultipleChoice header={props.question.top3}
+                             choices={props.question.choices}
+                             isSubmitted={props.isSubmitted}
+                             click={props.handleSubmit}
+                             answer={realAnswer(props.question.answer)}/>
     } else {
-      return <WrittenOption header={this.props.question.top3}
-                            value={this.props.value}
-                            submitted={this.props.isSubmitted}
-                            answer={this.realAnswer(this.props.question.answer)}
-                            inputRef={this.textInput}
-                            handleChange={this.props.handleChange}/>
+      return <WrittenOption header={props.question.top3}
+                            value={props.value}
+                            submitted={props.isSubmitted}
+                            answer={realAnswer(props.question.answer)}
+                            inputRef={textInput}
+                            handleChange={props.handleChange}/>
     }
   };
 
-  getTop(): JSX.Element {
-    if (this.props.question.questionType === QuestionType.PorOParaFIB) {
+  const getTop = function(): JSX.Element {
+    if (props.question.questionType === QuestionType.PorOParaFIB) {
       return <FillInBlankTop
-        submitted={this.props.isSubmitted}
-        choice={this.props.value}
-        question={this.props.question}
-        handleSubmit={this.props.handleSubmit}
-        showExplanation={this.props.showExplanation}/>
+        submitted={props.isSubmitted}
+        choice={props.value}
+        question={props.question}
+        handleSubmit={props.handleSubmit}
+        showExplanation={props.showExplanation}/>
     } else {
-      return <NormalTop question={this.props.question}/>
+      return <NormalTop question={props.question}/>
     }
   };
 
-  render() {
-    return (
-      <React.Fragment>
-        <div className="nji-main-top">
-          {this.getTop()}
-        </div>
-        <div className="nji-main-bottom">
-          {this.getBottom()}
-        </div>
-      </React.Fragment>
-    )
-  }
+  return (
+    <React.Fragment>
+      <div className="nji-main-top">
+        {getTop()}
+      </div>
+      <div className="nji-main-bottom">
+        {getBottom()}
+      </div>
+    </React.Fragment>
+  )
 }
 
 export default QuestionCard;
