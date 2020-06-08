@@ -405,7 +405,7 @@ const poropara: FillInBlank[] = [
   {
     "question": "Prepara el vocabulario ___ la semana que viene",
     "translation": "Prepare the vocabulary by next week",
-    "answer": "",
+    "answer": "para",
     "reason": 14
   },
   {

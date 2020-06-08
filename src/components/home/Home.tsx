@@ -16,13 +16,17 @@ export interface HomeProps {
 function Home(props: HomeProps) {
 
   const postQuizText = () => {
-    const correctPercentage: number = Math.round(10000 * (props.numberOfQuestions - props.incorrectAnswers) / props.numberOfQuestions) / 100;
+    const correctPercentage: number =
+      Math.round(
+        (10000 * (props.numberOfQuestions - props.incorrectAnswers)) /
+          props.numberOfQuestions
+      ) / 100;
     if (correctPercentage === 100) {
       return "Perfect Score! Maybe try something harder with a Custom Quiz"
     } else if (correctPercentage > 79) {
-      return "" + correctPercentage + "% correct. Great Job!"
+      return `${correctPercentage}% correct. Great Job!`
     } else {
-      return "" + correctPercentage + "% correct. Try Again."
+      return `${correctPercentage}% correct. Try Again.`
     }
   };
 
@@ -37,8 +41,7 @@ function Home(props: HomeProps) {
       textAlign={'center'}
       className="nji-home-top"
     >
-      <Hidden xsUp={props.started}>Hello, welcome to Conjugator</Hidden>
-      <Hidden xsUp={!props.started}>{postQuizText()}</Hidden>
+      {props.started ? postQuizText() : "Hello, welcome to Conjugator"}
       <br/>
       {props.started && props.incorrectAnswers !== 0 ?
         <Button variant="contained" color="secondary"
