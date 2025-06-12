@@ -1,5 +1,5 @@
 export type VerbType =
-  "participle"
+  | "participle"
   | "gerund"
   | "indicative.present"
   | "indicative.preterite"
@@ -25,17 +25,17 @@ export enum QuestionType {
   ConjugationW,
   DefinitionMC,
   DefinitionW,
-  PorOParaFIB
+  PorOParaFIB,
 }
 
 export class Question {
   questionType: QuestionType = QuestionType.ConjugationMC;
-  top1: string = '';
-  top2: string = '';
-  top3: string = '';
-  chips: string[] = [''];
-  answer: string = '';
-  choices: string[] = ['',''];
+  top1: string = "";
+  top2: string = "";
+  top3: string = "";
+  chips: string[] = [""];
+  answer: string = "";
+  choices: string[] = ["", ""];
   explanation: number = 0;
   translation?: string;
 }

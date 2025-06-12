@@ -5,22 +5,24 @@ import {
   Question,
   QuestionType,
   Verb,
-  VerbType
+  VerbType,
 } from "../types/types";
 import Settings from "./Settings";
-import verbs from "../data/conjugationVerbs";
-import irregularVerbs from "../data/irregularVerbs";
-import verbTypeNicknames from "../data/verbTypeNicknames";
-import poropara from "../data/poropara";
-import haber from "../data/haber";
-import verbTypes from "../data/verbTypes";
+import verbs from "data/conjugationVerbs";
+import irregularVerbs from "data/irregularVerbs";
+import verbTypeNicknames from "data/verbTypeNicknames";
+import poropara from "data/poropara";
+import haber from "data/haber";
+import verbTypes from "data/verbTypes";
 
 function getQuestionTypes(settings: Settings): QuestionType[] {
   const questionTypes: QuestionType[] = [];
   if (settings.conjugationMC) questionTypes.push(QuestionType.ConjugationMC);
-  if (settings.conjugationW && !settings.isMobile) questionTypes.push(QuestionType.ConjugationW);
+  if (settings.conjugationW && !settings.isMobile)
+    questionTypes.push(QuestionType.ConjugationW);
   if (settings.definitionMC) questionTypes.push(QuestionType.DefinitionMC);
-  if (settings.definitionW && !settings.isMobile) questionTypes.push(QuestionType.DefinitionW);
+  if (settings.definitionW && !settings.isMobile)
+    questionTypes.push(QuestionType.DefinitionW);
   if (settings.poropara) questionTypes.push(QuestionType.PorOParaFIB);
   return questionTypes;
 }
@@ -30,11 +32,13 @@ function randomItem<T>(arr: T[]): T {
 }
 
 function filterAnswer(answer: string): string {
-  return answer.replace(/\|/g, '');
+  return answer.replace(/\|/g, "");
 }
 
 function shuffle<T>(array: T[]): T[] {
-  let currentIndex = array.length, temporaryValue, randomIndex;
+  let currentIndex = array.length,
+    temporaryValue,
+    randomIndex;
   while (0 !== currentIndex) {
     randomIndex = Math.floor(Math.random() * currentIndex);
     currentIndex -= 1;
@@ -46,7 +50,7 @@ function shuffle<T>(array: T[]): T[] {
 }
 
 function resolve(path: string, obj: object): any {
-  const properties = path.split('.');
+  const properties = path.split(".");
   return properties.reduce((prev: any, curr: any) => prev && prev[curr], obj);
 }
 
@@ -75,18 +79,28 @@ function getDefinitionChoices(currentVerb: string): string[] {
   return shuffle(choiceArray);
 }
 
-function getAnswer(currentVerbType: VerbType, currentPronoun: Pronoun, conjugations: Conjugations): string {
-  if (currentVerbType === 'participle' || currentVerbType === 'gerund') {
+function getAnswer(
+  currentVerbType: VerbType,
+  currentPronoun: Pronoun,
+  conjugations: Conjugations,
+): string {
+  if (currentVerbType === "participle" || currentVerbType === "gerund") {
     return conjugations[currentVerbType];
-  } else if (currentVerbType.includes('perfect.')) {
-    return resolve(currentVerbType.substring(8,) + '.' + currentPronoun, haber)
-      + ' ' + conjugations['participle'];
+  } else if (currentVerbType.includes("perfect.")) {
+    return (
+      resolve(currentVerbType.substring(8) + "." + currentPronoun, haber) +
+      " " +
+      conjugations["participle"]
+    );
   } else {
-    return resolve(currentVerbType + '.' + currentPronoun, conjugations);
+    return resolve(currentVerbType + "." + currentPronoun, conjugations);
   }
 }
 
-function generateIrregularVerb(settings: Settings, pronouns: Pronoun[]): [Verb, Pronoun, VerbType] {
+function generateIrregularVerb(
+  settings: Settings,
+  pronouns: Pronoun[],
+): [Verb, Pronoun, VerbType] {
   let currentPronoun: Pronoun;
   let currentVerb: Verb = randomItem(irregularVerbs);
   const irregularTenses = randomItem(currentVerb.irregularities).split(".");
@@ -94,19 +108,33 @@ function generateIrregularVerb(settings: Settings, pronouns: Pronoun[]): [Verb, 
     currentPronoun = randomItem(pronouns);
   } else {
     currentPronoun = irregularTenses.pop() as Pronoun;
-    if (!settings.vosotros && currentPronoun === 'vosotros') return generateIrregularVerb(settings, pronouns);
+    if (!settings.vosotros && currentPronoun === "vosotros")
+      return generateIrregularVerb(settings, pronouns);
   }
   let currentVerbType: VerbType = irregularTenses.join(".") as VerbType;
-  if (!settings.verbTypes.includes(currentVerbType)) return generateIrregularVerb(settings, pronouns);
-  if (currentVerbType === "subjunctive.present" && settings.verbTypes.length !== 1) {
+  if (!settings.verbTypes.includes(currentVerbType))
+    return generateIrregularVerb(settings, pronouns);
+  if (
+    currentVerbType === "subjunctive.present" &&
+    settings.verbTypes.length !== 1
+  ) {
     //reducing the chance of picking a subjunctive present
-    if (randomItem([true, true, true, false, false])) return generateIrregularVerb(settings, pronouns);
+    if (randomItem([true, true, true, false, false]))
+      return generateIrregularVerb(settings, pronouns);
   }
-  return [currentVerb, currentPronoun, currentVerbType]
+  return [currentVerb, currentPronoun, currentVerbType];
 }
 
-function getConjugationChoices(currentVerbType: VerbType, currentPronoun: Pronoun, conjugations: Conjugations): string[] {
-  const correctAnswer = getAnswer(currentVerbType, currentPronoun, conjugations);
+function getConjugationChoices(
+  currentVerbType: VerbType,
+  currentPronoun: Pronoun,
+  conjugations: Conjugations,
+): string[] {
+  const correctAnswer = getAnswer(
+    currentVerbType,
+    currentPronoun,
+    conjugations,
+  );
   const choiceArray = [filterAnswer(correctAnswer)];
   while (choiceArray.length < 4) {
     const randomType = randomItem(verbTypes);
@@ -126,33 +154,36 @@ export default class Quiz {
   generateQuiz(settings: Settings) {
     const questionArray: Question[] = [];
     const questionTypes: QuestionType[] = getQuestionTypes(settings);
-    const pronouns: Pronoun[] = ['yo', 'tu', 'el', 'nosotros', 'ellos'];
-    if (settings.vosotros) pronouns.push('vosotros');
+    const pronouns: Pronoun[] = ["yo", "tu", "el", "nosotros", "ellos"];
+    if (settings.vosotros) pronouns.push("vosotros");
 
     while (questionArray.length < settings.numberOfQuestions) {
       let currentVerb: Verb = randomItem(verbs);
       if (currentVerb.definition === "") continue; //Need to make sure there are no empty definitions
-      let currentVerbType: VerbType= randomItem(settings.verbTypes);
+      let currentVerbType: VerbType = randomItem(settings.verbTypes);
       let currentPronoun: Pronoun = randomItem(pronouns);
       const currentQuestionType: QuestionType = randomItem(questionTypes);
 
       if (settings.irregular && isConjugation(currentQuestionType)) {
-        [currentVerb, currentPronoun, currentVerbType] = generateIrregularVerb(settings, pronouns);
+        [currentVerb, currentPronoun, currentVerbType] = generateIrregularVerb(
+          settings,
+          pronouns,
+        );
       }
 
-      const verbTypeList = verbTypeNicknames[currentVerbType].split('.');
+      const verbTypeList = verbTypeNicknames[currentVerbType].split(".");
 
       let currentQuestionObject;
       if (isDefinition(currentQuestionType)) {
         currentQuestionObject = {
           questionType: currentQuestionType,
           top1: currentVerb.definition,
-          top2: '',
-          top3: '',
-          chips: ['defintion'],
+          top2: "",
+          top3: "",
+          chips: ["defintion"],
           answer: currentVerb.verb,
           choices: getDefinitionChoices(currentVerb.verb),
-          explanation: 0
+          explanation: 0,
         };
       } else if (isConjugation(currentQuestionType)) {
         currentQuestionObject = {
@@ -161,28 +192,34 @@ export default class Quiz {
           top2: currentVerb.definition,
           top3: currentPronoun,
           chips: verbTypeList,
-          answer: getAnswer(currentVerbType, currentPronoun, currentVerb.conjugations),
-          choices: getConjugationChoices(currentVerbType,
+          answer: getAnswer(
+            currentVerbType,
             currentPronoun,
-            currentVerb.conjugations),
-          explanation: 0
-        }
+            currentVerb.conjugations,
+          ),
+          choices: getConjugationChoices(
+            currentVerbType,
+            currentPronoun,
+            currentVerb.conjugations,
+          ),
+          explanation: 0,
+        };
       } else {
         const randomPorOPara = randomItem(poropara);
         currentQuestionObject = {
           questionType: currentQuestionType,
           top1: randomPorOPara.question,
-          top2: '',
-          top3: '',
+          top2: "",
+          top3: "",
           chips: [],
           answer: randomPorOPara.answer,
           translation: randomPorOPara.translation,
-          choices: ['por', 'para'],
-          explanation: randomPorOPara.reason
-        }
+          choices: ["por", "para"],
+          explanation: randomPorOPara.reason,
+        };
       }
-      if (currentVerbType === 'participle' || currentVerbType === 'gerund') {
-        currentQuestionObject.top3 = '';
+      if (currentVerbType === "participle" || currentVerbType === "gerund") {
+        currentQuestionObject.top3 = "";
       }
       questionArray.push(currentQuestionObject);
     }

@@ -1,4 +1,4 @@
-import {VerbType} from "../types/types";
+import { VerbType } from "types/types";
 
 const verbTypes: VerbType[] = [
   "participle",

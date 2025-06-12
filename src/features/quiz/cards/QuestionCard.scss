@@ -36,10 +36,6 @@
       margin-right: 2px;
     }
 
-    .present {
-
-    }
-
     .preterite {
       background-color: #4373af;
       color: white;
@@ -61,12 +57,12 @@
     }
 
     .subjunctive {
-      background-color: #7557B6;
+      background-color: #7557b6;
       color: white;
     }
 
     .perfect {
-      background-color: #6DBEC6;
+      background-color: #6dbec6;
       color: white;
     }
 
@@ -139,7 +135,8 @@
   }
 
   .nji-ripple:hover {
-    background: #fff radial-gradient(circle, transparent 1%, #fff 1%) center/15000%;
+    background: #fff radial-gradient(circle, transparent 1%, #fff 1%)
+      center/15000%;
   }
 
   .nji-ripple.nji-correct:active {
@@ -149,7 +146,7 @@
   }
 
   .nji-ripple.nji-incorrect:active {
-    background-color: #FF6F62;
+    background-color: #ff6f62;
     background-size: 100%;
     transition: background 0s;
   }

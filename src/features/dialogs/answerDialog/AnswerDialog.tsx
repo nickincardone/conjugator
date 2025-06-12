@@ -1,9 +1,16 @@
-import { Dialog, Typography, useMediaQuery, useTheme } from '@mui/material';
-import React, { FunctionComponent } from 'react';
-import './AnswerDialog.scss';
-import { getStringDifferenceArrays } from '../../../utils/stringHelpers';
-import { Question, QuestionType } from "../../../types/types";
-import StyledAnswer from "../../../components/ui/StyledAnswer/StyledAnswer";
+import * as React from "react";
+import {
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
+import "./AnswerDialog.scss";
+import { getStringDifferenceArrays } from "utils/stringHelpers";
+import { Question, QuestionType } from "types/types";
+import StyledAnswer from "components/ui/StyledAnswer/StyledAnswer";
 
 interface AnswerDialogProps {
   answer: string;
@@ -12,24 +19,34 @@ interface AnswerDialogProps {
   open: boolean;
 }
 
-const AnswerDialog: FunctionComponent<AnswerDialogProps> = (props) => {
+const AnswerDialog: React.FunctionComponent<AnswerDialogProps> = (props) => {
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
-  const cleanedAnswer = props.question.answer.replace(/\|/g, '');
-  const [answerArray, inputArray] = getStringDifferenceArrays(cleanedAnswer, props.answer);
-  
+  const cleanedAnswer = props.question.answer.replace(/\|/g, "");
+  const [answerArray, inputArray] = getStringDifferenceArrays(
+    cleanedAnswer,
+    props.answer,
+  );
+
   const showStyledArray =
     props.question.questionType === QuestionType.ConjugationW ||
     props.question.questionType === QuestionType.DefinitionW;
 
   function topPart(question: Question) {
-    if (question.questionType === QuestionType.ConjugationMC || question.questionType === QuestionType.ConjugationW) {
+    if (
+      question.questionType === QuestionType.ConjugationMC ||
+      question.questionType === QuestionType.ConjugationW
+    ) {
       return (
-        <Typography sx={{ marginBottom: "15px" }} className="nji-dialog-top" variant="body1">
+        <Typography
+          sx={{ marginBottom: "15px" }}
+          className="nji-dialog-top"
+          variant="body1"
+        >
           <span>{question.top1}</span>
           <span> - </span>
-          <span>{question.chips.join(' ')}</span>
+          <span>{question.chips.join(" ")}</span>
           <span> - </span>
           <span>{question.top3}</span>
         </Typography>
@@ -43,10 +60,20 @@ const AnswerDialog: FunctionComponent<AnswerDialogProps> = (props) => {
       <Typography variant="h4">Keep working on this one!</Typography>
       {topPart(props.question)}
       <Typography variant="subtitle1">
-        Correct answer: {showStyledArray ? <StyledAnswer answerArray={answerArray}/> : cleanedAnswer}
+        Correct answer:{" "}
+        {showStyledArray ? (
+          <StyledAnswer answerArray={answerArray} />
+        ) : (
+          cleanedAnswer
+        )}
       </Typography>
       <Typography variant="subtitle2">
-        Your answer: {showStyledArray ? <StyledAnswer answerArray={inputArray}/> : props.answer}
+        Your answer:{" "}
+        {showStyledArray ? (
+          <StyledAnswer answerArray={inputArray} />
+        ) : (
+          props.answer
+        )}
       </Typography>
       {isMobile ? (
         <Typography variant="caption">Touch anywhere to continue</Typography>

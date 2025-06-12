@@ -1,98 +1,103 @@
-import React, { FunctionComponent, useEffect, useRef } from 'react';
-import { Typography, Chip, Box } from '@mui/material';
-import './QuestionCard.scss';
-import MultipleChoice from './MultipleChoice/MultipleChoice';
-import WrittenOption from './WrittenOption/WrittenOption';
-import FillInBlankTop from './FillInBlank/FillInBlankTop';
-import { Question, QuestionType } from '../../../types/types';
+import React, { FunctionComponent, useEffect, useRef } from "react";
+import { Typography, Chip, Box } from "@mui/material";
+import "./QuestionCard.scss";
+import MultipleChoice from "./MultipleChoice/MultipleChoice";
+import WrittenOption from "./WrittenOption/WrittenOption";
+import FillInBlankTop from "./FillInBlank/FillInBlankTop";
+import { Question, QuestionType } from "types/types";
 
 interface NormalTopProps {
   question: Question;
 }
 
-const NormalTop: FunctionComponent<NormalTopProps> = (props) => {
-  return (
-    <Box className="nji-main-top">
-      <Typography variant="h5">{props.question.top1}</Typography>
-      <Typography variant="subtitle1">{props.question.top2}</Typography>
-      {props.question.chips.map((chip, index) => (
-        <Chip
-          key={index}
-          label={chip}
-          size="small"
-          sx={{ margin: '0 4px' }}
-        />
-      ))}
-      <Typography variant="subtitle1">{props.question.top3}</Typography>
-    </Box>
-  );
-};
-
 interface QuestionCardProps {
   question: Question;
   value: string;
-  showExplanation: () => void;
-  handleSubmit: (s: string) => void;
-  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   isSubmitted: boolean;
+  showExplanation: boolean;
+  handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  handleSubmit: (s: string) => void;
 }
 
-const QuestionCard: FunctionComponent<QuestionCardProps> = (props) => {
-  const inputRef = useRef<HTMLInputElement>(null);
+const NormalTop: FunctionComponent<NormalTopProps> = (props) => {
+  const chips: JSX.Element[] = props.question.chips.map((chip) => {
+    return <Chip key={chip} className={chip} label={chip}/>
+  });
+
+  return (
+    <React.Fragment>
+      <Typography variant="h1">{props.question.top1}</Typography>
+      <Typography variant="h4">{props.question.top2}</Typography>
+      <div className="nji-main-chips">
+        {chips}
+      </div>
+    </React.Fragment>
+  )
+};
+
+function QuestionCard(props: QuestionCardProps) {
+  const textInput = useRef();
 
   useEffect(() => {
-    if (inputRef.current) {
-      inputRef.current.focus();
+    if (textInput.current) {
+      setTimeout(() => {
+        if (textInput.current) {
+          // @ts-ignore
+          textInput.current.focus();
+        }
+      }, 300);
     }
-  }, []);
+  });
 
-  const renderQuestionContent = () => {
-    switch (props.question.questionType) {
-      case QuestionType.ConjugationMC:
-      case QuestionType.DefinitionMC:
-        return (
-          <MultipleChoice
-            answer={props.question.answer}
-            choices={props.question.choices}
-            header={props.question.top1}
-            isSubmitted={props.isSubmitted}
-            click={props.handleSubmit}
-          />
-        );
-      case QuestionType.ConjugationW:
-      case QuestionType.DefinitionW:
-        return (
-          <WrittenOption
-            value={props.value}
-            answer={props.question.answer}
-            submitted={props.isSubmitted}
-            header={props.question.top1}
-            handleChange={props.handleChange}
-            inputRef={inputRef}
-          />
-        );
-      case QuestionType.PorOParaFIB:
-        return (
-          <FillInBlankTop
-            question={props.question}
-            choice={props.value}
-            submitted={props.isSubmitted}
-            showExplanation={props.showExplanation}
-            handleSubmit={props.handleSubmit}
-          />
-        );
-      default:
-        return null;
+  const realAnswer = function(answer: string): string {
+    return answer.replace(/\|/g, '').toLowerCase();
+  };
+
+  const getBottom = function(): JSX.Element {
+    const isMC =
+      props.question.questionType === QuestionType.ConjugationMC ||
+      props.question.questionType === QuestionType.DefinitionMC ||
+      props.question.questionType === QuestionType.PorOParaFIB;
+
+    if (isMC) {
+      return <MultipleChoice header={props.question.top3}
+                             choices={props.question.choices}
+                             isSubmitted={props.isSubmitted}
+                             click={props.handleSubmit}
+                             answer={realAnswer(props.question.answer)}/>
+    } else {
+      return <WrittenOption header={props.question.top3}
+                            value={props.value}
+                            submitted={props.isSubmitted}
+                            answer={realAnswer(props.question.answer)}
+                            inputRef={textInput}
+                            handleChange={props.handleChange}/>
+    }
+  };
+
+  const getTop = function(): JSX.Element {
+    if (props.question.questionType === QuestionType.PorOParaFIB) {
+      return <FillInBlankTop
+        submitted={props.isSubmitted}
+        choice={props.value}
+        question={props.question}
+        handleSubmit={props.handleSubmit}
+        showExplanation={props.showExplanation}/>
+    } else {
+      return <NormalTop question={props.question}/>
     }
   };
 
   return (
-    <Box className="nji-main-bottom">
-      <NormalTop question={props.question} />
-      {renderQuestionContent()}
-    </Box>
-  );
-};
+    <React.Fragment>
+      <div className="nji-main-top">
+        {getTop()}
+      </div>
+      <div className="nji-main-bottom">
+        {getBottom()}
+      </div>
+    </React.Fragment>
+  )
+}
 
 export default QuestionCard;
-

@@ -1,41 +1,57 @@
-import React, { FunctionComponent } from 'react';
-import { Typography, Box } from '@mui/material';
-import './FillInBlankTop.scss';
-import ModifiedTooltip from '../../../../components/ui/ModifiedTooltip/ModifiedTooltip';
-import { Question } from "../../../../types/types";
-import FillInBlankText from "../../../../components/ui/FillInBlankText";
+import React, { FunctionComponent } from "react";
+import { Typography, Box } from "@mui/material";
+import ModifiedTooltip from "components/ui/ModifiedTooltip/ModifiedTooltip";
+import { Question } from "types/types";
+import FillInBlankText, { StyleChoice } from "components/ui/FillInBlankText";
 
 interface FillInBlankTopProps {
   question: Question;
   choice: string;
   submitted: boolean;
-  showExplanation: () => void;
+  showExplanation: boolean;
   handleSubmit: (s: string) => void;
 }
 
 const FillInBlankTop: FunctionComponent<FillInBlankTopProps> = (props) => {
-  const className = props.submitted 
-    ? props.choice === props.question.answer 
-      ? 'nji-correct' 
-      : 'nji-incorrect'
-    : '';
+  const getTextColor = () => {
+    if (!props.submitted) return "inherit";
+    return props.choice === props.question.answer ? "#00ca00" : "#ff3d33";
+  };
+
+  let questionText: JSX.Element = (
+    <React.Fragment>{props.question.top1}</React.Fragment>
+  );
+
+  if (props.submitted) {
+    questionText = (
+      <FillInBlankText
+        text={props.question.top1}
+        insert={props.choice}
+        styleChoice={
+          props.submitted
+            ? props.choice === props.question.answer
+              ? StyleChoice.CORRECT
+              : StyleChoice.INCORRECT
+            : StyleChoice.NEUTRAL
+        }
+      />
+    );
+  }
 
   return (
-    <Box className="nji-fill-in-blank">
-      <Typography variant="h5" className="nji-fib-question">
-        {props.question.top1}
-      </Typography>
-      <ModifiedTooltip
-        title={props.question.translation || ''}
-        className="nji-fib-tooltip"
-      >
-        <Box>
-          <FillInBlankText
-            text={props.question.top1}
-            insert={props.choice}
-            className={className}
-          />
-        </Box>
+    <Box sx={{ width: "100%" }}>
+      <ModifiedTooltip title={props.question.translation || ""}>
+        <Typography
+          variant="h5"
+          sx={{
+            fontSize: { xs: "2.5em", sm: "3em" },
+            display: "inline-block",
+            m: 1.25,
+            color: getTextColor(),
+          }}
+        >
+          {questionText}
+        </Typography>
       </ModifiedTooltip>
     </Box>
   );

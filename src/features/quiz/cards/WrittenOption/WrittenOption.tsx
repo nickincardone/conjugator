@@ -1,5 +1,5 @@
-import React, { ChangeEvent, FunctionComponent, RefObject } from 'react';
-import { TextField } from '@mui/material';
+import React, { ChangeEvent, FunctionComponent, RefObject } from "react";
+import { TextField } from "@mui/material";
 
 export interface WrittenOptionProps {
   value: string;
@@ -22,15 +22,17 @@ const WrittenOption: FunctionComponent<WrittenOptionProps> = (props) => {
         disabled={props.submitted}
         variant="standard"
         sx={{
-          '& .MuiInput-underline': {
-            '&:before': {
-              borderBottomColor: props.submitted && props.value.toLowerCase() === props.answer.toLowerCase() 
-                ? 'success.main' 
-                : props.submitted 
-                  ? 'error.main' 
-                  : 'inherit'
-            }
-          }
+          "& .MuiInput-underline": {
+            "&:before": {
+              borderBottomColor:
+                props.submitted &&
+                props.value.toLowerCase() === props.answer.toLowerCase()
+                  ? "success.main"
+                  : props.submitted
+                    ? "error.main"
+                    : "inherit",
+            },
+          },
         }}
       />
     </>

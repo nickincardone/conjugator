@@ -1,8 +1,20 @@
-import React, {ChangeEvent, useState} from 'react';
-import {Question, QuestionType} from "../../types/types";
-import {useNavigate} from "react-router-dom";
-import {Box, Button, Dialog, DialogContent, DialogTitle, LinearProgress, TextField, Typography} from "@mui/material";
-import styles from "./QuizSection.module.scss";
+import React, { ChangeEvent, useState } from "react";
+import { Question, QuestionType } from "types/types";
+import { useNavigate } from "react-router-dom";
+import QuestionCard from "features/quiz/cards/QuestionCard";
+import {
+  Box,
+  Button,
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  LinearProgress,
+  TextField,
+  Typography,
+} from "@mui/material";
+import AnswerDialog from "features/dialogs/answerDialog/AnswerDialog";
+import ExplanationDialog from "features/dialogs/explanationDialog/ExplanationDialog";
+import rules from "data/rules";
 
 export interface QuizSectionProps {
   next: (value: string) => void;
@@ -12,9 +24,10 @@ export interface QuizSectionProps {
 
 const QuizSection = (props: QuizSectionProps) => {
   const navigate = useNavigate();
-  if (props.question.answer === '' && props.question.top1 === '') navigate('/');
+  if (props.question.answer === "" && props.question.top1 === "") navigate("/");
   const [value, setValue] = useState<string>("");
-  const [showExplanationDialog, setShowExplanationDialog] = useState<boolean>(false);
+  const [showExplanationDialog, setShowExplanationDialog] =
+    useState<boolean>(false);
   const [showAnswerDialog, setShowAnswerDialog] = useState<boolean>(false);
   const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
   const [openExplanation, setOpenExplanation] = useState(false);
@@ -23,17 +36,19 @@ const QuizSection = (props: QuizSectionProps) => {
   const [isCorrect, setIsCorrect] = useState(false);
   const [showExplanation, setShowExplanation] = useState(false);
 
-  const realAnswer: string = props.question.answer.replace(/\|/g, '').toLowerCase();
+  const realAnswer: string = props.question.answer
+    .replace(/\|/g, "")
+    .toLowerCase();
 
   const reset = () => {
     setIsSubmitted(false);
     setShowAnswerDialog(false);
     setShowExplanationDialog(false);
-    setValue('');
+    setValue("");
   };
 
   const handleOpenExplanation = () => {
-    setShowExplanationDialog(true)
+    setShowExplanationDialog(true);
   };
 
   const processNext = (currentValue: string) => {
@@ -49,9 +64,9 @@ const QuizSection = (props: QuizSectionProps) => {
         setTimeout(() => {
           reset();
           props.next(currentValue);
-        }, 700)
+        }, 700);
       } else {
-        setTimeout(() => setShowExplanationDialog(true), 700)
+        setTimeout(() => setShowExplanationDialog(true), 700);
       }
       return;
     }
@@ -72,7 +87,7 @@ const QuizSection = (props: QuizSectionProps) => {
 
   const handleClose = (event: React.MouseEvent<HTMLDivElement>) => {
     const target = event.target as HTMLDivElement;
-    if (target.classList.contains('nji-example')) return;
+    if (target.classList.contains("nji-example")) return;
     reset();
     props.next(value);
   };
@@ -86,68 +101,33 @@ const QuizSection = (props: QuizSectionProps) => {
     processNext(value);
   };
 
+  console.log(props.question);
+
   return (
-    <Box className={styles.nji_quiz_section}>
-      <LinearProgress variant="determinate" value={props.percentComplete} className={styles.nji_progress}/>
-      <Typography variant="h5" className={styles.nji_question}>
-        {props.question.top1}
-      </Typography>
-      <TextField
-        autoFocus
-        fullWidth
-        value={value}
-        onChange={handleChange}
-        onKeyPress={(e) => {
-          if (e.key === 'Enter') {
-            handleSubmit(value);
-          }
-        }}
-        disabled={isSubmitted}
+    <Box sx={{ width: "100%", p: 2 }}>
+      <LinearProgress
+        variant="determinate"
+        value={props.percentComplete}
+        sx={{ mb: 2 }}
       />
-      <Button
-        variant="contained"
-        color="primary"
-        onClick={() => handleSubmit(value)}
-        disabled={isSubmitted}
-      >
-        Submit
-      </Button>
-      <Dialog
-        open={showAnswerDialog}
-        onClose={handleClose}
-      >
-        <DialogTitle>Incorrect</DialogTitle>
-        <DialogContent>
-          <Typography>
-            The correct answer is: {props.question.answer}
-          </Typography>
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={() => handleClose({} as React.MouseEvent<HTMLDivElement>)}
-          >
-            Next
-          </Button>
-        </DialogContent>
-      </Dialog>
-      <Dialog
+      <ExplanationDialog
         open={showExplanationDialog}
-        onClose={handleClose}
-      >
-        <DialogTitle>Explanation</DialogTitle>
-        <DialogContent>
-          <Typography>
-            {props.question.explanation}
-          </Typography>
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={() => handleClose({} as React.MouseEvent<HTMLDivElement>)}
-          >
-            Next
-          </Button>
-        </DialogContent>
-      </Dialog>
+        question={props.question}
+        handleClose={handleClose}
+        rule={rules[props.question.explanation]}/>
+      <AnswerDialog
+        open={showAnswerDialog}
+        answer={value}
+        handleClose={handleClose}
+        question={props.question}/>
+      <QuestionCard
+        question={props.question}
+        value={value}
+        showExplanation={openExplanation}
+        handleSubmit={handleSubmit}
+        handleChange={handleChange}
+        isSubmitted={isSubmitted}
+      />
     </Box>
   );
 };

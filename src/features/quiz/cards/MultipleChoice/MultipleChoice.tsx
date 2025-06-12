@@ -1,5 +1,5 @@
-import React, { FunctionComponent } from 'react';
-import { Typography, Grid, Card, CardContent } from '@mui/material';
+import React, { FunctionComponent } from "react";
+import { Typography, Grid, Card, CardContent } from "@mui/material";
 
 interface MultipleChoiceProps {
   answer: string;
@@ -11,8 +11,9 @@ interface MultipleChoiceProps {
 
 const MultipleChoice: FunctionComponent<MultipleChoiceProps> = (props) => {
   function getClass(choice: string): string {
-    return props.answer === choice ?
-      'nji-ripple nji-correct' : 'nji-ripple nji-incorrect';
+    return props.answer === choice
+      ? "nji-ripple nji-correct"
+      : "nji-ripple nji-incorrect";
   }
 
   return (
@@ -21,13 +22,17 @@ const MultipleChoice: FunctionComponent<MultipleChoiceProps> = (props) => {
       <Grid container spacing={1} className="nji-card-mc">
         {props.choices.map((choice, index) => (
           <Grid item xs={6} key={index} className={getClass(choice)}>
-            <Card 
-              onClick={() => {if (!props.isSubmitted) props.click(choice)}}
-              sx={{ 
-                cursor: props.isSubmitted ? 'default' : 'pointer',
-                '&:hover': {
-                  backgroundColor: props.isSubmitted ? 'inherit' : 'action.hover'
-                }
+            <Card
+              onClick={() => {
+                if (!props.isSubmitted) props.click(choice);
+              }}
+              sx={{
+                cursor: props.isSubmitted ? "default" : "pointer",
+                "&:hover": {
+                  backgroundColor: props.isSubmitted
+                    ? "inherit"
+                    : "action.hover",
+                },
               }}
             >
               <CardContent>{choice}</CardContent>
