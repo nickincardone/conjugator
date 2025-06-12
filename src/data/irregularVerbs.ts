@@ -1,4 +1,4 @@
-import { Verb } from "../types";
+import { Verb } from "../types/types";
 
 const irregularVerbs: Verb[] = [
   {

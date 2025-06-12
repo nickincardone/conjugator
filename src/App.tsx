@@ -1,14 +1,14 @@
-import React, {ChangeEvent, useCallback, useMemo, useState} from 'react';
-import './App.scss';
+import React, {ChangeEvent, useMemo, useState} from 'react';
+import './styles/App.scss';
 import { Container, Card, CardContent, Grid } from '@mui/material';
-import OptionPage from './components/options/OptionPage';
-import Home from './components/home/Home';
-import {Question, QuestionType, VerbType} from "./types";
+import OptionPage from './features/options/OptionPage';
+import Home from './features/home/Home';
+import {Question, QuestionType, VerbType} from "./types/types";
 import Settings from "./structures/Settings";
 import Quiz from "./structures/Quiz";
 import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
-import QuizSection from "./components/quizSection/QuizSection";
-import Results from "./components/results/Results";
+import QuizSection from './features/quiz/QuizSection';
+import Results from './features/results/Results';
 
 function App() {
   const navigate = useNavigate();

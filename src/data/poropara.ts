@@ -1,4 +1,4 @@
-import {FillInBlank} from "../types";
+import {FillInBlank} from "../types/types";
 
 const poropara: FillInBlank[] = [
   {
@@ -1443,13 +1443,13 @@ const poropara: FillInBlank[] = [
   },
   {
     "question": "___ lo demás no tienes que hacer nada más",
-    "translation": "Apart from that you don’t have to do anything else",
+    "translation": "Apart from that you don't have to do anything else",
     "answer": "por",
     "reason": 39
   },
   {
     "question": "___ lo general no como plátanos",
-    "translation": "I generally don’t eat bananas.",
+    "translation": "I generally don't eat bananas.",
     "answer": "por",
     "reason": 38
   },

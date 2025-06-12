@@ -1,5 +1,5 @@
 import React, {ChangeEvent, useState} from 'react';
-import {Question, QuestionType} from "../../types";
+import {Question, QuestionType} from "../../types/types";
 import {useNavigate} from "react-router-dom";
 import {Box, Button, Dialog, DialogContent, DialogTitle, LinearProgress, TextField, Typography} from "@mui/material";
 import styles from "./QuizSection.module.scss";
@@ -17,6 +17,11 @@ const QuizSection = (props: QuizSectionProps) => {
   const [showExplanationDialog, setShowExplanationDialog] = useState<boolean>(false);
   const [showAnswerDialog, setShowAnswerDialog] = useState<boolean>(false);
   const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
+  const [openExplanation, setOpenExplanation] = useState(false);
+  const [currentQuestion, setCurrentQuestion] = useState<Question | null>(null);
+  const [currentAnswer, setCurrentAnswer] = useState("");
+  const [isCorrect, setIsCorrect] = useState(false);
+  const [showExplanation, setShowExplanation] = useState(false);
 
   const realAnswer: string = props.question.answer.replace(/\|/g, '').toLowerCase();
 
@@ -27,7 +32,7 @@ const QuizSection = (props: QuizSectionProps) => {
     setValue('');
   };
 
-  const openExplanation = () => {
+  const handleOpenExplanation = () => {
     setShowExplanationDialog(true)
   };
 

@@ -1,9 +1,9 @@
 import React, { FunctionComponent } from 'react';
 import { Typography, Box } from '@mui/material';
 import './FillInBlankTop.scss';
-import ModifiedTooltip from '../../ui/ModifiedTooltip/ModifiedTooltip';
-import { Question } from "../../../types";
-import FillInBlankText from "../../ui/FillInBlankText";
+import ModifiedTooltip from '../../../../components/ui/ModifiedTooltip/ModifiedTooltip';
+import { Question } from "../../../../types/types";
+import FillInBlankText from "../../../../components/ui/FillInBlankText";
 
 interface FillInBlankTopProps {
   question: Question;

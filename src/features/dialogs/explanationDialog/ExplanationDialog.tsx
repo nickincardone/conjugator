@@ -1,7 +1,7 @@
 import { Dialog, Typography, useMediaQuery, useTheme } from '@mui/material';
 import React, { FunctionComponent } from 'react';
 import './ExplanationDialog.scss';
-import { Question, Rule } from '../../../types';
+import { Question, Rule } from '../../../types/types';
 
 interface ExplanationDialogProps {
   handleClose: (a: React.MouseEvent<HTMLDivElement>) => void;

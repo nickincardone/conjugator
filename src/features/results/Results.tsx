@@ -1,10 +1,10 @@
-import React, {ReactElement} from "react";
+import React from 'react';
 import { useNavigate } from "react-router-dom";
-import {IncorrectAnswer, QuestionType} from "../../types";
+import {IncorrectAnswer} from "../../types/types";
+import {Button, Typography} from "@mui/material";
+import {getStringDifferenceArrays} from "../../utils/stringHelpers";
+import StyledAnswer from "../../components/ui/StyledAnswer/StyledAnswer";
 import styles from "./Results.module.scss";
-import { Typography, Button } from "@mui/material";
-import {getStringDifferenceArrays} from "../../helpers/stringHelpers";
-import StyledAnswer from "../ui/StyledAnswer/StyledAnswer";
 
 export interface ResultsProps {
   results: IncorrectAnswer[];
@@ -12,12 +12,12 @@ export interface ResultsProps {
 
 const Result = (props: { result: IncorrectAnswer }) => {
   const result = props.result;
-  const answerArray = getStringDifferenceArrays(result.response, result.answer);
+  const [targetArray, inputArray] = getStringDifferenceArrays(result.response, result.answer);
   return (
     <div className={styles.nji_result}>
       <Typography variant="h6">{result.top1}</Typography>
       <Typography variant="body1">
-        Your answer: <StyledAnswer answerArray={answerArray}/>
+        Your answer: <StyledAnswer answerArray={inputArray}/>
       </Typography>
       <Typography variant="body1">
         Correct answer: {result.answer}

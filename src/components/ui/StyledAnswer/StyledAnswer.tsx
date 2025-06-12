@@ -1,23 +1,22 @@
-import React from "react";
-import styles from "./StyledAnswer.module.scss";
+import React from 'react';
+import { Typography } from '@mui/material';
 
 interface StyledAnswerProps {
-  answerArray: Array<string | number[]>;
+  answerArray: [number, string][];
+  className?: string;
 }
 
-export default function StyledAnswer(props: StyledAnswerProps) {
+const StyledAnswer: React.FC<StyledAnswerProps> = ({ answerArray, className }) => {
   return (
-    <React.Fragment>
-      {props.answerArray.map((item, i) => {
-        let className = "";
-        if (item[0] === -1) className = styles.red;
-        if (item[0] === 1) className = styles.green;
-        return (
-          <span key={i} className={className}>
-            {item[1]}
-          </span>
-        );
-      })}
-    </React.Fragment>
+    <Typography className={className} component="span">
+      {answerArray.map(([type, value], idx) => (
+        <span key={idx} style={{
+          color: type === 0 ? 'inherit' : type === 1 ? 'red' : 'green',
+          fontWeight: type === 0 ? 'normal' : 'bold'
+        }}>{value}</span>
+      ))}
+    </Typography>
   );
-}
+};
+
+export default StyledAnswer; 

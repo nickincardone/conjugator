@@ -4,7 +4,7 @@ import './QuestionCard.scss';
 import MultipleChoice from './MultipleChoice/MultipleChoice';
 import WrittenOption from './WrittenOption/WrittenOption';
 import FillInBlankTop from './FillInBlank/FillInBlankTop';
-import { Question, QuestionType } from '../../types';
+import { Question, QuestionType } from '../../../types/types';
 
 interface NormalTopProps {
   question: Question;

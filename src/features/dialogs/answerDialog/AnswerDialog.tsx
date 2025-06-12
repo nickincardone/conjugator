@@ -1,9 +1,9 @@
 import { Dialog, Typography, useMediaQuery, useTheme } from '@mui/material';
 import React, { FunctionComponent } from 'react';
 import './AnswerDialog.scss';
-import { getStringDifferenceArrays } from '../../../helpers/stringHelpers';
-import { Question, QuestionType } from "../../../types";
-import StyledAnswer from "../../ui/StyledAnswer/StyledAnswer";
+import { getStringDifferenceArrays } from '../../../utils/stringHelpers';
+import { Question, QuestionType } from "../../../types/types";
+import StyledAnswer from "../../../components/ui/StyledAnswer/StyledAnswer";
 
 interface AnswerDialogProps {
   answer: string;

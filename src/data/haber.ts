@@ -1,4 +1,4 @@
-import {Conjugations} from "../types";
+import {Conjugations} from "../types/types";
 
 const haber: Conjugations = {
   "participle": "habido",
