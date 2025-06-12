@@ -1,7 +1,7 @@
-import React, {ChangeEvent, FunctionComponent, RefObject} from 'react';
-import TextField from '@material-ui/core/TextField';
+import React, { ChangeEvent, FunctionComponent, RefObject } from 'react';
+import { TextField } from '@mui/material';
 
-export interface writtenOptionProps {
+export interface WrittenOptionProps {
   value: string;
   answer: string;
   submitted: boolean;
@@ -10,24 +10,31 @@ export interface writtenOptionProps {
   inputRef: RefObject<any>;
 }
 
-const writtenOption : FunctionComponent<writtenOptionProps> = (props) => {
-  const className: string =
-    props.value && props.value.toLowerCase() === props.answer && props.submitted
-      ? "nji-correct" : "nji-incorrect";
-
+const WrittenOption: FunctionComponent<WrittenOptionProps> = (props) => {
   return (
-    <div className={className}>
+    <>
       <TextField
-        id="standard-basic"
-        label={props.header}
-        onChange={props.handleChange}
-        value={props.value}
-        autoFocus={true}
-        autoComplete="off"
         inputRef={props.inputRef}
+        fullWidth
+        label={props.header}
+        value={props.value}
+        onChange={props.handleChange}
+        disabled={props.submitted}
+        variant="standard"
+        sx={{
+          '& .MuiInput-underline': {
+            '&:before': {
+              borderBottomColor: props.submitted && props.value.toLowerCase() === props.answer.toLowerCase() 
+                ? 'success.main' 
+                : props.submitted 
+                  ? 'error.main' 
+                  : 'inherit'
+            }
+          }
+        }}
       />
-    </div>
+    </>
   );
 };
 
-export default writtenOption;
+export default WrittenOption;

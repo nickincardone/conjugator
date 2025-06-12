@@ -1,8 +1,8 @@
-import React, {FunctionComponent} from 'react';
-import Typography from '@material-ui/core/Typography';
+import React, { FunctionComponent } from 'react';
+import { Typography, Box } from '@mui/material';
 import './FillInBlankTop.scss';
 import ModifiedTooltip from '../../ui/ModifiedTooltip/ModifiedTooltip';
-import {Question} from "../../../types";
+import { Question } from "../../../types";
 import FillInBlankText from "../../ui/FillInBlankText";
 
 interface FillInBlankTopProps {
@@ -14,31 +14,30 @@ interface FillInBlankTopProps {
 }
 
 const FillInBlankTop: FunctionComponent<FillInBlankTopProps> = (props) => {
-  let questionText: JSX.Element = <React.Fragment>{props.question.top1}</React.Fragment>;
-  let className: string =  '';
-
-  if (props.submitted) {
-    className = props.choice === props.question.answer ?
-      'nji-correct' : 'nji-incorrect';
-    questionText = <FillInBlankText text={props.question.top1} insert={props.choice} className={className}/>
-  }
-
-  const placement = className.length > 0 ? 'top' : 'bottom';
-  const title = props.question.translation ? props.question.translation : '';
+  const className = props.submitted 
+    ? props.choice === props.question.answer 
+      ? 'nji-correct' 
+      : 'nji-incorrect'
+    : '';
 
   return (
-    <div>
-      <ModifiedTooltip placement={placement} title={title}>
-        <Typography variant="h1" className={"nji-fib-header " + className}>
-          <span className="dotted-border">{questionText}</span>
-        </Typography>
-      </ModifiedTooltip>
-      <Typography
-        onClick={() => className === "nji-incorrect" ? props.showExplanation(): props.handleSubmit(props.choice)}
-        variant="subtitle1"
-        className={className + " prevent-touch"} >
+    <Box className="nji-fill-in-blank">
+      <Typography variant="h5" className="nji-fib-question">
+        {props.question.top1}
       </Typography>
-    </div>
+      <ModifiedTooltip
+        title={props.question.translation || ''}
+        className="nji-fib-tooltip"
+      >
+        <Box>
+          <FillInBlankText
+            text={props.question.top1}
+            insert={props.choice}
+            className={className}
+          />
+        </Box>
+      </ModifiedTooltip>
+    </Box>
   );
 };
 

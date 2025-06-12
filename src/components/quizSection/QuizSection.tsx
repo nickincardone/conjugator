@@ -1,21 +1,18 @@
-import React, {ChangeEvent, useCallback, useEffect, useState} from "react";
+import React, {ChangeEvent, useState} from 'react';
 import {Question, QuestionType} from "../../types";
-import AnswerDialog from "../dialogs/answerDialog/AnswerDialog";
-import ExplanationDialog from "../dialogs/explanationDialog/ExplanationDialog";
-import QuestionCard from "../cards/QuestionCard";
-import {LinearProgress} from "@material-ui/core";
-import {History, LocationState} from "history";
-import rules from "../../data/rules";
+import {useNavigate} from "react-router-dom";
+import {Box, Button, Dialog, DialogContent, DialogTitle, LinearProgress, TextField, Typography} from "@mui/material";
+import styles from "./QuizSection.module.scss";
 
 export interface QuizSectionProps {
+  next: (value: string) => void;
   question: Question;
-  next: (s: string) => void;
   percentComplete: number;
-  history: History<LocationState>;
 }
 
 const QuizSection = (props: QuizSectionProps) => {
-  if (props.question.answer === '' && props.question.top1 === '') props.history.replace('/');
+  const navigate = useNavigate();
+  if (props.question.answer === '' && props.question.top1 === '') navigate('/');
   const [value, setValue] = useState<string>("");
   const [showExplanationDialog, setShowExplanationDialog] = useState<boolean>(false);
   const [showAnswerDialog, setShowAnswerDialog] = useState<boolean>(false);
@@ -84,51 +81,70 @@ const QuizSection = (props: QuizSectionProps) => {
     processNext(value);
   };
 
-  const handleUserKeyPress = useCallback((event: KeyboardEvent) => {
-    const key = event.key;
-    if (key === 'Enter' && isSubmitted) {
-      return processNext(value);
-    }
-    if (
-      key === "Enter" &&
-      (props.question.questionType === QuestionType.DefinitionW ||
-        props.question.questionType === QuestionType.ConjugationW)
-    ) {
-      return processNext(value);
-    }
-  }, [isSubmitted, showExplanationDialog, value, props.question.questionType]);
-  //TODO wrap process next into own callback hook
-
-  useEffect(() => {
-    window.addEventListener('keydown', handleUserKeyPress);
-    return () => window.removeEventListener('keydown', handleUserKeyPress);
-  }, [handleUserKeyPress]);
-
   return (
-    <React.Fragment>
-      <LinearProgress
-        variant="determinate"
-        color="secondary"
-        value={props.percentComplete}/>
-      <ExplanationDialog
-        open={showExplanationDialog}
-        question={props.question}
-        handleClose={handleClose}
-        rule={rules[props.question.explanation]}/>
-      <AnswerDialog
-        open={showAnswerDialog}
-        answer={value}
-        handleClose={handleClose}
-        question={props.question}/>
-      <QuestionCard
-        question={props.question}
+    <Box className={styles.nji_quiz_section}>
+      <LinearProgress variant="determinate" value={props.percentComplete} className={styles.nji_progress}/>
+      <Typography variant="h5" className={styles.nji_question}>
+        {props.question.top1}
+      </Typography>
+      <TextField
+        autoFocus
+        fullWidth
         value={value}
-        showExplanation={openExplanation}
-        handleSubmit={handleSubmit}
-        handleChange={handleChange}
-        isSubmitted={isSubmitted}/>
-    </React.Fragment>
-  )
+        onChange={handleChange}
+        onKeyPress={(e) => {
+          if (e.key === 'Enter') {
+            handleSubmit(value);
+          }
+        }}
+        disabled={isSubmitted}
+      />
+      <Button
+        variant="contained"
+        color="primary"
+        onClick={() => handleSubmit(value)}
+        disabled={isSubmitted}
+      >
+        Submit
+      </Button>
+      <Dialog
+        open={showAnswerDialog}
+        onClose={handleClose}
+      >
+        <DialogTitle>Incorrect</DialogTitle>
+        <DialogContent>
+          <Typography>
+            The correct answer is: {props.question.answer}
+          </Typography>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={() => handleClose({} as React.MouseEvent<HTMLDivElement>)}
+          >
+            Next
+          </Button>
+        </DialogContent>
+      </Dialog>
+      <Dialog
+        open={showExplanationDialog}
+        onClose={handleClose}
+      >
+        <DialogTitle>Explanation</DialogTitle>
+        <DialogContent>
+          <Typography>
+            {props.question.explanation}
+          </Typography>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={() => handleClose({} as React.MouseEvent<HTMLDivElement>)}
+          >
+            Next
+          </Button>
+        </DialogContent>
+      </Dialog>
+    </Box>
+  );
 };
 
 export default QuizSection;

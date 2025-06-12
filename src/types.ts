@@ -40,7 +40,7 @@ export class Question {
   translation?: string;
 }
 
-export interface IncorrectAnswer extends Question{
+export interface IncorrectAnswer extends Question {
   response: string;
 }
 

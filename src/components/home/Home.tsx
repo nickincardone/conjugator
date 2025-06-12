@@ -1,7 +1,5 @@
 import * as React from 'react';
-import Box from '@material-ui/core/Box';
-import {Hidden} from '@material-ui/core';
-import Button from '@material-ui/core/Button';
+import { Box, Button, useMediaQuery, useTheme } from '@mui/material';
 import './Home.scss';
 
 export interface HomeProps {
@@ -14,6 +12,8 @@ export interface HomeProps {
 }
 
 function Home(props: HomeProps) {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
 
   const postQuizText = () => {
     const correctPercentage: number =
@@ -46,22 +46,25 @@ function Home(props: HomeProps) {
       {props.started && props.incorrectAnswers !== 0 ?
         <Button variant="contained" color="secondary"
                 onClick={() => props.goToResults()}>Results</Button> : null}
-      <Hidden mdUp>
-        <Button variant="contained" color="primary" onClick={() => props.start(true)}>
-          start
-        </Button>
-        <Button variant="contained" color="secondary" onClick={() => props.goToOptions(true)}>
-          custom start
-        </Button>
-      </Hidden>
-      <Hidden smDown>
-        <Button variant="contained" color="primary" onClick={() => props.start(false)}>
-          start
-        </Button>
-        <Button variant="contained" color="secondary" onClick={() => props.goToOptions(false)}>
-          custom start
-        </Button>
-      </Hidden>
+      {isMobile ? (
+        <>
+          <Button variant="contained" color="primary" onClick={() => props.start(true)}>
+            start
+          </Button>
+          <Button variant="contained" color="secondary" onClick={() => props.goToOptions(true)}>
+            custom start
+          </Button>
+        </>
+      ) : (
+        <>
+          <Button variant="contained" color="primary" onClick={() => props.start(false)}>
+            start
+          </Button>
+          <Button variant="contained" color="secondary" onClick={() => props.goToOptions(false)}>
+            custom start
+          </Button>
+        </>
+      )}
     </Box>
   )
 }

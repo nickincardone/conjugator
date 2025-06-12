@@ -1,19 +1,18 @@
 import React, {ChangeEvent, useCallback, useMemo, useState} from 'react';
 import './App.scss';
-import Container from "@material-ui/core/Container";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import Grid from "@material-ui/core/Grid";
+import { Container, Card, CardContent, Grid } from '@mui/material';
 import OptionPage from './components/options/OptionPage';
 import Home from './components/home/Home';
 import {Question, QuestionType, VerbType} from "./types";
 import Settings from "./structures/Settings";
 import Quiz from "./structures/Quiz";
-import { Route, Switch, withRouter, RouteComponentProps } from 'react-router-dom';
+import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import QuizSection from "./components/quizSection/QuizSection";
 import Results from "./components/results/Results";
 
-function App(props: RouteComponentProps) {
+function App() {
+  const navigate = useNavigate();
+  const location = useLocation();
   const quiz: Quiz = useMemo<Quiz>(() => new Quiz(), []);
   const [currentQuestion, setCurrentQuestion] = useState<Question>(new Question());
   const [isStarted, setIsStarted] = useState<boolean>(false);
@@ -65,11 +64,11 @@ function App(props: RouteComponentProps) {
   };
 
   const restart = () => {
-    props.history.replace("/");
+    navigate("/");
   };
 
   const goToResults = () => {
-    props.history.replace("/results");
+    navigate("/results");
   };
 
   const realAnswer = () => {
@@ -98,7 +97,7 @@ function App(props: RouteComponentProps) {
     setSettings(settingsCopy);
     setCurrentQuestion(firstQuestion);
     setIsStarted(true);
-    props.history.replace('/quiz')
+    navigate('/quiz')
   };
   
   const goToOptions = (isMobile: boolean) => {
@@ -109,7 +108,7 @@ function App(props: RouteComponentProps) {
       settingsCopy.definitionW = false;
     }
     setSettings(settingsCopy);
-    props.history.replace("/options");
+    navigate("/options");
   };
 
   const sliderChange = (event: any, newValue: number|number[]) => {
@@ -117,7 +116,7 @@ function App(props: RouteComponentProps) {
   };
 
   const getAppClass = () => {
-    return (props.location.pathname === '/options')
+    return (location.pathname === '/options')
       ? 'center-grid nji-option-mobile' : 'center-grid';
   };
 
@@ -127,34 +126,34 @@ function App(props: RouteComponentProps) {
         <Grid item className="nji-wrap">
           <Card className="nji-main-card">
             <CardContent>
-              <Switch>
-                <Route path="/results" exact render={(props => {
-                  return <Results history={props.history} results={quiz.incorrectAnswers}/>
-                })} />
-                <Route path="/options" exact render={(props => {
-                  return <OptionPage
+              <Routes>
+                <Route path="/results" element={
+                  <Results results={quiz.incorrectAnswers}/>
+                } />
+                <Route path="/options" element={
+                  <OptionPage
                     settings={settings}
                     settingsChanged={updateSettingsEvent}
                     start={start}
                     sliderChange={sliderChange}
                     updateVerbTypes={updateVerbTypes}/>
-                })}/>
-                <Route path="/quiz" exact render={(props => {
-                  return <QuizSection next={processNext}
-                                      history={props.history}
-                                      question={currentQuestion}
-                                      percentComplete={(quiz.currentQuestion / settings.numberOfQuestions) * 100}/>
-                })}/>
-                <Route path="/" render={(props => {
-                  return <Home
+                }/>
+                <Route path="/quiz" element={
+                  <QuizSection 
+                    next={processNext}
+                    question={currentQuestion}
+                    percentComplete={(quiz.currentQuestion / settings.numberOfQuestions) * 100}/>
+                }/>
+                <Route path="/" element={
+                  <Home
                     numberOfQuestions={settings.numberOfQuestions}
                     incorrectAnswers={quiz.incorrectAnswers.length}
                     start={start}
                     goToOptions={goToOptions}
                     goToResults={goToResults}
                     started={isStarted}/>
-                })}/>
-              </Switch>
+                }/>
+              </Routes>
             </CardContent>
           </Card>
         </Grid>
@@ -163,4 +162,4 @@ function App(props: RouteComponentProps) {
   );
 }
 
-export default withRouter(App);
+export default App;

@@ -1,10 +1,7 @@
-import React, {FunctionComponent} from 'react';
-import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
+import React, { FunctionComponent } from 'react';
+import { Typography, Grid, Card, CardContent } from '@mui/material';
 
-interface multipleChoiceProps {
+interface MultipleChoiceProps {
   answer: string;
   choices: string[];
   header: string;
@@ -12,28 +9,34 @@ interface multipleChoiceProps {
   click: (s: string) => void;
 }
 
-const multipleChoice: FunctionComponent<multipleChoiceProps> = (props) => {
+const MultipleChoice: FunctionComponent<MultipleChoiceProps> = (props) => {
   function getClass(choice: string): string {
     return props.answer === choice ?
       'nji-ripple nji-correct' : 'nji-ripple nji-incorrect';
   }
 
   return (
-    <React.Fragment>
+    <>
       <Typography variant="subtitle1">{props.header}</Typography>
       <Grid container spacing={1} className="nji-card-mc">
-        {props.choices.map((choice, index) => {
-          return (
-            <Grid item xs={6} key={index} className={getClass(choice)}>
-              <Card onClick={() => {if (!props.isSubmitted) props.click(choice)}}>
-                <CardContent>{choice}</CardContent>
-              </Card>
-            </Grid>
-          )
-        })}
+        {props.choices.map((choice, index) => (
+          <Grid item xs={6} key={index} className={getClass(choice)}>
+            <Card 
+              onClick={() => {if (!props.isSubmitted) props.click(choice)}}
+              sx={{ 
+                cursor: props.isSubmitted ? 'default' : 'pointer',
+                '&:hover': {
+                  backgroundColor: props.isSubmitted ? 'inherit' : 'action.hover'
+                }
+              }}
+            >
+              <CardContent>{choice}</CardContent>
+            </Card>
+          </Grid>
+        ))}
       </Grid>
-    </React.Fragment>
-  )
+    </>
+  );
 };
 
-export default multipleChoice;
+export default MultipleChoice;

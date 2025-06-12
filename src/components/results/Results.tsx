@@ -1,65 +1,48 @@
 import React, {ReactElement} from "react";
-import {History, LocationState} from "history";
+import { useNavigate } from "react-router-dom";
 import {IncorrectAnswer, QuestionType} from "../../types";
 import styles from "./Results.module.scss";
-import {Typography} from "@material-ui/core";
+import { Typography, Button } from "@mui/material";
 import {getStringDifferenceArrays} from "../../helpers/stringHelpers";
 import StyledAnswer from "../ui/StyledAnswer/StyledAnswer";
-import Button from "@material-ui/core/Button";
 
 export interface ResultsProps {
   results: IncorrectAnswer[];
-  history: History<LocationState>;
 }
 
-interface ResultProps {
-  result: IncorrectAnswer;
-}
-
-const Result = (props: ResultProps) => {
-
-  const cleanedAnswer = props.result.answer.replace(/\|/g, '');
-  const [answerArray, inputArray] = getStringDifferenceArrays(cleanedAnswer, props.result.response);
-
-  let topper: string | ReactElement = "Definition";
-  if (props.result.questionType === QuestionType.ConjugationMC || props.result.questionType === QuestionType.ConjugationW) {
-    topper = (
-      <React.Fragment>
-        <span>{props.result.top1}</span>
-        <span> - </span>
-        <span>{props.result.chips.join(' ')}</span>
-        <span> - </span>
-        <span>{props.result.top3}</span>
-      </React.Fragment>
-    )
-  } else if (props.result.questionType === QuestionType.PorOParaFIB) {
-    topper = "Por o Para";
-  }
-
+const Result = (props: { result: IncorrectAnswer }) => {
+  const result = props.result;
+  const answerArray = getStringDifferenceArrays(result.response, result.answer);
   return (
     <div className={styles.nji_result}>
-      <p>{props.result.top1}</p>
-      <p>{topper}</p>
-      <p>Your Answer: <StyledAnswer answerArray={inputArray}/> - Correct Answer: <StyledAnswer answerArray={answerArray}/></p>
+      <Typography variant="h6">{result.top1}</Typography>
+      <Typography variant="body1">
+        Your answer: <StyledAnswer answerArray={answerArray}/>
+      </Typography>
+      <Typography variant="body1">
+        Correct answer: {result.answer}
+      </Typography>
     </div>
-  )
+  );
 };
 
 const Results = (props: ResultsProps) => {
+  const navigate = useNavigate();
+  
   if (props.results.length === 0) {
-    props.history.replace("/");
+    navigate("/");
     return null;
   }
 
   const results = props.results.map((result) => {
-    return <Result result={result}/>
+    return <Result key={result.top1} result={result}/>
   });
 
   return (
     <div className={styles.nji_results}>
       <Typography variant="h4">Results</Typography>
       {results}
-      <Button variant="contained" color="primary" onClick={() => props.history.replace("/")}>
+      <Button variant="contained" color="primary" onClick={() => navigate("/")}>
         Go Home
       </Button>
     </div>

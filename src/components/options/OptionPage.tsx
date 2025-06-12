@@ -1,18 +1,21 @@
 import * as React from "react";
-import {ChangeEvent} from "react";
-import Box from "@material-ui/core/Box";
-import FormLabel from "@material-ui/core/FormLabel";
-import FormGroup from "@material-ui/core/FormGroup";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
-import {Hidden} from "@material-ui/core";
-import FormControl from "@material-ui/core/FormControl";
-import Typography from "@material-ui/core/Typography";
-import Slider from "@material-ui/core/Slider";
-import Button from "@material-ui/core/Button";
+import { ChangeEvent } from "react";
+import { 
+  Box, 
+  FormLabel, 
+  FormGroup, 
+  FormControlLabel, 
+  Checkbox, 
+  useMediaQuery, 
+  useTheme,
+  FormControl,
+  Typography,
+  Slider,
+  Button,
+  Grid
+} from "@mui/material";
 import verbTypes from "../../data/verbTypes";
 import verbTypeNicknames from "../../data/verbTypeNicknames";
-import Grid from "@material-ui/core/Grid";
 import "./OptionPage.scss";
 import Settings from "../../structures/Settings";
 
@@ -20,96 +23,49 @@ export interface OptionPageProps {
   settings: Settings;
   settingsChanged: (s: ChangeEvent<HTMLInputElement>) => void;
   updateVerbTypes: (s: ChangeEvent<HTMLInputElement>) => void;
-  sliderChange: (e: ChangeEvent<{}>, n: number | number[]) => void;
+  sliderChange: (e: Event, n: number | number[]) => void;
   start: (b: boolean) => void;
 }
 
-export interface CustomFormLabelProps {
+interface CustomFormLabelProps {
   name: string;
   checked: boolean;
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
   label: string;
-  disabled?: boolean;
-  onChange: (s: ChangeEvent<HTMLInputElement>) => void;
 }
 
-function CustomFormLabel(props: CustomFormLabelProps): JSX.Element {
+const CustomFormLabel: React.FC<CustomFormLabelProps> = (props) => {
   return (
     <FormControlLabel
-      label={props.label}
       control={
         <Checkbox
-          name={props.name}
           checked={props.checked}
           onChange={props.onChange}
-          disabled={props.disabled}/>
-      }/>
+          name={props.name}
+        />
+      }
+      label={props.label}
+    />
   );
-}
+};
 
 function OptionPage(props: OptionPageProps) {
-  const prettyVerb = (verbNickname: string) => {
-    const strCopy: string[] = verbNickname
-      .replace(/\./g, " ")
-      .toLowerCase()
-      .split(" ");
-    for (let i: number = 0; i < strCopy.length; i++) {
-      strCopy[i] = strCopy[i].charAt(0).toUpperCase() + strCopy[i].substring(1);
-    }
-    return strCopy.join(" ");
-  };
-
-  const conjugationEnabled: boolean =
-    props.settings.conjugationMC || props.settings.conjugationW;
-
-  // @ts-ignore
-  const checkBoxes: JSX.Element[] = verbTypes.map((verbType: keyof typeof verbTypeNicknames, index: number) => {
-      return (
-        <CustomFormLabel
-          name={verbType}
-          key={index}
-          disabled={!conjugationEnabled}
-          checked={
-            conjugationEnabled &&
-            props.settings.verbTypes.indexOf(verbType) !== -1
-          }
-          onChange={props.updateVerbTypes}
-          label={prettyVerb(verbTypeNicknames[verbType])}/>
-      );
-    }
-  );
-
-  const half_length: number = Math.ceil(verbTypes.length / 2);
-  const firstCheckBoxes: JSX.Element[] = checkBoxes.splice(0, half_length);
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
 
   const conjugationFormGroup = (
-    <Grid container>
-      <Grid item xs={12} sm={6}>
-        <FormGroup>{firstCheckBoxes}</FormGroup>
-      </Grid>
-      <Grid item xs={12} sm={6}>
-        <FormGroup>{checkBoxes}</FormGroup>
-      </Grid>
-    </Grid>
+    <FormGroup>
+      {verbTypes.map((verbType, index) => (
+        <CustomFormLabel
+          key={index}
+          name={verbType}
+          checked={props.settings.verbTypes.includes(verbType)}
+          onChange={props.updateVerbTypes}
+          label={verbTypeNicknames[verbType]}
+        />
+      ))}
+    </FormGroup>
   );
-
-  const disableStart = () => {
-    if (
-      !(
-        props.settings.conjugationMC ||
-        props.settings.conjugationW ||
-        props.settings.definitionMC ||
-        props.settings.definitionW ||
-        props.settings.poropara
-      )
-    )
-      return true;
-    if (props.settings.verbTypes.length !== 0) return false;
-    return !(
-      props.settings.definitionMC ||
-      props.settings.definitionW ||
-      props.settings.poropara
-    );
-  };
 
   return (
     <Box
@@ -120,7 +76,8 @@ function OptionPage(props: OptionPageProps) {
       minHeight={360}
       color={"common.black"}
       textAlign={"center"}
-      className="nji-option-page">
+      className="nji-option-page"
+    >
       <FormControl component="fieldset" className="nji-option-top">
         <FormLabel focused component="legend">
           Question Types
@@ -132,19 +89,22 @@ function OptionPage(props: OptionPageProps) {
                 name="definitionMC"
                 checked={props.settings.definitionMC}
                 onChange={props.settingsChanged}
-                label="Definition (Multiple Choice)"/>
-              <Hidden smDown>
+                label="Definition (Multiple Choice)"
+              />
+              {!isMobile && (
                 <CustomFormLabel
                   name="definitionW"
                   checked={props.settings.definitionW}
                   onChange={props.settingsChanged}
-                  label="Definition (Written)"/>
-              </Hidden>
+                  label="Definition (Written)"
+                />
+              )}
               <CustomFormLabel
                 name="poropara"
                 checked={props.settings.poropara}
                 onChange={props.settingsChanged}
-                label="Por vs Para"/>
+                label="Por vs Para"
+              />
             </FormGroup>
           </Grid>
           <Grid item xs={12} sm={6}>
@@ -153,14 +113,16 @@ function OptionPage(props: OptionPageProps) {
                 name="conjugationMC"
                 checked={props.settings.conjugationMC}
                 onChange={props.settingsChanged}
-                label="Conjugations (Multiple Choice)"/>
-              <Hidden smDown>
+                label="Conjugations (Multiple Choice)"
+              />
+              {!isMobile && (
                 <CustomFormLabel
                   name="conjugationW"
                   checked={props.settings.conjugationW}
                   onChange={props.settingsChanged}
-                  label="Conjugations (Written)"/>
-              </Hidden>
+                  label="Conjugations (Written)"
+                />
+              )}
             </FormGroup>
           </Grid>
         </Grid>
@@ -169,52 +131,28 @@ function OptionPage(props: OptionPageProps) {
         </FormLabel>
         {conjugationFormGroup}
         <FormLabel focused component="legend">
-          Other
+          Number of Questions
         </FormLabel>
-        <Grid container>
-          <Grid item xs={12} sm={6}>
-            <FormGroup>
-              <CustomFormLabel
-                name="vosotros"
-                disabled={!conjugationEnabled}
-                checked={conjugationEnabled && props.settings.vosotros}
-                onChange={props.settingsChanged}
-                label="Use Vosotros"/>
-            </FormGroup>
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <FormGroup>
-              <CustomFormLabel
-                name="irregular"
-                disabled={!conjugationEnabled}
-                checked={conjugationEnabled && props.settings.irregular}
-                onChange={props.settingsChanged}
-                label="Irregular Only"/>
-            </FormGroup>
-          </Grid>
-        </Grid>
+        <Slider
+          value={props.settings.numberOfQuestions}
+          onChange={props.sliderChange}
+          min={1}
+          max={50}
+          valueLabelDisplay="auto"
+          marks={[
+            { value: 1, label: '1' },
+            { value: 25, label: '25' },
+            { value: 50, label: '50' }
+          ]}
+        />
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={() => props.start(isMobile)}
+        >
+          Start
+        </Button>
       </FormControl>
-      <Typography id="discrete-slider-custom" gutterBottom>
-        Number of Questions
-      </Typography>
-      <Slider
-        defaultValue={props.settings.numberOfQuestions}
-        min={5}
-        max={100}
-        aria-labelledby="discrete-slider-custom"
-        step={5}
-        valueLabelDisplay="auto"
-        style={{maxWidth: "200px"}}
-        onChange={props.sliderChange}/>
-      <Button
-        variant="contained"
-        color="primary"
-        disabled={disableStart()}
-        onClick={() => {
-          props.start(props.settings.isMobile);
-        }}>
-        start
-      </Button>
     </Box>
   );
 }
