@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, useState, useEffect } from "react";
 import { Question, QuestionType } from "types/types";
 import { useNavigate } from "react-router-dom";
 import QuestionCard from "features/quiz/cards/QuestionCard";
@@ -23,8 +23,6 @@ export interface QuizSectionProps {
 }
 
 const QuizSection = (props: QuizSectionProps) => {
-  const navigate = useNavigate();
-  if (props.question.answer === "" && props.question.top1 === "") navigate("/");
   const [value, setValue] = useState<string>("");
   const [showExplanationDialog, setShowExplanationDialog] =
     useState<boolean>(false);
@@ -35,6 +33,18 @@ const QuizSection = (props: QuizSectionProps) => {
   const [currentAnswer, setCurrentAnswer] = useState("");
   const [isCorrect, setIsCorrect] = useState(false);
   const [showExplanation, setShowExplanation] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // Check if question is valid
+    if (!props.question || !props.question.answer || !props.question.top1) {
+      navigate("/");
+    }
+  }, [props.question, navigate]);
+
+  if (!props.question || !props.question.answer || !props.question.top1) {
+    return null; // Return null while redirecting
+  }
 
   const realAnswer: string = props.question.answer
     .replace(/\|/g, "")
@@ -104,22 +114,24 @@ const QuizSection = (props: QuizSectionProps) => {
   console.log(props.question);
 
   return (
-    <Box sx={{ width: "100%", p: 2 }}>
+    <Box sx={{ width: "100%" }}>
       <LinearProgress
         variant="determinate"
         value={props.percentComplete}
-        sx={{ mb: 2 }}
+        sx={{ mb: 2, mt: 2 }}
       />
       <ExplanationDialog
         open={showExplanationDialog}
         question={props.question}
         handleClose={handleClose}
-        rule={rules[props.question.explanation]}/>
+        rule={rules[props.question.explanation]}
+      />
       <AnswerDialog
         open={showAnswerDialog}
         answer={value}
         handleClose={handleClose}
-        question={props.question}/>
+        question={props.question}
+      />
       <QuestionCard
         question={props.question}
         value={value}

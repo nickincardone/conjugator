@@ -9,6 +9,8 @@ import Quiz from "./structures/Quiz";
 import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
 import QuizSection from "./features/quiz/QuizSection";
 import Results from "./features/results/Results";
+import { ThemeProvider } from "@mui/material/styles";
+import theme from "./theme";
 
 function App() {
   const navigate = useNavigate();
@@ -126,60 +128,62 @@ function App() {
   };
 
   return (
-    <Container maxWidth="md" className="nji-main">
-      <Grid container className={getAppClass()} direction="column">
-        <Grid item className="nji-wrap">
-          <Card className="nji-main-card">
-            <CardContent>
-              <Routes>
-                <Route
-                  path="/results"
-                  element={<Results results={quiz.incorrectAnswers} />}
-                />
-                <Route
-                  path="/options"
-                  element={
-                    <OptionPage
-                      settings={settings}
-                      settingsChanged={updateSettingsEvent}
-                      start={start}
-                      sliderChange={sliderChange}
-                      updateVerbTypes={updateVerbTypes}
-                    />
-                  }
-                />
-                <Route
-                  path="/quiz"
-                  element={
-                    <QuizSection
-                      next={processNext}
-                      question={currentQuestion}
-                      percentComplete={
-                        (quiz.currentQuestion / settings.numberOfQuestions) *
-                        100
-                      }
-                    />
-                  }
-                />
-                <Route
-                  path="/"
-                  element={
-                    <Home
-                      numberOfQuestions={settings.numberOfQuestions}
-                      incorrectAnswers={quiz.incorrectAnswers.length}
-                      start={start}
-                      goToOptions={goToOptions}
-                      goToResults={goToResults}
-                      started={isStarted}
-                    />
-                  }
-                />
-              </Routes>
-            </CardContent>
-          </Card>
+    <ThemeProvider theme={theme}>
+      <Container maxWidth="md" className="nji-main">
+        <Grid container className={getAppClass()} direction="column">
+          <Grid item className="nji-wrap">
+            <Card className="nji-main-card">
+              <CardContent>
+                <Routes>
+                  <Route
+                    path="/results"
+                    element={<Results results={quiz.incorrectAnswers} />}
+                  />
+                  <Route
+                    path="/options"
+                    element={
+                      <OptionPage
+                        settings={settings}
+                        settingsChanged={updateSettingsEvent}
+                        start={start}
+                        sliderChange={sliderChange}
+                        updateVerbTypes={updateVerbTypes}
+                      />
+                    }
+                  />
+                  <Route
+                    path="/quiz"
+                    element={
+                      <QuizSection
+                        next={processNext}
+                        question={currentQuestion}
+                        percentComplete={
+                          (quiz.currentQuestion / settings.numberOfQuestions) *
+                          100
+                        }
+                      />
+                    }
+                  />
+                  <Route
+                    path="/"
+                    element={
+                      <Home
+                        numberOfQuestions={settings.numberOfQuestions}
+                        incorrectAnswers={quiz.incorrectAnswers.length}
+                        start={start}
+                        goToOptions={goToOptions}
+                        goToResults={goToResults}
+                        started={isStarted}
+                      />
+                    }
+                  />
+                </Routes>
+              </CardContent>
+            </Card>
+          </Grid>
         </Grid>
-      </Grid>
-    </Container>
+      </Container>
+    </ThemeProvider>
   );
 }
 

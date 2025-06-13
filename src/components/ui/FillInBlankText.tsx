@@ -29,7 +29,16 @@ function FillInBlankText(props: FillInBlankTextProps) {
     } else {
       renderedText.push(
         <React.Fragment key={i}>
-          <span>
+          <span
+            style={{
+              color:
+                props.styleChoice === StyleChoice.CORRECT
+                  ? "#00ca00"
+                  : props.styleChoice === StyleChoice.INCORRECT
+                    ? "#ff3d33"
+                    : "inherit",
+            }}
+          >
             {isBeginning(splitArr[0], i)
               ? capitalize(props.insert)
               : props.insert}

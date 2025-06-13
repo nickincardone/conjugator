@@ -35,7 +35,11 @@ const MultipleChoice: FunctionComponent<MultipleChoiceProps> = (props) => {
                 },
               }}
             >
-              <CardContent>{choice}</CardContent>
+              <CardContent sx={{ fontSize: "1.1rem" }}>
+                {choice && choice.length > 0
+                  ? choice.charAt(0).toUpperCase() + choice.slice(1)
+                  : choice}
+              </CardContent>
             </Card>
           </Grid>
         ))}

@@ -66,7 +66,7 @@ function Home(props: HomeProps) {
             color="secondary"
             onClick={() => props.goToOptions(true)}
           >
-            custom start
+            custom quiz
           </Button>
         </>
       ) : (
@@ -83,7 +83,7 @@ function Home(props: HomeProps) {
             color="secondary"
             onClick={() => props.goToOptions(false)}
           >
-            custom start
+            custom quiz
           </Button>
         </>
       )}

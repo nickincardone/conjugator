@@ -13,11 +13,6 @@ interface FillInBlankTopProps {
 }
 
 const FillInBlankTop: FunctionComponent<FillInBlankTopProps> = (props) => {
-  const getTextColor = () => {
-    if (!props.submitted) return "inherit";
-    return props.choice === props.question.answer ? "#00ca00" : "#ff3d33";
-  };
-
   let questionText: JSX.Element = (
     <React.Fragment>{props.question.top1}</React.Fragment>
   );
@@ -47,7 +42,12 @@ const FillInBlankTop: FunctionComponent<FillInBlankTopProps> = (props) => {
             fontSize: { xs: "2.5em", sm: "3em" },
             display: "inline-block",
             m: 1.25,
-            color: getTextColor(),
+            ...(props.question.translation && {
+              borderBottom: "2px dotted #cacaca",
+              "&:hover": {
+                borderBottom: "2px dotted #5a5a5a",
+              },
+            }),
           }}
         >
           {questionText}

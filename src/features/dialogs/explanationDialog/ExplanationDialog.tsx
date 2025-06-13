@@ -12,7 +12,7 @@ import "./ExplanationDialog.scss";
 import { Question, Rule } from "types/types";
 import ModifiedTooltip from "components/ui/ModifiedTooltip/ModifiedTooltip";
 import FillInBlankText, { StyleChoice } from "components/ui/FillInBlankText";
-import { FunctionComponent } from "react";
+import { FunctionComponent, useEffect, useState } from "react";
 
 interface ExplanationDialogProps {
   handleClose: (a: React.MouseEvent<HTMLDivElement>) => void;
@@ -49,6 +49,30 @@ const ExplanationDialog: FunctionComponent<ExplanationDialogProps> = (
 ) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+  const [displayQuestion, setDisplayQuestion] = useState<Question>(
+    props.question,
+  );
+  const [displayRule, setDisplayRule] = useState<Rule>(props.rule);
+
+  useEffect(() => {
+    if (props.open) {
+      setDisplayQuestion(props.question);
+      setDisplayRule(props.rule);
+    }
+  }, [props.open, props.question, props.rule]);
+
+  useEffect(() => {
+    const handleKeyPress = (event: KeyboardEvent) => {
+      if (props.open) {
+        props.handleClose(event as unknown as React.MouseEvent<HTMLDivElement>);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyPress);
+    return () => {
+      window.removeEventListener("keydown", handleKeyPress);
+    };
+  }, [props.open, props.handleClose]);
 
   return (
     <Dialog
@@ -60,21 +84,21 @@ const ExplanationDialog: FunctionComponent<ExplanationDialogProps> = (
         <h1>Try again next time!</h1>
         <div className="fill-in-blank">
           <FillInBlankText
-            text={props.question.top1}
-            insert={props.question.answer}
+            text={displayQuestion.top1}
+            insert={displayQuestion.answer}
             styleChoice={StyleChoice.CORRECT}
           />
         </div>
-        <h2>Rule: {props.rule.rule}</h2>
+        <h2>Rule: {displayRule.rule}</h2>
         <ModifiedTooltip
           className="nji-explanation-tooltip"
           placement="bottom"
-          title={props.rule.translation}
+          title={displayRule.translation}
         >
           <div>
             <b>Example</b>:{" "}
             <span className="nji-example">
-              {formatPipes(props.rule.example)}
+              {formatPipes(displayRule.example)}
             </span>
           </div>
         </ModifiedTooltip>
@@ -85,7 +109,7 @@ const ExplanationDialog: FunctionComponent<ExplanationDialogProps> = (
             </Typography>
           </Box>
           <Box sx={{ display: { xs: "none", md: "block" } }}>
-            <Typography variant="caption">Press enter to continue</Typography>
+            <Typography variant="caption">Press any key to continue</Typography>
           </Box>
         </div>
       </div>
