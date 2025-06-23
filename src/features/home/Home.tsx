@@ -1,6 +1,5 @@
 import * as React from "react";
 import { Box, Button, useMediaQuery, useTheme } from "@mui/material";
-import "./Home.scss";
 
 export interface HomeProps {
   incorrectAnswers: number;
@@ -39,7 +38,12 @@ function Home(props: HomeProps) {
       minHeight={360}
       color={"common.black"}
       textAlign={"center"}
-      className="nji-home-top"
+      sx={{
+        pt: { xs: 0, sm: 6.25 },
+        '& button': {
+          mt: 6.25
+        }
+      }}
     >
       {props.started ? postQuizText() : "Hello, welcome to Conjugator"}
       <br />

@@ -6,7 +6,7 @@ import {
   QuestionType,
   Verb,
   VerbType,
-} from "../types/types";
+} from "types/types";
 import Settings from "./Settings";
 import verbs from "data/conjugationVerbs";
 import irregularVerbs from "data/irregularVerbs";

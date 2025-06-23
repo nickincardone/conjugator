@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState, useEffect } from "react";
+import React, { ChangeEvent, useState, useEffect, useCallback } from "react";
 import { Question, QuestionType } from "types/types";
 import { useNavigate } from "react-router-dom";
 import QuestionCard from "features/quiz/cards/QuestionCard";
@@ -34,6 +34,28 @@ const QuizSection = (props: QuizSectionProps) => {
   const [isCorrect, setIsCorrect] = useState(false);
   const [showExplanation, setShowExplanation] = useState(false);
   const navigate = useNavigate();
+
+  const handleUserKeyPress = useCallback(
+    (event: KeyboardEvent) => {
+      const key = event.key;
+      if (key === "Enter" && isSubmitted) {
+        return processNext(value);
+      }
+      if (
+        key === "Enter" &&
+        (props.question.questionType === QuestionType.DefinitionW ||
+          props.question.questionType === QuestionType.ConjugationW)
+      ) {
+        return processNext(value);
+      }
+    },
+    [isSubmitted, showExplanationDialog, value, props.question.questionType],
+  );
+
+  useEffect(() => {
+    window.addEventListener("keydown", handleUserKeyPress);
+    return () => window.removeEventListener("keydown", handleUserKeyPress);
+  }, [handleUserKeyPress]);
 
   useEffect(() => {
     // Check if question is valid
@@ -110,8 +132,6 @@ const QuizSection = (props: QuizSectionProps) => {
     setValue(value);
     processNext(value);
   };
-
-  console.log(props.question);
 
   return (
     <Box sx={{ width: "100%" }}>

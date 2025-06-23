@@ -13,6 +13,11 @@ import {
   Slider,
   Button,
   Grid,
+  InputLabel,
+  MenuItem,
+  Select,
+  Switch,
+  TextField,
 } from "@mui/material";
 import verbTypes from "data/verbTypes";
 import verbTypeNicknames from "data/verbTypeNicknames";
@@ -257,7 +262,7 @@ function OptionPage(props: OptionPageProps) {
             <Slider
               value={props.settings.numberOfQuestions}
               onChange={props.sliderChange}
-              min={1}
+              min={5}
               max={50}
               valueLabelDisplay="auto"
               sx={{
