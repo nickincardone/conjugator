@@ -131,7 +131,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <Container maxWidth="md" className="nji-main">
         <Grid container className={getAppClass()} direction="column">
-          <Grid item className="nji-wrap">
+          <Grid className="nji-wrap">
             <Card className="nji-main-card">
               <CardContent>
                 <Routes>

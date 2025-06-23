@@ -9,15 +9,9 @@ import {
   useMediaQuery,
   useTheme,
   FormControl,
-  Typography,
   Slider,
   Button,
   Grid,
-  InputLabel,
-  MenuItem,
-  Select,
-  Switch,
-  TextField,
 } from "@mui/material";
 import verbTypes from "data/verbTypes";
 import verbTypeNicknames from "data/verbTypeNicknames";
@@ -71,7 +65,7 @@ const VerbTypeColumn: React.FC<VerbTypeColumnProps> = ({
   const conjugationEnabled = settings.conjugationMC || settings.conjugationW;
 
   return (
-    <Grid item xs={12} sm={6}>
+    <Grid size={{ xs: 12, sm: 6 }}>
       <FormGroup>
         {verbTypes.map((verbType, index) => (
           <CustomFormLabel
@@ -115,7 +109,7 @@ function OptionPage(props: OptionPageProps) {
 
   const conjugationFormGroup = (
     <Grid container>
-      <Grid item xs={12} sm={6}>
+      <Grid size={{ xs: 12, sm: 6 }}>
         <FormGroup>
           {verbTypes
             .slice(0, Math.ceil(verbTypes.length / 2))
@@ -131,7 +125,7 @@ function OptionPage(props: OptionPageProps) {
             ))}
         </FormGroup>
       </Grid>
-      <Grid item xs={12} sm={6}>
+      <Grid size={{ xs: 12, sm: 6 }}>
         <FormGroup>
           {verbTypes
             .slice(Math.ceil(verbTypes.length / 2))
@@ -172,7 +166,7 @@ function OptionPage(props: OptionPageProps) {
             Question Types
           </FormLabel>
           <Grid container>
-            <Grid item xs={12} sm={6}>
+            <Grid size={{ xs: 12, sm: 6 }}>
               <FormGroup sx={{ "& .MuiFormControlLabel-root": { mb: -1 } }}>
                 <CustomFormLabel
                   name="definitionMC"
@@ -196,7 +190,7 @@ function OptionPage(props: OptionPageProps) {
                 />
               </FormGroup>
             </Grid>
-            <Grid item xs={12} sm={6}>
+            <Grid size={{ xs: 12, sm: 6 }}>
               <FormGroup sx={{ "& .MuiFormControlLabel-root": { mb: -1 } }}>
                 <CustomFormLabel
                   name="conjugationMC"
@@ -229,7 +223,7 @@ function OptionPage(props: OptionPageProps) {
             Other
           </FormLabel>
           <Grid container>
-            <Grid item xs={12} sm={6}>
+            <Grid size={{ xs: 12, sm: 6 }}>
               <FormGroup>
                 <CustomFormLabel
                   name="vosotros"
@@ -240,7 +234,7 @@ function OptionPage(props: OptionPageProps) {
                 />
               </FormGroup>
             </Grid>
-            <Grid item xs={12} sm={6}>
+            <Grid size={{ xs: 12, sm: 6 }}>
               <FormGroup>
                 <CustomFormLabel
                   name="irregular"

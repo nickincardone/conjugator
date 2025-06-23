@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from "react";
-import { Typography, Grid, Card, CardContent } from "@mui/material";
+import { Typography, Card, CardContent, Grid } from "@mui/material";
 
 interface MultipleChoiceProps {
   answer: string;
@@ -19,9 +19,9 @@ const MultipleChoice: FunctionComponent<MultipleChoiceProps> = (props) => {
   return (
     <>
       <Typography variant="subtitle1">{props.header}</Typography>
-      <Grid container spacing={1} className="nji-card-mc">
+      <Grid container spacing={1} className="nji-card-mc" width="100%">
         {props.choices.map((choice, index) => (
-          <Grid item xs={6} key={index} className={getClass(choice)}>
+          <Grid size={6} key={index} className={getClass(choice)}>
             <Card
               onClick={() => {
                 if (!props.isSubmitted) props.click(choice);

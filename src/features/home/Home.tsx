@@ -40,9 +40,9 @@ function Home(props: HomeProps) {
       textAlign={"center"}
       sx={{
         pt: { xs: 0, sm: 6.25 },
-        '& button': {
-          mt: 6.25
-        }
+        "& button": {
+          mt: 6.25,
+        },
       }}
     >
       {props.started ? postQuizText() : "Hello, welcome to Conjugator"}
