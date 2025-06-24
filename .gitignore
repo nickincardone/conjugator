@@ -80,7 +80,6 @@ dist
 
 # Gatsby files (if you ever use)
 .cache/
-public
 
 # Temporary folders
 tmp/

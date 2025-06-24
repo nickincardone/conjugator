@@ -1,136 +1,117 @@
-# PorOPara - Spanish Language Learning Quiz App
+# Poropara - Spanish Learning App Monorepo
 
-A React-based web application for practicing Spanish language concepts, with a focus on verb conjugations, definitions, and the usage of "por" vs "para". The app provides an interactive quiz experience with multiple question types and customizable settings.
+A modern Spanish learning application built with React that helps you practice verb conjugations, definitions, and grammar concepts like "por vs para".
 
-## Features
+## Monorepo Structure
 
-- Multiple question types:
-  - Verb conjugations (Multiple Choice & Written)
-  - Word definitions (Multiple Choice & Written)
-  - Por vs Para usage
-- Customizable quiz settings:
-  - Number of questions (5-50, in increments of 5)
-  - Verb tenses selection
-  - Optional vosotros form inclusion
-  - Irregular verbs only option
-- Responsive design for both desktop and mobile
-- Progress tracking
-- Detailed explanations for incorrect answers
-- Results summary with performance metrics
+This project has been restructured as a monorepo to support multiple applications:
 
-## Prerequisites
-
-- Node.js (v16 or higher)
-- npm (v7 or higher)
+```
+poropara/
+├── apps/
+│   ├── web/          # React web application
+│   └── mobile/       # React Native mobile app (coming soon)
+├── packages/
+│   └── shared/       # Shared code between apps
+│       ├── components/  # Reusable UI components
+│       ├── data/       # Spanish verb data, rules, etc.
+│       ├── structures/ # Core classes (Quiz, Settings)
+│       ├── types/      # TypeScript type definitions
+│       ├── utils/      # Utility functions
+│       └── theme.ts    # Material-UI theme
+└── package.json      # Root monorepo configuration
+```
 
 ## Getting Started
 
+### Prerequisites
+- Node.js (v18 or higher)
+- npm
+
+### Installation
+
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/poropara.git
+git clone <repository-url>
 cd poropara
 ```
 
-2. Install dependencies:
+2. Install dependencies for all packages:
 ```bash
 npm install
 ```
 
-3. Start the development server:
+### Development
+
+#### Web Application
+To run the web application in development mode:
 ```bash
+npm run dev:web
+# or simply
 npm run dev
 ```
 
-The application will be available at `http://localhost:3000`
+The app will be available at `http://localhost:5173`
 
-## Development Scripts
-
-- **Development server**: `npm run dev` - Start the Vite development server with hot module replacement
-- **Build for production**: `npm run build` - Create optimized production build
-- **Preview production build**: `npm run preview` - Preview the production build locally
-- **Run tests**: `npm run test` - Run tests with Vitest
-- **Run tests with UI**: `npm run test:ui` - Run tests with Vitest's UI interface
-- **Lint code**: `npm run lint` - Check code for linting errors
-- **Format code**: `npm run format` - Format code with Prettier
-- **Watch and format**: `npm run watch` - Watch for changes and auto-format code
-
-## Project Structure
-
-```
-src/
-├── components/        # Reusable UI components
-│   └── ui/           # Base UI components
-├── data/             # Static data and configurations
-├── features/         # Feature-specific components
-│   ├── dialogs/     # Dialog components
-│   ├── home/        # Home page
-│   ├── options/     # Quiz options page
-│   ├── quiz/        # Quiz components
-│   └── results/     # Results page
-├── structures/       # Core data structures and classes
-├── types/           # TypeScript type definitions
-├── utils/           # Utility functions
-└── styles/          # Global styles and SCSS files
+#### Building
+To build the web application:
+```bash
+npm run build:web
 ```
 
-## Import Aliases
-
-The project uses path aliases for cleaner imports:
-
-```typescript
-// Instead of relative paths
-import { VerbType } from '../../types/types'
-import verbs from '../../data/conjugationVerbs'
-
-// Use clean aliases
-import { VerbType } from 'types/types'
-import verbs from 'data/conjugationVerbs'
+#### Testing
+To run tests for the web application:
+```bash
+npm run test:web
 ```
 
-Available aliases:
-- `data/*` → `src/data/*`
-- `types/*` → `src/types/*`
-- `components/*` → `src/components/*`
-- `utils/*` → `src/utils/*`
-- `features/*` → `src/features/*`
-- `structures/*` → `src/structures/*`
+#### Linting
+To lint the web application:
+```bash
+npm run lint:web
+```
 
-## Technologies Used
+#### Formatting
+To format all code in the monorepo:
+```bash
+npm run format
+```
 
-- **React 18** - UI library with modern hooks and concurrent features
-- **TypeScript** - Type-safe JavaScript
-- **Vite** - Fast build tool and development server
-- **Vitest** - Fast unit testing framework
-- **Material-UI (MUI)** - React component library
-- **React Router** - Client-side routing
-- **SCSS** - CSS preprocessor
-- **ESLint & Prettier** - Code linting and formatting
+## Features
 
-## Build System
+- **Verb Conjugation Practice**: Test your knowledge of Spanish verb conjugations across different tenses
+- **Definition Quizzes**: Learn Spanish verb meanings through multiple choice and written exercises
+- **Por vs Para**: Master this tricky Spanish grammar concept with fill-in-the-blank exercises
+- **Custom Quiz Options**: Choose specific verb types, question types, and quiz length
+- **Progress Tracking**: Review incorrect answers and explanations
+- **Responsive Design**: Works on both desktop and mobile devices
 
-This project uses Vite for fast development and optimized production builds:
+## Architecture
 
-- **Hot Module Replacement (HMR)** - Instant updates during development
-- **Fast builds** - Significantly faster than traditional webpack builds
-- **Tree shaking** - Dead code elimination for smaller bundles
-- **Modern JavaScript** - Native ES modules support
+### Shared Package (`@poropara/shared`)
+Contains all the business logic, data, and utilities that can be shared between web and mobile applications:
+
+- **Types**: TypeScript definitions for Questions, Verbs, etc.
+- **Data**: Comprehensive Spanish verb conjugation database
+- **Utils**: Helper functions for string manipulation, etc.
+- **Structures**: Core classes like Quiz and Settings management
+
+### Web App (`@poropara/web`)
+React web application that consumes the shared package and provides:
+- Web-specific routing and navigation
+- Material-UI based responsive design
+- Web-optimized user interactions
+
+### Future Mobile App (`@poropara/mobile`)
+Planned React Native application that will share the same core logic and data from the shared package.
 
 ## Contributing
 
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-## Migration Notes
-
-This project has been migrated from Create React App to Vite for improved performance:
-- Development server startup is now nearly instantaneous
-- Hot module replacement is faster and more reliable
-- Production builds are significantly faster
-- Bundle sizes are optimized with better tree-shaking
+1. Make sure to install dependencies: `npm install`
+2. Follow the existing code style and run `npm run format` before committing
+3. Add tests for new features
+4. Update this README if you make structural changes
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+[Your License Here]
