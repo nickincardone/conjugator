@@ -1,6 +1,6 @@
 # Poropara - Spanish Learning App Monorepo
 
-A modern Spanish learning application built with React that helps you practice verb conjugations, definitions, and grammar concepts like "por vs para".
+A modern Spanish learning application built with React and React Native that helps you practice verb conjugations, definitions, and grammar concepts like "por vs para".
 
 ## Monorepo Structure
 
@@ -10,7 +10,7 @@ This project has been restructured as a monorepo to support multiple application
 poropara/
 ├── apps/
 │   ├── web/          # React web application
-│   └── mobile/       # React Native mobile app (coming soon)
+│   └── mobile/       # React Native mobile app (Expo)
 ├── packages/
 │   └── shared/       # Shared code between apps
 │       ├── components/  # Reusable UI components
@@ -27,6 +27,10 @@ poropara/
 ### Prerequisites
 - Node.js (v18 or higher)
 - npm
+- For mobile development:
+  - Expo CLI (`npm install -g @expo/cli`)
+  - iOS Simulator (macOS) or Android Studio/Emulator
+  - Expo Go app on your physical device (optional)
 
 ### Installation
 
@@ -53,10 +57,39 @@ npm run dev
 
 The app will be available at `http://localhost:5173`
 
+#### Mobile Application
+To run the mobile application in development mode:
+```bash
+cd apps/mobile
+npm start
+```
+
+For specific platforms:
+```bash
+# iOS Simulator
+npm run ios
+
+# Android Emulator
+npm run android
+
+# Web (for testing)
+npm run web
+```
+
 #### Building
 To build the web application:
 ```bash
 npm run build:web
+```
+
+For mobile builds:
+```bash
+cd apps/mobile
+# Android
+npm run build:android
+
+# iOS
+npm run build:ios
 ```
 
 #### Testing
@@ -74,6 +107,12 @@ npm run lint:web
 #### Formatting
 To format all code in the monorepo:
 ```bash
+npm run format
+```
+
+For mobile-specific formatting:
+```bash
+cd apps/mobile
 npm run format
 ```
 
@@ -102,8 +141,12 @@ React web application that consumes the shared package and provides:
 - Material-UI based responsive design
 - Web-optimized user interactions
 
-### Future Mobile App (`@poropara/mobile`)
-Planned React Native application that will share the same core logic and data from the shared package.
+### Mobile App (`@poropara/mobile`)
+React Native application built with Expo that shares the same core logic and data from the shared package:
+- Cross-platform mobile experience (iOS and Android)
+- React Native Paper for Material Design components
+- Prettier configuration for consistent code formatting
+- Expo development tools for easy testing and deployment
 
 ## Contributing
 

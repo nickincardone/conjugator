@@ -5,9 +5,6 @@ export * from './types/types';
 export { default as Quiz } from './structures/Quiz';
 export { default as Settings } from './structures/Settings';
 
-// Theme
-export { default as theme } from './theme';
-
 // Data
 export { default as rules } from './data/rules';
 export { default as poropara } from './data/poropara';
