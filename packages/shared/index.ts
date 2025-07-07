@@ -16,4 +16,5 @@ export { default as conjugationVerbs } from './data/conjugationVerbs';
 export { default as conjugationVerbsFull } from './data/conjugationVerbsFull';
 
 // Utils
-export * from './utils/stringHelpers'; 
+export * from './utils/stringHelpers';
+export * from './utils/styles'; 
