@@ -1,0 +1,179 @@
+POROPARA MOBILE APP CONTEXT
+================================
+
+OVERVIEW
+--------
+This is a React Native mobile application built with Expo for Spanish language learning, specifically focused on Spanish verb conjugations and the distinction between "por" and "para". The app is part of a monorepo that includes a web version and shared packages.
+
+PROJECT STRUCTURE
+-----------------
+/apps/mobile/
+├── App.tsx                 # Main app entry point with navigation logic
+├── package.json            # Dependencies and scripts
+├── app.json               # Expo configuration
+├── metro.config.js        # Metro bundler configuration
+├── tsconfig.json          # TypeScript configuration
+├── src/
+│   ├── screens/           # Main application screens
+│   │   ├── HomeScreen.tsx     # Landing page with quiz start options
+│   │   ├── OptionsScreen.tsx  # Quiz customization settings
+│   │   └── QuizScreen.tsx     # Main quiz interface
+│   ├── components/        # Reusable UI components
+│   │   ├── DottedUnderlineText.tsx  # Text with dotted underline
+│   │   └── FillInBlankText.tsx      # Fill-in-blank text with styling
+│   └── styles/            # Global styling
+│       └── globalStyles.ts    # Global font and style definitions
+├── assets/                # Static assets (icons, images)
+└── index.ts              # App entry point
+
+DEPENDENCIES
+------------
+Key dependencies:
+- React Native (0.79.4) - Core framework
+- Expo (~53.0.0) - Development platform
+- React Native Paper (5.14.5) - Material Design components
+- @poropara/shared - Shared logic with web app (file:../../packages/shared)
+- React Native Safe Area Context - Safe area handling
+- React Native Vector Icons - Icon library
+
+NAVIGATION SYSTEM
+-----------------
+The app uses a simple state-based navigation system (no external router):
+- Managed in App.tsx via currentScreen state
+- Screen types: 'home' | 'options' | 'quiz' | 'results'
+- Navigation functions: navigateToHome(), navigateToOptions(), navigateToQuiz(), navigateToResults()
+
+SHARED PACKAGE INTEGRATION
+--------------------------
+The app heavily relies on @poropara/shared package located at ../../packages/shared:
+
+Exported from shared:
+- Types: QuestionType, Quiz, Settings, and other type definitions
+- Data: rules, poropara, haber, verbTypes, verbTypeNicknames, irregularVerbs, conjugationVerbs
+- Utils: stringHelpers, styles (AppColors, AppStyles)
+- Classes: Quiz (generates questions), Settings (quiz configuration)
+
+SCREENS DETAILED
+-----------------
+
+1. HomeScreen.tsx (Landing Page)
+   - Props: incorrectAnswers, numberOfQuestions, started, start(), goToOptions(), goToResults()
+   - Features:
+     * Welcome message or post-quiz results
+     * START button (launches quiz with default settings)
+     * CUSTOM QUIZ button (opens OptionsScreen)
+     * Results button (shown after quiz completion)
+   - Styling: Light blue background (#b3e5fc), centered white card
+
+2. OptionsScreen.tsx (Quiz Settings)
+   - Props: settings, setSettings(), start(), goBack()
+   - Features:
+     * Question type selection (Definition MC, Por vs Para, Conjugation MC)
+     * Verb tense selection (conditional on conjugation being enabled)
+     * Other options (Use Vosotros, Irregular Only)
+     * Number of questions display
+     * Start/Back buttons with validation
+   - Validation: Disables start if no question types selected or no verb types for conjugation
+   - Styling: Scrollable interface with checkboxes and cards
+
+3. QuizScreen.tsx (Main Quiz Interface)
+   - Props: settings, goHome(), goToSettings()
+   - Features:
+     * Progress bar showing quiz completion
+     * Question display with translation modal (tap to view)
+     * Answer buttons in 2-column grid layout
+     * Top navigation bar with X (home) and settings icons
+     * Automatic advancement after answer selection
+     * Visual feedback for correct/incorrect answers
+     * Handles both PorOParaFIB and DefinitionMC question types
+   - State: currentQuestion, selectedAnswer, showResult, showTranslation
+   - Auto-advance: 2-second delay after answer selection
+
+COMPONENTS DETAILED
+------------------
+
+1. DottedUnderlineText.tsx
+   - Purpose: Renders text with animated dotted underline
+   - Props: children (text), style, containerStyle, dotSize, dotSpacing, dotColor, lineHeight, isCentered
+   - Features:
+     * Calculates line widths dynamically
+     * Renders dots underneath each line
+     * Supports multi-line text
+     * Customizable dot appearance and spacing
+   - Used in: Quiz questions to show Spanish text with underline
+
+2. FillInBlankText.tsx
+   - Purpose: Renders text with highlighted fill-in-blank insertions
+   - Props: text (with ___ markers), insert (text to insert), styleChoice (CORRECT/INCORRECT/NEUTRAL), style
+   - Features:
+     * Splits text on "___" markers
+     * Capitalizes inserted text at sentence beginning
+     * Color-codes insertions: green (correct), red (incorrect), blue (neutral)
+     * Maintains text formatting and styling
+   - Used in: Quiz results to show answered fill-in-blank questions
+
+STYLING APPROACH
+----------------
+- Global font: Helvetica (set in App.tsx theme and globalStyles.ts)
+- Color scheme: Light blue backgrounds (#b3e5fc), white cards, Material Design colors
+- Component library: React Native Paper for consistent Material Design
+- Custom styles: StyleSheet.create() for each component
+- Shared styles: AppColors and AppStyles from @poropara/shared package
+- Responsive design: Flexible layouts, percentage-based widths
+
+DEVELOPMENT SETUP
+-----------------
+Scripts (package.json):
+- "start": expo start
+- "android": expo start --android
+- "ios": expo start --ios
+- "web": expo start --web
+- "prebuild": expo prebuild
+- "build:android": expo build:android
+- "build:ios": expo build:ios
+- "format": prettier --write
+- "format:check": prettier --check
+
+Build Configuration:
+- TypeScript enabled
+- Prettier for code formatting
+- Expo managed workflow
+- Metro bundler for React Native
+- Babel for transpilation
+
+QUIZ LOGIC FLOW
+---------------
+1. User starts from HomeScreen
+2. Can go to OptionsScreen to customize quiz settings
+3. Settings stored in Settings class (from shared package)
+4. Quiz class generates questions based on settings
+5. QuizScreen displays questions one by one
+6. Automatic progression after each answer
+7. Returns to HomeScreen after completion
+
+QUESTION TYPES
+--------------
+1. PorOParaFIB - Fill in blank with "por" or "para"
+2. DefinitionMC - Multiple choice definition questions
+3. ConjugationMC - Multiple choice conjugation questions (settings only, implementation in shared)
+
+Key classes from shared package:
+- Quiz: Generates questions, manages quiz state
+- Settings: Stores quiz configuration (question types, verb types, number of questions, etc.)
+- QuestionType enum: Defines available question types
+
+RECENT REFACTORING (July 2025)
+-----------------------------
+- Consolidated duplicate question rendering blocks in QuizScreen
+- Added top navigation bar with X (home) and settings icons
+- Reduced code duplication by ~50% in question display logic
+- Improved maintainability with DRY principles
+
+INTEGRATION NOTES
+-----------------
+- Shares core logic with web app through @poropara/shared package
+- Same Settings and Quiz classes used across platforms
+- Consistent question generation and validation logic
+- Platform-specific UI implementations but shared business logic
+
+This mobile app provides a complete Spanish learning experience with customizable quizzes, immediate feedback, and clean Material Design interface optimized for mobile interaction. 

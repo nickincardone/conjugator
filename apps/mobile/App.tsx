@@ -6,8 +6,9 @@ import { Settings } from '@poropara/shared';
 import HomeScreen from './src/screens/HomeScreen';
 import OptionsScreen from './src/screens/OptionsScreen';
 import QuizScreen from './src/screens/QuizScreen';
+import { SEN_FONT_FAMILY } from './src/styles/globalStyles';
 
-// Create theme with Helvetica font
+// Create theme with Helvetica font (with Sen font option)
 const theme = {
   ...MD3LightTheme,
   fonts: {
@@ -15,6 +16,10 @@ const theme = {
     default: {
       ...MD3LightTheme.fonts.default,
       fontFamily: 'Helvetica',
+    },
+    sen: {
+      ...MD3LightTheme.fonts.default,
+      fontFamily: SEN_FONT_FAMILY,
     },
     displayLarge: {
       ...MD3LightTheme.fonts.displayLarge,

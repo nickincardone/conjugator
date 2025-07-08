@@ -1,6 +1,8 @@
+import { AppColors, AppStyles } from '@poropara/shared';
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { Text, Button, Card } from 'react-native-paper';
+import { SEN_FONT_FAMILY } from '../styles/globalStyles';
 
 export interface HomeScreenProps {
   incorrectAnswers: number;
@@ -31,7 +33,7 @@ export default function HomeScreen(props: HomeScreenProps) {
     <View style={styles.container}>
       <Card style={styles.card}>
         <Card.Content style={styles.cardContent}>
-          <Text variant="headlineMedium" style={styles.welcomeText}>
+          <Text style={styles.welcomeText}>
             {props.started ? postQuizText() : 'Hello, welcome to Conjugator'}
           </Text>
 
@@ -40,6 +42,7 @@ export default function HomeScreen(props: HomeScreenProps) {
               mode="contained"
               style={[styles.button, styles.resultsButton]}
               onPress={() => props.goToResults()}
+              labelStyle={styles.buttonText}
             >
               Results
             </Button>
@@ -49,6 +52,7 @@ export default function HomeScreen(props: HomeScreenProps) {
             mode="contained"
             style={[styles.button, styles.startButton]}
             onPress={() => props.start(true)}
+            labelStyle={styles.buttonText}
           >
             START
           </Button>
@@ -56,8 +60,8 @@ export default function HomeScreen(props: HomeScreenProps) {
           <Button
             mode="contained"
             style={[styles.button, styles.customButton]}
-            buttonColor="#9c27b0"
             onPress={() => props.goToOptions(true)}
+            labelStyle={styles.buttonText}
           >
             CUSTOM QUIZ
           </Button>
@@ -70,7 +74,7 @@ export default function HomeScreen(props: HomeScreenProps) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#b3e5fc', // Light blue background like in screenshots
+    backgroundColor: AppColors.mainBackground,
     alignItems: 'center',
     justifyContent: 'center',
     padding: 20,
@@ -87,22 +91,27 @@ const styles = StyleSheet.create({
   },
   welcomeText: {
     textAlign: 'center',
-    marginBottom: 40,
-    color: '#333',
-    fontWeight: '500',
+    fontWeight: '400',
+    fontSize: 16,
+    marginVertical: 40,
+    fontFamily: SEN_FONT_FAMILY,
   },
   button: {
-    width: '100%',
     marginBottom: 16,
     borderRadius: 8,
+    fontWeight: '800',
+    boxShadow: AppStyles.regularButton.boxShadow,
+  },
+  buttonText: {
+    fontWeight: '400',
   },
   startButton: {
-    backgroundColor: '#2196f3', // Blue color like in screenshot
+    backgroundColor: AppColors.startButton,
   },
   customButton: {
-    backgroundColor: '#9c27b0', // Purple color like in screenshot
+    backgroundColor: AppColors.customStartButton,
   },
   resultsButton: {
-    backgroundColor: '#ff9800', // Orange for results
+    backgroundColor: AppColors.resultsButton,
   },
 });

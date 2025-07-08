@@ -24,6 +24,10 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "fonts": [
+      "./assets/fonts/Sen-Regular.ttf",
+      "./assets/fonts/Sen-Bold.ttf"
+    ]
   }
 }
